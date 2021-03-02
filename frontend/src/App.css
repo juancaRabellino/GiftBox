@@ -1,1 +1,34 @@
-/* sads */
+/* ESTILOS GENERALES */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --color-primario: #FF2A2A;
+    --azul-claro: #0FA2FF;
+    --azul-oscuro:#1475B3;
+    --amarillo: #FFFC42;
+    --rojo-oscuro: #B30B0B;
+}
+
+.centerCenterRow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.centerCenterColumn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+}
+.centerVerticalRow{
+    display: flex;
+    justify-content: center;
+}
+.centerVerticalColumn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
