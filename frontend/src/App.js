@@ -3,7 +3,7 @@ import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home.js'
 import PaginaUsuario from './pages/PaginaUsuario.js'
-import Registro from "./components/Registro";
+import Registro from "./components/Registros";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/usuario' component={PaginaUsuario}/>
-          <Route path='/registro' componente={Registro}/>
+          <Route exact path='/registro' component={Registro}/>
         </Switch> 
       </BrowserRouter> 
     </div>

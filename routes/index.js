@@ -37,7 +37,7 @@ router.route('/usuarios/:_id')
     .put(usuarioController.editarUsuario)
     .get(usuarioController.unUsuario)
 router.route("/usuarios/register")
-    .post(validador.validarNuevaCuenta,usuarioController.agregarUsuario)
+.post(validador.validarNuevaCuenta,usuarioController.agregarUsuario)
 
     router.route("/usuarios/usuarios")
     .get(usuarioController.todosLosUsuarios)

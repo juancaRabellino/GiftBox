@@ -33,8 +33,11 @@ const usuarioController = {
         })
     },
     editarUsuario: async(req,res) =>{
-        const {imgFile}= req.files
-        const imgTipo=imgFile.name.split(".").slice(-1).join(" ")
+
+
+        // const {imgFile}= req.files
+
+        // const imgTipo=imgFile.name.split(".").slice(-1).join(" ")
         const {cuenta,password,nombre,apellido}=req.body
         var imgName= `${req.params}.${imgTipo}`
         
@@ -47,6 +50,8 @@ const usuarioController = {
         .catch(error =>{return res.json({success:false, response: 'Error al editar Usuario'})})
     },
     agregarUsuario: async (req,res)=>{
+        console.log("ACÁ")
+        console.log(req.file)
         var errors=[];
         const {cuenta,password,nombre,apellido,rol,googleUser,productosFaveados,productosComprados}=req.body;
         const {imgFile}= req.files;

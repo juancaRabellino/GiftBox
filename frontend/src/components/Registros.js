@@ -56,6 +56,8 @@ const Registro = (props) => {
         setErrores([])
         const respuesta = await props.crearCuenta(nuevoUsuario)
 
+        console.log(respuesta)
+
         if (respuesta && !respuesta.success) {
             setErrores(respuesta.errores)
         } else {
@@ -97,9 +99,9 @@ const Registro = (props) => {
                     showConfirmButton: false,
                     timer: 1500
                     })
+                }
             }
-        }
-      }
+    }
    
     return (
 
@@ -117,9 +119,9 @@ const Registro = (props) => {
             onChange={leerInput} />
              <label htmlFor="uploadButton" className="inputFile">
                         <p>Agrega tu imagen</p>
-                        <input id="uploadButton" className="fileImagen" type="file"  name="imagen" onChange={leerInput}/>
+                        <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
                     </label>
-                    {console.log(validarUsuario)}          
+         
                    <div className="botones">
             <button className="buttonRegister" onClick={validarUsuario}>Crear Cuenta</button>
 
@@ -136,9 +138,9 @@ const Registro = (props) => {
 
             
 
-            <div className="errores">
+            {/* <div className="errores">
                 {errores && errores.map((error,index) => <h2 key={index}>{error}</h2>)}
-            </div>
+            </div> */}
         </div>
     )
 }
