@@ -2,6 +2,8 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 :root{
@@ -31,4 +33,95 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.spaceBetween{
+    display: flex;
+    justify-content: space-between;
+}
+.spaceAround{
+    display: flex;
+    justify-content: space-around;
+}
+.spaceEvenly{
+    display: flex;
+    justify-content: space-evenly;
+}
+#headerContainer{
+    height: 15vh;
+    width: 100vw;
+    border-bottom: 3px solid var(--color-primario);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logoContainer{
+    height: 12vh;
+    width: 25vh;
+    background-position: center;
+    background-size: contain ;
+    background-repeat: no-repeat;
+    margin-left: 2vw;
+}
+.headerInput{
+    display: flex;
+    align-items: center;
+    min-width: 30vw;
+    cursor: pointer;
+    
+}
+.headerInput input {
+    height: 5vh;
+    width: 100%;
+    padding-left: 1vw;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+    border: 2px solid var(--color-primario) ;
+}
+.searchButton{
+    background-color: var(--color-primario);
+    height: 5vh;
+    width: 5vh;
+    color: white;
+    border-radius: 0 10px 10px 0;
+    border: 2px solid var(--color-primario) ;
+}
+.headerUser{
+    height: 12vh;
+    margin-right: 2vw;
+    width: 20vw;
+    justify-content: space-around;
+}
+.headerUserImg{
+    height: 6vh;
+    width: 6vh;
+    background-position:center ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+}
+.heart{
+    font-size: 1.5rem;
+}
+.cart{
+    font-size: 1.65rem;
+}
+.headerUserBottom {
+    width: 100%;
+}
+.abrirRegalo{
+    background-color: #F9F9F9;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+}
+.abrirRegalo p{
+    padding: 1vh 3vw;
+    color: rgb(46, 46, 46);
+}
+.cartAndHeart{
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
 }
