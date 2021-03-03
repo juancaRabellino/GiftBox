@@ -8,7 +8,7 @@ const userActions={
             .then(response => console.log(response))
             .catch(error => console.log(error))
 
-            // dispatch({type: 'INICIAR_SESION', payload: respuesta.data})
+            dispatch({type: 'INICIAR_SESION', payload: respuesta.data})
         }
     },
 

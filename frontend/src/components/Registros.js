@@ -73,13 +73,14 @@ const Registro = (props) => {
         }
     }
 
+        //GOOGLE REGISTRO
     const responseGoogle = async (response) => {
         console.log(response)
         if (response.error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: '¡Something has happened!',
+                text: '¡Sucedió algo inesperado!',
               })
         } 
         else {
