@@ -1,9 +1,18 @@
+import React from 'react'
+import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
+import './App.css'
+import Home from './pages/Home.js'
+import PaginaUsuario from './pages/PaginaUsuario.js'
+
 function App() {
   return (
     <div className="App">
-      <h1>HOLA2</h1>
-      <h2>sda</h2>
-      <h3>323</h3>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route path='/usuario' component={PaginaUsuario}/>
+        </Switch> 
+      </BrowserRouter> 
     </div>
   );
 }
