@@ -16,10 +16,7 @@ const validador = {
                 "string.min": "Tu contraseña debe contener al menos 5 caracteres",
             }),
             imagen: Joi.string().empty(""),
-            googleUser: Joi.boolean(),
-            rol: Joi.string(),
-            paquetesFaveados: Joi.array().items(Joi.object()).allow(null),
-            paquetesComprados: Joi.array(),
+            
         })
 
         const validacion = schema.validate(req.body, {abortEarly: false})
