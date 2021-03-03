@@ -273,9 +273,12 @@
     justify-content: space-around;
     align-items: center;
     width: 90%;
+    border-top: 1px solid rgb(63, 63, 63) ;
+    padding-top: 3vh;
 }
 .footerAbajo p {
     color: rgb(63, 63, 63) ;
+    
 }
 .devolverCompraButton{
     background-color: var(--color-primario);
