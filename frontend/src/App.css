@@ -273,7 +273,7 @@
     justify-content: space-around;
     align-items: center;
     width: 90%;
-    border-top: 1px solid rgb(63, 63, 63) ;
+    border-top: 2px solid #ccc;
     padding-top: 3vh;
 }
 .footerAbajo p {
@@ -302,6 +302,7 @@
 }
 .iconoFooter{
     margin-right: 1rem;
+    color: rgb(63, 63, 63);
 }
 
 

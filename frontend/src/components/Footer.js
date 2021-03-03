@@ -77,7 +77,7 @@ const Footer = () => {
                 </div>
                 <div className="redesFooter">
                     <IoLogoInstagram className="iconoFooter"/>
-                    <FaFacebookF/>
+                    <FaFacebookF className="iconoFooter"/>
                 </div>
                 
                 
