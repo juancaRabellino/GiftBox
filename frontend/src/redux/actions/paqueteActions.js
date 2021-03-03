@@ -11,7 +11,7 @@ const paqueteActions = {
       }
     }
   },
-  obtenerPaquetesPorCategoria: categoria => {
+  obtenerPaquetesPorCategoria: (categoria) => {
     return async (dispatch, getState) => {
       try {
         dispatch({type: 'PAQUETES_CATEGORIA', payload: categoria})

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import paqueteActions from '../redux/actions/paqueteActions'
 import Loader from './Loader'
+import {Link} from "react-router-dom"
 
 const Paquetes = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaquetes, obtenerPaquetesPorCategoria }) => {
   const [cargando, setCargando] = useState(true)
@@ -29,6 +30,7 @@ const Paquetes = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaque
       })}
       <button onClick={() => obtenerPaquetesPorCategoria('viajar')}>VIAJAR</button>
       <button onClick={() => obtenerPaquetesPorCategoria('comer')}>COMER</button>
+        {paquetesPorCategoria.map(paquete=><Link to={`/paquetes/paquete/${paquete._id}`}><p>{paquete.nombre}</p></Link> )}
     </div>
   )
 }

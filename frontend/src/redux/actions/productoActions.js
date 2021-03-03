@@ -11,6 +11,13 @@ const productoActions = {
         console.log(error)
       }
     }
+  },
+  obtenerProductosPorPaquete: (_id)=>{
+    return async (dispatch, getState) => {
+      axios.get(`http://localhost:4000/api/productos/paquete/${_id}`)
+      .then(response=>console.log(response.data))
+      .catch(error=>console.log(error))
+    }
   }
     
 }
