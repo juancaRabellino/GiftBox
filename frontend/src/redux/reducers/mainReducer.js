@@ -4,8 +4,9 @@ import paqueteReducer from "./paqueteReducer";
 import productoReducer from "./productoReducer";
 
 const mainReducer=combineReducers({
-    user: userReducer,
-    paqueteReducer,
+    userReducer,
+    productoReducer,
+    paqueteReducer
 })
 
 export default mainReducer;
