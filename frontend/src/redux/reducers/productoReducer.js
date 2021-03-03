@@ -1,5 +1,6 @@
 const initialState = {
-    todosLosProductos:null
+    todosLosProductos:null,
+    productosDelpaquete:[]
   }
   const productoReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -7,6 +8,11 @@ const initialState = {
         return {
           ...state,
           todosLosProductos: action.payload
+        }
+      case 'PRODUCTOS_DEL_PAQUETE':
+        return {
+          ...state,
+          productosDelpaquete: state.todosLosProductos.filter(producto => producto.paqueteId._id === action.payload)
         }
       default:
         return state;
