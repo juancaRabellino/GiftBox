@@ -21,7 +21,7 @@ const userActions={
 
     iniciarSesion: (usuario) => {
         return async (dispatch, getState) => {
-            const respuesta = await axios.post('http://localhost:4000/api/user/login', usuario)
+            const respuesta = await axios.post('http://localhost:4000/api/login', usuario)
             if (!respuesta.data.success) {
                 return respuesta.data
             }
