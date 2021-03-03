@@ -20,17 +20,17 @@ const Footer = () => {
         <div className="footer">
             <div className="footerArriba">
                 <div className="footerArribaItem">
-                    <AiOutlineShop/>
+                    <AiOutlineShop className="iconoFooterArriba"/>
                     <p>Puntos de venta</p>
                 </div>                
                 <span>|</span>
                 <div className="footerArribaItem">
-                    <AiOutlineQuestionCircle/>
+                    <AiOutlineQuestionCircle className="iconoFooterArriba"/>
                     <p>Necesitas ayuda? Escribinos</p>
                 </div>
                 <span>|</span>
                 <div className="footerArribaItem">
-                    <FiBriefcase/>
+                    <FiBriefcase className="iconoFooterArriba"/>
                     <p>Venta Corporativa</p>
                 </div>                
             </div>
