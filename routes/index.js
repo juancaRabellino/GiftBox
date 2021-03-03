@@ -41,5 +41,5 @@ router.route("/usuarios")
     .get(usuarioController.todosLosUsuarios)
 router.route("/login")
     .post(usuarioController.login)
-
+    
 module.exports=router;
