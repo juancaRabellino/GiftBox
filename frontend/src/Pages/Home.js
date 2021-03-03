@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <>
         <Link to="/usuario"><button>Library</button></Link> 
-
+        <Link to="/registro"><button>Registro</button></Link> 
         </>
     )
 }
