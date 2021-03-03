@@ -15,8 +15,9 @@ function App() {
       <BrowserRouter>
         <Header/>
           <Switch>
-            <Route path="/paquete/:_id" component={Paquete}/>
             <Route exact path='/' component={Home}/>
+            <Route path="/paquetes/" component={Paquetes}/>
+            <Route path="/paquete/:_id" component={Paquete}/>
             <Route path='/usuario' component={PaginaUsuario}/>
             <Redirect to="/" />
           </Switch>

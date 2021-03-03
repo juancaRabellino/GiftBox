@@ -28,6 +28,16 @@ const paqueteActions = {
         console.log(error)
       }
     }
+  },
+  filtrarPaquetes: (valor) => {
+    console.log(valor)
+    return (dispatch, getState) => {
+      try {
+        dispatch({type: 'FILTRO', payload: valor})
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
   
     

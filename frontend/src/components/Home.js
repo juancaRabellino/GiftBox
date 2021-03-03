@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Carrousel from '../components/Carrousel'
-import Paquetes from '../components/Paquetes'
+import PaquetesHeader from '../components/PaquetesHeader'
 
 
 const Home = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaquetes, obtenerPaquetesPorCategoria }) => {
     
     return (
         <>
-            <Paquetes/>
+            <PaquetesHeader/>
             <Link to="/usuario"><button>Library</button></Link> 
             <div>
                 <Carrousel />

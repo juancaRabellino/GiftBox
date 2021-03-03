@@ -20,6 +20,11 @@ const paqueteReducer = (state = initialState, action) => {
         ...state,
         paquetePorId: state.todosLosPaquetes.filter(paquete => paquete._id === action.payload)
       }
+    case 'FILTRO':
+      return {
+        ...state,
+        paquetesFiltrados: state.todosLosPaquetes.filter(paquete => paquete.nombre.toLowerCase().includes(action.payload.toLowerCase().trim()) || paquete.cantidadPersonas === action.payload.trim() || paquete.ubicacion.toLowerCase().includes(action.payload.toLowerCase().trim()) || paquete.categoria.toLowerCase().includes(action.payload.toLowerCase().trim()))
+      }
     default:
       return state;
   }
