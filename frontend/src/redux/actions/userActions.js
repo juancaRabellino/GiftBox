@@ -5,7 +5,7 @@ const userActions={
         console.log(nuevoUsuario)        
         return async (dispatch, getState) => {
             const respuesta = await axios.post('http://localhost:4000/api/usuarios/register',nuevoUsuario,{
-                headers: {"Content-Type": "multipart: form-data"}
+                headers: {"Content-Type": "multipart/form-data"}
               }); 
            if (!respuesta.data.success) {
                return respuesta.data
@@ -19,8 +19,6 @@ const userActions={
             dispatch({type: 'CERRAR_SESION'})
         }
     },
-
-
     iniciarSesion: (usuario) => {
         return async (dispatch, getState) => {
             const respuesta = await axios.post('http://localhost:4000/api/user/login', usuario)
