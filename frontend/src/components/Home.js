@@ -10,7 +10,6 @@ const Home = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaquetes,
     
     return (
         <>  
-        
             <video src={video} autoPlay loop muted></video>
             <Link to="/usuario"><button>Library</button></Link> 
             
