@@ -255,6 +255,7 @@
 }
 .seccionesMedioFooter p {
     color: rgb(143, 143, 143);
+    margin: 0.25rem 0;
 }
 
 .seccionesMedioFooterPadre{
@@ -265,8 +266,9 @@
 }
 .regalosFooter{
     margin-bottom: 5vh;
-    color:rgb(63, 63, 63);
+    color:rgb(63, 63, 63);   
 }
+
 .footerAbajo{
     display: flex;
     margin: 5vh 0;
