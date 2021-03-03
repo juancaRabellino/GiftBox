@@ -12,7 +12,6 @@ const Home = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaquetes,
         <>  
         
             <video src={video} autoPlay loop muted></video>
-            <PaquetesHeader/>
             <Link to="/usuario"><button>Library</button></Link> 
             
             <div style={{width:'100%',height:'70vh',display:'flex',alignItems:'center'}}>

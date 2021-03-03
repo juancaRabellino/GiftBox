@@ -17,16 +17,11 @@ const Carrousel =()=> {
       <Slider {...settings}>
         {fotos.map(function(foto, i) {
           return (
-<<<<<<< HEAD
-                  <div style={{border:'2px solid red', margin:'5vh', width:'30vw'}} key={i}>
-                    <div style={{backgroundImage:`url('./assets/fotos-carrusel/${foto}')`, width:'30vw', height:'70vh',backgroundSize:'cover',margin:'5vh'}}>
-                      </div>
-=======
+
                   <div className='imgCarrusel' style={{ width:'35vw'}}>
                     <div style={{backgroundImage:`url('./assets/fotos-carrusel/${foto.img}')`, height:'75vh',backgroundSize:'cover',backgroundPosition:'center',display:'flex',alignItems:'flex-end'}}>
                       <h3 style={{color:foto.color}}>{foto.text}</h3>  
                     </div>
->>>>>>> Ale
                   </div>
           );
         })}
