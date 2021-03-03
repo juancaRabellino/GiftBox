@@ -5,6 +5,8 @@ import Loader from './Loader'
 import {Link} from "react-router-dom"
 import productoActions from "../redux/actions/productoActions"
 
+
+
 const Paquetes = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaquetes,productosDelpaquete,
    obtenerPaquetesPorCategoria,obtenerTodoslosProductos,todosLosProductos,obtenerProductosPorPaquete }) => {
   
@@ -34,14 +36,14 @@ const Paquetes = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaque
       
       <div onMouseOver={()=>setMostrarProductos(true)} onMouseOut={()=>setMostrarProductos(false)} style={{border: "solid red"}}>
         {paquetesPorCategoria.map(paquete=>
-          <p onMouseOver={()=>obtenerProductosPorPaquete(paquete._id)}  >
-            <Link to={`/paquete/${paquete._id}` }>
+        <Link to={`/paquete/${paquete._id}`} key={`Link${paquete._id}`}>
+          <p onMouseOver={()=>obtenerProductosPorPaquete(paquete._id)}>
               {paquete.nombre}
-            </Link> 
-          </p>)
+          </p>
+          </Link> )
         } 
       </div>
-      {mostrarProductos && productosDelpaquete.map(producto=><p>{producto.nombre}</p>)}
+      {mostrarProductos && productosDelpaquete.map(producto=><p key={producto._id}>{producto.nombre}</p>)}
     </div>
   )
 }
