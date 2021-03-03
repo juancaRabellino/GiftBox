@@ -1,12 +1,12 @@
 const initialState = {
-  paquetes: []
+  todosLosPaquetes:null
 }
 const paqueteReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'TODOS_PAQUETES':
       return {
         ...state,
-        paquetes: action.payload
+        todosLosPaquetes: action.payload
       }
     default:
       return state;

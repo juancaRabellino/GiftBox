@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const paqueteActions = {
-  verPaquetes: () => {
+  obtenerTodosLosPaquetes: () => {
     return async (dispatch, getState) => {
       try {
         const response = await axios.get('http://localhost:4000/api/paquetes')
