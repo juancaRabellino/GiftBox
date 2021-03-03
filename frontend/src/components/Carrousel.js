@@ -15,9 +15,9 @@ const Carrousel =()=> {
   return (
     <div style={{width:'90vw',minHeight:'80vh',margin:'auto'}}>
       <Slider {...settings}>
-        {fotos.map(function(foto) {
+        {fotos.map(function(foto, i) {
           return (
-                  <div style={{border:'2px solid red', margin:'5vh', width:'30vw'}}>
+                  <div style={{border:'2px solid red', margin:'5vh', width:'30vw'}} key={i}>
                     <div style={{backgroundImage:`url('./assets/fotos-carrusel/${foto}')`, width:'30vw', height:'70vh',backgroundSize:'cover',margin:'5vh'}}>
                       </div>
                   </div>
