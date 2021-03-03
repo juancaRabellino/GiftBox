@@ -12,8 +12,6 @@ const productoActions = {
     }
   },
   obtenerProductosPorPaquete: (_id)=>{
-
-    console.log("entro al action")
     return async (dispatch, getState) => {
       dispatch({type:"PRODUCTOS_DEL_PAQUETE", payload: _id})
     }

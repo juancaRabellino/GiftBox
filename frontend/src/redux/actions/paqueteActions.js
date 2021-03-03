@@ -12,14 +12,34 @@ const paqueteActions = {
     }
   },
   obtenerPaquetesPorCategoria: (categoria) => {
-    return async (dispatch, getState) => {
+    return  (dispatch, getState) => {
       try {
         dispatch({type: 'PAQUETES_CATEGORIA', payload: categoria})
       } catch (error) {
         console.log(error)
       }
     }
+  },
+  obtenerPaquetePorId: (_id) => {
+    return (dispatch, getState) => {
+      try {
+        dispatch({type: 'PAQUETE_ID', payload: _id})
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
+  filtrarPaquetes: (valor) => {
+    console.log(valor)
+    return (dispatch, getState) => {
+      try {
+        dispatch({type: 'FILTRO', payload: valor})
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
+  
     
 }
 export default paqueteActions;

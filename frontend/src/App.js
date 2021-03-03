@@ -6,8 +6,8 @@ import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
 import Header from  "./components/Header"
 import Footer from "./components/Footer"
 import WhatsApp from './components/WhatsApp'
-import PaginaUsuario from './Pages/PaginaUsuario.js'
-import Home from "./Pages/Home"
+import Home from './components/Home'
+import PaginaUsuario from './components/PaginaUsuario.js'
 
 function App() {
   return (
@@ -15,8 +15,9 @@ function App() {
       <BrowserRouter>
         <Header/>
           <Switch>
-            <Route path="/paquete/:_id" component={Paquete}/>
             <Route exact path='/' component={Home}/>
+            <Route path="/paquetes/" component={Paquetes}/>
+            <Route path="/paquete/:_id" component={Paquete}/>
             <Route path='/usuario' component={PaginaUsuario}/>
             <Redirect to="/" />
           </Switch>
