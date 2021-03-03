@@ -1,9 +1,9 @@
+import Home from './components/Home'
+
 function App() {
   return (
     <div className="App">
-      <h1>HOLA2</h1>
-      <h2>sda</h2>
-      <h3>323</h3>
+      <Home />
     </div>
   );
 }

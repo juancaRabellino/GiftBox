@@ -1,1 +1,14 @@
 /* sads */
+
+h1{
+    color:green
+}
+.fotos{
+    width: 20vw;
+    height: 50vw;
+    background-size: cover;
+    background-color: red;
+}
+.slick-arrow{
+    background-color: red!important;
+}
