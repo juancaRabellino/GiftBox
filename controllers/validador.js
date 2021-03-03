@@ -2,6 +2,7 @@ const Joi = require('joi')
 
 const validador = {
     validarNuevaCuenta: (req, res, next) => {
+        console.log(req.body)
         const schema = Joi.object({
             nombre: Joi.string().trim().required().min(2).message({
                 "string.min": "Tu nombre debe contener al menos 2 letras",
@@ -25,6 +26,7 @@ const validador = {
             next()
         } else {
             res.json({success: false, errores: validacion.error.details})
+            
         }
       }
   }

@@ -1,14 +1,21 @@
-import IniciarSesion from "./components/IniciarSesion";
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
+import './App.css'
+import Home from './pages/Home.js'
+import PaginaUsuario from './pages/PaginaUsuario.js'
+import Registro from "./components/Registros";
 
-const App = () => {
-
+function App() {
   return (
-    <div>
-    <IniciarSesion />
-      </div>
-  )
+    <div className="App">
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route path='/usuario' component={PaginaUsuario}/>
+          <Route exact path='/registro' component={Registro}/>
+        </Switch> 
+      </BrowserRouter> 
+    </div>
+  );
 }
-
-export default App;
-      
+export default App

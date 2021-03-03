@@ -1,1 +1,75 @@
 /* sads */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.imgTopUsuario{
+    background-image: url("./assets/celeste.png");
+    width: 100vw;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.boxUser{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+
+}
+.iconoCambiarImg{
+    width: 35px;
+    height: 35px;
+    border: 2px solid #fff;
+    background-color: #FF2A2A;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5px;
+    font-size: larger;
+    font:bolder;
+    color: #fff;
+    margin-left: -2.8vw;
+}
+.iconoCambiarImg:hover{
+    cursor: pointer;
+    font-size: medium;
+
+}
+.userIconos{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-right: 60px;
+}
+.userImg {
+    background-image: url("./assets/no-usuario.png");
+    width: 12vh;
+    height: 12vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 500px;
+    border: 3px solid var(--secondary-color);
+    box-shadow: 0px 0px 10px var(--primary-color);
+    transition: 0.3s ease;
+    margin: 0 1vw;
+
+}
+.boxOpcionesUsuario{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menuOpcionesUsuario{
+    display: flex;
+    justify-content:space-between ;
+    align-items:center ;
+}
+.menuOpcionesUsuario h3:hover{
+    cursor: pointer;
+}

@@ -15,7 +15,7 @@ const userReducer = (state = initialState, action) => {
                 loggedUser: null
             }
         default:
-            return state
+        return state
     }
 }
 
