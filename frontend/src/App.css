@@ -1,0 +1,206 @@
+/* ESTILOS GENERALES */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root{
+    --color-primario: #FF2A2A;
+    --azul-claro: #0FA2FF;
+    --azul-oscuro:#1475B3;
+    --amarillo: #FFFC42;
+    --rojo-oscuro: #B30B0B;
+}
+
+.centerCenterRow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.centerCenterColumn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+}
+.centerVerticalRow{
+    display: flex;
+    justify-content: center;
+}
+.centerVerticalColumn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.spaceBetween{
+    display: flex;
+    justify-content: space-between;
+}
+.spaceAround{
+    display: flex;
+    justify-content: space-around;
+}
+.spaceEvenly{
+    display: flex;
+    justify-content: space-evenly;
+}
+#headerContainer{
+    height: 15vh;
+    width: 100vw;
+    border-bottom: 3px solid var(--color-primario);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logoContainer{
+    height: 12vh;
+    width: 25vh;
+    background-position: center;
+    background-size: contain ;
+    background-repeat: no-repeat;
+    margin-left: 2vw;
+}
+.headerInput{
+    display: flex;
+    align-items: center;
+    min-width: 30vw;
+    cursor: pointer;
+    
+}
+.headerInput input {
+    height: 5vh;
+    width: 100%;
+    padding-left: 1vw;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+    border: 2px solid var(--color-primario) ;
+}
+.searchButton{
+    background-color: var(--color-primario);
+    height: 5vh;
+    width: 5vh;
+    color: white;
+    border-radius: 0 10px 10px 0;
+    border: 2px solid var(--color-primario) ;
+}
+.headerUser{
+    height: 12vh;
+    margin-right: 2vw;
+    width: 20vw;
+    justify-content: space-around;
+}
+.headerUserImg{
+    height: 6vh;
+    width: 6vh;
+    background-position:center ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+}
+.heart{
+    font-size: 1.5rem;
+}
+.cart{
+    font-size: 1.65rem;
+}
+.headerUserBottom {
+    width: 100%;
+}
+.abrirRegalo{
+    background-color: #F9F9F9;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+}
+.abrirRegalo p{
+    padding: 1vh 3vw;
+    color: rgb(46, 46, 46);
+}
+.cartAndHeart{
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+.imgTopUsuario{
+    background-image: url("./assets/celeste.png");
+    width: 100vw;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.boxUser{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+
+}
+.iconoCambiarImg{
+    width: 35px;
+    height: 35px;
+    border: 2px solid #fff;
+    background-color: #FF2A2A;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5px;
+    font-size: larger;
+    font:bolder;
+    color: #fff;
+    margin-left: -2.8vw;
+}
+.iconoCambiarImg:hover{
+    cursor: pointer;
+    font-size: medium;
+
+}
+.userIconos{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-right: 60px;
+}
+.userImg {
+    background-image: url("./assets/no-usuario.png");
+    width: 12vh;
+    height: 12vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 500px;
+    border: 3px solid var(--secondary-color);
+    box-shadow: 0px 0px 10px var(--primary-color);
+    transition: 0.3s ease;
+    margin: 0 1vw;
+
+}
+.boxOpcionesUsuario{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menuOpcionesUsuario{
+    display: flex;
+    justify-content:space-between ;
+    align-items:center ;
+}
+.menuOpcionesUsuario h3:hover{
+    cursor: pointer;
+}
+/* CARRUSEL */
+.fotos{
+    width: 20vw;
+    height: 50vw;
+    background-size: cover;
+    background-color: red;
+}
+.slick-arrow{
+    background-color: red!important;
+}
