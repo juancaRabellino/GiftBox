@@ -2,13 +2,14 @@ import axios from "axios"
 
 const userActions={
     crearCuenta: formNuevoUsuario => {
-        console.log(formNuevoUsuario)        
         return async (dispatch, getState) => {
-            axios.post("http://localhost:4000/api/usuarios",formNuevoUsuario,{headers:{"Content-type":"multipart:form-data"}})            
-            .then(response => console.log(response))
+            const data = await axios.post("http://localhost:4000/api/usuarios",formNuevoUsuario,{headers:{"Content-type":"multipart:form-data"}})            
+            .then(response => console.log(response.data))
             .catch(error => console.log(error))
 
-            dispatch({type: 'INICIAR_SESION', payload: respuesta.data})
+            // dispatch({type: 'INICIAR_SESION', payload: data.data.response})
+            console.log("ESTOY EN ACTION")
+            console.log(data.response)
         }
     },
 

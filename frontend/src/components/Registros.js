@@ -150,7 +150,7 @@ const Registro = (props) => {
 }
 const mapStateToProps = state => {
     return {
-        loggedUser: state.user.loggedUser
+        loggedUser: state.userReducer.loggedUser
     }
 }
 const mapDispatchToProps = {
