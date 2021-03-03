@@ -1,11 +1,11 @@
-import Registro from "./components/Registro";
+import IniciarSesion from "./components/IniciarSesion";
 import React, { useEffect, useState } from 'react'
 
 const App = () => {
 
   return (
     <div>
-    <Registro />
+    <IniciarSesion />
       </div>
   )
 }

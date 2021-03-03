@@ -36,11 +36,10 @@ router.route('/usuarios/:_id')
     .delete(usuarioController.eliminarUsuario)
     .put(usuarioController.editarUsuario)
     .get(usuarioController.unUsuario)
-router.route("/usuarios/register")
+router.route("/usuarios")
     .post(validador.validarNuevaCuenta,usuarioController.agregarUsuario)
-
-    router.route("/usuarios/usuarios")
     .get(usuarioController.todosLosUsuarios)
+    
 router.route("/login")
     .post(usuarioController.login)
 
