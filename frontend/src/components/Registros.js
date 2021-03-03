@@ -20,7 +20,7 @@ const Registro = (props) => {
     const leerInput = e =>{
         var valor = e.target.value
         const campo = e.target.name
-        if(campo==="imagenDeUsuario"){
+        if(campo === "imagen"){
             valor=e.target.files[0];
         }
         setNuevoUsuario({
@@ -33,16 +33,18 @@ const Registro = (props) => {
         setErrores([])
         e.preventDefault()
 
-        const {nombre,apellido,cuenta,password,imagen}= nuevoUsuario
 
-        const formNuevoUsuario= new FormData();
+        const {nombre,apellido,cuenta,password,imagen} = nuevoUsuario
+
+        var formNuevoUsuario = new FormData();
 
         formNuevoUsuario.append("nombre",nombre)
         formNuevoUsuario.append("apellido",apellido)
         formNuevoUsuario.append("cuenta",cuenta)
         formNuevoUsuario.append("password",password)
         formNuevoUsuario.append("imgFile",imagen)
-
+        console.log(formNuevoUsuario)
+        console.log(imagen)
         if (nombre === '' || apellido === '' || cuenta === '' ||
         password === '' || imagen === '') {
             Swal.fire({
@@ -53,8 +55,9 @@ const Registro = (props) => {
 
             return false
         }
+
         setErrores([])
-        const respuesta = await props.crearCuenta(nuevoUsuario)
+        const respuesta = await props.crearCuenta(formNuevoUsuario)
 
         console.log(respuesta)
 

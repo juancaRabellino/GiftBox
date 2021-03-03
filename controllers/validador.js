@@ -26,6 +26,7 @@ const validador = {
             next()
         } else {
             res.json({success: false, errores: validacion.error.details})
+            
         }
       }
   }
