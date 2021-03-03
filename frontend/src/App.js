@@ -6,8 +6,8 @@ import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
 import Header from  "./components/Header"
 import Footer from "./components/Footer"
 import WhatsApp from './components/WhatsApp'
-import Home from './pages/Home'
-import PaginaUsuario from './pages/PaginaUsuario.js'
+import PaginaUsuario from './Pages/PaginaUsuario.js'
+import Home from "./Pages/Home"
 
 function App() {
   return (
