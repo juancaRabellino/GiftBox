@@ -4,35 +4,34 @@ import paqueteActions from '../redux/actions/paqueteActions'
 import Loader from './Loader'
 import { Link } from "react-router-dom"
 import productoActions from "../redux/actions/productoActions"
+import categoriaActions from '../redux/actions/categoriaActions'
 
 const PaquetesHeader = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaquetes, productosDelpaquete,
-  obtenerPaquetesPorCategoria, obtenerTodoslosProductos, todosLosProductos, obtenerProductosPorPaquete }) => {
+  obtenerPaquetesPorCategoria, obtenerTodoslosProductos, todosLosProductos, obtenerProductosPorPaquete, todasLasCategorias, obtenerTodasLasCategorias }) => {
 
   const [mostrarProductos, setMostrarProductos] = useState(true)
-  
+
   useEffect(() => {
     if (!todosLosPaquetes) {
       obtenerTodosLosPaquetes()
       obtenerTodoslosProductos()
+      obtenerTodasLasCategorias()
     }
   }, [])
 
   // COMO USAR CARGANDO PARA MOSTRAR PRELOADER
   if (!todosLosPaquetes || !todosLosProductos) { return <Loader /> }
+
   return (
     <div className='contenedorPaquetes'>
-      
-      <h1>PAQUETES</h1>
-      
 
-      <button onMouseEnter={() => obtenerPaquetesPorCategoria('viajar')}>VIAJAR</button>
-      <button onMouseEnter={() => obtenerPaquetesPorCategoria('comer')}>COMER</button>
-      <button onMouseEnter={() => obtenerPaquetesPorCategoria('comer')}>COMER</button>
-      <button onMouseEnter={() => obtenerPaquetesPorCategoria('comer')}>COMER</button>
-      <button onMouseEnter={() => obtenerPaquetesPorCategoria('comer')}>COMER</button>
-      <button onMouseEnter={() => obtenerPaquetesPorCategoria('comer')}>COMER</button>
-      <button onMouseEnter={() => obtenerPaquetesPorCategoria('comer')}>COMER</button>
-      <button onMouseEnter={() => obtenerPaquetesPorCategoria('comer')}>COMER</button>
+      <h1>PAQUETES</h1>
+
+      {todasLasCategorias && todasLasCategorias.map(categoria => {
+        return (
+          <button onMouseEnter={() => obtenerPaquetesPorCategoria('comer')} key={`btnCat${categoria._id}`}>{categoria.nombre}</button>
+        )
+      })}
 
       <div onMouseOver={() => setMostrarProductos(true)} onMouseOut={() => setMostrarProductos(false)} style={{ border: "solid red" }}>
         {paquetesPorCategoria.map(paquete =>
@@ -52,7 +51,8 @@ const mapStateToProps = state => {
     todosLosPaquetes: state.paqueteReducer.todosLosPaquetes,
     paquetesPorCategoria: state.paqueteReducer.paquetesPorCategoria,
     todosLosProductos: state.productoReducer.todosLosProductos,
-    productosDelpaquete: state.productoReducer.productosDelpaquete
+    productosDelpaquete: state.productoReducer.productosDelpaquete,
+    todasLasCategorias: state.categoriaReducer.todasLasCategorias
   }
 }
 
@@ -60,7 +60,8 @@ const mapDispatchToProps = {
   obtenerTodosLosPaquetes: paqueteActions.obtenerTodosLosPaquetes,
   obtenerPaquetesPorCategoria: paqueteActions.obtenerPaquetesPorCategoria,
   obtenerTodoslosProductos: productoActions.obtenerTodoslosProductos,
-  obtenerProductosPorPaquete: productoActions.obtenerProductosPorPaquete
+  obtenerProductosPorPaquete: productoActions.obtenerProductosPorPaquete,
+  obtenerTodasLasCategorias: categoriaActions.obtenerTodasLasCategorias
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaquetesHeader)

@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { connect } from "react-redux"
-import usersActions from "../redux/actions/userActions"
-import paqueteActions from '../redux/actions/paqueteActions'
-import productoActions from '../redux/actions/productoActions'
-import Loader from './Loader'
 import Hamburger from 'hamburger-react'
 import Swal from "sweetalert2"
 import "../App.css"
@@ -14,19 +9,8 @@ import { IoCartOutline } from 'react-icons/io5'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import PaquetesHeader from './PaquetesHeader'
 
-const Header = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaquetes, productosDelpaquete,
-  obtenerPaquetesPorCategoria, obtenerTodoslosProductos, todosLosProductos, obtenerProductosPorPaquete }) => {
+const Header = () => {
     const [isOpen, setOpen] = useState(false)
-    const [mostrarProductos, setMostrarProductos] = useState(true)
-  
-  useEffect(() => {
-    if (!todosLosPaquetes) {
-      obtenerTodosLosPaquetes()
-      obtenerTodoslosProductos()
-    }
-  }, [])
-
-  if (!todosLosPaquetes || !todosLosProductos) { return <Loader /> }
 
     return (
         <>
@@ -59,20 +43,4 @@ const Header = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaquete
     )
 }
 
-const mapStateToProps = state => {
-  return {
-    todosLosPaquetes: state.paqueteReducer.todosLosPaquetes,
-    paquetesPorCategoria: state.paqueteReducer.paquetesPorCategoria,
-    todosLosProductos: state.productoReducer.todosLosProductos,
-    productosDelpaquete: state.productoReducer.productosDelpaquete
-  }
-}
-
-const mapDispatchToProps = {
-  obtenerTodosLosPaquetes: paqueteActions.obtenerTodosLosPaquetes,
-  obtenerPaquetesPorCategoria: paqueteActions.obtenerPaquetesPorCategoria,
-  obtenerTodoslosProductos: productoActions.obtenerTodoslosProductos,
-  obtenerProductosPorPaquete: productoActions.obtenerProductosPorPaquete
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default Header
