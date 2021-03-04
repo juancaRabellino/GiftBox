@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Carrousel from '../components/Carrousel'
 import video from '../assets/videoHome.mp4'
+import LosMasRegalados from '../components/LosMasRegalados'
 
 const Home = () => {
     
@@ -22,6 +23,10 @@ const Home = () => {
             </div>
             <div style={{marginTop:'5vh'}}>
                 <Carrousel />
+            </div>
+            <div>
+                <h2>Lo mas regalados</h2>
+                <LosMasRegalados />
             </div>
         </>
     )
