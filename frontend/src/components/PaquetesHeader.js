@@ -29,7 +29,7 @@ const PaquetesHeader = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLo
 
       {todasLasCategorias && todasLasCategorias.map(categoria => {
         return (
-          <button onMouseEnter={() => obtenerPaquetesPorCategoria('comer')} key={`btnCat${categoria._id}`}>{categoria.nombre}</button>
+          <button onMouseEnter={() => obtenerPaquetesPorCategoria(categoria.nombre)} key={`btnCat${categoria._id}`}>{categoria.nombre}</button>
         )
       })}
 

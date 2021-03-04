@@ -17,17 +17,12 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
     filtrarPaquetes(e.target.value)
     setValor(true)
   }
-  
-
-  console.log(valor)
-  console.log(paquetesFiltrados)
 
   return (
     <>
       <input type='text' onChange={buscando}></input>
     </>
   )
-  
 }
 
 const mapStateToProps = state => {
