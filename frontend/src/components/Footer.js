@@ -56,7 +56,7 @@ const Footer = () => {
 
                     </div>
                     <div className="seccionesMedioFooter">
-                        <h3 className="regalosFooter">BigBox</h3>
+                        <h3 className="regalosFooter">GiftBox</h3>
                         <p>¿Que es GiftBox?</p>
                         <p>Puntos de venta</p>
                         <p>Soluciones empresariales</p>

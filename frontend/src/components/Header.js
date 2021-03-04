@@ -20,8 +20,9 @@ const Header = () => {
                     <Link to={'/paquetes'}><button>PAQUETES</button></Link>
                     <input type="text" placeholder="Busca tu paquete"/>
                     <div className="centerCenterRow searchButton"><BiSearch /></div>
-                    <PaquetesHeader />
+                    
                 </div>
+                <PaquetesHeader />
                 <div className="headerUser centerVerticalColumn">
                     <div className="abrirRegalo centerCenterRow">
                         <p>Abrir mi Regalo</p>

@@ -49,7 +49,7 @@
 
 /* ------ HEADER ------- */
 #headerContainer{
-    height: 15vh;
+    min-height: 18vh;
     width: 100vw;
     border-bottom: 3px solid var(--color-primario);
     display: flex;
@@ -337,6 +337,14 @@ video{
 .iconoFooterArriba{
     font-size: 1.75rem;
 }
+
+
+/* ------- PAQUETES -------- */
+.contenedorPaquetes{
+    display:flex;
+    flex-direction: column;
+}
+
 
 
 
