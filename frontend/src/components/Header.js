@@ -17,11 +17,17 @@ const Header = ({carrito}) => {
             <div id="headerContainer">
                 <div style={{ backgroundImage: `url("../assets/giftLogoF-01.png")` }} className='logoContainer'></div>
                 <div className="headerInput">
-                    <Link to={'/paquetes'}><button>PAQUETES</button></Link>
-                    <input type="text" placeholder="Busca tu paquete"/>
-                    <div className="centerCenterRow searchButton"><BiSearch /></div>
-                    <PaquetesHeader />
+                    <div className="centerCenterRow">
+                        <input type="text" placeholder="Busca tu paquete"/>
+                        <div className="centerCenterRow searchButton"><BiSearch /></div>
+                    </div>
+                    <div className="paquetesHeader">                    
+                        {/* <Link to={'/paquetes'}><button>PAQUETES</button></Link> */}
+                        <PaquetesHeader />
+                    </div>                    
                 </div>
+                
+                
                 <div className="headerUser centerVerticalColumn">
                     <div className="abrirRegalo centerCenterRow">
                         <p>Abrir mi Regalo</p>

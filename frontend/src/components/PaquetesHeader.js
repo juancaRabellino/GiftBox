@@ -5,11 +5,13 @@ import Loader from './Loader'
 import { Link } from "react-router-dom"
 import productoActions from "../redux/actions/productoActions"
 import categoriaActions from '../redux/actions/categoriaActions'
+import { MdKeyboardArrowDown } from 'react-icons/md'
 
 const PaquetesHeader = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaquetes, productosDelpaquete,
   obtenerPaquetesPorCategoria, obtenerTodoslosProductos, todosLosProductos, obtenerProductosPorPaquete, todasLasCategorias, obtenerTodasLasCategorias }) => {
 
   const [mostrarProductos, setMostrarProductos] = useState(true)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     if (!todosLosPaquetes) {
@@ -19,22 +21,23 @@ const PaquetesHeader = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLo
     }
   }, [])
 
+
   // COMO USAR CARGANDO PARA MOSTRAR PRELOADER
   if (!todosLosPaquetes || !todosLosProductos) { return <Loader /> }
 
   return (
     <div className='contenedorPaquetes'>
 
-      <h1>PAQUETES</h1>
+      <h1 className="headerTituloPaquetes" onClick={() => setVisible(!visible)}>Paquetes<MdKeyboardArrowDown /></h1>
 
-      {todasLasCategorias && todasLasCategorias.map(categoria => {
+      {(visible && todasLasCategorias) && todasLasCategorias.map(categoria => {
         return (
           <button onMouseEnter={() => obtenerPaquetesPorCategoria(categoria.nombre)} key={`btnCat${categoria._id}`}>{categoria.nombre}</button>
         )
       })}
 
-      <div onMouseOver={() => setMostrarProductos(true)} onMouseOut={() => setMostrarProductos(false)} style={{ border: "solid red" }}>
-        {paquetesPorCategoria.map(paquete =>
+      <div onMouseOver={() => setMostrarProductos(true)} onMouseOut={() => setMostrarProductos(false)}>
+        {visible && paquetesPorCategoria.map(paquete =>
           <Link to={`/paquete/${paquete._id}`} key={`Link${paquete._id}`}>
             <p onMouseOver={() => obtenerProductosPorPaquete(paquete._id)}>
               {paquete.nombre}
