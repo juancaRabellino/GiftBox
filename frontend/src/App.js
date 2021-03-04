@@ -3,11 +3,15 @@ import React from 'react'
 import Paquetes from "./components/Paquetes";
 import Paquete from "./components/Paquete";
 import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
+import Registro from "./components/Registros";
 import Header from  "./components/Header"
 import Footer from "./components/Footer"
 import WhatsApp from './components/WhatsApp'
-import Home from './pages/Home'
-import PaginaUsuario from './pages/PaginaUsuario.js'
+import Home from './components/Home'
+import PaginaUsuario from './components/PaginaUsuario.js'
+import Carrito from './components/Carrito';
+import CarritoPaquetes from './components/CarritoPaquetes';
+import IniciarSesion from './components/IniciarSesion';
 
 function App() {
   return (
@@ -15,9 +19,14 @@ function App() {
       <BrowserRouter>
         <Header/>
           <Switch>
-            <Route path="/paquete/:_id" component={Paquete}/>
             <Route exact path='/' component={Home}/>
+            <Route path="/paquetes/" component={Paquetes}/>
+            <Route path="/carrito/" component={Carrito}/>
+            <Route path="/carritoPaquetes/" component={CarritoPaquetes}/>
+            <Route path="/paquete/:_id" component={Paquete}/>
             <Route path='/usuario' component={PaginaUsuario}/>
+            <Route path='/registro' component={Registro}/>
+            <Route path='/iniciarSesion' component={IniciarSesion}/>
             <Redirect to="/" />
           </Switch>
         <WhatsApp/>

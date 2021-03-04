@@ -33,7 +33,10 @@ const usuarioController = {
         })
     },
     editarUsuario: async(req,res) =>{
+
+
         const {imgFile}= req.files
+
         const imgTipo=imgFile.name.split(".").slice(-1).join(" ")
         const {cuenta,password,nombre,apellido}=req.body
         var imgName= `${req.params}.${imgTipo}`
@@ -54,7 +57,7 @@ const usuarioController = {
         const imgTipo=imgFile.name.split(".").slice(-1).join(" ");
         
         const usuarioExiste= await Usuario.findOne({cuenta});
-        if(usuarioExiste){errors.push("El ususario ya existe. Eliga otro por favor!")};
+        if(usuarioExiste){errors.push("El usuario ya existe. Eliga otro por favor!")};
         
         if(errors.length===0){
             var passHashed= await bcryptjs.hashSync(password,10);
