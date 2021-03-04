@@ -4,6 +4,7 @@ import Carrousel from '../components/Carrousel'
 import video from '../assets/videoHome.mp4'
 import paqueteActions from '../redux/actions/paqueteActions'
 import { connect } from 'react-redux'
+import LosMasRegalados from '../components/LosMasRegalados'
 
 const Home = ({paquetesMasRegalados, filtrarPaquetesMasReg}) => {
     useEffect(() => {
@@ -29,7 +30,10 @@ const Home = ({paquetesMasRegalados, filtrarPaquetesMasReg}) => {
             <div style={{marginTop:'5vh'}}>
                 <Carrousel />
             </div>
-            
+            <div>
+                <h2>Lo mas regalados</h2>
+                <LosMasRegalados />
+            </div>
         </>
     )
 }

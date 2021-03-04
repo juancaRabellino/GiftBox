@@ -263,15 +263,15 @@ video{
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 290px;
+  width: 260px;
   height: 375px;
-  border: 1px solid black;
+  margin: 20px;
 }
 .packageImage {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  width: 90%;
+  width: 100%;
   height: 70%;
   background-image: url("https://fotos.subefotos.com/ebfb2c22ba2ba2ff9bc851da4fdc1b15o.png");
   background-position: center;
@@ -322,6 +322,20 @@ video{
   height: 100%;
 }
 
+.loMasRegalado{
+    border: 2px solid #ccc;
+    box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.3);  
+    width: 90%!important;
+    outline: none;
+}
+.precioDetalle p{
+    margin: 25px 0 0 10px;
+}
+.precio{
+    font-size: 25px;
+    font-weight: 600;
+    padding-bottom: 10px;
+}
 /* ------ FOOTER ------- */
 .footer{
     border-top: 2px solid #ccc;
