@@ -3,6 +3,7 @@ import React from 'react'
 import Paquetes from "./components/Paquetes";
 import Paquete from "./components/Paquete";
 import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
+import Registro from "./components/Registros";
 import Header from  "./components/Header"
 import Footer from "./components/Footer"
 import WhatsApp from './components/WhatsApp'
@@ -19,6 +20,7 @@ function App() {
             <Route path="/paquetes/" component={Paquetes}/>
             <Route path="/paquete/:_id" component={Paquete}/>
             <Route path='/usuario' component={PaginaUsuario}/>
+            <Route path='/registro' component={Registro}/>
             <Redirect to="/" />
           </Switch>
         <WhatsApp/>

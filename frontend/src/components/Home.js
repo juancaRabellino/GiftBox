@@ -1,12 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Carrousel from '../components/Carrousel'
-import PaquetesHeader from '../components/PaquetesHeader'
-import Paquetes from '../components/Paquetes'
 import video from '../assets/videoHome.mp4'
 
-
-const Home = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaquetes, obtenerPaquetesPorCategoria }) => {
+const Home = () => {
     
     return (
         <>  

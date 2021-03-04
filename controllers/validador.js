@@ -2,6 +2,7 @@ const Joi = require('joi')
 
 const validador = {
     validarNuevaCuenta: (req, res, next) => {
+        console.log(req.body)
         const schema = Joi.object({
             nombre: Joi.string().trim().required().min(2).message({
                 "string.min": "Tu nombre debe contener al menos 2 letras",
@@ -16,10 +17,7 @@ const validador = {
                 "string.min": "Tu contraseña debe contener al menos 5 caracteres",
             }),
             imagen: Joi.string().empty(""),
-            googleUser: Joi.boolean(),
-            rol: Joi.string(),
-            paquetesFaveados: Joi.array().items(Joi.object()).allow(null),
-            paquetesComprados: Joi.array(),
+            
         })
 
         const validacion = schema.validate(req.body, {abortEarly: false})
@@ -28,6 +26,7 @@ const validador = {
             next()
         } else {
             res.json({success: false, errores: validacion.error.details})
+            
         }
       }
   }
