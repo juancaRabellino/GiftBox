@@ -74,9 +74,12 @@ const Registro = (props) => {
     }
 
         //GOOGLE REGISTRO
-    const responseGoogle = async (response) => {
-        console.log(response)
-        if (response.error) {
+    const responseGoogle = async (googleResponse) => {
+        console.log(googleResponse)
+
+        const formGoogle = new FormData();
+
+        if (googleResponse.error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -84,25 +87,29 @@ const Registro = (props) => {
               })
         } 
         else {
-            const respuesta = await props.crearCuenta({
+                {                
+                formGoogle.append("nombre", googleResponse.profileObj.givenName)
+                formGoogle.append("apellido", googleResponse.profileObj.familyName)
+                formGoogle.append("cuenta", googleResponse.profileObj.email)
+                formGoogle.append("password", googleResponse.profileObj.googleId)
                 
-                nombre: response.profileObj.givenName,
-                apellido: response.profileObj.familyName,
-                cuenta: response.profileObj.email,
-                password: response.profileObj.googleId,
-                imagen: response.profileObj.imageUrl,
-                
-            })
+                const respuesta = await props.crearCuenta(formGoogle)
+            }
             // DATOS A GOOGLE?
-            if (respuesta && !respuesta.success) {
-                setErrores(respuesta.errores)
-            } else {
+            // if (respuesta && !respuesta.success) {
+            //     setErrores(respuesta.errores)
+            // } else 
+            {
                 Swal.fire({
                     icon: 'success',
                     title: 'You have registered your user',
                     showConfirmButton: false,
                     timer: 1500
                     })
+                    // .then(function (result) {
+                    //     if (result.value) {
+                    //         window.location.href='/'
+                    //     }})
                 }
             }
     }
@@ -131,7 +138,7 @@ const Registro = (props) => {
 
 {/* CLIENTE DE GOOGLE */}
             <GoogleLogin className= "google"
-                clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
+                clientId="1017297947872-a4k36afp8ren4g12ov8c4old1udn3v4b.apps.googleusercontent.com"
                 buttonText="Create Account"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
