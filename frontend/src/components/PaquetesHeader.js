@@ -29,21 +29,26 @@ const PaquetesHeader = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLo
     <div className='contenedorPaquetes'>
 
       <h1 className="headerTituloPaquetes" onClick={() => setVisible(!visible)}>Paquetes<MdKeyboardArrowDown /></h1>
-
+      <div className="flexRowPaquetes">
+      <div className="paquetes">
       {(visible && todasLasCategorias) && todasLasCategorias.map(categoria => {
         return (
-          <button onMouseEnter={() => obtenerPaquetesPorCategoria(categoria.nombre)} key={`btnCat${categoria._id}`}>{categoria.nombre}</button>
+          <button className="paquetesPadres" onMouseEnter={() => obtenerPaquetesPorCategoria(categoria.nombre)} key={`btnCat${categoria._id}`}>{categoria.nombre}</button>
+          
         )
       })}
-
-      <div onMouseOver={() => setMostrarProductos(true)} onMouseOut={() => setMostrarProductos(false)}>
-        {visible && paquetesPorCategoria.map(paquete =>
-          <Link to={`/paquete/${paquete._id}`} key={`Link${paquete._id}`}>
-            <p onMouseOver={() => obtenerProductosPorPaquete(paquete._id)}>
+      </div>
+        <div className="linksPaquetesPadre" onMouseOver={() => setMostrarProductos(true)}    onMouseOut={() => setMostrarProductos(false)}>
+          {visible && paquetesPorCategoria.map(paquete => 
+            <>
+            <Link  to={`/paquete/${paquete._id}`} key={`Link${paquete._id}`}>
+              <p className="linksPaquetes" onMouseOver={() => obtenerProductosPorPaquete(paquete._id)}>
               {paquete.nombre}
             </p>
-          </Link>
+            </Link>
+            </>
         )}
+        </div>
       </div>
     </div>
   )

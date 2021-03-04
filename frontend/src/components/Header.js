@@ -19,12 +19,12 @@ const Header = () => {
                 <div className="headerInput">
                     <div className="centerCenterRow">
                         <input type="text" placeholder="Busca tu paquete"/>
-                        <div className="centerCenterRow searchButton"><BiSearch /></div>
+                        <div className="centerCenterRow searchButton"><BiSearch /></div>                        
                     </div>
                     <div className="paquetesHeader">                    
                         {/* <Link to={'/paquetes'}><button>PAQUETES</button></Link> */}
                         <PaquetesHeader />
-                    </div>                    
+                    </div>                 
                 </div>
                 
                 
