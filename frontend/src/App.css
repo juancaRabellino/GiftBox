@@ -46,8 +46,10 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+/* ------ HEADER ------- */
 #headerContainer{
-    height: 15vh;
+    min-height: 18vh;
     width: 100vw;
     border-bottom: 3px solid var(--color-primario);
     display: flex;
@@ -64,9 +66,11 @@
 }
 .headerInput{
     display: flex;
+    flex-direction: column;
     align-items: center;
     min-width: 30vw;
     cursor: pointer;
+    position: relative;
     
 }
 .headerInput input {
@@ -194,13 +198,168 @@
 .menuOpcionesUsuario h3:hover{
     cursor: pointer;
 }
+/* ------ PAQUETES HEADER -------- */
+.paquetesHeader{
+    position: absolute;
+    top: 5vh;
+}
+.paquetesHeader h1 {
+    font-size: 1.25rem;
+    width: 20vw;
+
+}
+
+
+
+
 /* CARRUSEL */
+video{
+    z-index: -1;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.botonVideo{
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 15px 10px;
+    width: 15vw;
+    border: 2px solid white;
+    font-size: 15px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 5px;
+}
 .fotos{
     width: 20vw;
     height: 50vw;
     background-size: cover;
     background-color: red;
 }
-.slick-arrow{
-    background-color: red!important;
+
+.slick-arrow.slick-next::before,.slick-arrow.slick-prev::before{
+    color: red!important;
+}
+
+.imgCarrusel{
+    width: 95%!important;
+    outline: none;
+}
+.imgCarrusel h3{
+    font-size: 40px;
+    padding: 0 0 20px 10px;
+}
+
+/* ------ FOOTER ------- */
+.footer{
+    border-top: 2px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    margin:auto;
+    background-color: #FBFBFB;
+
+}
+.footerArriba{
+    margin-top: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+}
+.footerArribaItem{
+    display: flex;
+    align-items: center;
+    color:rgb(63, 63, 63);
+}
+.footerArribaItem p {
+    margin-left: 0.75rem;
+    font-size: 1.15rem;
+}
+.fraseFooter{
+    width: 20%;
+    font-size: 1.5rem;
+    color:rgb(63, 63, 63);
+}
+.fraseFooterColor{
+    color: var(--color-primario)
+}
+.footerMedio{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-top: 5vh;
+    width: 100%;
+}
+.seccionesMedioFooter{
+    display: flex;
+    flex-direction: column;
+}
+.seccionesMedioFooter p {
+    color: rgb(143, 143, 143);
+    margin: 0.25rem 0;
+}
+
+.seccionesMedioFooterPadre{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+
+}
+.regalosFooter{
+    margin-bottom: 5vh;
+    color:rgb(63, 63, 63);   
+}
+
+.footerAbajo{
+    display: flex;
+    margin: 5vh 0;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    border-top: 2px solid #ccc;
+    padding-top: 3vh;
+}
+.footerAbajo p {
+    color: rgb(63, 63, 63) ;
+    
+}
+.devolverCompraButton{
+    background-color: var(--color-primario);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+.devolverCompraButton p{
+    color: white;
+    
+}
+.partnersButton{
+    background-color: #ccc;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+.partnersButton p{
+    color:rgba(0,0,0,0.6);
+}
+.redesFooter{
+    font-size: 1.75rem;
+}
+.iconoFooter{
+    margin-right: 1rem;
+    color: rgb(63, 63, 63);
+}
+.iconoFooterArriba{
+    font-size: 1.75rem;
+}
+
+
+/* ------- PAQUETES -------- */
+.contenedorPaquetes{
+    display:flex;
+    flex-direction: column;
+}
+.headerTituloPaquetes{
+
 }
