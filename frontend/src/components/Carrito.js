@@ -3,7 +3,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import carritoActions from "../redux/actions/carritoActions";
 
-const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito})=>{
+const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
     console.log(carrito)
     return(
         <>
@@ -18,14 +18,15 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito})=>{
                     <p>{paquete.cantidad}</p>
                     <p>${paquete.precio*paquete.cantidad}</p>
                 </div>)}
-                <p>TOTAL: </p>
+                <p>TOTAL: {total}</p>
             </div>
         </>
     )
 }
 const mapStateToProps = state => {
     return {
-        carrito: state.carritoReducer.carrito
+        carrito: state.carritoReducer.carrito,
+        total: state.carritoReducer.total
     }
 }
 const mapDispatchToProps={
