@@ -28,19 +28,20 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
 
             <div className='package'>
               <div className='packageImage' style={{}}>
-                <div className='packageNameContainer'>
-                  <h3 className='packageName'>{paquete.nombre}</h3>
-                </div>
                 <div className='packageCategoryContainer'>
                   <div className='categoryContainer'>
                     <p>{paquete.categoria}</p>
                   </div>
                   <div className='giftBoxImage'>
-                    
                   </div>
                 </div>
               </div>
-              <div className='packageData'>
+              <div className='packageDataContainer'>
+                <div className='packageData'>
+                  <p>ESTRELLAS</p>
+                  <p>DESCRIPCION</p>
+                  <p>PRECIO</p>
+                </div>
               </div>
             </div>
           )
