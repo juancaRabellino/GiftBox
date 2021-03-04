@@ -3,33 +3,27 @@ import { connect } from 'react-redux'
 import paqueteActions from '../redux/actions/paqueteActions'
 import Loader from './Loader'
 import { Link } from "react-router-dom"
-import productoActions from "../redux/actions/productoActions"
 import { BsFillStarFill } from 'react-icons/bs'
 
-const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
+const Paquetes = ({ paquetesFiltrados, todosLosPaquetes, filtrarPaquetes }) => {
 
   const [valor, setValor] = useState(false)
 
-  useEffect(() => {
-
-  }, [])
-  // COMO USAR CARGANDO PARA MOSTRAR PRELOADER
-  
-
+  const paquetes = valor ? paquetesFiltrados : todosLosPaquetes
   const buscando = e => {
     filtrarPaquetes(e.target.value)
     setValor(true)
   }
 
-
+  if (!todosLosPaquetes) return <Loader />
+  console.log(paquetesFiltrados)
   return (
     <main className='packagesMain'>
       <input type='text' onChange={buscando}></input>
       <div className='packagesContainer'>
-        {paquetesFiltrados && paquetesFiltrados.map(paquete => {
+        {paquetes.map(paquete => {
           return (
-
-            <div className='package'>
+            <div className='package' key={`paq${paquete._id}`}>
               <div className='packageImage' style={{}}>
                 <div className='packageCategoryContainer'>
                   <div className='categoryContainer'>
@@ -41,16 +35,21 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
               </div>
               <div className='packageDataContainer'>
                 <div className='packageData'>
-                  <div style={{ margin: '15px 0 0 10px' }}>{[...Array(5)].map((m, i) => {
-                    const ratingValue = i + 1
-                    return (
-                      <label>
-                        <BsFillStarFill className="star" color='#ffc107' />
-                      </label>
-                    )
-                  })}</div>
-                  <p>DESCRIPCION</p>
-                  <p className='precio'>${paquete.precio}</p>
+                  <div className='starsAndAssessment'>
+                    <p>{paquete.valoracion.length}</p>
+                    {[...Array(5)].map((m, i) => {
+                      const ratingValue = i + 1
+                      return (
+                        <label>
+                          <BsFillStarFill className="star" color='#ffc107' />
+                        </label>
+                      )
+                    })}
+                  </div>
+                  <div className='packageDescription'>
+                    <p>{paquete.descripcion}</p>
+                  </div>
+                  <p className='price'>${paquete.precio}</p>
                 </div>
               </div>
             </div>
@@ -64,6 +63,7 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
 
 const mapStateToProps = state => {
   return {
+    todosLosPaquetes: state.paqueteReducer.todosLosPaquetes,
     paquetesFiltrados: state.paqueteReducer.paquetesFiltrados
   }
 }

@@ -39,7 +39,6 @@ const paqueteActions = {
     }
   },
   filtrarPaquetes: (valor) => {
-    console.log(valor)
     return (dispatch, getState) => {
       try {
         dispatch({type: 'FILTRO', payload: valor})
