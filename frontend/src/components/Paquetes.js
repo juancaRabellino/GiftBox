@@ -12,13 +12,15 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
   useEffect(() => {
 
   }, [])
+  // COMO USAR CARGANDO PARA MOSTRAR PRELOADER
+  
 
   const buscando = e => {
     filtrarPaquetes(e.target.value)
     setValor(true)
   }
 
-  console.log(paquetesFiltrados)
+
   return (
     <main className='packagesMain'>
       <input type='text' onChange={buscando}></input>
