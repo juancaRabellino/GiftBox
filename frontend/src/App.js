@@ -1,7 +1,7 @@
 import './App.css'
 import React from 'react'
 import Paquetes from "./components/Paquetes";
-import Paquete from "./components/Paquete";
+import Paquete from "./components/Paquete.jsx";
 import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
 import Registro from "./components/Registros";
 import Header from  "./components/Header"
