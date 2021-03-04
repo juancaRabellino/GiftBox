@@ -34,23 +34,12 @@ router.route("/paquetes/:_id")
 
 // CONTROLADOR DE USUARIO
 router.route('/usuarios/:_id')
-<<<<<<< HEAD
-    .put(usuarioController.editarUsuario)
-    .delete(usuarioController.eliminarUsuario)
-    .get(usuarioController.unUsuario)
-
-router.route("/usuarios")
-    .post(validador.validarNuevaCuenta,usuarioController.agregarUsuario)
-    .get(usuarioController.todosLosUsuarios)
-
-=======
   .delete(usuarioController.eliminarUsuario)
   .put(usuarioController.editarUsuario)
   .get(usuarioController.unUsuario)
 router.route("/usuarios")
   .post(validador.validarNuevaCuenta, usuarioController.agregarUsuario)
   .get(usuarioController.todosLosUsuarios)
->>>>>>> cd029b8b30962b9a958d6bd9f3000d17c2edd459
 router.route("/login")
   .post(usuarioController.login)
 
