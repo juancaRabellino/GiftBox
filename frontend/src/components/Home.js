@@ -13,7 +13,7 @@ const Home = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaquetes,
             <video src={video} autoPlay loop muted></video>
             <Link to="/usuario"><button>Library</button></Link> 
             
-            <div style={{width:'100%',height:'70vh',display:'flex',alignItems:'center'}}>
+            <div style={{width:'100%',height:'100vh',display:'flex',alignItems:'center'}}>
                 <div style={{paddingLeft:'10vh'}}>
                     <h1 style={{color:'white',fontSize:'60px',fontWeight:'bold'}}>Regalá experiencias.</h1>
                     <p style={{color:'white',fontSize:'20px'}}>Sorprendé con momentos para vivir dentro y fuera de casa.</p>
