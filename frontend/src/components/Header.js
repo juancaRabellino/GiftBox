@@ -35,10 +35,12 @@ const Header = ({carrito}) => {
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         <div className="headerUserImg" style={{ backgroundImage: `url("../assets/58670.jpg")` }}></div>
-                        <div className="centerCenterRow userName">
-                            <p>User Name</p>
-                            <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
-                        </div>
+                        <Link to="/usuario">
+                            <div className="centerCenterRow userName">
+                                <p>User Name</p>
+                                <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
+                            </div>
+                        </Link> 
                         <div className="cartAndHeart">
                             <div className="heart centerCenterRow "><BsHeart /></div>
                             <Link to="/carrito">

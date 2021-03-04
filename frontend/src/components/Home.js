@@ -8,7 +8,6 @@ const Home = () => {
     return (
         <>  
             <video src={video} autoPlay loop muted></video>
-            <Link to="/usuario"><button>Library</button></Link> 
             
             <div style={{width:'100%',height:'100vh',display:'flex',alignItems:'center'}}>
                 <div style={{paddingLeft:'10vh'}}>
