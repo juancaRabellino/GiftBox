@@ -50,10 +50,6 @@ const usuarioController = {
         .catch(error =>{return res.json({success:false, response: 'Error al editar Usuario'})})
     },
     agregarUsuario: async (req,res)=>{
-        console.log(req.files)
-        console.log("ACÁ")
-        console.log(req.body)
-
         var errors=[];
         const {cuenta,password,nombre,apellido,rol,googleUser,productosFaveados,productosComprados}=req.body;
         const {imgFile}= req.files;
