@@ -28,7 +28,6 @@ const Header = ({carrito}) => {
                     </div>                 
                 </div>
                 
-                
                 <div className="headerUser centerVerticalColumn">
                     <div className="abrirRegalo centerCenterRow">
                         <p>Abrir mi Regalo</p>

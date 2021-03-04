@@ -476,13 +476,57 @@ video{
 
 /* ------- PAQUETES -------- */
 .contenedorPaquetes{
-    display:flex;
-    flex-direction: column;
+  display:flex;
+  flex-direction: column;
+  margin-top: 8vh;
+  width: 80vw;
 }
 .headerTituloPaquetes{
-
+  font-weight: 500;
+  color: rgb(63, 63, 63);
+}
+.linksPaquetes{
+  color: black;
+  background-color: white;
+  padding: 1vh 2vw;
+  transition: 0.1s ease;
+}
+.linksPaquetes p, a{
+  text-decoration: none;
+}
+.linksPaquetes:hover{
+  color: red;
+}
+.paquetesPadres{
+  border: none;
+  border-bottom: 1px solid rgb(161, 161, 161);
+  padding: 2vh 1vw;
+  background-color: white;
+  text-align: start;
+  transition: 0.2s ease;
+}
+.paquetesPadres:hover{
+  border-left: 4px solid var(--color-primario);
 }
 
-
-
-
+.paquetes{
+  display: flex;
+  flex-wrap: wrap;
+  width: 20vw;
+  flex-direction: column;
+}
+.linksPaquetesPadre{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 40vw;
+  height: 100%;
+}
+.linksPaquetesPadre a:hover{
+  color: red;
+}
+.flexRowPaquetes{
+  display: flex;
+  height:100%;
+  width: 60vw;
+}
