@@ -1,7 +1,8 @@
 const initialState = {
   todosLosPaquetes: null,
   paquetesPorCategoria: [],
-  paquetePorId: null
+  paquetePorId: null,
+  paquetesFiltrados: []
 }
 const paqueteReducer = (state = initialState, action) => {
   switch (action.type) {
