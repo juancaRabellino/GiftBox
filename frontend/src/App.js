@@ -11,6 +11,7 @@ import Home from './components/Home'
 import PaginaUsuario from './components/PaginaUsuario.js'
 import Carrito from './components/Carrito';
 import CarritoPaquetes from './components/CarritoPaquetes';
+import IniciarSesion from './components/IniciarSesion';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/paquete/:_id" component={Paquete}/>
             <Route path='/usuario' component={PaginaUsuario}/>
             <Route path='/registro' component={Registro}/>
+            <Route path='/iniciarSesion' component={IniciarSesion}/>
             <Redirect to="/" />
           </Switch>
         <WhatsApp/>
