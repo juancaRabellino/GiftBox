@@ -33,7 +33,10 @@ const usuarioController = {
         })
     },
     editarUsuario: async(req,res) =>{
+
+
         const {imgFile}= req.files
+
         const imgTipo=imgFile.name.split(".").slice(-1).join(" ")
         const {cuenta,password,nombre,apellido}=req.body
         var imgName= `${req.params}.${imgTipo}`

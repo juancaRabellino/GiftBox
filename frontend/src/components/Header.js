@@ -1,15 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { connect } from "react-redux"
-import usersActions from "../redux/actions/userActions"
 import Hamburger from 'hamburger-react'
 import Swal from "sweetalert2"
-import { useState } from 'react'
 import "../App.css"
 import { BiSearch } from 'react-icons/bi'
 import { BsHeart } from 'react-icons/bs'
 import { IoCartOutline } from 'react-icons/io5'
 import { MdKeyboardArrowDown } from 'react-icons/md'
+import PaquetesHeader from './PaquetesHeader'
 
 const Header = ({carrito}) => {
     const [isOpen, setOpen] = useState(false)
@@ -19,8 +17,10 @@ const Header = ({carrito}) => {
             <div id="headerContainer">
                 <div style={{ backgroundImage: `url("../assets/giftLogoF-01.png")` }} className='logoContainer'></div>
                 <div className="headerInput">
+                    <Link to={'/paquetes'}><button>PAQUETES</button></Link>
                     <input type="text" placeholder="Busca tu paquete"/>
                     <div className="centerCenterRow searchButton"><BiSearch /></div>
+                    <PaquetesHeader />
                 </div>
                 <div className="headerUser centerVerticalColumn">
                     <div className="abrirRegalo centerCenterRow">
