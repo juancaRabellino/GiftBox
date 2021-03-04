@@ -158,12 +158,24 @@
     justify-content: center;
     align-items: center;
 }
+<<<<<<< HEAD
 
 .boxUser {
     width: 80%;
     height: 80%;
     display: flex;
     align-items: center;
+=======
+.boxUser{
+    width: 100vw;
+    height: 70vh;
+    display: flex;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("./assets/fondoLog.jpg");
+
+>>>>>>> Aman
 }
 
 .iconoCambiarImg {
@@ -550,7 +562,10 @@ video {
 .iconoFooterArriba {
     font-size: 1.75rem;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> Aman
 /* ------- PAQUETES -------- */
 .contenedorPaquetes{
     display:flex;
@@ -586,6 +601,7 @@ video {
     border-left: 4px solid var(--color-primario);
 }
 
+<<<<<<< HEAD
 .paquetes{
     display: flex;
     flex-wrap: wrap;
@@ -610,3 +626,6 @@ video {
 
 
 
+=======
+}
+>>>>>>> Aman
