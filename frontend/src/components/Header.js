@@ -11,7 +11,7 @@ import { BsHeart } from 'react-icons/bs'
 import { IoCartOutline } from 'react-icons/io5'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 
-const Header = () => {
+const Header = ({carrito}) => {
     const [isOpen, setOpen] = useState(false)
 
     return (
@@ -34,7 +34,12 @@ const Header = () => {
                         </div>
                         <div className="cartAndHeart">
                             <div className="heart centerCenterRow "><BsHeart /></div>
-                            <div className="cart centerCenterRow "><IoCartOutline /></div>
+                            <Link to="/carrito">
+                                <div className="cart centerCenterRow ">
+                                    <IoCartOutline />
+                                <p>{carrito.length}</p>
+                                </div>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -45,7 +50,7 @@ const Header = () => {
 
 const mapStateToProps = state => {
     return {
-
+        carrito:state.carritoReducer.carrito
     }
 }
 const mapDispatchToProps = {
