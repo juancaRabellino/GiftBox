@@ -22,7 +22,7 @@ function App() {
             <Route path="/paquetes/" component={Paquetes}/>
             <Route path="/carrito/" component={Carrito}/>
             <Route path="/carritoPaquetes/" component={CarritoPaquetes}/>
-            <Route path="/paquete/:_id" component={Paquete}/>
+            <Route exact path="/paquete/:_id" component={Paquete}/>
             <Route path='/usuario' component={PaginaUsuario}/>
             <Route path='/registro' component={Registro}/>
             <Redirect to="/" />

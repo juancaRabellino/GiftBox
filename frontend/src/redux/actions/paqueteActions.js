@@ -25,7 +25,7 @@ const paqueteActions = {
       try {
         dispatch({type: 'PAQUETE_ID', payload: _id})
       } catch (error) {
-        console.log(error)
+        console.log(error) 
       }
     }
   },
