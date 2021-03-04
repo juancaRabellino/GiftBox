@@ -43,6 +43,9 @@ router.route("/usuarios")
 router.route("/login")
   .post(usuarioController.login)
 
+  router.route('/usuarios/ls')
+.post(passport.authenticate('jwt', {session: false}), usuarioController.logFromLS)
+
 // CONTROLADOR DE CATEGORIAS
 router.route('/categoria')
   .post(categoriasController.agregarCategoria)

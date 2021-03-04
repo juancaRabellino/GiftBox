@@ -360,6 +360,9 @@ video{
     display:flex;
     flex-direction: column;
 }
-.headerTituloPaquetes{
-
+.fotoperfil{
+width: 20px;
+height: 20px;
+border-radius: 30px;
 }
+
