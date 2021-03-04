@@ -4,6 +4,7 @@ import paqueteActions from '../redux/actions/paqueteActions'
 import Loader from './Loader'
 import { Link } from "react-router-dom"
 import productoActions from "../redux/actions/productoActions"
+import { BsFillStarFill } from 'react-icons/bs'
 
 const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
 
@@ -30,19 +31,27 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
 
             <div className='package'>
               <div className='packageImage' style={{}}>
-                <div className='packageNameContainer'>
-                  <h3 className='packageName'>{paquete.nombre}</h3>
-                </div>
                 <div className='packageCategoryContainer'>
                   <div className='categoryContainer'>
                     <p>{paquete.categoria}</p>
                   </div>
                   <div className='giftBoxImage'>
-                    
                   </div>
                 </div>
               </div>
-              <div className='packageData'>
+              <div className='packageDataContainer'>
+                <div className='packageData'>
+                  <div style={{ margin: '15px 0 0 10px' }}>{[...Array(5)].map((m, i) => {
+                    const ratingValue = i + 1
+                    return (
+                      <label>
+                        <BsFillStarFill className="star" color='#ffc107' />
+                      </label>
+                    )
+                  })}</div>
+                  <p>DESCRIPCION</p>
+                  <p className='precio'>${paquete.precio}</p>
+                </div>
               </div>
             </div>
           )
