@@ -22,22 +22,24 @@ const IniciarSesion = (props) => {
         if (usuarioALoguear.cuenta === '' || usuarioALoguear.password === '') {
             Swal.fire({
                 icon: 'error',
-                title: 'Oops...',
-                text: '¡All fields are required!',
+                title: 'Uy...',
+                text: '¡Se necesitan llenar todos los campos!',
               })
             return false
         }
         setErrores([])
-        const respuesta = await props.loginUser(usuarioALoguear)
+        const respuesta = await props.iniciarSesion(usuarioALoguear)
         if (respuesta && !respuesta.success) {
-            setErrores([respuesta.mensaje])
+            setErrores([respuesta.errors])
         } else {
             Swal.fire({
                 icon: 'success',
-                title: 'Welcome to MyTinerary',
+                title: '¡Bienvenido a Gift Box',
                 showConfirmButton: false,
                 timer: 1500
               })
+
+              props.history.push('/');
         }
     }
 
@@ -45,8 +47,8 @@ const IniciarSesion = (props) => {
         if (response.error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Oops...',
-                text: '¡Something has happened!',
+                title: '¡Oh no!',
+                text: '¡Algo ha ocurrido!',
             })
         }else{
 
@@ -59,7 +61,7 @@ const IniciarSesion = (props) => {
             } else {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Welcome to MyTinerary',
+                    title: '¡Bienvenido/a a Gift Box!',
                     showConfirmButton: false,
                     timer: 1500
                   })
@@ -79,9 +81,11 @@ const IniciarSesion = (props) => {
             onChange={leerInput} />
             </div>
 
-            
             <div className="botoncitos">
             <button className="buttonLogin" onClick={validarUsuario}>Login</button>
+
+           
+
             <GoogleLogin className="googlecito"
     clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
     buttonText="Login Account"
@@ -91,23 +95,24 @@ const IniciarSesion = (props) => {
   />
   </div> 
            
-
-
-            <div className="errores">
-                {errores.map(error => <h2>{error}</h2>)}
+  <div className="errores">
+                {errores.map(error => <h1>{error}</h1>)}
             </div>
+
+
+            
         </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        loggedUser: state.user.loggedUser
+        loggedUser: state.userReducer.loggedUser
     }
 }
 
 const mapDispatchToProps = {
-    loginUser: userActions.iniciarSesion
+    iniciarSesion: userActions.iniciarSesion
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(IniciarSesion)

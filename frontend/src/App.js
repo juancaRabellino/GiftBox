@@ -7,7 +7,8 @@ import Header from  "./components/Header"
 import Footer from "./components/Footer"
 import WhatsApp from './components/WhatsApp'
 import Home from './components/Home'
-import PaginaUsuario from './components/PaginaUsuario.js'
+import PaginaUsuario from './components/PaginaUsuario'
+import IniciarSesion from './components/IniciarSesion'
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
             <Route exact path='/' component={Home}/>
             <Route path="/paquetes/" component={Paquetes}/>
             <Route path="/paquete/:_id" component={Paquete}/>
-            <Route path='/usuario' component={PaginaUsuario}/>
-            <Redirect to="/" />
+            <Route path='/paginausuario' component={PaginaUsuario}/>
+            <Route path='/iniciarsesion' component={IniciarSesion}/>
+            <Redirect to="/" /> 
           </Switch>
         <WhatsApp/>
         <Footer/>

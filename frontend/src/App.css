@@ -195,10 +195,10 @@
 }
 .menuOpcionesUsuario h3:hover{
     cursor: pointer;
-<<<<<<< HEAD
+
 }
-=======
-}
+
+
 /* CARRUSEL */
 video{
     z-index: -1;
@@ -233,12 +233,6 @@ video{
     width: 95%!important;
     outline: none;
 }
-<<<<<<< HEAD
-.imgCarrusel h3{
-    font-size: 40px;
-    padding: 0 0 20px 10px;
-}
-=======
 
 /* ------ FOOTER ------- */
 .footer{
@@ -335,6 +329,8 @@ video{
 }
 
 
+.errores{
+    font-size: 10px;
+    color: red;
+}
 
->>>>>>> Jordi
->>>>>>> 6a27be290c19660dc1a6e2aecd3cfc977ec8c432
