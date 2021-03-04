@@ -18,7 +18,6 @@ const Paquetes = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLosPaque
       obtenerTodoslosProductos()
     }
   }, [])
-
   // COMO USAR CARGANDO PARA MOSTRAR PRELOADER
   if (!todosLosPaquetes || !todosLosProductos ) { return <Loader /> }
   return (
