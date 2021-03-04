@@ -8,7 +8,11 @@ import { BsHeart } from 'react-icons/bs'
 import { IoCartOutline } from 'react-icons/io5'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import PaquetesHeader from './PaquetesHeader'
+<<<<<<< HEAD
 import { connect } from 'react-redux'
+=======
+import {connect} from 'react-redux'
+>>>>>>> Ale
 
 const Header = ({carrito}) => {
     const [isOpen, setOpen] = useState(false)
