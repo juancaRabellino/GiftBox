@@ -328,3 +328,8 @@ video{
 .iconoFooter{
     margin-right: 1rem;
 }
+.boxPreRegistro{
+    background-image: url("../public/assets/fondoLog.jpg");
+    width: 100%;
+    min-height:80vh ;
+}
