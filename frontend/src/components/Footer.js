@@ -14,17 +14,17 @@ const Footer = () => {
         <div className="footer">
             <div className="footerArriba">
                 <div className="footerArribaItem">
-                    <AiOutlineShop/>
+                    <AiOutlineShop className="iconoFooterArriba"/>
                     <p>Puntos de venta</p>
                 </div>                
                 <span>|</span>
                 <div className="footerArribaItem">
-                    <AiOutlineQuestionCircle/>
+                    <AiOutlineQuestionCircle className="iconoFooterArriba"/>
                     <p>Necesitas ayuda? Escribinos</p>
                 </div>
                 <span>|</span>
                 <div className="footerArribaItem">
-                    <FiBriefcase/>
+                    <FiBriefcase className="iconoFooterArriba"/>
                     <p>Venta Corporativa</p>
                 </div>                
             </div>
@@ -50,7 +50,7 @@ const Footer = () => {
 
                     </div>
                     <div className="seccionesMedioFooter">
-                        <h3 className="regalosFooter">BigBox</h3>
+                        <h3 className="regalosFooter">GiftBox</h3>
                         <p>¿Que es GiftBox?</p>
                         <p>Puntos de venta</p>
                         <p>Soluciones empresariales</p>
@@ -71,7 +71,7 @@ const Footer = () => {
                 </div>
                 <div className="redesFooter">
                     <IoLogoInstagram className="iconoFooter"/>
-                    <FaFacebookF/>
+                    <FaFacebookF className="iconoFooter"/>
                 </div>
                 
                 
