@@ -138,10 +138,13 @@
     align-items: center;
 }
 .boxUser{
-    width: 80%;
-    height: 80%;
+    width: 100vw;
+    height: 70vh;
     display: flex;
-    align-items: center;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("./assets/fondoLog.jpg");
 
 }
 .iconoCambiarImg{
