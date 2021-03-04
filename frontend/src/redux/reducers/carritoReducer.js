@@ -1,5 +1,6 @@
 const initialState={
-    carrito:[]
+    carrito:[],
+    total:0
 }
 const carritoReducer=(state=initialState,action)=>{
     switch (action.type) {
@@ -15,7 +16,8 @@ const carritoReducer=(state=initialState,action)=>{
             if(paqueteEnCarrito){
                 return {
                     ...state,
-                    carrito:carritoAux
+                    carrito:carritoAux,
+                    total: state.total+parseInt(carritoAux.map(paquete=>paquete.precio*paquete.cantidad))
                 }
             }
             return {

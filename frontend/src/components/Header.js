@@ -16,7 +16,7 @@ const Header = ({carrito}) => {
     return (
         <>
             <div id="headerContainer">
-                <div style={{ backgroundImage: `url("../assets/giftLogoF-01.png")` }} className='logoContainer'></div>
+            <Link to='/'><div style={{ backgroundImage: `url("../assets/giftLogoF-01.png")` }} className='logoContainer'></div></Link>
                 <div className="headerInput">
                     <div className="centerCenterRow">
                         <input type="text" placeholder="Busca tu paquete"/>
