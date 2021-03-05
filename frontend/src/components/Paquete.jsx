@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import paqueteActions from '../redux/actions/paqueteActions'
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
-import { BsArrowLeft, BsFillPersonFill,BsBuilding, BsGiftFill,BsIntersect } from "react-icons/bs";
+import { BsArrowLeft, BsFillPeopleFill,BsBuilding, BsGiftFill,BsIntersect } from "react-icons/bs";
 
 
 const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
@@ -29,14 +29,14 @@ const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
                         </div>
                         <div className="paqueteInfo">
                             <h4>Acerca de esta GiftBox</h4>
-                            <div className="cantidadDePersonas"><BsFillPersonFill/>Para {paquetePorId[0].cantidadPersonas} persona/s</div>
-                            <div className="categoria"><BsIntersect/>Categoria: {paquetePorId[0].categoria}</div>
-                            <div className="ubicacion"><BsBuilding/>Ubicacion: {paquetePorId[0].ubicacion}</div>
-                            <div className="vendidos"><BsGiftFill/>Cantidad de paquetes vendidos: {paquetePorId[0].cantidadVendidos.length}</div>
+                            <div className="cantidadDePersonas"><BsFillPeopleFill  className="icon"/> Para <span>{paquetePorId[0].cantidadPersonas}</span> persona/s</div>
+                            <div className="categoria"><BsIntersect className="icon"/> Categoria: <span>{paquetePorId[0].categoria}</span></div>
+                            <div className="ubicacion"><BsBuilding className="icon"/> Ubicacion: <span>{paquetePorId[0].ubicacion}</span></div>
+                            <div className="vendidos"><BsGiftFill className="icon"/> Cantidad de paquetes vendidos: <span>{paquetePorId[0].cantidadVendidos.length}</span></div>
                             <div className="linea"></div>
                             <div className="formatodeRegalo">
-                                <h5>Formatos de Regalo</h5>
-                                <p>Regalo digital</p>
+                                <h5>Formatos de Regalo:</h5>
+                                <p className="regaloDigital">Regalo digital</p>
                                 <p>Envío por email</p>
                             </div>
                             <div className="linea"></div>
