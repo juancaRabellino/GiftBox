@@ -17,8 +17,8 @@ import { connect } from 'react-redux';
 import carritoActions from './redux/actions/carritoActions';
 import userActions from './redux/actions/userActions';
 
-function App({loggedUser,carritoDelLS}) {
-
+function App({loggedUser,logFromLS,carritoDelLS}) {
+  if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
   if(localStorage.getItem("carrito")){
     carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))
     console.log(JSON.parse(localStorage.getItem("total")))
