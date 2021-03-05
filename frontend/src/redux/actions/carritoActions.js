@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 const carritoActions = {
-  agregarAlCarrito: ({nombre,_id,cantidad,precio,descripcion}) => {
+  agregarAlCarrito: ({nombre,_id,cantidad,precio,descripcion,imagen}) => {
     return async (dispatch, getState) => {
-        dispatch({type:"AGREGAR_AL_CARRITO", payload: {nombre,_id,cantidad,precio,descripcion}})
+        dispatch({type:"AGREGAR_AL_CARRITO", payload: {nombre,_id,cantidad,precio,descripcion,imagen}})
         localStorage.setItem("carrito",JSON.stringify(getState().carritoReducer.carrito));
         localStorage.setItem("total",JSON.stringify(getState().carritoReducer.total));
     }
