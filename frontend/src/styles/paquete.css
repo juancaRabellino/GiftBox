@@ -67,4 +67,11 @@
     width: 50%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.linea {
+    width: 100%;
+    height: 1vh;
+    border-bottom: 2px solid rgb(87, 87, 87);
 }
