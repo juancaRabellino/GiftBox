@@ -32,14 +32,17 @@ const IniciarSesion = (props) => {
         if (respuesta && !respuesta.success) {
             setErrores([respuesta.errors])
         } else {
+            console.log("entré al else")
             Swal.fire({
                 icon: 'success',
                 title: '¡Bienvenido a Gift Box',
                 showConfirmButton: false,
                 timer: 1500
+              }).then(()=>{
+                props.history.push('/')
               })
 
-              props.history.push('/');
+              
         }
     }
 
@@ -57,14 +60,18 @@ const IniciarSesion = (props) => {
                 password: response.profileObj.googleId,
             })
             if (respuesta && !respuesta.success) {
-                console.log(respuesta)
                 setErrores([respuesta.errors])
             } else {
                 Swal.fire({
+                    title: 'Welcome back!',
                     icon: 'success',
-                    title: '¡Bienvenido/a a Gift Box!',
-                    showConfirmButton: false,
-                    timer: 1500
+                    confirmButtonColor: '#3085d6',
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        (
+                        props.history.push('/')
+                      )
+                    }
                   })
             }
         }

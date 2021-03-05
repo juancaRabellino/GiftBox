@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 const Carrito=({carrito})=>{
     if(!carrito){return <h1>loading..</h1> }
-    console.log(carrito)
     return(
         <>
         <div className="carrito">

@@ -9,7 +9,6 @@ addUserCustomer: async (req, res) =>{
           const userBase = new UserBase ({
           firstName, lastName, urlPic, email, phone, password:hashedPassword, country, rol
           })
-          console.log(userBase)
 
           //File urlPic
           if(google !== 'true'){
@@ -34,7 +33,6 @@ addUserCustomer: async (req, res) =>{
                    //_id:idUserBase,
                    idUserBase:idUserBase
                 })
-                console.log(userConsumer)
                 userConsumer.save()
                 .then(async newUserConsumer =>{
                    // Populo el UserBase dentro del UserProvider para obtener el usuario mas sus datos
