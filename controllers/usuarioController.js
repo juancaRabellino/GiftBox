@@ -74,7 +74,7 @@ const usuarioController = {
                         else{
                             
                         }})
-                        nuevoUsuario.imagen = googlePic;
+                        nuevoUsuario.imagen = imgName;
             }
             else{
                 

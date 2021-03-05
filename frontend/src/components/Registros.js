@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 
 
 
-const Registro = ({crearCuentaGoogle,crearCuenta}) => {
+const Registro = ({crearCuenta}) => {
     const [nuevoUsuario, setNuevoUsuario] = useState({
         nombre: '',
         apellido: '',
@@ -18,7 +18,7 @@ const Registro = ({crearCuentaGoogle,crearCuenta}) => {
     const [errores, setErrores] = useState([])
 
 
-    const leerInput = e =>{
+    const leerInput = (e) =>{
         var valor = e.target.value
         const campo = e.target.name
         if(campo === "imagen"){
@@ -30,10 +30,11 @@ const Registro = ({crearCuentaGoogle,crearCuenta}) => {
         }) 
     }
 
-    const validarUsuario = async e => {
-        setErrores([])
+    const validarUsuario = async (e) => {
         e.preventDefault()
 
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
         const {nombre,apellido,cuenta,password,imagen} = nuevoUsuario
         var formNuevoUsuario = new FormData();
         formNuevoUsuario.append("nombre",nombre)
@@ -53,7 +54,6 @@ const Registro = ({crearCuentaGoogle,crearCuenta}) => {
 
             return false
         }
-        setErrores([])
         crearCuenta(formNuevoUsuario)
         .then(respuesta=>{
             if (respuesta && !respuesta.success) {
@@ -90,21 +90,21 @@ const Registro = ({crearCuentaGoogle,crearCuenta}) => {
 
             const respuesta= await crearCuenta(formNuevoUsuario)
             if (respuesta && !respuesta.success) {
-                console.log(respuesta)
                 setErrores(respuesta.errores)
-            } else 
-            {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'You have registered your user',
-                    showConfirmButton: false,
-                    timer: 1500
-                    })
+            }
+            //  else 
+            // {
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'You have registered your user',
+                //     showConfirmButton: false,
+                //     timer: 1500
+                //     })
                     // .then(function (result) {
                     //     if (result.value) {
                     //         window.location.href='/'
                     //     }})
-                }
+                // }
             }
     }
    
@@ -124,12 +124,12 @@ const Registro = ({crearCuentaGoogle,crearCuenta}) => {
                 <input type="password" name="password" placeholder="password"
                 onChange={leerInput} />
                 <label htmlFor="uploadButton" className="inputFile">
-                            <p>Agrega tu imagen</p>
-                            <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
-                        </label>
+                        <p>Agrega tu imagen</p>
+                        <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
+                </label>
             
                     <div className="botones">
-                <button className="buttonRegister" onClick={validarUsuario}>Crear Cuenta</button>
+                <button onClick={validarUsuario}>Crear Cuenta</button>
                 </div>
 
     {/* CLIENTE DE GOOGLE */}
@@ -145,9 +145,9 @@ const Registro = ({crearCuentaGoogle,crearCuenta}) => {
 
  
 
-            {/* <div className="errores">
+            <div className="errores">
                 {errores && errores.map((error,index) => <h2 key={index}>{error}</h2>)}
-            </div> */}
+            </div>
         </div>
     )
 }
