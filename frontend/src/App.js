@@ -75,8 +75,6 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       <BrowserRouter>
         <Header/>
           <Switch>
-            
-    <Route exact path="/registro" component={Registros} />
             {routes}
           </Switch>
         <WhatsApp/>
