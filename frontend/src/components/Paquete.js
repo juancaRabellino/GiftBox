@@ -7,7 +7,7 @@ const Paquete = ({match, paquetePorId, obtenerPaquetePorId}) => {
     const id = match.params._id
     useEffect(() => {
         obtenerPaquetePorId(id)
-    }, [])
+    }, [id])
 
     return (
         <>

@@ -407,6 +407,67 @@ video{
     height:100%;
     width: 60vw;
 }
+/* ------ EDITAR USUARIO ------ */
 
+.editUsuario{
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2vh 0;
+}
+.modificarEmailUsuario, .cambiarPassword{
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    margin: 2vh 0;
+}
+.modificarEmailUsuario input, .cambiarPassword input {
+    margin: 2vh 0;
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}
+.modificarEmailUsuario button {
+    padding: 1vh 0;
+    border-radius: 5px;
+    outline: none;
+    background-color: var(--rojo-oscuro) ;
+    color: white;
+    border: none;
+    transition: 0.2s ease;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}
 
+.modificarEmailUsuario button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.6);
+}
+.modificarEmailUsuario button:active {
+    background-color: var(--color-primario);
+}
+
+.cambiarPassword p , .modificarEmailUsuario p {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+.guardaCambioContraseña {
+    background-color: var(--azul-claro);
+    color: white;
+    padding: 2vh 3vw;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 2vh;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    transition: 0.2s ease;
+}
+.guardaCambioContraseña:hover{
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+}
+.guardaCambioContraseña:active{
+    background-color: var(--azul-oscuro);
+}
 

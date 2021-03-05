@@ -7,6 +7,7 @@ import RegalosRecibidos from '../components/RegalosRecibidos'
 import ComprasRealizadas from '../components/ComprasRealizadas'
 import ComprasGrupales from '../components/ComprasGrupales'
 import Credito from '../components/Credito'
+import {Link} from 'react-router-dom'
 
  
 
@@ -51,7 +52,9 @@ const PaginaUsuario = () => {
             </div>
             <div>
                 {editUsuario && 
-                    <button onClick={setEdittUsuario(false)}>Editar perfil</button>
+                   <Link>
+                     <button onClick={setEdittUsuario(false)}>Editar perfil</button>
+                   </Link>
                 }
             </div> 
         </div>

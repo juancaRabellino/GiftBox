@@ -9,6 +9,7 @@ import Footer from "./components/Footer"
 import WhatsApp from './components/WhatsApp'
 import Home from './components/Home'
 import PaginaUsuario from './components/PaginaUsuario.js'
+import EditUsuario from './components/EditUsuario'
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
             <Route path="/paquete/:_id" component={Paquete}/>
             <Route path='/usuario' component={PaginaUsuario}/>
             <Route path='/registro' component={Registro}/>
-            <Redirect to="/" />
+            <Route path='/editUsuario' component={EditUsuario}/>
+            <Redirect to='/'/>
           </Switch>
         <WhatsApp/>
         <Footer/>
