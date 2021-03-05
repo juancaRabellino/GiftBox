@@ -10,8 +10,6 @@ import Credito from '../components/Credito'
 import { Link } from 'react-router-dom'
 import userActions from '../redux/actions/userActions'
 
- 
-
 const PaginaUsuario = (props) => {
     
     const[editUsuario, setEdittUsuario] = useState(false)
@@ -53,7 +51,9 @@ const PaginaUsuario = (props) => {
             </div>
             <div>
                 {editUsuario && 
-                    <button onClick={setEdittUsuario(false)}>Editar perfil</button>
+                   <Link>
+                     <button onClick={setEdittUsuario(false)}>Editar perfil</button>
+                   </Link>
                 }
             </div> 
         </div>
