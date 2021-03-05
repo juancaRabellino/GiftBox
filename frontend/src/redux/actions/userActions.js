@@ -20,14 +20,6 @@ const userActions={
           }
        
     },
-    crearCuentaGoogle: (nuevoUsuario) =>{
-
-        return async (dispatch, getState) =>{
-        const data = await axios.post("http://localhost:4000/api/usuarios", nuevoUsuario)
-        .then(response =>console.log(response))
-        .catch(error=> console.log(error)) 
-        }
-    },
     cerrarSesion: () => {
         return (dispatch, getState) => {
             dispatch({type: 'CERRAR_SESION'})

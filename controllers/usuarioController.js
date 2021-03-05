@@ -74,10 +74,12 @@ const usuarioController = {
                         else{
                             
                         }})
-                        nuevoUsuario.imagen = imgName;
+                        nuevoUsuario.imagen = googlePic;
             }
             else{
-                nuevoUsuario.imagen = googlePic
+                
+                console.log("CUENTA GOOGLE")
+                nuevoUsuario.imagen = req.body.imgFile
             }
             }
             if(errors.length===0){
@@ -103,12 +105,12 @@ const usuarioController = {
     },
 
     logFromLS: (req, res) => {
-        res.json({
-          success: true,
+        res.json({success: true,
           response: {
             token: req.body.token,
             nombre: req.user.nombre,
             imagen: req.user.imagen,
+            googleUser: req.user.googleUser
           },
         });
       },
