@@ -2,9 +2,9 @@ const Categoria = require("../models/Categoria")
 
 const categoriasController = {
   agregarCategoria: (req, res) => {
-    const { nombre, texto, imagen } = req.body
+    const { nombre, texto, imagen, color } = req.body
     const categoriaAagregar = new Categoria({
-      nombre, texto, imagen
+      nombre, texto, imagen, color
     })
     categoriaAagregar.save()
       .then(data => res.json({ success: true, response: data }))
