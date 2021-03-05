@@ -43,7 +43,7 @@ const Header = ({carrito}) => {
                         </Link> 
                         <div className="cartAndHeart">
                             <div className="heart centerCenterRow "><BsHeart /></div>
-                            <Link to="/carrito">
+                            <Link exact to="/carrito">
                                 <div className="cart centerCenterRow ">
                                     <IoCartOutline />
                                 <p>{carrito.length}</p>

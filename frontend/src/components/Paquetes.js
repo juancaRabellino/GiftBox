@@ -7,9 +7,7 @@ import productoActions from "../redux/actions/productoActions"
 import { BsFillStarFill } from 'react-icons/bs'
 
 const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
-
   const [valor, setValor] = useState(false)
-
   useEffect(() => {
 
   }, [])

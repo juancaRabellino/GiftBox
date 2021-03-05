@@ -38,7 +38,8 @@ const PaquetesHeader = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLo
         )
       })}
       </div>
-        <div className="linksPaquetesPadre" onMouseOver={() => setMostrarProductos(true)}    onMouseOut={() => setMostrarProductos(false)}>
+        <div className="linksPaquetesPadre" onMouseOver={() => setMostrarProductos(true)}    
+        onMouseOut={() => setMostrarProductos(false)}>
           {visible && paquetesPorCategoria.map(paquete => 
             <>
             <Link  exact to={`/paquete/${paquete._id}`} key={`Link${paquete._id}`}>
