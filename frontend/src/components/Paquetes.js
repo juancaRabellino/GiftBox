@@ -6,12 +6,13 @@ import { Link } from "react-router-dom"
 import productoActions from "../redux/actions/productoActions"
 import { BsFillStarFill } from 'react-icons/bs'
 
-const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
+const Paquetes = ({ paquetesFiltrados, filtrarPaquetes, location }) => {
 
   const [valor, setValor] = useState(false)
+  const [categoria, setCategoria] = useState(true)
 
   useEffect(() => {
-
+    
   }, [])
   // COMO USAR CARGANDO PARA MOSTRAR PRELOADER
   
@@ -21,10 +22,20 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
     setValor(true)
   }
 
+  console.log(location.categoria)
+  if(categoria && location.categoria){
+    filtrarPaquetes(location.categoria)
+    setCategoria(false)
+    console.log(categoria)
+  }
+  console.log(valor)
+  // location.categoria && filtrarPaquetes(location.categoria)
+
 
   return (
     <main className='packagesMain'>
       <input type='text' onChange={buscando}></input>
+      <h3>{(location.categoria && !valor) && location.categoria}</h3>
       <div className='packagesContainer'>
         {paquetesFiltrados && paquetesFiltrados.map(paquete => {
           return (
