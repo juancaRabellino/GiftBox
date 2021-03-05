@@ -384,6 +384,7 @@ video {
     margin-left: 5vw;
     color: white;
     font-size: 20px;
+    transition: .5s;
 }
 
 .packageArrow {
