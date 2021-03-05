@@ -6,6 +6,7 @@ const initialState = {
   paquetesMasRegalados: []
 }
 const paqueteReducer = (state = initialState, action) => {
+
   switch (action.type) {
     case 'TODOS_PAQUETES':
       return {
@@ -18,9 +19,11 @@ const paqueteReducer = (state = initialState, action) => {
         paquetesPorCategoria: state.todosLosPaquetes.filter(paquete => paquete.categoria === action.payload)
       }
     case 'PAQUETE_ID':
+      var paqueteAux= state.todosLosPaquetes.filter(paquete => paquete._id === action.payload)
+      console.log(paqueteAux)
       return {
         ...state,
-        paquetePorId: state.todosLosPaquetes.filter(paquete => paquete._id === action.payload)
+        paquetePorId: paqueteAux
       }
     case 'FILTRO':
       return {
@@ -32,6 +35,11 @@ const paqueteReducer = (state = initialState, action) => {
         ...state,
         paquetesMasRegalados: action.payload
       }
+      case 'PROMEDIO':
+        console.log(action.payload)
+        return{
+          ...state, 
+        }
     default:
       return state;
   }

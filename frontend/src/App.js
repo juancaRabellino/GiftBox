@@ -21,12 +21,12 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
   const [renderAgain,setRenderAgain] = useState(false)
   if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
   if(localStorage.getItem("carrito")){
-    carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))
-  }
+    carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))}
+    
   var routes=null
   // if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
   if(!loggedUser && localStorage.getItem("token")){
-    console.log('sooy ls')
+
     logFromLS(localStorage.getItem('token'))
     .then(backToHome => 
       {
@@ -36,7 +36,7 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
     })
     .catch(error => setRenderAgain(!renderAgain))
   }
-  console.log(loggedUser)
+
   if(!loggedUser){
     routes=
   <>
@@ -75,8 +75,6 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       <BrowserRouter>
         <Header/>
           <Switch>
-            
-    <Route exact path="/registro" component={Registros} />
             {routes}
           </Switch>
         <WhatsApp/>

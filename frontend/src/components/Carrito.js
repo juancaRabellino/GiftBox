@@ -5,7 +5,6 @@ import carritoActions from "../redux/actions/carritoActions";
 
 const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
     if(!carrito){return <h1>loading..</h1> }
-    console.log(carrito)
     return(
         <>
         <div className="carrito">

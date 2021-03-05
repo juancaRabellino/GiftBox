@@ -11,7 +11,6 @@ const Home = ({paquetesMasRegalados, filtrarPaquetesMasReg}) => {
       filtrarPaquetesMasReg()
     }, [])
 
-    console.log(paquetesMasRegalados)
     return (
         <>  
             <video src={video} autoPlay loop muted></video>
