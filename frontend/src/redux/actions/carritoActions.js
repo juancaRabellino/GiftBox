@@ -1,23 +1,30 @@
 import axios from 'axios'
 
 const carritoActions = {
-  agregarAlCarrito: ({nombre,_id,cantidad,precio,descripcion}) => {
+  agregarAlCarrito: ({nombre,_id,cantidad,precio,descripcion,imagen}) => {
     return async (dispatch, getState) => {
-        dispatch({type:"AGREGAR_AL_CARRITO", payload: {nombre,_id,cantidad,precio,descripcion}})
+        dispatch({type:"AGREGAR_AL_CARRITO", payload: {nombre,_id,cantidad,precio,descripcion,imagen}})
         localStorage.setItem("carrito",JSON.stringify(getState().carritoReducer.carrito));
+        localStorage.setItem("total",JSON.stringify(getState().carritoReducer.total));
     }
   }, 
-  eliminarDelCarrito: (_id)=>{
+  eliminarDelCarrito: ({_id,precio,cantidad})=>{
     return async (dispatch, getState) => {
-      dispatch({type:"ELIMINAR_DEL_CARRITO", payload: _id})
-      localStorage.setItem("carrito",JSON.stringify(getState().carritoReducer.carrito))
+      dispatch({type:"ELIMINAR_DEL_CARRITO", payload: {_id,precio,cantidad}})
+      localStorage.setItem("carrito",JSON.stringify(getState().carritoReducer.carrito));
+      localStorage.setItem("total",JSON.stringify(getState().carritoReducer.total));
     }
   },
   actualizarCarrito: ({_id},numero)=>{
-      console.log("entre")
     return async (dispatch, getState) => {
-        dispatch({type:"ACTUALIZAR_CARRITO", payload: {_id,numero}})
-        localStorage.setItem("carrito",JSON.stringify(getState().carritoReducer.carrito))
+      dispatch({type:"ACTUALIZAR_CARRITO", payload: {_id,numero}})
+      localStorage.setItem("carrito",JSON.stringify(getState().carritoReducer.carrito));
+      localStorage.setItem("total",JSON.stringify(getState().carritoReducer.total));
+    }
+  },
+  carritoDelLS: (carritoLS,total)=>{
+    return async (dispatch,getState)=>{
+      dispatch({type:"CARRITO_LS", payload:{carritoLS,total}})
     }
   }
 
