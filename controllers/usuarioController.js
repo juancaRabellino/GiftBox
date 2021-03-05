@@ -48,47 +48,47 @@ const usuarioController = {
     },
     agregarUsuario: async (req,res)=>{
         var errors=[];
-        console.log(req.body)
+        console.log(req.files)
         console.log("PRINCIPIO")
         const {cuenta,password,nombre,apellido,rol,googleUser,productosFaveados,productosComprados,googlePic}=req.body;
         const usuarioExiste = await Usuario.findOne({cuenta})
-         if(usuarioExiste){errors.push("El usuario ya existe. Eliga otro por favor!")
-        }
-        else{
+        if(usuarioExiste){errors.push("El usuario ya existe. Eliga otro por favor!")
+        }else{
             const hashedPassword =  bcryptjs.hashSync(password, 10)
             var nuevoUsuario= new Usuario({cuenta,password:hashedPassword,nombre,apellido,rol,googleUser,productosFaveados,productosComprados})
 
             console.log(nuevoUsuario)
-            console.log("DESPUES DEL HASH")
-
-            if(googleUser === false){
+            if(googleUser==="false"){
+                console.log("CUENTA NORMAL")
                 const {imgFile}= req.files;
-
+                
                 const imgTipo= imgFile.name.split(".").slice(-1).join(" ");
-
+                console.log(imgFile)
+                console.log(imgTipo)
                 var imgName= `${nuevoUsuario._id}.${imgTipo}`
                 var imgPath= `${__dirname}/../frontend/public/usuarioImg/${nuevoUsuario._id}.${imgTipo}`
-
+                
                 await imgFile.mv(imgPath,error=>{
                     if(error){
                         errors.push(error)}
-                    else{
-                
-                    }})
-                nuevoUsuario.imagen = imgName;
+                        else{
+                            
+                        }})
+                        nuevoUsuario.imagen = imgName;
             }
             else{
-            nuevoUsuario.imagen = googlePic
+                nuevoUsuario.imagen = googlePic
             }
-        }
-        if(errors.length===0){
-        const nuevoUsuarioGuardado = await nuevoUsuario.save()
-        var token= jsonWebToken.sign({...nuevoUsuarioGuardado},process.env.JWT_SECRET_KEY,{})
-        }        
-        return res.json({
-            success: errors.length===0 ? true : false,
-            errors: errors.length=== 0 ? null : errors,
-            response: errors.length===0 && {token,id: nuevoUsuario._id, nombre,apellido,imagen:nuevoUsuario.imagen,rol,googleUser}
+            }
+            if(errors.length===0){
+                const nuevoUsuarioGuardado = await nuevoUsuario.save()
+                var token= jsonWebToken.sign({...nuevoUsuarioGuardado},process.env.JWT_SECRET_KEY,{})
+            }        
+            console.log(errors)
+            return res.json({
+                success: errors.length===0 ? true : false,
+                errors: errors,
+                response: errors.length===0 && {token,id: nuevoUsuario._id, nombre,apellido,imagen:nuevoUsuario.imagen,rol,googleUser}
         })
 
     },  

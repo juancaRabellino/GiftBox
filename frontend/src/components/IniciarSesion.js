@@ -44,6 +44,7 @@ const IniciarSesion = (props) => {
     }
 
     const responseGoogle = async (response) => {
+        
         if (response.error) {
             Swal.fire({
                 icon: 'error',
@@ -51,9 +52,8 @@ const IniciarSesion = (props) => {
                 text: '¡Algo ha ocurrido!',
             })
         }else{
-
             const respuesta = await props.iniciarSesion({
-                cuenta: response.profileObj.givenName,
+                cuenta: response.profileObj.email,
                 password: response.profileObj.googleId,
             })
             if (respuesta && !respuesta.success) {

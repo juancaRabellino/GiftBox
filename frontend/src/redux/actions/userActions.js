@@ -1,19 +1,24 @@
 import axios from "axios"
-import { response } from "express"
 
 const userActions={
     crearCuenta: (formNuevoUsuario) => {
-        console.log(formNuevoUsuario)
-        console.log("ACTIONS")
-        return async (dispatch, getState) => {
-            const data = await axios.post("http://localhost:4000/api/usuarios",formNuevoUsuario,{headers:{"Content-type":"multipart:form-data"}})            
-            .then(response => console.log(response.data))
-            .catch(error => console.log(error))
-
-            // dispatch({type: 'INICIAR_SESION', payload: data.data.response})
-            console.log("ESTOY EN ACTION")
-            console.log(data.response)
-        }
+        return async (dispatch,getstate) => {
+            try{
+              const data = await axios.post("http://localhost:4000/api/usuarios",formNuevoUsuario,{
+                headers: {"Content-Type": "multipart: form-data"}
+              }); 
+              if (data.data.success){
+                console.log(data.data.response)
+                dispatch({type:'INICIAR_SESION', payload:data.data.response})
+              } else{
+                return data.data
+              }
+              }catch(error){
+                const data =[{errors:'Paso algo...'}]
+                return data.data
+              }
+          }
+       
     },
     crearCuentaGoogle: (nuevoUsuario) =>{
 

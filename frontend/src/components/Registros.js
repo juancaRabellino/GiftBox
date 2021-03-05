@@ -6,13 +6,14 @@ import Swal from 'sweetalert2'
 
 
 
-const Registro = (props) => {
+const Registro = ({crearCuentaGoogle,crearCuenta}) => {
     const [nuevoUsuario, setNuevoUsuario] = useState({
         nombre: '',
         apellido: '',
         cuenta: '',
         password: '',
-        imagen: ''
+        imagen: '',
+        googleUser: false,
     })
     const [errores, setErrores] = useState([])
 
@@ -40,8 +41,8 @@ const Registro = (props) => {
         formNuevoUsuario.append("cuenta",cuenta)
         formNuevoUsuario.append("password",password)
         formNuevoUsuario.append("imgFile",imagen)
-        console.log(formNuevoUsuario)
-        console.log(imagen)
+        formNuevoUsuario.append("googleUser",false)
+        
         if (nombre === '' || apellido === '' || cuenta === '' ||
         password === '' || imagen === '') {
             Swal.fire({
@@ -52,30 +53,25 @@ const Registro = (props) => {
 
             return false
         }
-
         setErrores([])
-        const respuesta = await props.crearCuenta(formNuevoUsuario)
-
-        console.log(respuesta)
-
-        if (respuesta && !respuesta.success) {
-            setErrores(respuesta.errores)
-        } else {
-            Swal.fire({
-                icon: 'success',
-                title: 'You have registered your user',
-                showConfirmButton: false,
-                timer: 1500
-              })
-        }
+        crearCuenta(formNuevoUsuario)
+        .then(respuesta=>{
+            if (respuesta && !respuesta.success) {
+                console.log(respuesta)
+                setErrores(respuesta.errors)
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'You have registered your user',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }  
+        })
     }
 
         //GOOGLE REGISTRO
     const responseGoogle = async (googleResponse) => {
-
-
-        const formGoogle = new FormData();
-
         if (googleResponse.error) {
             Swal.fire({
                 icon: 'error',
@@ -84,17 +80,17 @@ const Registro = (props) => {
               })
         } 
         else {                
-                const respuesta = await props.crearCuentaGoogle({
-                    nombre: googleResponse.profileObj.givenName,
-                    apellido: googleResponse.profileObj.familyName,
-                    cuenta: googleResponse.profileObj.email,
-                    password: `Aa${googleResponse.profileObj.googleId}`,
-                    googlePic: googleResponse.profileObj.imageUrl,
-                    google: 'true'
-    
-                })
-            // DATOS A GOOGLE?
+            var formNuevoUsuario = new FormData();
+            formNuevoUsuario.append("nombre",googleResponse.profileObj.givenName)
+            formNuevoUsuario.append("apellido",googleResponse.profileObj.familyName)
+            formNuevoUsuario.append("cuenta",googleResponse.profileObj.email)
+            formNuevoUsuario.append("password",googleResponse.profileObj.googleId)
+            formNuevoUsuario.append("imgFile",googleResponse.profileObj.imageUrl)
+            formNuevoUsuario.append("googleUser",true)
+
+            const respuesta= await crearCuenta(formNuevoUsuario)
             if (respuesta && !respuesta.success) {
+                console.log(respuesta)
                 setErrores(respuesta.errores)
             } else 
             {

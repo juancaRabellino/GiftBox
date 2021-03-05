@@ -14,8 +14,6 @@ import userActions from "../redux/actions/userActions"
 
 const Header = ({carrito, loggedUser}) => {
     const [isOpen, setOpen] = useState(false)
-    console.log(loggedUser)
-
 
     return (
         <>
@@ -41,7 +39,10 @@ const Header = ({carrito, loggedUser}) => {
                         <Link to="/usuario">
                             <div  className="centerCenterRow userName">
                                 <h1>{loggedUser.nombre}</h1>
-                                <img className="profile" src = {loggedUser.imagen}/>
+                                <div className="userImg" style={{
+                                    backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}>
+
+                                </div>
                             </div>  
                         </Link>
                         </> 

@@ -550,3 +550,9 @@ height: 20px;
 border-radius: 30px;
 }
 
+.userImg{
+    width: 10vw;
+    height: 10vh;
+    background-size: cover;
+    background-position: center;
+}
