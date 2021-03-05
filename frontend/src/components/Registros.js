@@ -31,8 +31,10 @@ const Registro = ({crearCuenta}) => {
     }
 
     const validarUsuario = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
         const {nombre,apellido,cuenta,password,imagen} = nuevoUsuario
         var formNuevoUsuario = new FormData();
         formNuevoUsuario.append("nombre",nombre)
@@ -52,7 +54,6 @@ const Registro = ({crearCuenta}) => {
 
             return false
         }
-        setErrores([])
         crearCuenta(formNuevoUsuario)
         .then(respuesta=>{
             if (respuesta && !respuesta.success) {
@@ -123,9 +124,9 @@ const Registro = ({crearCuenta}) => {
                 <input type="password" name="password" placeholder="password"
                 onChange={leerInput} />
                 <label htmlFor="uploadButton" className="inputFile">
-                            <p>Agrega tu imagen</p>
-                            <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
-                        </label>
+                        <p>Agrega tu imagen</p>
+                        <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
+                </label>
             
                     <div className="botones">
                 <button onClick={validarUsuario}>Crear Cuenta</button>
@@ -144,9 +145,9 @@ const Registro = ({crearCuenta}) => {
 
  
 
-            {/* <div className="errores">
+            <div className="errores">
                 {errores && errores.map((error,index) => <h2 key={index}>{error}</h2>)}
-            </div> */}
+            </div>
         </div>
     )
 }
