@@ -1,10 +1,10 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import carritoActions from "../redux/actions/carritoActions";
 
 const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
-    console.log(carrito)
+    
     return(
         <>
             <h1>Lista del carrito</h1>
@@ -14,7 +14,7 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
                     <p>{paquete.nombre}</p> 
                     <button style={{width:"15%"}} value={1} onClick={(e)=>actualizarCarrito(paquete,e.target.value)}>+</button>
                     <button style={{width:"15%"}} value={-1} onClick={(e)=>actualizarCarrito(paquete,e.target.value)}>-</button>
-                    <button style={{width:"15%"}} onClick={()=>eliminarDelCarrito(paquete._id)}>borrar</button>
+                    <button style={{width:"15%"}} onClick={()=>eliminarDelCarrito(paquete)}>borrar</button>
                     <p>{paquete.cantidad}</p>
                     <p>${paquete.precio*paquete.cantidad}</p>
                 </div>)}

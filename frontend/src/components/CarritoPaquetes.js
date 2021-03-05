@@ -17,6 +17,7 @@ const CarritoPaquetes = ({ todosLosPaquetes,agregarAlCarrito, obtenerTodosLosPaq
                 <div style={{border:" solid red", width:"24vw",height:"20vh",display:"flex",flexDirection:"column",
                 justifyContent:"space-around"}}>
                     <h5>{paquete.nombre}</h5>
+                    <h6>${paquete.precio}</h6>
                     <button onClick={()=>agregarAlCarrito(paquete)}>Añadir al carrito</button>
                 </div> 
                 )}

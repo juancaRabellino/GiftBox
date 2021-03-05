@@ -265,6 +265,125 @@ video{
     padding: 0 0 20px 10px;
 }
 
+/* ------ PAQUETES ------- */
+.packagesMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ececec;
+}
+.packagesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+}
+.package {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 265px;
+  height: 375px;
+  margin: 20px;
+  border-radius: 5px;
+}
+.packageImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 92%;
+  height: 70%;
+  background-image: url("https://fotos.subefotos.com/ebfb2c22ba2ba2ff9bc851da4fdc1b15o.png");
+  background-position: center;
+  background-size: cover;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 10;
+  box-shadow: 5px 5px 9px rgb(0 0 0 / 30%);
+}
+.packageCategoryContainer {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 50%;
+  color: #ff6c5f;
+}
+.packageCategoryContainer {
+  justify-content: space-between;
+  height: 44%;
+  color: #ff6c5f;
+}
+.categoryContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 12px 14px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+.giftBoxImage {
+  width: 50px;
+  height: 50px;
+  margin: 0 20px 25px 0;
+  background-color: blue;
+}
+.packageDataContainer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 35%;
+  background-color: white;
+  box-shadow: 5px 5px 9px rgb(0 0 0 / 30%);
+}
+.packageData {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 95%;
+  height: 86%;
+  margin: 0 14px;
+}
+.starsAndAssessment {
+  margin: 8px 0 0 0;
+  display: flex;
+}
+.starsAndAssessment p:first-child {
+  width: 30px;
+}
+.packageDescription {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+.price {
+  margin-bottom: 5px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+
+.loMasRegalado{
+    border: 2px solid #ccc;
+    box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.3);  
+    width: 90%!important;
+    outline: none;
+}
+.precioDetalle p{
+    margin: 25px 0 0 10px;
+}
+.precio{
+    font-size: 25px;
+    font-weight: 600;
+    padding-bottom: 10px;
+}
 /* ------ FOOTER ------- */
 .footer{
     border-top: 2px solid #ccc;
@@ -367,11 +486,61 @@ video{
 .iconoFooterArriba{
     font-size: 1.75rem;
 }
+
+
 /* ------- PAQUETES -------- */
 .contenedorPaquetes{
-    display:flex;
-    flex-direction: column;
+  display:flex;
+  flex-direction: column;
+  margin-top: 8vh;
+  width: 80vw;
 }
 .headerTituloPaquetes{
+  font-weight: 500;
+  color: rgb(63, 63, 63);
+}
+.linksPaquetes{
+  color: black;
+  background-color: white;
+  padding: 1vh 2vw;
+  transition: 0.1s ease;
+}
+.linksPaquetes p, a{
+  text-decoration: none;
+}
+.linksPaquetes:hover{
+  color: red;
+}
+.paquetesPadres{
+  border: none;
+  border-bottom: 1px solid rgb(161, 161, 161);
+  padding: 2vh 1vw;
+  background-color: white;
+  text-align: start;
+  transition: 0.2s ease;
+}
+.paquetesPadres:hover{
+  border-left: 4px solid var(--color-primario);
+}
 
+.paquetes{
+  display: flex;
+  flex-wrap: wrap;
+  width: 20vw;
+  flex-direction: column;
+}
+.linksPaquetesPadre{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 40vw;
+  height: 100%;
+}
+.linksPaquetesPadre a:hover{
+  color: red;
+}
+.flexRowPaquetes{
+  display: flex;
+  height:100%;
+  width: 60vw;
 }

@@ -7,14 +7,13 @@ const carritoActions = {
         localStorage.setItem("carrito",JSON.stringify(getState().carritoReducer.carrito));
     }
   }, 
-  eliminarDelCarrito: (_id)=>{
+  eliminarDelCarrito: ({_id,precio,cantidad})=>{
     return async (dispatch, getState) => {
-      dispatch({type:"ELIMINAR_DEL_CARRITO", payload: _id})
+      dispatch({type:"ELIMINAR_DEL_CARRITO", payload: {_id,precio,cantidad}})
       localStorage.setItem("carrito",JSON.stringify(getState().carritoReducer.carrito))
     }
   },
   actualizarCarrito: ({_id},numero)=>{
-      console.log("entre")
     return async (dispatch, getState) => {
         dispatch({type:"ACTUALIZAR_CARRITO", payload: {_id,numero}})
         localStorage.setItem("carrito",JSON.stringify(getState().carritoReducer.carrito))

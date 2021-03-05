@@ -1,7 +1,7 @@
 import './App.css'
 import React from 'react'
 import Paquetes from "./components/Paquetes";
-import Paquete from "./components/Paquete";
+import Paquete from "./components/Paquete.jsx";
 import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
 import Registro from "./components/Registros";
 import Header from  "./components/Header"
@@ -23,7 +23,7 @@ function App() {
             <Route path="/paquetes/" component={Paquetes}/>
             <Route path="/carrito/" component={Carrito}/>
             <Route path="/carritoPaquetes/" component={CarritoPaquetes}/>
-            <Route path="/paquete/:_id" component={Paquete}/>
+            <Route exact path="/paquete/:_id" component={Paquete}/>
             <Route path='/usuario' component={PaginaUsuario}/>
             <Route path='/registro' component={Registro}/>
             <Route path='/iniciarSesion' component={IniciarSesion}/>
