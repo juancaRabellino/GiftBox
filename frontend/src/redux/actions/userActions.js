@@ -7,9 +7,12 @@ const userActions={
               const data = await axios.post("http://localhost:4000/api/usuarios",formNuevoUsuario,{
                 headers: {"Content-Type": "multipart: form-data"}
               }); 
+              console.log(data.data.success)
               if (data.data.success){
                 console.log(data.data.response)
-                dispatch({type:'INICIAR_SESION', payload:data.data.response})
+                console.log("ACTIONS")                
+                dispatch({type:'INICIAR_SESION', payload:data.data})
+                return data.data.response
               } else{
                 return data.data
               }
@@ -33,6 +36,7 @@ const userActions={
                     Authorization: `Bearer ${token}`
                 }
             })
+                console.log(respuesta)
                 dispatch({type: 'INICIAR_SESION', payload: {response: {...respuesta.data.response}}})
             } catch(err) {
                 localStorage.clear()
