@@ -99,8 +99,8 @@ const usuarioController = {
           success: true,
           response: {
             token: req.body.token,
-            nombre: req.user.nombre,
-            imagen: req.user.imagen,
+            nombre: req.userReducer.nombre,
+            imagen: req.userReducer.imagen,
           },
         });
       },
