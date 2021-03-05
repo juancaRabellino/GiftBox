@@ -1,4 +1,4 @@
-import { connect } from 'mongoose'
+import { connect } from 'react-redux'
 import React from 'react'
 import {useState,useEffect} from 'react'
 import { IoCamera } from 'react-icons/io5'
@@ -7,10 +7,10 @@ import RegalosRecibidos from '../components/RegalosRecibidos'
 import ComprasRealizadas from '../components/ComprasRealizadas'
 import ComprasGrupales from '../components/ComprasGrupales'
 import Credito from '../components/Credito'
+import { Link } from 'react-router-dom'
+import userActions from '../redux/actions/userActions'
 
- 
-
-const PaginaUsuario = () => {
+const PaginaUsuario = (props) => {
     
     const[editUsuario, setEdittUsuario] = useState(false)
     const[opcionDiv, setOpciondiv] = useState(null)
@@ -51,7 +51,9 @@ const PaginaUsuario = () => {
             </div>
             <div>
                 {editUsuario && 
-                    <button onClick={setEdittUsuario(false)}>Editar perfil</button>
+                   <Link>
+                     <button onClick={setEdittUsuario(false)}>Editar perfil</button>
+                   </Link>
                 }
             </div> 
         </div>
@@ -81,15 +83,22 @@ const PaginaUsuario = () => {
                 </div>
             </div>
         </div>
+        <Link to="/" onClick={props.logOut}><button>LogOut</button></Link>  
         </>
 
     )
 }
 
+const mapStateToProps = state => {
+    return {
+        loggedUser: state.userReducer.loggedUser
+    }
+}
+const mapDispatchToProps = {
 
-// const mapStateToProps=state=>{
-//     return{
-//         loggedUser: state.user.loggedUser,
-//     }
-// }
-export default PaginaUsuario
+    logOut: userActions.logOut
+}
+
+// export default connect(mapStateToProps)(PaginaUsuario) 
+export default connect (mapStateToProps,mapDispatchToProps )(PaginaUsuario)
+

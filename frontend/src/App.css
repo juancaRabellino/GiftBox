@@ -556,68 +556,196 @@ video {
 }
 
 /* ------- PAQUETES -------- */
+.contenedorPaquetes{
+  display:flex;
+  flex-direction: column;
+  margin-top: 8vh;
+  width: 80vw;
+}
+.headerTituloPaquetes{
+  font-weight: 500;
+  color: rgb(63, 63, 63);
+}
+.linksPaquetes{
+  color: black;
+  background-color: white;
+  padding: 1vh 2vw;
+  transition: 0.1s ease;
+}
+.linksPaquetes p, a{
+  text-decoration: none;
+}
+.linksPaquetes:hover{
+  color: red;
+}
+.paquetesPadres{
+  border: none;
+  border-bottom: 1px solid rgb(161, 161, 161);
+  padding: 2vh 1vw;
+  background-color: white;
+  text-align: start;
+  transition: 0.2s ease;
+}
+.paquetesPadres:hover{
+  border-left: 4px solid var(--color-primario);
+}
 
-.contenedorPaquetes {
+.paquetes{
+  display: flex;
+  flex-wrap: wrap;
+  width: 20vw;
+  flex-direction: column;
+}
+.linksPaquetesPadre{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 40vw;
+  height: 100%;
+}
+.linksPaquetesPadre a:hover{
+  color: red;
+}
+.flexRowPaquetes{
+  display: flex;
+  height:100%;
+  width: 60vw;
+}
+.fotoperfil{
+width: 20px;
+height: 20px;
+border-radius: 30px;
+}
+/* ------ EDITAR USUARIO ------ */
+
+.userImg{
+    width: 10vw;
+    height: 10vh;
+    background-size: cover;
+    background-position: center;
+}
+.editUsuario{
+    height: 60vh;
     display: flex;
     flex-direction: column;
-    margin-top: 8vh;
-    width: 80vw;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2vh 0;
 }
-
-.headerTituloPaquetes {
-    font-weight: 500;
-    color: rgb(63, 63, 63);
-}
-
-.linksPaquetes {
-    color: black;
-    background-color: white;
-    padding: 1vh 2vw;
-    transition: 0.1s ease;
-}
-
-.linksPaquetes p, a {
-    text-decoration: none;
-}
-
-.linksPaquetes:hover {
-    color: red;
-}
-
-.paquetesPadres {
-    border: none;
-    border-bottom: 1px solid rgb(161, 161, 161);
-    padding: 2vh 1vw;
-    background-color: white;
-    text-align: start;
-    transition: 0.2s ease;
-}
-
-.paquetesPadres:hover {
-    border-left: 4px solid var(--color-primario);
-}
-
-.paquetes {
+.modificarEmailUsuario, .cambiarPassword{
     display: flex;
-    flex-wrap: wrap;
-    width: 20vw;
-    flex-direction: column;
-}
-
-.linksPaquetesPadre {
-    display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     width: 40vw;
-    height: 100%;
+    margin: 2vh 0;
+}
+.modificarEmailUsuario input, .cambiarPassword input {
+    margin: 2vh 0;
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}
+.modificarEmailUsuario button {
+    padding: 1vh 0;
+    border-radius: 5px;
+    outline: none;
+    background-color: var(--rojo-oscuro) ;
+    color: white;
+    border: none;
+    transition: 0.2s ease;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
 }
 
-.linksPaquetesPadre a:hover {
-    color: red;
+.modificarEmailUsuario button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.6);
+}
+.modificarEmailUsuario button:active {
+    background-color: var(--color-primario);
 }
 
-.flexRowPaquetes {
+.cambiarPassword p , .modificarEmailUsuario p {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+.guardaCambioContraseña {
+    background-color: var(--azul-claro);
+    color: white;
+    padding: 2vh 3vw;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 2vh;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    transition: 0.2s ease;
+}
+.guardaCambioContraseña:hover{
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+}
+.guardaCambioContraseña:active{
+    background-color: var(--azul-oscuro);
+}
+
+
+/* CARRITO */
+.carrito{
+    width: 100%;
+    border: solid black;
+}
+.carritoHead{
+    height: 15vh;
+    padding-left: 10vw;
     display: flex;
+    align-items: center;
+}
+.carritoSection{
+    height: auto;
+    border: solid blue;
+    padding: 4vh 5vw;
+    display: flex;
+}
+.carritoPaquetes{
+    border: solid red;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.carritoPaquete{
+    width: 80%;
+    border: solid blue;
+    height: 25vh;
+    margin: 1vh 0;
+}
+.carritoPaqueteNombre{
+    display: flex;
+    height: 20%;
+    justify-content: space-between;
+    padding: 1vh 1vw;
+    border: solid red;
+}
+.carritoPaqueteContenido{   
+    display: flex;
+    height: 80%;
+}
+#carritoImagen, #carritoCantidad{
+    width: 25%;
+    border: solid black;
+    padding: 0.5vh 0.5vw;
+}
+#carritoDescripcion{
+    width: 50%;
+    border: solid black;
+}
+
+.carritoImagen{
     height: 100%;
-    width: 60vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.carritoResumen{
+    width: 40%;
+    border: solid green;
 }

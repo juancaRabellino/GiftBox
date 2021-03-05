@@ -6,13 +6,14 @@ import Swal from 'sweetalert2'
 
 
 
-const Registro = (props) => {
+const Registro = ({crearCuentaGoogle,crearCuenta}) => {
     const [nuevoUsuario, setNuevoUsuario] = useState({
         nombre: '',
         apellido: '',
         cuenta: '',
         password: '',
-        imagen: ''
+        imagen: '',
+        googleUser: false,
     })
     const [errores, setErrores] = useState([])
 
@@ -40,8 +41,8 @@ const Registro = (props) => {
         formNuevoUsuario.append("cuenta",cuenta)
         formNuevoUsuario.append("password",password)
         formNuevoUsuario.append("imgFile",imagen)
-        console.log(formNuevoUsuario)
-        console.log(imagen)
+        formNuevoUsuario.append("googleUser",false)
+        
         if (nombre === '' || apellido === '' || cuenta === '' ||
         password === '' || imagen === '') {
             Swal.fire({
@@ -52,30 +53,25 @@ const Registro = (props) => {
 
             return false
         }
-
         setErrores([])
-        const respuesta = await props.crearCuenta(formNuevoUsuario)
-
-        console.log(respuesta)
-
-        if (respuesta && !respuesta.success) {
-            setErrores(respuesta.errores)
-        } else {
-            Swal.fire({
-                icon: 'success',
-                title: 'You have registered your user',
-                showConfirmButton: false,
-                timer: 1500
-              })
-        }
+        crearCuenta(formNuevoUsuario)
+        .then(respuesta=>{
+            if (respuesta && !respuesta.success) {
+                console.log(respuesta)
+                setErrores(respuesta.errors)
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'You have registered your user',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }  
+        })
     }
 
         //GOOGLE REGISTRO
     const responseGoogle = async (googleResponse) => {
-        console.log(googleResponse)
-
-        const formGoogle = new FormData();
-
         if (googleResponse.error) {
             Swal.fire({
                 icon: 'error',
@@ -83,20 +79,20 @@ const Registro = (props) => {
                 text: '¡Sucedió algo inesperado!',
               })
         } 
-        else {
-                {                
-                formGoogle.append("nombre", googleResponse.profileObj.givenName)
-                formGoogle.append("apellido", googleResponse.profileObj.familyName)
-                formGoogle.append("cuenta", googleResponse.profileObj.email)
-                formGoogle.append("password", googleResponse.profileObj.googleId)
-                // formGoogle.append("imgFile", googleResponse.profileObj.imageUrl)
-                
-                const respuesta = await props.crearCuenta(formGoogle)
-            }
-            // DATOS A GOOGLE?
-            // if (respuesta && !respuesta.success) {
-            //     setErrores(respuesta.errores)
-            // } else 
+        else {                
+            var formNuevoUsuario = new FormData();
+            formNuevoUsuario.append("nombre",googleResponse.profileObj.givenName)
+            formNuevoUsuario.append("apellido",googleResponse.profileObj.familyName)
+            formNuevoUsuario.append("cuenta",googleResponse.profileObj.email)
+            formNuevoUsuario.append("password",googleResponse.profileObj.googleId)
+            formNuevoUsuario.append("imgFile",googleResponse.profileObj.imageUrl)
+            formNuevoUsuario.append("googleUser",true)
+
+            const respuesta= await crearCuenta(formNuevoUsuario)
+            if (respuesta && !respuesta.success) {
+                console.log(respuesta)
+                setErrores(respuesta.errores)
+            } else 
             {
                 Swal.fire({
                     icon: 'success',
@@ -147,7 +143,7 @@ const Registro = (props) => {
             </div>
         </div>
 
-            
+ 
 
             {/* <div className="errores">
                 {errores && errores.map((error,index) => <h2 key={index}>{error}</h2>)}
@@ -161,7 +157,10 @@ const mapStateToProps = state => {
     }
 }
 const mapDispatchToProps = {
-    crearCuenta: userActions.crearCuenta
+    crearCuenta: userActions.crearCuenta,
+    crearCuentaGoogle: userActions.crearCuentaGoogle,
+    logOut: userActions.logOut
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registro) 
