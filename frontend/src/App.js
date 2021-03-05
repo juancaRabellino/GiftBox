@@ -13,33 +13,18 @@ import EditUsuario from './components/EditUsuario'
 import Carrito from './components/Carrito';
 import CarritoPaquetes from './components/CarritoPaquetes';
 import IniciarSesion from './components/IniciarSesion';
-import { connect } from 'react-redux'
-import userActions from "./redux/actions/userActions"
+import { connect } from 'react-redux';
+import carritoActions from './redux/actions/carritoActions';
 
-function App(props) {
-  const [recargar, setRecargar] = useState(false)
-  
-  if (props.loggedUser) {
-    var routes = 
-    <>
-      
-    </>
+function App({carritoDelLS}) {
 
-  }else if (localStorage.getItem('token')) { 
-    props.logFromLS(localStorage.getItem('token'))
-    .then(respuesta => {
-      if (respuesta === '/') setRecargar(!recargar) 
-    })
-
-  } else {
-    var routes =
-    <>
-      <Route path="/registros" component={Registros} />
-      <Route path="/iniciarsesion" component={IniciarSesion} />
-    </>
+  if(localStorage.getItem("carrito")){
+    carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))
+    console.log(JSON.parse(localStorage.getItem("total")))
   }
   return (
     <div className="App">
+      
       <BrowserRouter>
         <Header/>
           <Switch>
@@ -69,8 +54,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  logFromLS: userActions.logFromLS
+  logFromLS: userActions.logFromLS,
+  carritoDelLS: carritoActions.carritoDelLS
 }
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(App)
+

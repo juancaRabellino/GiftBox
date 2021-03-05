@@ -7,7 +7,9 @@ const paqueteSchema= new mongoose.Schema({
     descripcion:String,
     cantidadPersonas: Number,
     ubicacion:String,
-    cantidadVendidos:[{type: mongoose.Schema.ObjectId , ref: "usuario"}],
+    stock: Number,
+    // cantidadVendidos:[{type: mongoose.Schema.ObjectId, ref: "usuario", cantidad: Number}],
+    cantidadVendidos:[{idUsuario: {type: mongoose.Schema.ObjectId , ref: "usuario"}, cantidad: Number}],
     valoracion: [{
         idUsuario:{type:String,required:true},
         valor: Number
@@ -18,7 +20,8 @@ const paqueteSchema= new mongoose.Schema({
         imagenUsuario: {type:String, required: true},
         comentarioUsuario: {type:String}
     }],
-    productos:[{type: mongoose.Schema.ObjectId , ref: "producto"}]
+    productos:[{type: mongoose.Schema.ObjectId , ref: "producto"}],
+    imagen: String
 })
 
 const Paquete= mongoose.model("paquete",paqueteSchema);

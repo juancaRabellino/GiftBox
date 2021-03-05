@@ -36,24 +36,28 @@ const carritoReducer=(state=initialState,action)=>{
                 total: state.total-(action.payload.precio*action.payload.cantidad)                
             }
         case ("ACTUALIZAR_CARRITO"):    
+            var nuevoTotal1=state.total;
             const carritoAux2=state.carrito.filter(paquete=>{
                 if(paquete._id===action.payload._id && action.payload.numero==="1"){
                     paquete.cantidad+=1
+                    nuevoTotal1+=paquete.precio
                 }else if(paquete._id===action.payload._id && action.payload.numero==="-1"){
                     paquete.cantidad-=1
+                    nuevoTotal1-=paquete.precio
                 }
                 if(paquete.cantidad!==0){return paquete;}
                 
             })
-            var nuevoTotal1=0;
-            carritoAux2.map(paquete=>
-                (action.payload.numero==="1") 
-                ? nuevoTotal1+=paquete.precio*paquete.cantidad
-                : nuevoTotal1-=paquete.precio*paquete.cantidad)
             return{
                 ...state,
                 carrito: carritoAux2,
                 total: nuevoTotal1
+            }
+        case("CARRITO_LS"):
+            return{
+                ...state,
+                carrito:action.payload.carritoLS,
+                total: action.payload.total
             }
         default:
             return state;

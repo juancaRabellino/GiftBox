@@ -1,9 +1,9 @@
 const Paquete= require("../models/Paquete");
 const paqueteController ={
     agregarPaquete: (req, res)=>{
-        const {nombre,precio,fecha,categoria,descripcion,cantidadPersonas,ubicacion,cantidadVendidos,valoracion,opiniones,productos}=req.body;
+        const {nombre,precio,fecha,categoria,descripcion,cantidadPersonas,ubicacion,stock,cantidadVendidos,valoracion,opiniones,productos,imagen}=req.body;
         const paqueteAagregar = new Paquete({
-            nombre,precio,fecha,categoria,descripcion,cantidadPersonas,ubicacion,cantidadVendidos,valoracion,opiniones,productos
+            nombre,precio,fecha,categoria,descripcion,cantidadPersonas,ubicacion,stock,cantidadVendidos,valoracion,opiniones,productos,imagen
         })
         paqueteAagregar.save()
         .then(nuevoPaquete=>{return res.json({success:true, response: nuevoPaquete})})

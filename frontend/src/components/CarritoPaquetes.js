@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import paqueteActions from '../redux/actions/paqueteActions'
 import React , {useEffect} from 'react'
 import carritoActions from '../redux/actions/carritoActions'
+import Carrito from './Carrito'
 
 const CarritoPaquetes = ({ todosLosPaquetes,agregarAlCarrito, obtenerTodosLosPaquetes}) => {
     
@@ -11,6 +12,7 @@ const CarritoPaquetes = ({ todosLosPaquetes,agregarAlCarrito, obtenerTodosLosPaq
 
     return (
         <>
+                <Carrito/>
             <h2>Productos del Paquete</h2>
             <div style={{border:"solid ", display:"flex", flexWrap:"wrap"}}>
                 {todosLosPaquetes&& todosLosPaquetes.map(paquete=>
