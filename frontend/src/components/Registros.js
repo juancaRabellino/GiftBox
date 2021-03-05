@@ -108,8 +108,6 @@ const Registro = (props) => {
     }
    
     return (
-
-        
         <div className="container-form">
             <div className="form">
             <h1>Create new account</h1>

@@ -19,14 +19,12 @@ function App(props) {
   const [recargar, setRecargar] = useState(false)
 
   if (props.loggedUser) {
-    var routes = <>
-    <Switch>
-    <Route path="/carrito/" component={Carrito}/>
-    <Route path="/carritoPaquetes/" component={CarritoPaquetes}/>
+    var routes = 
+    <>
+      <Route path="/carrito" component={Carrito}/>
+      <Route path="/carritoPaquetes" component={CarritoPaquetes}/>
       <Redirect to="/" />
-      </Switch>
-
-      </>
+    </>
 
   } else if (localStorage.getItem('token')) { 
     props.logFromLS(localStorage.getItem('token'))
@@ -35,12 +33,10 @@ function App(props) {
     })
 
   } else {
-    var routes = <>
-    <Switch>
+    var routes =
+    <>
       <Route path="/registros" component={Registros} />
       <Route path="/iniciarsesion" component={IniciarSesion} />
-      <Redirect to="/" />
-      </Switch>
     </>
   }
 
@@ -50,7 +46,7 @@ function App(props) {
         <Header/>
           <Switch>
             <Route exact path='/' component={Home}/>
-            <Route path="/paquetes/" component={Paquetes}/>
+            <Route path="/paquetes" component={Paquetes}/>
             <Route path="/paquete/:_id" component={Paquete}/>
             <Route path='/usuario' component={PaginaUsuario}/>
             {routes}

@@ -14,7 +14,7 @@ import userActions from "../redux/actions/userActions"
 
 const Header = ({carrito, loggedUser}) => {
     const [isOpen, setOpen] = useState(false)
-
+    console.log(loggedUser)
    if (loggedUser) {
 
     return (
