@@ -82,6 +82,9 @@
     cursor: pointer;
     position: relative;
 }
+.registrarseHeader{
+}
+
 
 .headerInput input {
     height: 5vh;

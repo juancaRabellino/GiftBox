@@ -52,6 +52,7 @@ const Header = ({carrito, loggedUser}) => {
                         <Link to="/iniciarsesion">
                             <div className="centerCenterRow userName">
                                 <p>Iniciar Sesion</p>
+                                <Link className="registrarseHeader" to="/registro">Registrarse</Link>
                             <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
                             </div>
                         </Link> 
