@@ -6,7 +6,7 @@ const TarjetaPaquete = ({ paquete }) => {
   return (
     <Link to={`/paquete/${paquete._id}`}>
       <div className='package' key={`paq${paquete._id}`}>
-        <div className='packageImage' style={{}}>
+        <div className='packageImage' style={{backgroundImage: `url(${paquete.imagen})`}}>
           <div className='packageCategoryContainer'>
             <div className='categoryContainer'>
               <p>{paquete.categoria}</p>
@@ -22,7 +22,7 @@ const TarjetaPaquete = ({ paquete }) => {
               {[...Array(5)].map((m, i) => {
                 const ratingValue = i + 1
                 return (
-                  <label>
+                  <label key={`label${i}`}>
                     <BsFillStarFill className="star" color='#ffc107' />
                   </label>
                 )

@@ -42,7 +42,7 @@ const PaquetesHeader = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLo
         onMouseOut={() => setMostrarProductos(false)}>
           {visible && paquetesPorCategoria.map(paquete => 
             <>
-            <Link  exact to={`/paquete/${paquete._id}`} key={`Link${paquete._id}`}>
+            <Link to={`/paquete/${paquete._id}`} key={`Link${paquete._id}`}>
               <p className="linksPaquetes" onMouseOver={() => obtenerProductosPorPaquete(paquete._id)}>
               {paquete.nombre}
             </p>

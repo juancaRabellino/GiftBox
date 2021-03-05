@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { BiWindows } from 'react-icons/bi'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import paqueteActions from '../redux/actions/paqueteActions'
 // import Loader from './Loader'
@@ -28,7 +27,6 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes, location, todosLosPaquet
     setCategoria(false)
     console.log(categoria)
   }
-  console.log(paquetesFiltrados)
 
   return (
     <main className='packagesMain'>
