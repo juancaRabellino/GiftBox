@@ -15,7 +15,6 @@ const Carrousel = ({ todasLasCategorias }) => {
     slidesToShow: 4,
     slidesToScroll: 1
   };
-  console.log(todasLasCategorias)
   return (
     <div className='containerImg' style={{ width: '90vw', minHeight: '80vh', margin: 'auto' }}>
       <Slider {...settings}>

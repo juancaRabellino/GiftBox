@@ -57,10 +57,8 @@ const Registro = (props) => {
         props.crearCuenta(formNuevoUsuario)
         .then(respuesta=>{
             if (respuesta && respuesta.success===false) {
-                console.log('entre al if')
                 setErrores(respuesta.errors)
             } else {
-                console.log('entre al else')
                 Swal.fire({
                     icon: 'success',
                     title: 'You have registered your user',
@@ -92,7 +90,7 @@ const Registro = (props) => {
             formNuevoUsuario.append("googleUser",true)
 
             const respuesta= await props.crearCuenta(formNuevoUsuario)
-            if (respuesta && !respuesta.success) {
+            if (respuesta && respuesta.success===false) {
                 setErrores(respuesta.errores)
             } else 
             {

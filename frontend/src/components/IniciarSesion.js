@@ -32,14 +32,17 @@ const IniciarSesion = (props) => {
         if (respuesta && !respuesta.success) {
             setErrores([respuesta.errors])
         } else {
+            console.log("entré al else")
             Swal.fire({
                 icon: 'success',
                 title: '¡Bienvenido a Gift Box',
                 showConfirmButton: false,
                 timer: 1500
+              }).then(()=>{
+                props.history.push('/')
               })
 
-              props.history.push('/');
+              
         }
     }
 
@@ -57,7 +60,6 @@ const IniciarSesion = (props) => {
                 password: response.profileObj.googleId,
             })
             if (respuesta && !respuesta.success) {
-                console.log(respuesta)
                 setErrores([respuesta.errors])
             } else {
                 Swal.fire({
