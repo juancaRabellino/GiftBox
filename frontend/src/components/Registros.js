@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 
 
 
-const Registro = ({crearCuentaGoogle,crearCuenta}) => {
+const Registro = ({crearCuenta}) => {
     const [nuevoUsuario, setNuevoUsuario] = useState({
         nombre: '',
         apellido: '',
@@ -18,7 +18,7 @@ const Registro = ({crearCuentaGoogle,crearCuenta}) => {
     const [errores, setErrores] = useState([])
 
 
-    const leerInput = e =>{
+    const leerInput = (e) =>{
         var valor = e.target.value
         const campo = e.target.name
         if(campo === "imagen"){
@@ -30,9 +30,8 @@ const Registro = ({crearCuentaGoogle,crearCuenta}) => {
         }) 
     }
 
-    const validarUsuario = async e => {
-        setErrores([])
-        e.preventDefault()
+    const validarUsuario = async (e) => {
+        e.preventDefault();
 
         const {nombre,apellido,cuenta,password,imagen} = nuevoUsuario
         var formNuevoUsuario = new FormData();
@@ -90,21 +89,21 @@ const Registro = ({crearCuentaGoogle,crearCuenta}) => {
 
             const respuesta= await crearCuenta(formNuevoUsuario)
             if (respuesta && !respuesta.success) {
-                console.log(respuesta)
                 setErrores(respuesta.errores)
-            } else 
-            {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'You have registered your user',
-                    showConfirmButton: false,
-                    timer: 1500
-                    })
+            }
+            //  else 
+            // {
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'You have registered your user',
+                //     showConfirmButton: false,
+                //     timer: 1500
+                //     })
                     // .then(function (result) {
                     //     if (result.value) {
                     //         window.location.href='/'
                     //     }})
-                }
+                // }
             }
     }
    
@@ -129,7 +128,7 @@ const Registro = ({crearCuentaGoogle,crearCuenta}) => {
                         </label>
             
                     <div className="botones">
-                <button className="buttonRegister" onClick={validarUsuario}>Crear Cuenta</button>
+                <button onClick={validarUsuario}>Crear Cuenta</button>
                 </div>
 
     {/* CLIENTE DE GOOGLE */}

@@ -3,13 +3,24 @@ import axios from "axios"
 const userActions={
     crearCuenta: (formNuevoUsuario) => {
         return async (dispatch,getstate) => {
+
+            // axios.post("http://localhost:4000/api/usuarios",formNuevoUsuario,{
+            //     headers: {"Content-Type": "multipart: form-data"}
+            //   })
+            //   .then(response=>{console.log(response)})
+            //   .catch(error=>console.log(error))
+
+
             try{
               const data = await axios.post("http://localhost:4000/api/usuarios",formNuevoUsuario,{
                 headers: {"Content-Type": "multipart: form-data"}
               }); 
+              console.log(data.data.success)
               if (data.data.success){
                 console.log(data.data.response)
+                console.log("ACTIONS")                
                 dispatch({type:'INICIAR_SESION', payload:data.data.response})
+                return data.data.response
               } else{
                 return data.data
               }
@@ -33,6 +44,7 @@ const userActions={
                     Authorization: `Bearer ${token}`
                 }
             })
+                console.log(respuesta)
                 dispatch({type: 'INICIAR_SESION', payload: {response: {...respuesta.data.response}}})
             } catch(err) {
                 localStorage.clear()
@@ -51,14 +63,6 @@ const userActions={
         }
       },
 
-    iniciarSesion: (usuario) => {
-        return async (dispatch, getState) => {
-            const respuesta = await axios.post('http://localhost:4000/api/login', usuario)
-            if (!respuesta.data.success) {
-                return respuesta.data
-            }
-            dispatch({type:'INICIAR_SESION', payload: respuesta.data})
-        }
-    }
+   
 }
 export default userActions;
