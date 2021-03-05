@@ -138,13 +138,10 @@
     align-items: center;
 }
 .boxUser{
-    width: 100vw;
-    height: 70vh;
+    width: 80%;
+    height: 80%;
     display: flex;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("./assets/fondoLog.jpg");
+    align-items: center;
 
 }
 .iconoCambiarImg{
@@ -211,8 +208,22 @@
     width: 20vw;
 
 }
+/*SIGNIN SIGNUP*/
+.container-form{
+    display: flex;
+    flex-direction: column;
+    width:60%;
+}
+.boxUserRegistro{
+    width: 100vw;
+    height: 70vh;
+    display: flex;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("./assets/fondoLog.jpg");
 
-
+}
 
 
 /* CARRUSEL */
