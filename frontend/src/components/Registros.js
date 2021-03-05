@@ -114,7 +114,7 @@ const Registro = (props) => {
    
     return (
 
-        <div className="boxUser">
+        <div className="boxUserRegistro">
 
             <div className="container-form">
                 <div className="form">

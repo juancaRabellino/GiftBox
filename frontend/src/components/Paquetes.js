@@ -1,60 +1,43 @@
 import React, { useEffect, useState } from 'react'
+import { BiWindows } from 'react-icons/bi'
 import { connect } from 'react-redux'
 import paqueteActions from '../redux/actions/paqueteActions'
-import Loader from './Loader'
-import { Link } from "react-router-dom"
-import productoActions from "../redux/actions/productoActions"
-import { BsFillStarFill } from 'react-icons/bs'
+// import Loader from './Loader'
+import TarjetaPaquete from './TarjetaPaquete'
 
-const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
+const Paquetes = ({ paquetesFiltrados, filtrarPaquetes, location, todosLosPaquetes }) => {
   const [valor, setValor] = useState(false)
-  useEffect(() => {
+  const [categoria, setCategoria] = useState(true)
 
-  }, [])
-  // COMO USAR CARGANDO PARA MOSTRAR PRELOADER
-  
+  var paquetes = []
+  window.scrollTo(0, 0);
 
   const buscando = e => {
     filtrarPaquetes(e.target.value)
     setValor(true)
   }
 
+  if (!location.categoria && !valor) {
+    paquetes = todosLosPaquetes
+  } else if (!categoria || valor) {
+    paquetes = paquetesFiltrados
+  }
+
+  if (categoria && location.categoria) {
+    filtrarPaquetes(location.categoria)
+    setCategoria(false)
+    console.log(categoria)
+  }
+  console.log(paquetesFiltrados)
 
   return (
     <main className='packagesMain'>
       <input type='text' onChange={buscando}></input>
+      <h3>{(location.categoria && !valor) && location.categoria}</h3>
       <div className='packagesContainer'>
-        {paquetesFiltrados && paquetesFiltrados.map(paquete => {
-          return (
-
-            <div className='package'>
-              <div className='packageImage' style={{}}>
-                <div className='packageCategoryContainer'>
-                  <div className='categoryContainer'>
-                    <p>{paquete.categoria}</p>
-                  </div>
-                  <div className='giftBoxImage'>
-                  </div>
-                </div>
-              </div>
-              <div className='packageDataContainer'>
-                <div className='packageData'>
-                  <div style={{ margin: '15px 0 0 10px' }}>{[...Array(5)].map((m, i) => {
-                    const ratingValue = i + 1
-                    return (
-                      <label>
-                        <BsFillStarFill className="star" color='#ffc107' />
-                      </label>
-                    )
-                  })}</div>
-                  <p>DESCRIPCION</p>
-                  <p className='precio'>${paquete.precio}</p>
-                </div>
-              </div>
-            </div>
-          )
+        {paquetes && paquetes.map(paquete => {
+          return <TarjetaPaquete paquete={paquete} key={`paquete${paquete._id}`}/>
         })}
-
       </div>
     </main>
   )
@@ -62,6 +45,7 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes }) => {
 
 const mapStateToProps = state => {
   return {
+    todosLosPaquetes: state.paqueteReducer.todosLosPaquetes,
     paquetesFiltrados: state.paqueteReducer.paquetesFiltrados
   }
 }

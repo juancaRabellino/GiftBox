@@ -26,7 +26,7 @@ const LosMasRegalados = () => {
               <div style={{margin:'15px 0 0 10px'}}>{[...Array(5)].map((m,i)=>{
                         const ratingValue = i +1
                             return (
-                                <label> 
+                                <label key={`label${i}`}> 
                                     <BsFillStarFill className="star" color='#ffc107'/>
                                 </label>
                             )
