@@ -50,21 +50,15 @@
 }
 
 .paqueteImg {
-    overflow: hidden;
-    margin: 3vh 10vw;
-    background-image: url('https://fotos.subefotos.com/24cf558a2772607c3c7b77195e26b5c4o.png');
-    width: 30vw;
-    height: 67vh;
+    margin: 10vh 10vw;
+    width: 25vw;
+    height: 50vh;
     background-repeat: no-repeat;
-    position: relative;
-}
+    background-size: cover;
+    background-position: center;
+    border-radius: 1vw;
+    box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.198);
 
-.paqueteImgDin {
-    width: 21.5vh;
-    position: absolute;
-    top: 17vh;
-    left: 1.5vw;
-    box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.541);
 }
 
 .paqueteInfo {
