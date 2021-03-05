@@ -54,7 +54,7 @@ const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
                     <div className="valoracionContainer">    
                         <div className="valoracion">
                             <span>4.94</span>
-                            <ReactStars count={5} /* onChange={ratingChanged} */size={50} activeColor="#ffd700"/>
+                            <ReactStars count={5} /* onChange={ratingChanged} */size={50} activeColor="#ffd700" isHalf={true}/>
                         </div>
                         <img src="https://fotos.subefotos.com/af333790da6d3696dec1241bd0c55308o.png" alt="estrellas" />
                     </div>
