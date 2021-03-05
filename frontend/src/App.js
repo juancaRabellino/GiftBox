@@ -54,7 +54,6 @@ function App(props) {
             <Route path="/paquete/:_id" component={Paquete}/>
             <Route path='/usuario' component={PaginaUsuario}/>
             {routes}
-            <Redirect to="/" />
           </Switch>
         <WhatsApp/>
         <Footer/>
