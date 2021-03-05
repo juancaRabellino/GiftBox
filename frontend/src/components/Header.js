@@ -8,7 +8,7 @@ import { BsHeart } from 'react-icons/bs'
 import { IoCartOutline } from 'react-icons/io5'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import PaquetesHeader from './PaquetesHeader'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 const Header = ({carrito}) => {
     const [isOpen, setOpen] = useState(false)
@@ -16,7 +16,7 @@ const Header = ({carrito}) => {
     return (
         <>
             <div id="headerContainer">
-                <div style={{ backgroundImage: `url("../assets/giftLogoF-01.png")` }} className='logoContainer'></div>
+            <Link to='/'><div style={{ backgroundImage: `url("../assets/giftLogoF-01.png")` }} className='logoContainer'></div></Link>
                 <div className="headerInput">
                     <div className="centerCenterRow">
                         <input type="text" placeholder="Busca tu paquete"/>
@@ -28,17 +28,18 @@ const Header = ({carrito}) => {
                     </div>                 
                 </div>
                 
-                
                 <div className="headerUser centerVerticalColumn">
                     <div className="abrirRegalo centerCenterRow">
                         <p>Abrir mi Regalo</p>
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         <div className="headerUserImg" style={{ backgroundImage: `url("../assets/58670.jpg")` }}></div>
-                        <div className="centerCenterRow userName">
-                            <p>User Name</p>
-                            <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
-                        </div>
+                        <Link to="/usuario">
+                            <div className="centerCenterRow userName">
+                                <p>User Name</p>
+                                <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
+                            </div>
+                        </Link> 
                         <div className="cartAndHeart">
                             <div className="heart centerCenterRow "><BsHeart /></div>
                             <Link to="/carrito">

@@ -11,10 +11,19 @@ import Home from './components/Home'
 import PaginaUsuario from './components/PaginaUsuario.js'
 import Carrito from './components/Carrito';
 import CarritoPaquetes from './components/CarritoPaquetes';
+import IniciarSesion from './components/IniciarSesion';
+import { connect } from 'react-redux';
+import carritoActions from './redux/actions/carritoActions';
 
-function App() {
+function App({carritoDelLS}) {
+
+  if(localStorage.getItem("carrito")){
+    carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))
+    console.log(JSON.parse(localStorage.getItem("total")))
+  }
   return (
     <div className="App">
+      
       <BrowserRouter>
         <Header/>
           <Switch>
@@ -25,6 +34,7 @@ function App() {
             <Route exact path="/paquete/:_id" component={Paquete}/>
             <Route path='/usuario' component={PaginaUsuario}/>
             <Route path='/registro' component={Registro}/>
+            <Route path='/iniciarSesion' component={IniciarSesion}/>
             <Redirect to="/" />
           </Switch>
         <WhatsApp/>
@@ -33,5 +43,7 @@ function App() {
     </div>
   );
 }
-
-export default App;
+const mapDispatchToProps={
+  carritoDelLS: carritoActions.carritoDelLS
+}
+export default connect(null,mapDispatchToProps)(App);

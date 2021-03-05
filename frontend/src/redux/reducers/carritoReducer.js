@@ -1,5 +1,6 @@
 const initialState={
-    carrito:[]
+    carrito:[],
+    total:0
 }
 const carritoReducer=(state=initialState,action)=>{
     switch (action.type) {
@@ -12,32 +13,51 @@ const carritoReducer=(state=initialState,action)=>{
                 }
                 return paquete
             })
+
             if(paqueteEnCarrito){
+                var nuevoTotal=0;
+                carritoAux.map(paquete=>nuevoTotal+=paquete.precio*paquete.cantidad)
                 return {
                     ...state,
-                    carrito:carritoAux
+                    carrito:carritoAux,
+                    total:nuevoTotal
                 }
             }
             return {
                 ...state,
-                carrito:[...state.carrito,{...action.payload,cantidad:1}]
+                carrito:[...state.carrito,{...action.payload,cantidad:1}],
+                total: state.total+action.payload.precio
+
             }
         case ("ELIMINAR_DEL_CARRITO"):
             return{
                 ...state,
-                carrito: state.carrito.filter(paquete=>paquete._id!==action.payload)
+                carrito: state.carrito.filter(paquete=>paquete._id!==action.payload._id),
+                total: state.total-(action.payload.precio*action.payload.cantidad)                
             }
-        case ("ACTUALIZAR_CARRITO"):
-            console.log(action.payload)
+        case ("ACTUALIZAR_CARRITO"):    
+            var nuevoTotal1=state.total;
             const carritoAux2=state.carrito.filter(paquete=>{
-                if(paquete._id===action.payload._id){
-                    paquete.cantidad+=parseInt(action.payload.numero)
+                if(paquete._id===action.payload._id && action.payload.numero==="1"){
+                    paquete.cantidad+=1
+                    nuevoTotal1+=paquete.precio
+                }else if(paquete._id===action.payload._id && action.payload.numero==="-1"){
+                    paquete.cantidad-=1
+                    nuevoTotal1-=paquete.precio
                 }
                 if(paquete.cantidad!==0){return paquete;}
+                
             })
             return{
                 ...state,
-                carrito: carritoAux2
+                carrito: carritoAux2,
+                total: nuevoTotal1
+            }
+        case("CARRITO_LS"):
+            return{
+                ...state,
+                carrito:action.payload.carritoLS,
+                total: action.payload.total
             }
         default:
             return state;
