@@ -686,3 +686,66 @@ border-radius: 30px;
     background-color: var(--azul-oscuro);
 }
 
+
+/* CARRITO */
+.carrito{
+    width: 100%;
+    border: solid black;
+}
+.carritoHead{
+    height: 15vh;
+    padding-left: 10vw;
+    display: flex;
+    align-items: center;
+}
+.carritoSection{
+    height: auto;
+    border: solid blue;
+    padding: 4vh 5vw;
+    display: flex;
+}
+.carritoPaquetes{
+    border: solid red;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.carritoPaquete{
+    width: 80%;
+    border: solid blue;
+    height: 25vh;
+    margin: 1vh 0;
+}
+.carritoPaqueteNombre{
+    display: flex;
+    height: 20%;
+    justify-content: space-between;
+    padding: 1vh 1vw;
+    border: solid red;
+}
+.carritoPaqueteContenido{   
+    display: flex;
+    height: 80%;
+}
+#carritoImagen, #carritoCantidad{
+    width: 25%;
+    border: solid black;
+    padding: 0.5vh 0.5vw;
+}
+#carritoDescripcion{
+    width: 50%;
+    border: solid black;
+}
+
+.carritoImagen{
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.carritoResumen{
+    width: 40%;
+    border: solid green;
+}
