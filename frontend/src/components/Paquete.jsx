@@ -15,7 +15,6 @@ const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
         obtenerPaquetePorId(id)
         paquetePorId && setPaquete(paquetePorId)
     }, [id])
-    console.log(paquete)
     return (
         <>
             {paquetePorId &&

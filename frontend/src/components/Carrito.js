@@ -1,11 +1,9 @@
 
-import { useEffect, useState } from "react";
+import { BsFillPeopleFill} from "react-icons/bs";
 import { connect } from "react-redux";
-import carritoActions from "../redux/actions/carritoActions";
 
-const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
+const Carrito=({carrito})=>{
     if(!carrito){return <h1>loading..</h1> }
-    console.log(carrito)
     return(
         <>
         <div className="carrito">
@@ -24,7 +22,7 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
                                 <div id="carritoImagen">
                                     <div className="carritoImagen" style={{backgroundImage: `url(${paquete.imagen})`}}></div>
                                 </div>
-                                <div id="carritoDescripcion">2</div>
+                                <div id="carritoDescripcion"><p> <BsFillPeopleFill/> Para {paquete.cantidadPersonas} personas o mas</p></div>
                                 <div id="carritoCantidad">3</div>
                             </div>
                         </div>
@@ -51,13 +49,9 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
 }
 const mapStateToProps = state => {
     return {
-        carrito: state.carritoReducer.carrito,
-        total: state.carritoReducer.total
+        carrito: state.carritoReducer.carrito
     }
 }
-const mapDispatchToProps={
-    actualizarCarrito: carritoActions.actualizarCarrito,
-    eliminarDelCarrito: carritoActions.eliminarDelCarrito
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Carrito)
+
+export default connect(mapStateToProps, null)(Carrito)

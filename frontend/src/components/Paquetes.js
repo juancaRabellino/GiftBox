@@ -25,7 +25,6 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes, location, todosLosPaquet
   if (categoria && location.categoria) {
     filtrarPaquetes(location.categoria)
     setCategoria(false)
-    console.log(categoria)
   }
 
   return (

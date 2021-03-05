@@ -26,7 +26,7 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
   var routes=null
   // if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
   if(!loggedUser && localStorage.getItem("token")){
-    console.log('sooy ls')
+
     logFromLS(localStorage.getItem('token'))
     .then(backToHome => 
       {
@@ -36,7 +36,7 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
     })
     .catch(error => setRenderAgain(!renderAgain))
   }
-  console.log(loggedUser)
+
   if(!loggedUser){
     routes=
   <>

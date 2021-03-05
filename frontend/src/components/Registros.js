@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 
 
 
-const Registro = ({crearCuenta}) => {
+const Registro = (props) => {
     const [nuevoUsuario, setNuevoUsuario] = useState({
         nombre: '',
         apellido: '',
@@ -18,7 +18,7 @@ const Registro = ({crearCuenta}) => {
     const [errores, setErrores] = useState([])
 
 
-    const leerInput = (e) =>{
+    const leerInput = e =>{
         var valor = e.target.value
         const campo = e.target.name
         if(campo === "imagen"){
@@ -30,11 +30,10 @@ const Registro = ({crearCuenta}) => {
         }) 
     }
 
-    const validarUsuario = async (e) => {
+    const validarUsuario = async e => {
+        setErrores([])
         e.preventDefault()
 
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
         const {nombre,apellido,cuenta,password,imagen} = nuevoUsuario
         var formNuevoUsuario = new FormData();
         formNuevoUsuario.append("nombre",nombre)
@@ -54,10 +53,10 @@ const Registro = ({crearCuenta}) => {
 
             return false
         }
-        crearCuenta(formNuevoUsuario)
+        setErrores([])
+        props.crearCuenta(formNuevoUsuario)
         .then(respuesta=>{
-            if (respuesta && !respuesta.success) {
-                console.log(respuesta)
+            if (respuesta && respuesta.success===false) {
                 setErrores(respuesta.errors)
             } else {
                 Swal.fire({
@@ -65,6 +64,8 @@ const Registro = ({crearCuenta}) => {
                     title: 'You have registered your user',
                     showConfirmButton: false,
                     timer: 1500
+                  }).then(() =>{
+                      props.history.push('/')
                   })
             }  
         })
@@ -88,23 +89,24 @@ const Registro = ({crearCuenta}) => {
             formNuevoUsuario.append("imgFile",googleResponse.profileObj.imageUrl)
             formNuevoUsuario.append("googleUser",true)
 
-            const respuesta= await crearCuenta(formNuevoUsuario)
-            if (respuesta && !respuesta.success) {
+            const respuesta= await props.crearCuenta(formNuevoUsuario)
+            if (respuesta && respuesta.success===false) {
                 setErrores(respuesta.errores)
-            }
-            //  else 
-            // {
-                // Swal.fire({
-                //     icon: 'success',
-                //     title: 'You have registered your user',
-                //     showConfirmButton: false,
-                //     timer: 1500
-                //     })
+            } else 
+            {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'You have registered your user',
+                    showConfirmButton: false,
+                    timer: 1500
+                  }).then(() =>{
+                      props.history.push('/')
+                  })
                     // .then(function (result) {
                     //     if (result.value) {
                     //         window.location.href='/'
                     //     }})
-                // }
+                }
             }
     }
    
@@ -124,12 +126,12 @@ const Registro = ({crearCuenta}) => {
                 <input type="password" name="password" placeholder="password"
                 onChange={leerInput} />
                 <label htmlFor="uploadButton" className="inputFile">
-                        <p>Agrega tu imagen</p>
-                        <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
-                </label>
+                            <p>Agrega tu imagen</p>
+                            <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
+                        </label>
             
                     <div className="botones">
-                <button onClick={validarUsuario}>Crear Cuenta</button>
+                <button className="buttonRegister" onClick={validarUsuario}>Crear Cuenta</button>
                 </div>
 
     {/* CLIENTE DE GOOGLE */}
@@ -142,9 +144,12 @@ const Registro = ({crearCuenta}) => {
                 />
             </div>
         </div>
-            <div className="errores">
+
+ 
+
+            {/* <div className="errores">
                 {errores && errores.map((error,index) => <h2 key={index}>{error}</h2>)}
-            </div>
+            </div> */}
         </div>
     )
 }
