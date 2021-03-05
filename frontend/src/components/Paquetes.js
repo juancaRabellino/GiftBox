@@ -5,9 +5,10 @@ import Loader from './Loader'
 import { Link } from "react-router-dom"
 import { BsFillStarFill } from 'react-icons/bs'
 
-const Paquetes = ({ paquetesFiltrados, todosLosPaquetes, filtrarPaquetes }) => {
+const Paquetes = ({ paquetesFiltrados, filtrarPaquetes, location , todosLosPaquetes }) => {
 
   const [valor, setValor] = useState(false)
+  const [categoria, setCategoria] = useState(true)
 
   const paquetes = valor ? paquetesFiltrados : todosLosPaquetes
   const buscando = e => {
@@ -17,9 +18,20 @@ const Paquetes = ({ paquetesFiltrados, todosLosPaquetes, filtrarPaquetes }) => {
 
   if (!todosLosPaquetes) return <Loader />
   console.log(paquetesFiltrados)
+  console.log(location.categoria)
+  if(categoria && location.categoria){
+    filtrarPaquetes(location.categoria)
+    setCategoria(false)
+    console.log(categoria)
+  }
+  console.log(valor)
+  // location.categoria && filtrarPaquetes(location.categoria)
+
+
   return (
     <main className='packagesMain'>
       <input type='text' onChange={buscando}></input>
+      <h3>{(location.categoria && !valor) && location.categoria}</h3>
       <div className='packagesContainer'>
         {paquetes.map(paquete => {
           return (
