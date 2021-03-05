@@ -23,7 +23,6 @@ function App(props) {
     <>
       <Route path="/carrito" component={Carrito}/>
       <Route path="/carritoPaquetes" component={CarritoPaquetes}/>
-      <Redirect to="/" />
     </>
 
   } else if (localStorage.getItem('token')) { 
@@ -39,7 +38,7 @@ function App(props) {
       <Route path="/iniciarsesion" component={IniciarSesion} />
     </>
   }
-
+ console.log(props)
   return (
     <div className="App">
       <BrowserRouter>

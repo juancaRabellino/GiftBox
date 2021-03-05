@@ -1,4 +1,3 @@
-
 const Usuario = require('../models/Usuario')
 const bcryptjs = require('bcryptjs')
 const jsonWebToken = require('jsonwebtoken')
@@ -33,8 +32,6 @@ const usuarioController = {
         })
     },
     editarUsuario: async(req,res) =>{
-
-
         const {imgFile}= req.files
 
         const imgTipo=imgFile.name.split(".").slice(-1).join(" ")
@@ -51,38 +48,49 @@ const usuarioController = {
     },
     agregarUsuario: async (req,res)=>{
         var errors=[];
-        const {cuenta,password,nombre,apellido,rol,googleUser,productosFaveados,productosComprados}=req.body;
-        const {imgFile}= req.files;
+        console.log(req.body)
+        console.log("PRINCIPIO")
+        const {cuenta,password,nombre,apellido,rol,googleUser,productosFaveados,productosComprados,googlePic}=req.body;
+        const usuarioExiste = await Usuario.findOne({cuenta})
+         if(usuarioExiste){errors.push("El usuario ya existe. Eliga otro por favor!")
+        }
+        else{
+            const hashedPassword =  bcryptjs.hashSync(password, 10)
+            var nuevoUsuario= new Usuario({cuenta,password:hashedPassword,nombre,apellido,rol,googleUser,productosFaveados,productosComprados})
 
-        const imgTipo=imgFile.name.split(".").slice(-1).join(" ");
-        
-        const usuarioExiste= await Usuario.findOne({cuenta});
-        if(usuarioExiste){errors.push("El usuario ya existe. Eliga otro por favor!")};
-        
-        if(errors.length===0){
-            var passHashed= await bcryptjs.hashSync(password,10);
-            var nuevoUsuario= new Usuario({cuenta,password:passHashed,nombre,apellido,rol,googleUser,productosFaveados,productosComprados});
-            var imgName= `${nuevoUsuario._id}.${imgTipo}`
-            var imgPath= `${__dirname}/../frontend/public/usuarioImg/${nuevoUsuario._id}.${imgTipo}`
+            console.log(nuevoUsuario)
+            console.log("DESPUES DEL HASH")
 
-            await imgFile.mv(imgPath,error=>{
-                if(error){
-                    errors.push(error)}
-                else{
-            
-                }})
-            nuevoUsuario.imagen = imgName;
-            if(errors.length===0){
+            if(googleUser === false){
+                const {imgFile}= req.files;
 
-            const nuevoUsuarioGuardado=await nuevoUsuario.save()
-            var token= jsonWebToken.sign({...nuevoUsuarioGuardado},process.env.JWT_SECRET_KEY,{})
+                const imgTipo= imgFile.name.split(".").slice(-1).join(" ");
+
+                var imgName= `${nuevoUsuario._id}.${imgTipo}`
+                var imgPath= `${__dirname}/../frontend/public/usuarioImg/${nuevoUsuario._id}.${imgTipo}`
+
+                await imgFile.mv(imgPath,error=>{
+                    if(error){
+                        errors.push(error)}
+                    else{
+                
+                    }})
+                nuevoUsuario.imagen = imgName;
+            }
+            else{
+            nuevoUsuario.imagen = googlePic
             }
         }
+        if(errors.length===0){
+        const nuevoUsuarioGuardado = await nuevoUsuario.save()
+        var token= jsonWebToken.sign({...nuevoUsuarioGuardado},process.env.JWT_SECRET_KEY,{})
+        }        
         return res.json({
             success: errors.length===0 ? true : false,
             errors: errors.length=== 0 ? null : errors,
             response: errors.length===0 && {token,id: nuevoUsuario._id, nombre,apellido,imagen:nuevoUsuario.imagen,rol,googleUser}
         })
+
     },  
     todosLosUsuarios : (req, res)=>{
         Usuario.find()

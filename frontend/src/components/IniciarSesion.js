@@ -52,7 +52,7 @@ const IniciarSesion = (props) => {
             })
         }else{
 
-            const respuesta = await props.loginUser({
+            const respuesta = await props.iniciarSesion({
                 cuenta: response.profileObj.givenName,
                 password: response.profileObj.googleId,
             })

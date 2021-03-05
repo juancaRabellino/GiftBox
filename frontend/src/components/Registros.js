@@ -72,7 +72,7 @@ const Registro = (props) => {
 
         //GOOGLE REGISTRO
     const responseGoogle = async (googleResponse) => {
-        console.log(googleResponse)
+
 
         const formGoogle = new FormData();
 
@@ -83,20 +83,20 @@ const Registro = (props) => {
                 text: '¡Sucedió algo inesperado!',
               })
         } 
-        else {
-                {                
-                formGoogle.append("nombre", googleResponse.profileObj.givenName)
-                formGoogle.append("apellido", googleResponse.profileObj.familyName)
-                formGoogle.append("cuenta", googleResponse.profileObj.email)
-                formGoogle.append("password", googleResponse.profileObj.googleId)
-                // formGoogle.append("imgFile", googleResponse.profileObj.imageUrl)
-                
-                const respuesta = await props.crearCuenta(formGoogle)
-            }
+        else {                
+                const respuesta = await props.crearCuentaGoogle({
+                    nombre: googleResponse.profileObj.givenName,
+                    apellido: googleResponse.profileObj.familyName,
+                    cuenta: googleResponse.profileObj.email,
+                    password: `Aa${googleResponse.profileObj.googleId}`,
+                    googlePic: googleResponse.profileObj.imageUrl,
+                    google: 'true'
+    
+                })
             // DATOS A GOOGLE?
-            // if (respuesta && !respuesta.success) {
-            //     setErrores(respuesta.errores)
-            // } else 
+            if (respuesta && !respuesta.success) {
+                setErrores(respuesta.errores)
+            } else 
             {
                 Swal.fire({
                     icon: 'success',
@@ -147,7 +147,7 @@ const Registro = (props) => {
             </div>
         </div>
 
-            
+ 
 
             {/* <div className="errores">
                 {errores && errores.map((error,index) => <h2 key={index}>{error}</h2>)}
@@ -161,7 +161,10 @@ const mapStateToProps = state => {
     }
 }
 const mapDispatchToProps = {
-    crearCuenta: userActions.crearCuenta
+    crearCuenta: userActions.crearCuenta,
+    crearCuentaGoogle: userActions.crearCuentaGoogle,
+    logOut: userActions.logOut
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registro) 
