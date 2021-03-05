@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
 import userActions from "../redux/actions/userActions"
 
 
-const Header = ({carrito, loggedUser}) => {
+const Header = ({carrito, loggedUser, logOut}) => {
     const [isOpen, setOpen] = useState(false)
 
     return (
@@ -38,6 +38,7 @@ const Header = ({carrito, loggedUser}) => {
                         <>
                         <Link to="/usuario">
                             <div  className="centerCenterRow userName">
+                            <Link to="/" onClick={logOut}>LogOut</Link>
                                 <h1>{loggedUser.nombre}</h1>
                                 {loggedUser.googleUser==="true" 
                                 ? <div className="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}></div>
@@ -82,7 +83,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    cerrarSesion: userActions.cerrarSesion
+    logOut: userActions.logOut
   }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
