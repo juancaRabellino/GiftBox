@@ -59,7 +59,10 @@ const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
                         <img src="https://fotos.subefotos.com/af333790da6d3696dec1241bd0c55308o.png" alt="estrellas" />
                     </div>
                     <div className="productosContainer">
-                        hola
+                        <div className="encabezado">
+                            <h3>Dentro del paquete: </h3>
+                            <p>Tu agasajado va a poder disfrutar de estos "cantidad de productos" productos</p>
+                        </div>
                     </div>
                 </>
             }
