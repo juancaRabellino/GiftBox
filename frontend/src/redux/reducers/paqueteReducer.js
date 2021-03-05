@@ -1,7 +1,9 @@
 const initialState = {
   todosLosPaquetes: null,
   paquetesPorCategoria: [],
-  paquetePorId: null
+  paquetePorId: null,
+  paquetesFiltrados: [],
+  paquetesMasRegalados: []
 }
 const paqueteReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -24,6 +26,11 @@ const paqueteReducer = (state = initialState, action) => {
       return {
         ...state,
         paquetesFiltrados: state.todosLosPaquetes.filter(paquete => paquete.nombre.toLowerCase().includes(action.payload.toLowerCase().trim()) || paquete.cantidadPersonas === action.payload.trim() || paquete.ubicacion.toLowerCase().includes(action.payload.toLowerCase().trim()) || paquete.categoria.toLowerCase().includes(action.payload.toLowerCase().trim()))
+      }
+    case 'PAQUETES_MAS_REF':
+      return {
+        ...state,
+        paquetesMasRegalados: action.payload
       }
     default:
       return state;

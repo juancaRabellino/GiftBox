@@ -1,8 +1,19 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { IoCamera } from 'react-icons/io5'
+import {useState} from 'react'
 
 function EditUsuario() {
+    const [errores, setErrores] = useState([])
+    const leerInput = e => {
+        const valor = e.target.value
+        const campo = e.target.name
+        enviarNuevaContraseña({
+            ...usuarioALoguear,
+            [campo]: valor
+        })
+    }
+    
     return (
         <div>
             <div className='imgTopUsuario'>
@@ -22,13 +33,13 @@ function EditUsuario() {
             <div className="editUsuario">
                 <div className="modificarEmailUsuario">
                     <p>Ingrese su Email</p>
-                    <input type="text" placeholder="Email" ></input>
+                    <input type="text" placeholder="Email" onChange={()=> {}} ></input>
                     <button onClick={() => {}}>Modificar</button>
                 </div>
                 <div className="cambiarPassword">
                     <p>Cambiar Contraseña</p>
-                    <input type="password" placeholder="Nueva Contraseña" ></input>
-                    <input type="password" placeholder="Repetir contraseña" ></input>
+                    <input type="password" placeholder="Nueva Contraseña" onChange={()=> {}} ></input>
+                    <input type="password" placeholder="Repetir contraseña" onChange={()=> {}} ></input>
                 </div>
                 <div className="guardaCambioContraseña" onClick={() => {}} >
                     <p>GUARDAR</p>

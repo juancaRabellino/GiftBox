@@ -8,14 +8,15 @@ import { BsHeart } from 'react-icons/bs'
 import { IoCartOutline } from 'react-icons/io5'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import PaquetesHeader from './PaquetesHeader'
+import {connect} from 'react-redux'
 
-const Header = () => {
+const Header = ({carrito}) => {
     const [isOpen, setOpen] = useState(false)
 
     return (
         <>
             <div id="headerContainer">
-                <div style={{ backgroundImage: `url("../assets/giftLogoF-01.png")` }} className='logoContainer'></div>
+            <Link to='/'><div style={{ backgroundImage: `url("../assets/giftLogoF-01.png")` }} className='logoContainer'></div></Link>
                 <div className="headerInput">
                     <div className="centerCenterRow">
                         <input type="text" placeholder="Busca tu paquete"/>
@@ -34,13 +35,20 @@ const Header = () => {
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         <div className="headerUserImg" style={{ backgroundImage: `url("../assets/58670.jpg")` }}></div>
-                        <div className="centerCenterRow userName">
-                            <p>User Name</p>
-                            <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
-                        </div>
+                        <Link to="/usuario">
+                            <div className="centerCenterRow userName">
+                                <p>User Name</p>
+                                <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
+                            </div>
+                        </Link> 
                         <div className="cartAndHeart">
                             <div className="heart centerCenterRow "><BsHeart /></div>
-                            <div className="cart centerCenterRow "><IoCartOutline /></div>
+                            <Link to="/carrito">
+                                <div className="cart centerCenterRow ">
+                                    <IoCartOutline />
+                                <p>{carrito.length}</p>
+                                </div>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -49,4 +57,13 @@ const Header = () => {
     )
 }
 
-export default Header
+const mapStateToProps = state => {
+    return {
+        carrito:state.carritoReducer.carrito
+    }
+}
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
