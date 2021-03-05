@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import userActions from '../redux/actions/userActions'
 import GoogleLogin from 'react-google-login';
 import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom'
 
 const IniciarSesion = (props) => {
     const [usuarioALoguear, setUsuarioALoguear] = useState({})
@@ -94,7 +95,9 @@ const IniciarSesion = (props) => {
     cookiePolicy={'single_host_origin'}
   />
   </div> 
-           
+         
+        <Link to="/registro"><button>Crear cuenta</button></Link> 
+
   <div className="errores">
                 {errores.map(error => <h1>{error}</h1>)}
             </div>
