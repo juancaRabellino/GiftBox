@@ -544,3 +544,9 @@ video{
   height:100%;
   width: 60vw;
 }
+.fotoperfil{
+width: 20px;
+height: 20px;
+border-radius: 30px;
+}
+

@@ -12,14 +12,25 @@ const userActions={
             console.log(data.response)
         }
     },
-
     cerrarSesion: () => {
         return (dispatch, getState) => {
             dispatch({type: 'CERRAR_SESION'})
         }
     },
-
-
+    logFromLS: (token) => {
+        return async (dispatch, getState) => {
+            try {
+                const respuesta = await axios.post('http://localhost:4000/api/usuarios/ls', {token}, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                dispatch({type: 'INICIAR_SESION', payload: {response: {...respuesta.data.response}}})
+            } catch(err) {
+                localStorage.clear()
+            }
+        }
+    },
     iniciarSesion: (usuario) => {
         return async (dispatch, getState) => {
             const respuesta = await axios.post('http://localhost:4000/api/login', usuario)

@@ -93,5 +93,16 @@ const usuarioController = {
             return res.json({success:false, response:error})
         })
     },
+
+    logFromLS: (req, res) => {
+        res.json({
+          success: true,
+          response: {
+            token: req.body.token,
+            nombre: req.user.nombre,
+            imagen: req.user.imagen,
+          },
+        });
+      },
 }
 module.exports= usuarioController;
