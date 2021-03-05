@@ -1,5 +1,5 @@
 
-import { BsFillPeopleFill} from "react-icons/bs";
+import { BsDash, BsFillPeopleFill, BsPlus} from "react-icons/bs";
 import { connect } from "react-redux";
 
 const Carrito=({carrito})=>{
@@ -22,8 +22,20 @@ const Carrito=({carrito})=>{
                                 <div id="carritoImagen">
                                     <div className="carritoImagen" style={{backgroundImage: `url(${paquete.imagen})`}}></div>
                                 </div>
-                                <div id="carritoDescripcion"><p> <BsFillPeopleFill/> Para {paquete.cantidadPersonas} personas o mas</p></div>
-                                <div id="carritoCantidad">3</div>
+                                <div id="carritoDescripcion">
+                                    <div>
+                                        <p> <BsFillPeopleFill/> Para {paquete.cantidadPersonas} personas o mas</p>
+                                        <p>Stock: {paquete.stock}</p>
+                                    </div>
+                                    <div>
+                                        <h3>${paquete.precio}</h3>
+                                    </div>
+                                </div>
+                                <div id="carritoCantidad">
+                                    <button className="buttonCarrito"><BsDash/></button>
+                                    <div style={{margin:"0 0.5vw"}}><h5 >x{paquete.cantidad}</h5></div>
+                                    <button className="buttonCarrito"><BsPlus/></button>
+                                </div>
                             </div>
                         </div>
                     )}

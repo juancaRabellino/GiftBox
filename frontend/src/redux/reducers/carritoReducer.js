@@ -5,13 +5,17 @@ const initialState={
 const carritoReducer=(state=initialState,action)=>{
     switch (action.type) {
         case ("AGREGAR_AL_CARRITO"):
+            console.log(action.payload)
             let paqueteEnCarrito=false;
             const carritoAux= state.carrito.map(paquete=>{
                 if(paquete._id===action.payload._id){
+                    paquete.stock-=1;
                     paquete.cantidad+=1;
                     paqueteEnCarrito=true;
                 }
                 return paquete
+                
+                
             })
 
             if(paqueteEnCarrito){
@@ -25,7 +29,7 @@ const carritoReducer=(state=initialState,action)=>{
             }
             return {
                 ...state,
-                carrito:[...state.carrito,{...action.payload,cantidad:1}],
+                carrito:[...state.carrito,{...action.payload,cantidad:1,stock:action.payload.stock-1}],
                 total: state.total+action.payload.precio
 
             }

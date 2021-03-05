@@ -738,10 +738,28 @@ border-radius: 30px;
     padding: 0.5vh 0.5vw;
 }
 #carritoDescripcion{
+    padding: 0.5vh 0.5vw;
     width: 50%;
     border: solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-
+#carritoCantidad{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 2rem;
+}
+.buttonCarrito{
+    transition: background-color .3s;
+    width: 2vw;
+    height: 3.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f88a80;
+}
 .carritoImagen{
     height: 100%;
     background-size: cover;
