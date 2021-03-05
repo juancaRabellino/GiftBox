@@ -12,7 +12,8 @@ const initialState = {
       case 'PRODUCTOS_DEL_PAQUETE':
         return {
           ...state,
-          productosDelpaquete: state.todosLosProductos.filter(producto => producto.paqueteId._id === action.payload)
+          productosDelpaquete: state.todosLosProductos.filter(producto => producto.paqueteId=== action.payload)
+          // productosDelpaquete: state.todosLosProductos.filter(producto => producto.paqueteId._id === action.payload)
         }
       default:
         return state;

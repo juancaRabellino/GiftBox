@@ -18,14 +18,14 @@ import userActions from "./redux/actions/userActions"
 
 function App(props) {
   const [recargar, setRecargar] = useState(false)
-
+  
   if (props.loggedUser) {
     var routes = 
     <>
-      <Route path='/editUsuario' component={EditUsuario}/>
+      
     </>
 
-  } else if (localStorage.getItem('token')) { 
+  }else if (localStorage.getItem('token')) { 
     props.logFromLS(localStorage.getItem('token'))
     .then(respuesta => {
       if (respuesta === '/') setRecargar(!recargar) 
@@ -48,9 +48,12 @@ function App(props) {
             <Route path="/carrito/" component={Carrito}/>
             <Route path="/carritoPaquetes/" component={CarritoPaquetes}/>
             <Route exact path="/paquete/:_id" component={Paquete}/>
-            <Route path='/usuario' component={PaginaUsuario}/>
-            {routes}
+            {/* <Route path='/usuario' component={PaginaUsuario}/> */}
+            {props.loggedUser && <Route path='/usuario' component={EditUsuario}/>}
+            {!props.loggedUser && <Route path="/registros" component={Registros} />}
+            {!props.loggedUser && <Route path="/iniciarsesion" component={IniciarSesion} /> }
             <Redirect to="/" />
+            {routes}
           </Switch>
         <WhatsApp/>
         <Footer/>
