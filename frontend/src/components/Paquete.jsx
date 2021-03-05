@@ -1,8 +1,10 @@
+import '../styles/paquete.css'
 import { connect } from 'react-redux'
 import paqueteActions from '../redux/actions/paqueteActions'
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 import { BsArrowLeft } from "react-icons/bs";
+
 
 const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
     const [paquete, setPaquete] = useState([])
@@ -12,20 +14,26 @@ const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
         obtenerPaquetePorId(id)
         paquetePorId && setPaquete(paquetePorId)
     }, [id])
-
+    console.log(paquete)
     return (
         <>
             {paquetePorId &&
             <>
-                <div className="packageBanner"><Link to="/" style={{display: 'flex', alignItems: 'center'}}><BsArrowLeft className="packageArrow"/>Regresar a la página principal</Link></div>
-                <div className="packageContainer">
-                    <h2 className="packageTitle">{paquetePorId[0].nombre}</h2>
-                    <p className="packageDesc">{paquetePorId[0].descripcion}</p>
-                    <div className="packageImgInfo">
-                        <div className="packageImg"></div>
-                        <div className="packageInfo">
+                <div className="paqueteBanner"><Link to="/" style={{display: 'flex', alignItems: 'center'}}><BsArrowLeft className="paqueteIcono"/>Regresar a la página principal</Link></div>
+                <div className="paqueteContainer">
+                    <h2 className="tituloPaquete">{paquetePorId[0].nombre}</h2>
+                    <p className="descripcionPaquete">{paquetePorId[0].descripcion}</p>
+                    <div className="paqueteImgInfo">
+                        <div className="paqueteImg">
+                            <img src={paquetePorId[0].imagen} alt="paqueteImg" className="paqueteImgDin"/>
+                        </div>
+                        <div className="paqueteInfo">
                             <h4>Acerca de esta GiftBox</h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.2 19.2"></svg>
+                            <p className="cantidadDePersonas">Para {paquetePorId[0].cantidadPersonas} persona/s</p>
+                            <p className="categoria">Categoria: {paquetePorId[0].categoria}</p>
+                            <p className="ubicacion">Ubicacion: {paquetePorId[0].ubicacion}</p>
+                            <p className="vendidos">Cantidad de paquetes vendidos: {paquetePorId[0].cantidadVendidos.length}</p>
+
                         </div>
                     </div>
                 </div>
