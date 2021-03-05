@@ -15,8 +15,9 @@ import CarritoPaquetes from './components/CarritoPaquetes';
 import IniciarSesion from './components/IniciarSesion';
 import { connect } from 'react-redux';
 import carritoActions from './redux/actions/carritoActions';
+import userActions from './redux/actions/userActions';
 
-function App({carritoDelLS}) {
+function App({loggedUser,carritoDelLS}) {
 
   if(localStorage.getItem("carrito")){
     carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))
@@ -34,11 +35,10 @@ function App({carritoDelLS}) {
             <Route path="/carritoPaquetes/" component={CarritoPaquetes}/>
             <Route exact path="/paquete/:_id" component={Paquete}/>
             {/* <Route path='/usuario' component={PaginaUsuario}/> */}
-            {props.loggedUser && <Route path='/usuario' component={EditUsuario}/>}
-            {!props.loggedUser && <Route path="/registros" component={Registros} />}
-            {!props.loggedUser && <Route path="/iniciarsesion" component={IniciarSesion} /> }
+            {loggedUser && <Route path='/usuario' component={EditUsuario}/>}
+            {!loggedUser && <Route path="/registros" component={Registros} />}
+            {!loggedUser && <Route path="/iniciarsesion" component={IniciarSesion} /> }
             <Redirect to="/" />
-            {routes}
           </Switch>
         <WhatsApp/>
         <Footer/>

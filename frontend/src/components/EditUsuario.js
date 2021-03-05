@@ -8,10 +8,10 @@ function EditUsuario() {
     const leerInput = e => {
         const valor = e.target.value
         const campo = e.target.name
-        enviarNuevaContraseña({
-            ...usuarioALoguear,
-            [campo]: valor
-        })
+        // enviarNuevaContraseña({
+        //     ...usuarioALoguear,
+        //     [campo]: valor
+        // })
     }
     
     return (
@@ -55,7 +55,6 @@ const mapStateToProps = state => {
     }
  }
  const mapDispatchToProps = {
-
  }
 
 
