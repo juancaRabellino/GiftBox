@@ -142,9 +142,6 @@ const Registro = ({crearCuenta}) => {
                 />
             </div>
         </div>
-
- 
-
             <div className="errores">
                 {errores && errores.map((error,index) => <h2 key={index}>{error}</h2>)}
             </div>
@@ -158,7 +155,6 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = {
     crearCuenta: userActions.crearCuenta,
-    crearCuentaGoogle: userActions.crearCuentaGoogle,
     logOut: userActions.logOut
 
 }

@@ -40,6 +40,7 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
   if(!loggedUser){
     routes=
   <>
+  <Switch>
     <Route exact path="/" component={Home}/>
     <Route exact path="/paquetes/" component={Paquetes}/>
     <Route exact path="/carrito/" component={Carrito}/>
@@ -47,13 +48,13 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
     <Route exact path="/paquete/:_id" component={Paquete}/>
     <Route exact path="/registro" component={Registros} />
     <Route exact path="/iniciarsesion" component={IniciarSesion} />
-    <Redirect to="/"/>
-
+    </Switch>
   </>
    }
   if(loggedUser){
     routes=
     <>
+    <Switch>
       <Route exact path="/" component={Home}/>
       <Route exact path="/paquetes/" component={Paquetes}/>
       <Route exact path="/carrito/" component={Carrito}/>
@@ -61,8 +62,9 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       <Route exact path="/paquete/:_id" component={Paquete}/>  
       <Route exact path="/usuario" component={PaginaUsuario}/>   
       <Route exact path="/editUsuario" component={EditUsuario}/> 
-      
       <Redirect to="/"/> 
+    </Switch>
+      
        
      
 
@@ -74,9 +76,9 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       
       <BrowserRouter>
         <Header/>
-          <Switch>
+          
             {routes}
-          </Switch>
+            
         <WhatsApp/>
         <Footer/>
       </BrowserRouter>
