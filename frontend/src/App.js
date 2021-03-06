@@ -75,7 +75,9 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       <BrowserRouter>
         <Header/>
           <Switch>
+          <Route exact path="/editUsuario" component={EditUsuario}/> 
             {routes}
+            
           </Switch>
         <WhatsApp/>
         <Footer/>
