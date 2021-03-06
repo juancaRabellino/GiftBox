@@ -7,8 +7,9 @@ import userActions from '../redux/actions/userActions'
 function EditUsuario(props) {
     console.log(props)
     const[editarUsuario, setEditUsuario ] = useState({})
+    const [editImagen, setEditImagen] = useState({})
     const [errores, setErrores] = useState([])
-    const leerInput = e => {
+    const leerInputPass = e => {
         const valor = e.target.value
         const campo = e.target.name
         setEditUsuario({
@@ -17,10 +18,9 @@ function EditUsuario(props) {
         })
         
     }
-    console.log(props.loggedUser)
+    console.log(editarUsuario)
     const cambiarPassword = () =>{
-        props.editUsuario(editarUsuario, props.loggedUser.id)
-        
+        props.editUsuarioPass(editarUsuario, props.loggedUser.id)
     }
     
     return (
@@ -41,11 +41,11 @@ function EditUsuario(props) {
             <div className="editUsuario">
                 <form className="modificarEmailUsuario">
                     <p>Ingrese su Email</p>
-                    <input type="text" placeholder="Email" name="cuenta" onChange={leerInput} ></input>
+                    <input type="text" placeholder="Email" name="cuenta"></input>
                 
                 <div className="cambiarPassword">
                     <p>Cambiar Contraseña</p>
-                    <input type="password" placeholder="Nueva Contraseña" name="password" onChange={leerInput} ></input>                </div>
+                    <input type="password" placeholder="Nueva Contraseña" name="password" onChange={leerInputPass} ></input>                </div>
                 </form>
                 <div className="guardaCambioContraseña" onClick={cambiarPassword} >
                     <p>GUARDAR</p>
@@ -61,7 +61,7 @@ const mapStateToProps = state => {
     }
  }
  const mapDispatchToProps = {
-     editUsuario: userActions.editUsuario
+     editUsuarioPass: userActions.editUsuarioPass
  }
 
 

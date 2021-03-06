@@ -93,7 +93,7 @@ const IniciarSesion = (props) => {
             </div> 
             <GoogleLogin className="googlecito"
                 clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
-                buttonText="Login Account"
+                buttonText="Inicia sesión con Google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 cookiePolicy={'single_host_origin'}

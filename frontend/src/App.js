@@ -18,7 +18,7 @@ import carritoActions from './redux/actions/carritoActions';
 import userActions from './redux/actions/userActions';
 
 function App({loggedUser,carritoDelLS,logFromLS}) {
-  
+  console.log(loggedUser)
   const [renderAgain,setRenderAgain] = useState(false)
   if(localStorage.getItem("carrito")){
     carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))
@@ -75,7 +75,9 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       <BrowserRouter>
         <Header/>
           <Switch>
+          <Route exact path="/editUsuario" component={EditUsuario}/> 
             {routes}
+            
           </Switch>
         <WhatsApp/>
         <Footer/>

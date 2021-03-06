@@ -56,6 +56,7 @@ const userActions={
       },
 
     iniciarSesion: (usuario) => {
+        console.log(usuario)
         return async (dispatch, getState) => {
             const respuesta = await axios.post('http://localhost:4000/api/login', usuario)
             if (!respuesta.data.success) {
@@ -64,6 +65,18 @@ const userActions={
             }
             dispatch({type:'INICIAR_SESION', payload: respuesta.data})
         }
+    },
+    editUsuarioPass : (editUsuario, id) => {
+        console.log('llegue')
+        return async (dispatch, getState)=> {
+            const respuesta = await axios.put(`http://localhost:4000/api/usuarios/${id}`, editUsuario)
+            console.log(respuesta)
+            if(!respuesta.data.success){
+            console.log('me fui')
+            return respuesta.data 
+        }
+        }
+
     }
 }
 export default userActions;

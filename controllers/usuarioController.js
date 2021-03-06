@@ -23,7 +23,6 @@ const usuarioController = {
             if(!passwordMatches){errors.push("Cuenta o contraseña incorrecta");}
             var token=jsonWebToken.sign({...usuarioExistente},process.env.JWT_SECRET_KEY,{});
         }
-        console.log(response)
         return res.json({
             success: errors.length===0? true:false,
             errors: errors,
@@ -32,22 +31,26 @@ const usuarioController = {
                 ,googleUser:usuarioExistente.googleUser}
             })
     },
-    editarUsuario: async(req,res) =>{
+    editarUsuarioPass: async(req,res) =>{
+        var errors=[]
+        const {password}=req.body
+        const id= req.params._id
+        const passwordHasheado = bcryptjs.hashSync(password, 10)
 
-        const {imgFile}= req.files
-
-        const imgTipo=imgFile.name.split(".").slice(-1).join(" ")
-        const {cuenta,password}=req.body
-        var imgName= `${req.params}.${imgTipo}`
-        
-        await Usuario.findOneAndUpdate(
-            req.params,
-            {'$set':{cuenta,password,imgName}},
+        const usuarioExistente = await Usuario.findOneAndUpdate({_id:id},
+            {'$set':{password:passwordHasheado}},
             {new:true})
-        
-        .then(()=>{return res.json({success: true, response:'Usuario Editado'})})
-        .catch(error =>{return res.json({success:false, response: 'Error al editar Usuario'})})
-    },
+
+        if(!usuarioExistente){errors.push("Cuenta o contraseña incorrecta")}
+        else if (usuarioExistente){
+            const passwordMatches= bcryptjs.compareSync(password,usuarioExistente.password);
+        if(!passwordMatches){errors.push("Cuenta o contraseña incorrecta")}
+        return res.json({
+            success: errors.length===0? true:false,
+            errors: errors,
+            response: errors.length===0 && {password:usuarioExistente.password}
+        })
+    }},
     agregarUsuario: async (req,res)=>{
         var errors=[];
         console.log(req.files)
@@ -107,12 +110,14 @@ const usuarioController = {
     },
 
     logFromLS: (req, res) => {
+        console.log(req.user)
         res.json({success: true,
           response: {
             token: req.body.token,
             nombre: req.user.nombre,
             imagen: req.user.imagen,
-            googleUser: req.user.googleUser
+            googleUser: req.user.googleUser,
+            id: req.user.id
           },
         });
       },
