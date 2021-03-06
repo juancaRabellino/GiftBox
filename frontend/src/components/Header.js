@@ -25,7 +25,6 @@ const Header = ({carrito, loggedUser, logOut}) => {
                         <div className="centerCenterRow searchButton"><BiSearch /></div>                        
                     </div>
                     <div className="paquetesHeader">                    
-                        {/* <Link to={'/paquetes'}><button>PAQUETES</button></Link> */}
                         <PaquetesHeader />
                     </div>                 
                 </div>
@@ -44,6 +43,8 @@ const Header = ({carrito, loggedUser, logOut}) => {
                                 ? <div className="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}></div>
                                 : <div className="userImg" style={{backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}></div>
                                 }
+                                <p>{loggedUser.nombre}</p>
+                                
                             </div>  
                         </Link>
                         </> 
@@ -53,7 +54,6 @@ const Header = ({carrito, loggedUser, logOut}) => {
                         <Link to="/iniciarsesion">
                             <div className="centerCenterRow userName">
                                 <p>Iniciar Sesion</p>
-                                <Link className="registrarseHeader" to="/registro">Registrarse</Link>
                             <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
                             </div>
                         </Link> 
