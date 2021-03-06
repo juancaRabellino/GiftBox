@@ -65,7 +65,7 @@ const PaginaUsuario = (props) => {
                     <div onClick={compGrupales}><h3>Compras grupales</h3></div>
                     <div onClick={credito}><h3>Crédito</h3></div>
                 </div>
-                <div>
+                <div className="menuOpcionesUsuarioSecciones">
                     {editUsuario ? <EditUsuario/>
                     :<>
                         {opcionDiv === "regalos" ? <RegalosRecibidos/>
@@ -83,7 +83,7 @@ const PaginaUsuario = (props) => {
                 </div>
             </div>
         </div>
-        <Link to="/" onClick={props.logOut}><button>LogOut</button></Link>  
+        <Link to="/" className="logOutButton" onClick={props.logOut}><button>LogOut</button></Link>  
         </>
 
     )
