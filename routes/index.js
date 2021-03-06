@@ -35,7 +35,7 @@ router.route("/paquetes/:_id")
 // CONTROLADOR DE USUARIO
 router.route('/usuarios/:_id')
   .delete(usuarioController.eliminarUsuario)
-  .put(usuarioController.editarUsuario)
+  .put(usuarioController.editarUsuarioPass)
   .get(usuarioController.unUsuario)
 router.route("/usuarios")
   // .post(validador.validarNuevaCuenta, usuarioController.agregarUsuario)

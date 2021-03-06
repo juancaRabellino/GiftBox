@@ -31,23 +31,23 @@ const usuarioController = {
                 ,googleUser:usuarioExistente.googleUser}
         })
     },
-    editarUsuario: async(req,res) =>{
-        /* const {imgFile}= req.files */
-
-      /*   const imgTipo=imgFile.name.split(".").slice(-1).join(" ") */
-        const {cuenta,password}=req.body
-        /* ,nombre,apellido volver a poner en linea 38 */
-        /* var imgName= `${req.params}.${imgTipo}` */
-        
-        await Usuario.findOneAndUpdate(
-            req.params,
-            {'$set':{cuenta,password}},
-            /* ,nombre,apellido volver a poner en 43 */
-            /* ,imgName volver a poner en 43 */
+    editarUsuarioPass: async(req,res) =>{
+        const {password,id}=req.body
+        const passwordHasheado = bcryptjs.hashSync(password, 10)
+        const usuarioExistente = await Usuario.findOneAndUpdate(id,
+            {'$set':{password:passwordHasheado}},
             {new:true})
-        
-        .then(()=>{return res.json({success: true, response:'Usuario Editado'})})
-        .catch(error =>{return res.json({success:false, response: 'Error al editar Usuario'})})
+        if(!usuarioExistente){errors.push("Cuenta o contraseña incorrecta")}
+        else if (usuarioExistente){
+            const passwordMatches= bcryptjs.compareSync(password,usuarioExistente.password);
+        if(!passwordMatches){errors.push("Cuenta o contraseña incorrecta");}
+            var token=jsonWebToken.sign({...usuarioExistente},process.env.JWT_SECRET_KEY,{});
+        }
+        return res.json({
+            success: errors.length===0? true:false,
+            errors: errors,
+            response: errors.length===0 && {password:usuarioExistente.password}
+        })
     },
     agregarUsuario: async (req,res)=>{
         var errors=[];
