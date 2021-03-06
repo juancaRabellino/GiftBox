@@ -31,6 +31,7 @@ const Header = ({carrito, loggedUser, logOut}) => {
                 <div className="headerUser centerVerticalColumn">
                     <div className="abrirRegalo centerCenterRow">
                         <p>Abrir mi Regalo</p>
+                        <Link to="/registro">Registrarse</Link>
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         {loggedUser ?
