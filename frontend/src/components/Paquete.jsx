@@ -7,6 +7,7 @@ import { BsArrowLeft, BsFillPeopleFill, BsBuilding, BsGiftFill, BsIntersect, BsE
 import ReactStars from "react-rating-stars-component";
 
 
+
 const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
     const [paquete, setPaquete] = useState([])
 
@@ -24,8 +25,9 @@ const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
                         <h2 className="tituloPaquete">{paquetePorId[0].nombre}</h2>
                         <p className="descripcionPaquete">{paquetePorId[0].descripcion}</p>
                         <div className="paqueteImgInfo">
-                            <div className="paqueteImg">
-                                <img src={paquetePorId[0].imagen} alt="paqueteImg" className="paqueteImgDin" />
+                            <div className="paqueteImg" style={{
+                                backgroundImage: `url(${paquetePorId[0].imagen})`
+                            }}>
                             </div>
                             <div className="paqueteInfo">
                                 <h4>Acerca de esta GiftBox</h4>
@@ -51,12 +53,15 @@ const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
                     <div className="valoracionContainer">    
                         <div className="valoracion">
                             <span>4.94</span>
-                            <ReactStars count={5} /* onChange={ratingChanged} */size={50} activeColor="#ffd700"/>
+                            <ReactStars count={5} /* onChange={ratingChanged} */size={50} activeColor="#ffd700" isHalf={true}/>
                         </div>
                         <img src="https://fotos.subefotos.com/af333790da6d3696dec1241bd0c55308o.png" alt="estrellas" />
                     </div>
                     <div className="productosContainer">
-                        hola
+                        <div className="encabezado">
+                            <h3>Dentro del paquete: </h3>
+                            <p>Tu agasajado va a poder disfrutar de estos "cantidad de productos" productos</p>
+                        </div>
                     </div>
                 </>
             }
