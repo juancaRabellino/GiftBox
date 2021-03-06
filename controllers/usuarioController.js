@@ -32,23 +32,23 @@ const usuarioController = {
         })
     },
     editarUsuarioPass: async(req,res) =>{
+        var errors=[]
         const {password,id}=req.body
+        console.log(req.body)
         const passwordHasheado = bcryptjs.hashSync(password, 10)
-        const usuarioExistente = await Usuario.findOneAndUpdate(id,
+        const usuarioExistente = await Usuario.findOneAndUpdate({_id:id},
             {'$set':{password:passwordHasheado}},
             {new:true})
         if(!usuarioExistente){errors.push("Cuenta o contraseña incorrecta")}
         else if (usuarioExistente){
             const passwordMatches= bcryptjs.compareSync(password,usuarioExistente.password);
-        if(!passwordMatches){errors.push("Cuenta o contraseña incorrecta");}
-            var token=jsonWebToken.sign({...usuarioExistente},process.env.JWT_SECRET_KEY,{});
-        }
+        if(!passwordMatches){errors.push("Cuenta o contraseña incorrecta")}
         return res.json({
             success: errors.length===0? true:false,
             errors: errors,
             response: errors.length===0 && {password:usuarioExistente.password}
         })
-    },
+    }},
     agregarUsuario: async (req,res)=>{
         var errors=[];
         console.log(req.files)
