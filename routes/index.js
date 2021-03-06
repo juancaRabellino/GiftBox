@@ -43,6 +43,9 @@ router.route("/usuarios")
   .get(usuarioController.todosLosUsuarios)
 router.route("/login")
   .post(usuarioController.login)
+router.route('/imagen/:_id')
+  .put(usuarioController.editarUsuarioImg)
+  
 
   router.route('/usuarios/ls')
 .post(passport.authenticate('jwt', {session: false}), usuarioController.logFromLS)

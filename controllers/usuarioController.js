@@ -36,7 +36,6 @@ const usuarioController = {
         const {password}=req.body
         const id= req.params._id
         const passwordHasheado = bcryptjs.hashSync(password, 10)
-
         const usuarioExistente = await Usuario.findOneAndUpdate({_id:id},
             {'$set':{password:passwordHasheado}},
             {new:true})
@@ -51,6 +50,39 @@ const usuarioController = {
             response: errors.length===0 && {password:usuarioExistente.password}
         })
     }},
+    editarUsuarioImg: async(req,res) =>{
+        var errors=[]
+
+        const {imgFile}= req.files
+        const id= req.params._id
+        console.log(req.files)
+        const imgTipo= imgFile.name.split(".").slice(-1).join(" ")
+        const imagenName= imgFile.name.split(".").slice(0,-1)
+        console.log(imagenName)
+        var imgName = `${imagenName[0]}.${imgTipo}`
+        // var imgPath= `${__dirname}/../frontend/public/usuarioImg/${id}.${imgTipo}`
+
+        // await imgFile.mv(imgPath,error=>{
+        //     if(error){
+        //         errors.push(error)}
+        //         else{
+                    
+        //         }})
+        // nuevoUsuario.imagen = imgName;
+
+        const usuarioExistente = await Usuario.findOneAndUpdate({_id:id},
+            {'$set':{imagen:imgName}},
+            {new:true}
+        )
+        console.log(imgName)
+        console.log(usuarioExistente)
+
+        return res.json({
+            success: errors.length===0? true:false,
+            errors: errors,
+            response: errors.length===0 && {imagen:usuarioExistente.imgName}
+        })
+    },
     agregarUsuario: async (req,res)=>{
         var errors=[];
         console.log(req.files)
@@ -68,8 +100,7 @@ const usuarioController = {
                 const {imgFile}= req.files;
                 
                 const imgTipo= imgFile.name.split(".").slice(-1).join(" ");
-                console.log(imgFile)
-                console.log(imgTipo)
+
                 var imgName= `${nuevoUsuario._id}.${imgTipo}`
                 var imgPath= `${__dirname}/../frontend/public/usuarioImg/${nuevoUsuario._id}.${imgTipo}`
                 
@@ -79,7 +110,7 @@ const usuarioController = {
                         else{
                             
                         }})
-                        nuevoUsuario.imagen = imgName;
+                nuevoUsuario.imagen = imgName;
             }
             else{
                 

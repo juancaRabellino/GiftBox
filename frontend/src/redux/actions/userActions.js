@@ -76,7 +76,18 @@ const userActions={
             return respuesta.data 
         }
         }
+    },
+    editarUsuarioImg : (formNuevaImg, id) => {
+        console.log('llegue a Imagen')
 
+        return async (dispatch, getState)=> {
+            const respuesta = await axios.put(`http://localhost:4000/api/imagen/${id}`, formNuevaImg)
+            console.log(respuesta)
+            if(!respuesta.data.success){
+            console.log('me fui')
+            return respuesta.data 
+        }
+        }
     }
 }
 export default userActions;
