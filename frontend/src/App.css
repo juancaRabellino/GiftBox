@@ -311,7 +311,7 @@
 .container{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 80%;
     height: 50vh;
     align-items: center;
     margin: 0 auto;
@@ -320,12 +320,29 @@
 
 .boxUserRegistro {
     width: 100vw;
-    height: 70vh;
+    min-height: 70vh;
     display: flex;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url("./assets/fondoLog.jpg");
+}
+.formRegistro{
+    width: 100%;
+}
+.formRegistro input{
+    width: 80%;
+}
+.botones .buttonRegister {
+    padding: 1vh 2vw;
+    margin-bottom: 5vh;
+}
+.inputFile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
 }
 
 /* CARRUSEL */

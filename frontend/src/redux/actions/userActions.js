@@ -66,8 +66,6 @@ const userActions={
         }
     },
     editUsuario : (editUsuario, id) => {
-        console.log(editUsuario)
-        console.log(id)
         return async (dispatch, getState)=> {
             const respuesta = await axios.put(`http://localhost:4000/api/usuarios/${id}`, editUsuario)
         if(!respuesta.data.success){
