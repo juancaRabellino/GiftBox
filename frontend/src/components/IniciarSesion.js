@@ -33,14 +33,17 @@ const IniciarSesion = (props) => {
         if (respuesta && !respuesta.success) {
             setErrores([respuesta.errors])
         } else {
+            console.log("entré al else")
             Swal.fire({
                 icon: 'success',
                 title: '¡Bienvenido a Gift Box',
                 showConfirmButton: false,
                 timer: 1500
+              }).then(()=>{
+                props.history.push('/')
               })
 
-              props.history.push('/');
+              
         }
     }
 
@@ -58,43 +61,44 @@ const IniciarSesion = (props) => {
                 password: response.profileObj.googleId,
             })
             if (respuesta && !respuesta.success) {
-                setErrores([respuesta.mensaje])
+                setErrores([respuesta.errors])
             } else {
                 Swal.fire({
+                    title: 'Welcome back!',
                     icon: 'success',
-                    title: '¡Bienvenido/a a Gift Box!',
-                    showConfirmButton: false,
-                    timer: 1500
+                    confirmButtonColor: '#3085d6',
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        (
+                        props.history.push('/')
+                      )
+                    }
                   })
             }
-
         }
       }
       
 
     return (
-        <div className="container">
-            <div className="form">
-            <h1 className="logeo">Login</h1>
-            <input  type="text" name="cuenta" placeholder="Nombre de usuario"
-            onChange={leerInput} />
-            <input type="password" name="password" placeholder="Password"
-            onChange={leerInput} />
+        <div className="editUsuario">
+            <div className="modificarEmailUsuario">
+                <h1 className="logeo">Login</h1>
+                <input  type="text" name="cuenta" placeholder="Nombre de usuario"
+                onChange={leerInput} />
+                <input type="password" name="password" placeholder="Password"
+                onChange={leerInput} />
             </div>
 
-            <div className="botoncitos">
-            <button className="buttonLogin" onClick={validarUsuario}>Login</button>
-
-           
-
+            <div className="guardaCambioContraseña">
+                <p onClick={validarUsuario}>Login</p>
+            </div> 
             <GoogleLogin className="googlecito"
-    clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
-    buttonText="Login Account"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
-    cookiePolicy={'single_host_origin'}
-  />
-  </div> 
+                clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
+                buttonText="Inicia sesión con Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={'single_host_origin'}
+            />
            
   <div className="errores">
                 {errores.map(error => <h1>{error}</h1>)}

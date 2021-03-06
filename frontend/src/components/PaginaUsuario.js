@@ -39,8 +39,8 @@ const PaginaUsuario = (props) => {
                 <div className='boxUser'>
                     <div className="userIconos">
                         <div className="userImg" /*style={{backgroundImage: `url("/userImages/${loggedUser.imagen}")`}}*//>
-                        <div className="iconoCambiarImg">
-                            <p ><IoCamera /></p> 
+                        <div >
+                            <Link to='/editUsuario'className="iconoCambiarImg"><p ><IoCamera /></p></Link> 
                         </div>
                     </div>
                     <div className="datosUsuaros">
@@ -65,7 +65,7 @@ const PaginaUsuario = (props) => {
                     <div onClick={compGrupales}><h3>Compras grupales</h3></div>
                     <div onClick={credito}><h3>Crédito</h3></div>
                 </div>
-                <div>
+                <div className="menuOpcionesUsuarioSecciones">
                     {editUsuario ? <EditUsuario/>
                     :<>
                         {opcionDiv === "regalos" ? <RegalosRecibidos/>
@@ -83,7 +83,7 @@ const PaginaUsuario = (props) => {
                 </div>
             </div>
         </div>
-        <Link to="/" onClick={props.logOut}><button>LogOut</button></Link>  
+        <Link to="/" className="logOutButton" onClick={props.logOut}><button>LogOut</button></Link>  
         </>
 
     )
