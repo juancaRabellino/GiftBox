@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import userActions from '../redux/actions/userActions'
 import GoogleLogin from 'react-google-login';
 import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom'
 
 const IniciarSesion = (props) => {
     const [usuarioALoguear, setUsuarioALoguear] = useState({})
@@ -32,18 +33,22 @@ const IniciarSesion = (props) => {
         if (respuesta && !respuesta.success) {
             setErrores([respuesta.errors])
         } else {
+            console.log("entré al else")
             Swal.fire({
                 icon: 'success',
                 title: '¡Bienvenido a Gift Box',
                 showConfirmButton: false,
                 timer: 1500
+              }).then(()=>{
+                props.history.push('/')
               })
 
-              props.history.push('/');
+              
         }
     }
 
     const responseGoogle = async (response) => {
+        
         if (response.error) {
             Swal.fire({
                 icon: 'error',
@@ -51,22 +56,25 @@ const IniciarSesion = (props) => {
                 text: '¡Algo ha ocurrido!',
             })
         }else{
-
-            const respuesta = await props.loginUser({
-                cuenta: response.profileObj.givenName,
+            const respuesta = await props.iniciarSesion({
+                cuenta: response.profileObj.email,
                 password: response.profileObj.googleId,
             })
             if (respuesta && !respuesta.success) {
-                setErrores([respuesta.mensaje])
+                setErrores([respuesta.errors])
             } else {
                 Swal.fire({
+                    title: 'Welcome back!',
                     icon: 'success',
-                    title: '¡Bienvenido/a a Gift Box!',
-                    showConfirmButton: false,
-                    timer: 1500
+                    confirmButtonColor: '#3085d6',
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        (
+                        props.history.push('/')
+                      )
+                    }
                   })
             }
-
         }
       }
       
@@ -94,7 +102,9 @@ const IniciarSesion = (props) => {
     cookiePolicy={'single_host_origin'}
   />
   </div> 
-           
+         
+        <Link to="/registro"><button>Crear cuenta</button></Link> 
+
   <div className="errores">
                 {errores.map(error => <h1>{error}</h1>)}
             </div>

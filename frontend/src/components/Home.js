@@ -1,10 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import Carrousel from '../components/Carrousel'
 import video from '../assets/videoHome.mp4'
+import paqueteActions from '../redux/actions/paqueteActions'
+import { connect } from 'react-redux'
+import LosMasRegalados from '../components/LosMasRegalados'
 
-const Home = () => {
-    
+const Home = ({paquetesMasRegalados, filtrarPaquetesMasReg}) => {
+    useEffect(() => {
+      filtrarPaquetesMasReg()
+    }, [])
+
     return (
         <>  
             <video src={video} autoPlay loop muted></video>
@@ -22,8 +28,22 @@ const Home = () => {
             <div style={{marginTop:'5vh'}}>
                 <Carrousel />
             </div>
+            <div>
+                <h2>Lo mas regalados</h2>
+                <LosMasRegalados />
+            </div>
         </>
     )
 }
 
-export default Home
+const mapStateToProps = state => {
+  return {
+    paquetesMasRegalados: state.paqueteReducer
+  }
+}
+
+const mapDispatchToProps = {
+  filtrarPaquetesMasReg: paqueteActions.filtrarPaquetesMasReg
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

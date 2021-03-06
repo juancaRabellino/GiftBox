@@ -38,10 +38,14 @@ router.route('/usuarios/:_id')
   .put(usuarioController.editarUsuario)
   .get(usuarioController.unUsuario)
 router.route("/usuarios")
-  .post(validador.validarNuevaCuenta, usuarioController.agregarUsuario)
+  // .post(validador.validarNuevaCuenta, usuarioController.agregarUsuario)
+  .post(usuarioController.agregarUsuario)
   .get(usuarioController.todosLosUsuarios)
 router.route("/login")
   .post(usuarioController.login)
+
+  router.route('/usuarios/ls')
+.post(passport.authenticate('jwt', {session: false}), usuarioController.logFromLS)
 
 // CONTROLADOR DE CATEGORIAS
 router.route('/categoria')
