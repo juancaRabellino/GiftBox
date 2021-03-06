@@ -54,7 +54,7 @@ const paqueteActions = {
          dispatch({type:'PROMEDIO', payload:paquete })
         } 
      }
-  }
+  
   
     
 }

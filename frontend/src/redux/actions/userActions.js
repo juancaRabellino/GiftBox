@@ -56,12 +56,22 @@ const userActions={
       },
 
     iniciarSesion: (usuario) => {
+        console.log(usuario)
         return async (dispatch, getState) => {
             const respuesta = await axios.post('http://localhost:4000/api/login', usuario)
             if (!respuesta.data.success) {
                 return respuesta.data
             }
             dispatch({type:'INICIAR_SESION', payload: respuesta.data})
+        }
+    },
+    editUsuario : (editUsuario, id) => {
+        return async (dispatch, getState)=> {
+            const respuesta = await axios.put(`http://localhost:4000/api/usuarios/${id}`, editUsuario)
+        if(!respuesta.data.success){
+            return respuesta.data
+        }else console.log(respuesta)
+        dispatch({type:'EDIT_USUARIO', payload:respuesta.data})
         }
     }
 }

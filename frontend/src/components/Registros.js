@@ -112,11 +112,11 @@ const Registro = (props) => {
    
     return (
 
-        <div className="boxUserRegistro">
+        <div className="boxUserRegistro centerCenterRow">
 
-            <div className="container-form">
-                <div className="form">
-                <h1>Create new account</h1>
+            <div className="container-form modificarEmailUsuario ">
+                <div className="formRegistro centerCenterColumn">
+                <h1>Crea una nueva cuenta</h1>
                 <input type="text" name="nombre" placeholder="Nombre"
                 onChange={leerInput} />
                 <input type="text" name="apellido" placeholder="Apellido"
@@ -126,9 +126,9 @@ const Registro = (props) => {
                 <input type="password" name="password" placeholder="password"
                 onChange={leerInput} />
                 <label htmlFor="uploadButton" className="inputFile">
-                            <p>Agrega tu imagen</p>
+                            <h1>Agrega tu imagen</h1>
                             <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
-                        </label>
+                </label>
             
                     <div className="botones">
                 <button className="buttonRegister" onClick={validarUsuario}>Crear Cuenta</button>
@@ -137,7 +137,7 @@ const Registro = (props) => {
     {/* CLIENTE DE GOOGLE */}
                 <GoogleLogin className= "google"
                     clientId="1017297947872-a4k36afp8ren4g12ov8c4old1udn3v4b.apps.googleusercontent.com"
-                    buttonText="Create Account"
+                    buttonText="Create tu cuenta con Google"
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}

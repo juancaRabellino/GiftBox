@@ -36,6 +36,7 @@ const Header = ({carrito, loggedUser, logOut}) => {
                         {loggedUser ?
                         <>
                         <Link to="/usuario">
+                            
                             <div  className="centerCenterRow userName">
                             <Link to="/" onClick={logOut}>LogOut</Link>
                                 <h1>{loggedUser.nombre}</h1>

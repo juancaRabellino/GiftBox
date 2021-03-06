@@ -32,15 +32,18 @@ const usuarioController = {
         })
     },
     editarUsuario: async(req,res) =>{
-        const {imgFile}= req.files
+        /* const {imgFile}= req.files */
 
-        const imgTipo=imgFile.name.split(".").slice(-1).join(" ")
-        const {cuenta,password,nombre,apellido}=req.body
-        var imgName= `${req.params}.${imgTipo}`
+      /*   const imgTipo=imgFile.name.split(".").slice(-1).join(" ") */
+        const {cuenta,password}=req.body
+        /* ,nombre,apellido volver a poner en linea 38 */
+        /* var imgName= `${req.params}.${imgTipo}` */
         
         await Usuario.findOneAndUpdate(
             req.params,
-            {'$set':{cuenta,password,nombre,apellido,imgName}},
+            {'$set':{cuenta,password}},
+            /* ,nombre,apellido volver a poner en 43 */
+            /* ,imgName volver a poner en 43 */
             {new:true})
         
         .then(()=>{return res.json({success: true, response:'Usuario Editado'})})
@@ -105,12 +108,14 @@ const usuarioController = {
     },
 
     logFromLS: (req, res) => {
+        console.log(req.user)
         res.json({success: true,
           response: {
             token: req.body.token,
             nombre: req.user.nombre,
             imagen: req.user.imagen,
-            googleUser: req.user.googleUser
+            googleUser: req.user.googleUser,
+            id: req.user.id
           },
         });
       },
