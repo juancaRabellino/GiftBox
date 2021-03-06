@@ -6,6 +6,7 @@ require("../config/passport");
 
 const productosController = require("../controllers/productosController");
 const usuarioController = require("../controllers/usuarioController");
+const passwordController = require('../controllers/passwordController')
 const paquetesController = require("../controllers/paquetesController");
 const categoriasController = require("../controllers/categoriasController");
 
@@ -46,6 +47,12 @@ router.route("/login")
 
   router.route('/usuarios/ls')
 .post(passport.authenticate('jwt', {session: false}), usuarioController.logFromLS)
+
+router.route("/user/resetear-password")
+.post(passwordController.resetearPassword)
+
+
+
 
 // CONTROLADOR DE CATEGORIAS
 router.route('/categoria')

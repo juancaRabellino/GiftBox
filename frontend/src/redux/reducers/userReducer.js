@@ -27,6 +27,18 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 loggedUser:null
             }
+
+            case "RESETEAR_PASSWORD":
+                return{
+                    ...state,
+                    loggedUser:action.payload
+                }
+               
+                case 'CAMBIAR_PASSWORD':
+                    return{
+                        ...state,
+                        loggedUser:action.payload
+                    }
         default:
         return state
     }

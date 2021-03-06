@@ -13,11 +13,13 @@ import EditUsuario from './components/EditUsuario'
 import Carrito from './components/Carrito';
 import CarritoPaquetes from './components/CarritoPaquetes';
 import IniciarSesion from './components/IniciarSesion';
+import EnviarEmail from './components/EnviarEmail'
+import RecuperarPassword from './components/RecuperarPassword'
 import { connect } from 'react-redux';
 import carritoActions from './redux/actions/carritoActions';
 import userActions from './redux/actions/userActions';
 
-function App({loggedUser,carritoDelLS}) {
+function App({loggedUser,carritoDelLS, logFromLS}) {
 
   if(localStorage.getItem("carrito")){
     carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))
@@ -34,10 +36,13 @@ function App({loggedUser,carritoDelLS}) {
             <Route path="/carrito/" component={Carrito}/>
             <Route path="/carritoPaquetes/" component={CarritoPaquetes}/>
             <Route exact path="/paquete/:_id" component={Paquete}/>
+            <Route path='/enviar-email' component={EnviarEmail}/>
+            <Route path='/recuperar-password' component={RecuperarPassword}/>
             {/* <Route path='/usuario' component={PaginaUsuario}/> */}
             {loggedUser && <Route path='/usuario' component={EditUsuario}/>}
             {!loggedUser && <Route path="/registros" component={Registros} />}
             {!loggedUser && <Route path="/iniciarsesion" component={IniciarSesion} /> }
+           
             <Redirect to="/" />
           </Switch>
         <WhatsApp/>

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import userActions from '../redux/actions/userActions'
 import GoogleLogin from 'react-google-login';
 import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom'
 
 const IniciarSesion = (props) => {
     const [usuarioALoguear, setUsuarioALoguear] = useState({})
@@ -99,9 +100,12 @@ const IniciarSesion = (props) => {
                 {errores.map(error => <h1>{error}</h1>)}
             </div>
 
-
+            <Link to="/enviar-email"><h5>Olvidaste tu contraseña?</h5></Link>
             
         </div>
+      
+
+
     )
 }
 
