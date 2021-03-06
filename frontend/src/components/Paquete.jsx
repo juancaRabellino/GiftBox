@@ -7,32 +7,46 @@ import { BsArrowLeft, BsFillPeopleFill, BsBuilding, BsGiftFill, BsIntersect, BsE
 import ReactStars from "react-rating-stars-component";
 
 
-const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
-    const [paquete, setPaquete] = useState([])
 
+const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,obtenerValoracion,enviarValoracion }) => {
+    const [paquete, setPaquete] = useState([])
+    const [usuarioYvalidacion,setUsuarioYvalidacion]=useState({idUsuario:null,valor:null})
+    const ratingChanged = (newRating) => {
+        setUsuarioYvalidacion({idUsuario:loggedUser.id,valor: newRating})
+        if(usuarioYvalidacion.idUsuario && usuarioYvalidacion.valor){
+            enviarValoracion(id,usuarioYvalidacion)
+            obtenerPaquetePorId(id)
+        
+        }
+    };
     const id = match.params._id
     useEffect(() => {
         obtenerPaquetePorId(id)
+        obtenerValoracion(paquete)
         paquetePorId && setPaquete(paquetePorId)
-    }, [id])
+    }, [id,usuarioYvalidacion])
+    console.log(paquete)
+
+ 
     return (
         <>
             {paquetePorId &&
                 <>
                     <div className="paqueteBanner"><Link to="/" style={{ display: 'flex', alignItems: 'center' }}><BsArrowLeft className="paqueteIcono" />Regresar a la página principal</Link></div>
                     <div className="paqueteContainer">
-                        <h2 className="tituloPaquete">{paquetePorId[0].nombre}</h2>
-                        <p className="descripcionPaquete">{paquetePorId[0].descripcion}</p>
+                        <h2 className="tituloPaquete">{paquetePorId.nombre}</h2>
+                        <p className="descripcionPaquete">{paquetePorId.descripcion}</p>
                         <div className="paqueteImgInfo">
-                            <div className="paqueteImg">
-                                <img src={paquetePorId[0].imagen} alt="paqueteImg" className="paqueteImgDin" />
+                            <div className="paqueteImg" style={{
+                                backgroundImage: `url(${paquetePorId.imagen})`
+                            }}>
                             </div>
                             <div className="paqueteInfo">
                                 <h4>Acerca de esta GiftBox</h4>
-                                <div className="cantidadDePersonas"><BsFillPeopleFill className="icon" /> Para <span>{paquetePorId[0].cantidadPersonas}</span> persona/s</div>
-                                <div className="categoria"><BsIntersect className="icon" /> Categoria: <span>{paquetePorId[0].categoria}</span></div>
-                                <div className="ubicacion"><BsBuilding className="icon" /> Ubicacion: <span>{paquetePorId[0].ubicacion}</span></div>
-                                <div className="vendidos"><BsGiftFill className="icon" /> Cantidad de paquetes vendidos: <span>{paquetePorId[0].cantidadVendidos.length}</span></div>
+                                <div className="cantidadDePersonas"><BsFillPeopleFill className="icon" /> Para <span>{paquetePorId.cantidadPersonas}</span> persona/s</div>
+                                <div className="categoria"><BsIntersect className="icon" /> Categoria: <span>{paquetePorId.categoria}</span></div>
+                                <div className="ubicacion"><BsBuilding className="icon" /> Ubicacion: <span>{paquetePorId.ubicacion}</span></div>
+                                <div className="vendidos"><BsGiftFill className="icon" /> Cantidad de paquetes vendidos: <span>{paquetePorId.cantidadVendidos.length}</span></div>
                                 <div className="linea"></div>
                                 <div className="formatodeRegalo">
                                     <h5>Formatos de Regalo:</h5>
@@ -40,7 +54,7 @@ const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
                                     <p className="envioPorEmail">Envío por email</p>
                                 </div>
                                 <div className="linea"></div>
-                                <div className="precio">$ {paquetePorId[0].precio}
+                                <div className="precio">$ {paquetePorId.precio}
                                     <a href="https://www.mercadopago.com.ar/ayuda/medios-de-pago-cuotas-promociones_264" target="blank">ver cuotas</a>
                                 </div>
                                 <button className="comprarPaquete">Comprar esta GiftBox</button>
@@ -50,13 +64,17 @@ const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
                     </div>
                     <div className="valoracionContainer">    
                         <div className="valoracion">
-                            <span>4.94</span>
-                            <ReactStars count={5} /* onChange={ratingChanged} */size={50} activeColor="#ffd700"/>
+                            <span>{(paquetePorId.promedio).toFixed(2)}</span>
+                            <ReactStars count={5} value={paquetePorId.prom} onChange={ratingChanged} 
+                            size={50} activeColor="#ffd700" isHalf={true}/>
                         </div>
                         <img src="https://fotos.subefotos.com/af333790da6d3696dec1241bd0c55308o.png" alt="estrellas" />
                     </div>
                     <div className="productosContainer">
-                        hola
+                        <div className="encabezado">
+                            <h3>Dentro del paquete: </h3>
+                            <p>Tu agasajado va a poder disfrutar de estos "cantidad de productos" productos</p>
+                        </div>
                     </div>
                 </>
             }
@@ -68,13 +86,16 @@ const Paquete = ({ match, paquetePorId, obtenerPaquetePorId }) => {
 const mapStateToProps = state => {
     return {
         todosLosPaquetes: state.paqueteReducer.todosLosPaquetes,
-        paquetePorId: state.paqueteReducer.paquetePorId
+        paquetePorId: state.paqueteReducer.paquetePorId,
+        loggedUser: state.userReducer.loggedUser
     }
 }
 
 const mapDispatchToProps = {
     obtenerTodosLosPaquetes: paqueteActions.obtenerTodosLosPaquetes,
-    obtenerPaquetePorId: paqueteActions.obtenerPaquetePorId
+    obtenerPaquetePorId: paqueteActions.obtenerPaquetePorId,
+    obtenerValoracion: paqueteActions.obtenerValoracion,
+    enviarValoracion: paqueteActions.enviarValoracion
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paquete)

@@ -6,6 +6,7 @@ const paqueteActions = {
       try {
         const response = await axios.get('http://localhost:4000/api/paquetes')
         dispatch({type: 'TODOS_PAQUETES', payload: response.data.response})
+        console.log(response)
       } catch (error) {
         console.log(error)
       }
@@ -46,8 +47,23 @@ const paqueteActions = {
         console.log(error)
       }
     }
+  },
+  obtenerValoracion:(paquete) =>{
+     return(dispatch,getState)=> {
+         dispatch({type:'PROMEDIO', payload:paquete })
+        } 
+     },
+  enviarValoracion: (_id,usuarioYvaloracion)=>{
+    return(dispatch,getState)=>{
+      axios.put(`http://localhost:4000/api/paquetes/${_id}`,usuarioYvaloracion)
+      .then(response=>
+        {console.log(response.data.response)
+          dispatch({type:"ENVIAR_VALORACION",payload:response})})
+      .catch(error=>console.log(error))
+    }
+  }
   }
   
     
-}
+
 export default paqueteActions;

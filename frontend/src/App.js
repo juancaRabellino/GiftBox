@@ -18,11 +18,11 @@ import carritoActions from './redux/actions/carritoActions';
 import userActions from './redux/actions/userActions';
 
 function App({loggedUser,carritoDelLS,logFromLS}) {
-  
   const [renderAgain,setRenderAgain] = useState(false)
+  if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
   if(localStorage.getItem("carrito")){
-    carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))
-  }
+    carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))}
+    
   var routes=null
   // if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
   if(!loggedUser && localStorage.getItem("token")){
