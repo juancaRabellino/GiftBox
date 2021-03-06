@@ -31,20 +31,24 @@ const Header = ({carrito, loggedUser, logOut}) => {
                 <div className="headerUser centerVerticalColumn">
                     <div className="abrirRegalo centerCenterRow">
                         <p>Abrir mi Regalo</p>
-                        <Link to="/registro">Registrarse</Link>
+                        {!loggedUser &&
+                         <Link to="/registro" className="registroHeader">Registrarse</Link>
+                        }
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         {loggedUser ?
                         <>
                         <Link to="/usuario">
                             <div  className="centerCenterRow userName">
-                            <Link to="/" onClick={logOut} className="logOut">LogOut</Link>
-                                {loggedUser.googleUser==="true" 
-                                ? <div id="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}></div>
-                                : <div id="userImg" style={{backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}></div>
-                                }
-                                <p>{loggedUser.nombre}</p>   
-                                <Link to="/editUsuario" className="logOut">EditarUss</Link>                             
+
+                                    {loggedUser.googleUser==="true" 
+                                    ? <div id="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}></div>
+                                    : <div id="userImg" style={{backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}></div>
+                                    }
+                                    <p>{loggedUser.nombre}</p>   
+
+                                <Link to="/" onClick={logOut} className="logOut">LogOut</Link>
+                                <Link to="/editUsuario" className="logOut">EditarUss</Link>
                             </div>  
                         </Link>
                         </> 
@@ -53,7 +57,8 @@ const Header = ({carrito, loggedUser, logOut}) => {
                         <div className="headerUserImg" style={{ backgroundImage: `url("../assets/58670.jpg")` }}/>
                         <Link to="/iniciarsesion">
                             <div className="centerCenterRow userName">
-                                <p>Iniciar Sesion</p>
+                                <div id="userImg" style={{backgroundImage: `url("../assets/images.png")`}}/>
+                                <p>Mi perfil</p>
                             <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
                             </div>
                         </Link> 
