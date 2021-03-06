@@ -23,24 +23,26 @@ const usuarioController = {
             if(!passwordMatches){errors.push("Cuenta o contraseña incorrecta");}
             var token=jsonWebToken.sign({...usuarioExistente},process.env.JWT_SECRET_KEY,{});
         }
+        console.log(response)
         return res.json({
             success: errors.length===0? true:false,
             errors: errors,
             response: errors.length===0 && {token,id: usuarioExistente._id, nombre:usuarioExistente.nombre,
                 apellido:usuarioExistente.apellido,imagen:usuarioExistente.imagen,rol:usuarioExistente.rol
                 ,googleUser:usuarioExistente.googleUser}
-        })
+            })
     },
     editarUsuario: async(req,res) =>{
+
         const {imgFile}= req.files
 
         const imgTipo=imgFile.name.split(".").slice(-1).join(" ")
-        const {cuenta,password,nombre,apellido}=req.body
+        const {cuenta,password}=req.body
         var imgName= `${req.params}.${imgTipo}`
         
         await Usuario.findOneAndUpdate(
             req.params,
-            {'$set':{cuenta,password,nombre,apellido,imgName}},
+            {'$set':{cuenta,password,imgName}},
             {new:true})
         
         .then(()=>{return res.json({success: true, response:'Usuario Editado'})})

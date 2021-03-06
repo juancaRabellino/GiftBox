@@ -59,6 +59,7 @@ const userActions={
         return async (dispatch, getState) => {
             const respuesta = await axios.post('http://localhost:4000/api/login', usuario)
             if (!respuesta.data.success) {
+                console.log(respuesta)
                 return respuesta.data
             }
             dispatch({type:'INICIAR_SESION', payload: respuesta.data})

@@ -43,8 +43,7 @@ const Header = ({carrito, loggedUser, logOut}) => {
                                 ? <div className="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}></div>
                                 : <div className="userImg" style={{backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}></div>
                                 }
-                                <p>{loggedUser.nombre}</p>
-                                
+                                <p>{loggedUser.nombre}</p>                                
                             </div>  
                         </Link>
                         </> 

@@ -28,7 +28,7 @@ const PaquetesHeader = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLo
   return (
     <div className='contenedorPaquetes'>
 
-      <h1 className="headerTituloPaquetes" onClick={() => setVisible(!visible)}>Paquetes<MdKeyboardArrowDown /></h1>
+      <h1 className="headerTituloPaquetes" onMouseOver={() => setVisible(!visible)}>Paquetes<MdKeyboardArrowDown /></h1>
       <div className="flexRowPaquetes">
       <div className="paquetes">
       {(visible && todasLasCategorias) && todasLasCategorias.map(categoria => {

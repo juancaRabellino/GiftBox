@@ -125,12 +125,13 @@ const Registro = (props) => {
                 onChange={leerInput} />
                 <input type="password" name="password" placeholder="password"
                 onChange={leerInput} />
+                
                 <label htmlFor="uploadButton" className="inputFile">
-                            <p>Agrega tu imagen</p>
-                            <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
-                        </label>
+                    <p>Agrega tu imagen</p>
+                    <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
+                </label>
             
-                    <div className="botones">
+                <div className="botones">
                 <button className="buttonRegister" onClick={validarUsuario}>Crear Cuenta</button>
                 </div>
 
