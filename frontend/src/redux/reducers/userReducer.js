@@ -12,6 +12,8 @@ const userReducer = (state = initialState, action) => {
             localStorage.setItem('imagen', action.payload.response.imagen)
             localStorage.setItem('id', action.payload.response.id)
             localStorage.setItem('googleUser', action.payload.response.googleUser)
+            
+            console.log(action.payload)
             return {
                 ...state,
                 loggedUser: action.payload.response

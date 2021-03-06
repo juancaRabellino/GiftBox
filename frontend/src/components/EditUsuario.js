@@ -7,20 +7,38 @@ import userActions from '../redux/actions/userActions'
 function EditUsuario(props) {
     console.log(props)
     const[editarUsuario, setEditUsuario ] = useState({})
+    const [editImagen, setEditImagen] = useState({})
     const [errores, setErrores] = useState([])
-    const leerInput = e => {
+
+    const leerInputPass = e => {
         const valor = e.target.value
         const campo = e.target.name
         setEditUsuario({
             ...editarUsuario,    
             [campo]:valor
         })
-        
+    }    
+
+    const leerImPass = e => {
+        const valor =e.target.files[0]
+        const campo = e.target.name
+        setEditImagen({
+            ...editImagen,    
+            [campo]:valor
+        })        
     }
-    console.log(props.loggedUser)
+
+    console.log(editarUsuario)
     const cambiarPassword = () =>{
-        props.editUsuario(editarUsuario, props.loggedUser.id)
+        props.editUsuarioPass(editarUsuario, props.loggedUser.id)
+    }
+
+    const cambiarImagen = () =>{
         
+        const {imagen} = editImagen
+        var formNuevaImg = new FormData();
+        formNuevaImg.append("imgFile",imagen)
+        props.editarUsuarioImg(formNuevaImg, props.loggedUser.id)
     }
     
     return (
@@ -28,9 +46,9 @@ function EditUsuario(props) {
             <div className='imgTopUsuario'>
                 <div className='boxUser'>
                     <div className="userIconos">
-                        <div className="userImg" /*style={{backgroundImage: `url("/userImages/${loggedUser.imagen}")`}}*//>
+                        <div className="userImg"></div>
                         <div className="iconoCambiarImg">
-                            <p ><IoCamera /></p> 
+                            <p><IoCamera /></p> 
                         </div>
                     </div>
                     <div className="datosUsuaros">
@@ -41,18 +59,30 @@ function EditUsuario(props) {
             <div className="editUsuario">
                 <form className="modificarEmailUsuario">
                     <p>Ingrese su Email</p>
-                    <input type="text" placeholder="Email" name="cuenta" onChange={leerInput} ></input>
-                
-                <div className="cambiarPassword">
+                    <input type="text" placeholder="Email" name="cuenta"/>                
+                    <div className="cambiarPassword">
                     <p>Cambiar Contraseña</p>
-                    <input type="password" placeholder="Nueva Contraseña" name="password" onChange={leerInput} ></input>                </div>
+                    <input type="password" placeholder="Nueva Contraseña" name="password" onChange={leerInputPass} />
+                </div>
                 </form>
                 <div className="guardaCambioContraseña" onClick={cambiarPassword} >
                     <p>GUARDAR</p>
                 </div>
             </div>
+            <div className="editUsuario">
+                <div className="modificarEmailUsuario">
+                    <label htmlFor="uploadButton" className="inputFile">
+                        <p>Cambie Foto</p>
+                        <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerImPass}/>
+                    </label>
+                </div>
+                <div className="guardaCambioContraseña" onClick={cambiarImagen} >
+                    <p>CAMBIAR IMG</p>
+                </div>
+            </div>                           
         </div>
     )
+    
 }
 
 const mapStateToProps = state => {
@@ -61,8 +91,9 @@ const mapStateToProps = state => {
     }
  }
  const mapDispatchToProps = {
-     editUsuario: userActions.editUsuario
- }
+     editUsuarioPass: userActions.editUsuarioPass,
+     editarUsuarioImg: userActions.editarUsuarioImg
+}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditUsuario)

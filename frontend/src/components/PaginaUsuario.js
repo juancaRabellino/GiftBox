@@ -39,8 +39,8 @@ const PaginaUsuario = (props) => {
                 <div className='boxUser'>
                     <div className="userIconos">
                         <div className="userImg" /*style={{backgroundImage: `url("/userImages/${loggedUser.imagen}")`}}*//>
-                        <div className="iconoCambiarImg">
-                            <p ><IoCamera /></p> 
+                        <div >
+                            <Link to='/editUsuario'className="iconoCambiarImg"><p ><IoCamera /></p></Link> 
                         </div>
                     </div>
                     <div className="datosUsuaros">

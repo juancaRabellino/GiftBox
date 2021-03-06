@@ -13,7 +13,9 @@ import userActions from "../redux/actions/userActions"
 
 
 const Header = ({carrito, loggedUser, logOut}) => {
-    const [isOpen, setOpen] = useState(false)
+
+    const [mostrarProductos, setMostrarProductos] = useState(true)
+    const [visible, setVisible] = useState(false)
 
     return (
         <>
@@ -31,22 +33,38 @@ const Header = ({carrito, loggedUser, logOut}) => {
                 <div className="headerUser centerVerticalColumn">
                     <div className="abrirRegalo centerCenterRow">
                         <p>Abrir mi Regalo</p>
+                        {!loggedUser &&
+                         <Link to="/registro" className="registroHeader">Registrarse</Link>
+                        }
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         {loggedUser ?
                         <>
                         <Link to="/usuario">
-                            
+                           
                             <div  className="centerCenterRow userName">
-                            <Link to="/" onClick={logOut}>LogOut</Link>
-                                <h1>{loggedUser.nombre}</h1>
-                                {loggedUser.googleUser==="true" 
-                                ? <div className="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}></div>
-                                : <div className="userImg" style={{backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}></div>
-                                }
-                                <p>{loggedUser.nombre}</p>
-                                
-                            </div>  
+                                <div className="headerTituloPaquetes" onClick={() => setVisible(!visible)}>
+                                    <div className="flexRowUsuarios">
+                                        <div className="userNav">
+                                            <div className="datosUser">
+                                                {loggedUser.googleUser==="true" 
+                                                ? <div id="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}/>
+                                                : <div id="userImg" style={{backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}/>
+                                                }
+                                                <p>{loggedUser.nombre}</p>   
+                                                <MdKeyboardArrowDown />
+                                            </div>
+                                            
+                                            {visible &&
+                                                <div className="linksUsuario">
+                                                    <Link to="/" onClick={logOut} className="logOut paquetesPadres">LogOut</Link>
+                                                    <Link to="/editUsuario" className="logOut paquetesPadres">EditarUss</Link>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </Link>
                         </> 
                         :
@@ -54,7 +72,8 @@ const Header = ({carrito, loggedUser, logOut}) => {
                         <div className="headerUserImg" style={{ backgroundImage: `url("../assets/58670.jpg")` }}/>
                         <Link to="/iniciarsesion">
                             <div className="centerCenterRow userName">
-                                <p>Iniciar Sesion</p>
+                                <div id="userImg" style={{backgroundImage: `url("../assets/images.png")`}}/>
+                                <p>Mi perfil</p>
                             <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
                             </div>
                         </Link> 
