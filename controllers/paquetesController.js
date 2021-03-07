@@ -24,10 +24,13 @@ const paqueteController ={
         .then(()=>{return res.json({success:true, response: "Paquete Borrado"})})
         .catch(error=>{return res.json({success:false, response: "Error al eliminar el paquete"})})
     },
-    editarPaquete: (req,res)=>{
-        Paquete.findOneAndUpdate(req.params,req.body,{new:true})
-        .then(paqueteActualizado=>res.json({success:true, response: paqueteActualizado}))
-        .catch(error=>res.json({success:false,response:"Error al editar el paquete"}))
+    editarPaquete: async(req,res)=>{
+        console.log("FRAn")
+        const {idUsuario,valor}=req.body
+        const paqueteActualizado= await Paquete.findOneAndUpdate(req.params,{$push:{"valoracion":{idUsuario, valor}}},{new:true})
+        if(paqueteActualizado){
+            res.json({success:true, response: paqueteActualizado})}
+        else{res.json({success:false,response:"Error al editar el paquete"})}
     }
 }
 

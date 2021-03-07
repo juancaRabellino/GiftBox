@@ -144,7 +144,9 @@
     padding: 1vh 3vw;
     color: rgb(46, 46, 46);
 }
-
+.registroHeader{
+    margin-right: 5vh;
+}
 .cartAndHeart {
     display: flex;
     width: 30%;
@@ -273,7 +275,7 @@
     padding: 1vh 1vw;
     margin: 0 1vw;
     background-color: var(--azul-claro);
-    color: white;
+    color:black !important;
     border-radius: 5px;
 }
 .userName{
@@ -290,6 +292,36 @@
 .accionesUser{
 }
 .usuarioMenu{
+}
+/* .nombreYfotoHeader{
+    display: flex;
+    align-items: center;
+} */
+.userNameeImg{
+    display: flex;
+    flex-direction: column;
+}
+.logOutyEdit{
+    display:block;
+    float: left;
+    /* display: none; */
+} 
+.linksUsuario{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 30vh;
+    margin-top: 2vh;
+}
+.flexRowUsuarios{
+    display: flex;
+    height:100%;
+    width: 3vw;
+  }
+.datosUser{
+    width: 25vw;
+    display: flex;
+    align-items: center;
 }
 
 /* ------ PAQUETES HEADER -------- */
@@ -344,7 +376,12 @@
     margin: 0 auto;
     width: 80%;
 }
-
+.pLinksEntreCuentas p{
+    font-size: 1rem !important;
+    display: block;
+    margin-top: 2rem;
+    font-family: 'Roboto', sans-serif;
+}
 /* CARRUSEL */
 
 video {
@@ -836,10 +873,28 @@ border-radius: 30px;
     padding: 0.5vh 0.5vw;
 }
 #carritoDescripcion{
+    padding: 0.5vh 0.5vw;
     width: 50%;
     border: solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-
+#carritoCantidad{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 2rem;
+}
+.buttonCarrito{
+    transition: background-color .3s;
+    width: 2vw;
+    height: 3.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f88a80;
+}
 .carritoImagen{
     height: 100%;
     background-size: cover;

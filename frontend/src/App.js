@@ -20,9 +20,10 @@ import userActions from './redux/actions/userActions';
 function App({loggedUser,carritoDelLS,logFromLS}) {
   console.log(loggedUser)
   const [renderAgain,setRenderAgain] = useState(false)
+  if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
   if(localStorage.getItem("carrito")){
-    carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))
-  }
+    carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))}
+    
   var routes=null
   // if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
   if(!loggedUser && localStorage.getItem("token")){
@@ -40,6 +41,7 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
   if(!loggedUser){
     routes=
   <>
+  <Switch>
     <Route exact path="/" component={Home}/>
     <Route exact path="/paquetes/" component={Paquetes}/>
     <Route exact path="/carrito/" component={Carrito}/>
@@ -47,13 +49,13 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
     <Route exact path="/paquete/:_id" component={Paquete}/>
     <Route exact path="/registro" component={Registros} />
     <Route exact path="/iniciarsesion" component={IniciarSesion} />
-    <Redirect to="/"/>
-
+    </Switch>
   </>
    }
   if(loggedUser){
     routes=
     <>
+    <Switch>
       <Route exact path="/" component={Home}/>
       <Route exact path="/paquetes/" component={Paquetes}/>
       <Route exact path="/carrito/" component={Carrito}/>
@@ -61,8 +63,9 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       <Route exact path="/paquete/:_id" component={Paquete}/>  
       <Route exact path="/usuario" component={PaginaUsuario}/>   
       <Route exact path="/editUsuario" component={EditUsuario}/> 
-      
       <Redirect to="/"/> 
+    </Switch>
+      
        
      
 
@@ -74,11 +77,9 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       
       <BrowserRouter>
         <Header/>
-          <Switch>
-          <Route exact path="/editUsuario" component={EditUsuario}/> 
+          
             {routes}
             
-          </Switch>
         <WhatsApp/>
         <Footer/>
       </BrowserRouter>
