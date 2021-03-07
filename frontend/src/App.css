@@ -6,6 +6,10 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+body{
+    height: 100%;
+    width: 100%;
+}
 
 :root {
     --color-primario: #FF2A2A;
@@ -688,7 +692,7 @@ video {
   display:flex;
   flex-direction: column;
   margin-top: 8vh;
-  width: 80vw;
+  width: 100%;
 }
 .headerTituloPaquetes{
   font-weight: 500;
@@ -904,4 +908,127 @@ border-radius: 30px;
 .carritoResumen{
     width: 40%;
     border: solid green;
+}
+
+
+
+
+
+
+
+
+
+/* ------- MEDIA QUERIES ------ */
+
+@media (max-width:900px){
+ 
+ 
+/* ----- HEADER RESPONSIVE ------ */ 
+ 
+ 
+    .headerContainer{
+        width: 200vw;
+    }
+
+    .headerResponsive{
+        height: 100%;
+        z-index: 100;
+        
+    }
+    .itemsHeaderResponsive{
+        transition: 0.2s ease;
+        background-color: white;
+        height: 100%;
+        width: 100vw;
+        position: absolute;
+        z-index: 100;
+        justify-content: space-around;
+
+    }
+    .userHeaderResponsive{
+        display: flex;
+        margin-left: 4vw;
+        align-items: center;
+    }
+    .userHeaderResponsive p{
+        margin-left: 5vw;
+    }
+    .datosUser{
+        display: none;
+    }
+    .heart{
+        display: none;
+    }
+    .abrirRegalo{
+        display: none;
+    }
+    .paquetesHeader{
+        display: none;
+    }
+    .hamburger-react{
+        margin-right: 5vw;
+    }
+    .headerContainer{
+        align-items: center;
+    }
+    .headerUserBottom {
+        margin: 0;
+    }
+    .headerInput{
+        width: 100%;
+    }
+    .userNameResponsive{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 5vw;
+        width: 100%;
+    }
+    .userNameResponsive p{
+        margin-left: 5vw;
+        
+    }
+    .userName{
+        display: none;
+    }
+
+    /* ------- FOOTER ------- */
+    .footerArriba{
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 5vw;
+    }
+    .footerArriba span{
+        display: none;
+    }
+    .footerArriba p{
+        margin: 1vh;
+    }
+    .footerMedio {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .seccionesMedioFooterPadre{
+        display: none;
+    }
+    .fraseFooter{
+        width: 100%;
+        padding-left: 2vw;
+    }
+    .footerAbajo{
+        flex-direction: column;
+    }
+    .footerAbajo span{
+        display: none;
+    }
+    .footerAbajo p , .devolverCompraButton, .redesFooter{
+        margin: 1vh;
+    }
+}
+@media (min-width:901px){
+    .headerResponsive{
+      display:none  
+    }
 }
