@@ -35,9 +35,17 @@ const bcryptjs = require('bcryptjs')
             from: 'Gift BOX <grupoamindhub@gmail.com>',
             to: email,
             subject: 'Recupero de Contraseña',
-            html: `<div><h3>Este email se ha enviado por una solicitud para restablecer la contraseña en la pagina Entre Lineas, si usted no lo solicio
-            por favor ignore este correo, de lo contrario haga click en el boton de abajo</h3>
-            <link href="https://localhost:4000/api/user/resetear-password/${email}"><button>"http://localhost:3000/recuperar-password"</button></link> </div>`
+            html:  `<div style="text-align:center; padding:20px; min-heigth: 250px; background-color:white">
+            <h1 style="color:#FF2A2A"> ¡Que despistado/a sos!!</h1>
+            <h1 style="color:#FF2A2A">¡No importa! ¡Nosotros te ayudaremos! ¡A continuación haga clic debajo para cambiar su contraseña! </h1>
+            <link href="https://localhost:4000/api/user/resetear-password/${email}">   
+            <button style="padding:20px; background-color:#FF2A2A"><a  href="http://localhost:3000/cambiar-password">¡Recupera tu contraseña!</a></button></link>
+            <h3 style="color:#FF2A2A">¡¡Si el botón no funciona, copie y pegue el siguiente enlace en su navegador!! http://localhost:3000/cambiar-password </h3>
+            <h5 style="color:#FF2A2A">Si usted no solicitó un cambio de contraseña, por favor, ignore este correo electrónico :)</h5>
+        </div>`
+ 
+            
+        
         }
         transport.sendMail(mailOptions, (error, info) =>{
             if(error){

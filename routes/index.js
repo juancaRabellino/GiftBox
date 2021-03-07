@@ -54,6 +54,11 @@ router.route('/imagen/:_id')
 router.route("/user/resetear-password")
 .post(passwordController.resetearPassword)
 
+router.route("/cambiar-password")
+.put(usuarioController.cambiarPassword)
+
+
+
 
 
 

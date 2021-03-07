@@ -99,6 +99,18 @@ const userActions={
         }
         }
     },
+
+    cambiarPassword : (editUsuario) => {
+        console.log(editUsuario)
+        return async (dispatch, getState)=> {
+            const respuesta = await axios.put("http://localhost:4000/api//cambiar-password", editUsuario)
+            console.log(respuesta)
+            if(!respuesta.data.success){
+            console.log('me fui')
+            return respuesta.data 
+        }
+        }
+    },
     editarUsuarioImg : (formNuevaImg, id) => {
         console.log('llegue a Imagen')
 

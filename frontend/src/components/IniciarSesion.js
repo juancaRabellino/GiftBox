@@ -104,7 +104,7 @@ const IniciarSesion = (props) => {
                 {errores.map(error => <h1>{error}</h1>)}
             </div>
 
-            <Link to="/enviar-email"><h5>Olvidaste tu contraseña?</h5></Link>
+            <Link to="/recuperar-password"><h5>Olvidaste tu contraseña?</h5></Link>
             
         </div>
       

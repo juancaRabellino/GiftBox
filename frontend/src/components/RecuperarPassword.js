@@ -5,9 +5,9 @@ import {useState} from 'react'
 import userActions from '../redux/actions/userActions'
 
 function RecuperarPassword(props) {
-  
+    console.log(props)
     const[editarUsuario, setEditUsuario ] = useState({})
-    const [errores, setErrores] = useState([])
+
 
     const leerInputPass = e => {
         const valor = e.target.value
@@ -18,41 +18,40 @@ function RecuperarPassword(props) {
         })
     }    
 
- 
+
     const cambiarPassword = () =>{
-        props.editUsuarioPass(editarUsuario, props.loggedUser.id)
+        console.log(editarUsuario)
+        props.cambiarPassword(editarUsuario)
     }
 
   
     
     return (
         <div>
-            
-                        
+           
+            <div className="editUsuario">
+                <form className="modificarEmailUsuario">
+                    <p>Ingrese su Email</p>
+                    <input type="text" placeholder="Email" name="cuenta" onChange={leerInputPass}/>                
                     <div className="cambiarPassword">
                     <p>Cambiar Contraseña</p>
                     <input type="password" placeholder="Nueva Contraseña" name="password" onChange={leerInputPass} />
                 </div>
-                
+                </form>
                 <div className="guardaCambioContraseña" onClick={cambiarPassword} >
                     <p>GUARDAR</p>
                 </div>
-           
-                                  
+            </div>                         
         </div>
     )
     
 }
 
-const mapStateToProps = state => {
-    return{
-     loggedUser: state.userReducer.loggedUser
-    }
- }
+
  const mapDispatchToProps = {
-     editUsuarioPass: userActions.editUsuarioPass,
+     cambiarPassword: userActions.cambiarPassword
      
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecuperarPassword)
+export default connect(null, mapDispatchToProps)(RecuperarPassword)
