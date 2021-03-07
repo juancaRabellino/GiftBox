@@ -10,8 +10,8 @@ const userReducer = (state = initialState, action) => {
             localStorage.setItem('nombre', action.payload.response.nombre)
             localStorage.setItem('token', action.payload.response.token)
             localStorage.setItem('imagen', action.payload.response.imagen)
+            localStorage.setItem('id', action.payload.response.id)
             localStorage.setItem('googleUser', action.payload.response.googleUser)
-            localStorage.setItem('id',action.payload.response._id)
             return {
                 ...state,
                 loggedUser: action.payload.response
@@ -21,7 +21,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loggedUser:null
-            }
+            }             
         default:
         return state
     }

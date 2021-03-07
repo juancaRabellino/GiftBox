@@ -31,20 +31,20 @@ const Header = ({carrito, loggedUser, logOut}) => {
                 <div className="headerUser centerVerticalColumn">
                     <div className="abrirRegalo centerCenterRow">
                         <p>Abrir mi Regalo</p>
+                        <Link to="/registro">Registrarse</Link>
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         {loggedUser ?
                         <>
                         <Link to="/usuario">
                             <div  className="centerCenterRow userName">
-                            <Link to="/" onClick={logOut}>LogOut</Link>
-                                <h1>{loggedUser.nombre}</h1>
+                            <Link to="/" onClick={logOut} className="logOut">LogOut</Link>
                                 {loggedUser.googleUser==="true" 
-                                ? <div className="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}></div>
-                                : <div className="userImg" style={{backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}></div>
+                                ? <div id="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}></div>
+                                : <div id="userImg" style={{backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}></div>
                                 }
-                                <p>{loggedUser.nombre}</p>
-                                
+                                <p>{loggedUser.nombre}</p>   
+                                <Link to="/editUsuario" className="logOut">EditarUss</Link>                             
                             </div>  
                         </Link>
                         </> 

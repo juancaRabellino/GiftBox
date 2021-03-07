@@ -80,21 +80,20 @@ const IniciarSesion = (props) => {
       
 
     return (
-        <div className="container">
-            <div className="form">
-            <h1 className="logeo">Login</h1>
-            <input  type="text" name="cuenta" placeholder="Nombre de usuario"
-            onChange={leerInput} />
-            <input type="password" name="password" placeholder="Password"
-            onChange={leerInput} />
+        <div className="editUsuario">
+            <div className="modificarEmailUsuario">
+                <h1 className="logeo">Login</h1>
+                <input  type="text" name="cuenta" placeholder="Nombre de usuario"
+                onChange={leerInput} />
+                <input type="password" name="password" placeholder="Password"
+                onChange={leerInput} />
             </div>
 
-            <div className="botoncitos">
-            <button className="buttonLogin" onClick={validarUsuario}>Login</button>
-
-           
-
+            <div className="guardaCambioContraseña">
+                <p onClick={validarUsuario}>Login</p>
+            </div> 
             <GoogleLogin className="googlecito"
+<<<<<<< HEAD
     clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
     buttonText="Login Account"
     onSuccess={responseGoogle}
@@ -105,6 +104,15 @@ const IniciarSesion = (props) => {
          
         <Link to="/registro"><button>Crear cuenta</button></Link> 
 
+=======
+                clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
+                buttonText="Inicia sesión con Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={'single_host_origin'}
+            />
+           
+>>>>>>> Jordi
   <div className="errores">
                 {errores.map(error => <h1>{error}</h1>)}
             </div>
