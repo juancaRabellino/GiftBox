@@ -828,17 +828,18 @@ border-radius: 30px;
 /* CARRITO */
 .carrito{
     width: 100%;
-    border: solid black;
 }
 .carritoHead{
-    height: 15vh;
+    height: 20vh;
     padding-left: 10vw;
     display: flex;
     align-items: center;
+    background-repeat: repeat-x;
+    box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
+    -webkit-box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
 }
 .carritoSection{
     height: auto;
-    border: solid blue;
     padding: 4vh 5vw;
     display: flex;
 }
@@ -861,7 +862,7 @@ border-radius: 30px;
     height: 20%;
     justify-content: space-between;
     padding: 1vh 1vw;
-    border: solid red;
+    background-size: cover;
 }
 .carritoPaqueteContenido{   
     display: flex;
@@ -885,6 +886,18 @@ border-radius: 30px;
     justify-content: center;
     align-items: flex-end;
     font-size: 2rem;
+}
+#carritoCantidad1{
+    height: 30%;
+    width: 100%;
+    border: solid red;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+#carritoCantidad1 h5{
+    margin: 0;
 }
 .buttonCarrito{
     transition: background-color .3s;

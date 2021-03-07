@@ -1,22 +1,23 @@
 
-import { BsDash, BsFillPeopleFill, BsPlus} from "react-icons/bs";
+import { BsDash, BsFillPeopleFill, BsPlus, BsTrash} from "react-icons/bs";
 import { connect } from "react-redux";
 
 const Carrito=({carrito})=>{
     if(!carrito){return <h1>loading..</h1> }
+    console.log(carrito.imagen)
     return(
         <>
         <div className="carrito">
-            <div className="carritoHead">
+            <div className="carritoHead"  style={{ backgroundImage: `url("../assets/carritoImagen.png")` }} >
                 <h2> Tu carrito</h2>
             </div>
             <div className="carritoSection">
                 <div className="carritoPaquetes">
                     {carrito && carrito.map(paquete=>
                         <div className="carritoPaquete">
-                            <div className="carritoPaqueteNombre">
+                            <div className="carritoPaqueteNombre" style={{ backgroundImage: `url("../assets/bannerCarrito.jpg")` }} >
                                 {paquete.nombre}
-                                <p>borrar</p>
+                                <BsTrash/>
                             </div>
                             <div className="carritoPaqueteContenido">
                                 <div id="carritoImagen">
@@ -32,9 +33,11 @@ const Carrito=({carrito})=>{
                                     </div>
                                 </div>
                                 <div id="carritoCantidad">
-                                    <button className="buttonCarrito"><BsDash/></button>
-                                    <div style={{margin:"0 0.5vw"}}><h5 >x{paquete.cantidad}</h5></div>
-                                    <button className="buttonCarrito"><BsPlus/></button>
+                                    <div id="carritoCantidad1" >
+                                        <button className="buttonCarrito"><BsDash/></button>
+                                        <div ><h5 >x{paquete.cantidad}</h5></div>
+                                        <button className="buttonCarrito"><BsPlus/></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
