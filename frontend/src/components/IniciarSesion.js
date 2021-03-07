@@ -93,35 +93,14 @@ const IniciarSesion = (props) => {
                 <p onClick={validarUsuario}>Login</p>
             </div> 
             <GoogleLogin className="googlecito"
-<<<<<<< HEAD
-<<<<<<< HEAD
-    clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
-    buttonText="Login Account"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
-    cookiePolicy={'single_host_origin'}
-  />
-  </div> 
-         
-        <Link to="/registro"><button>Crear cuenta</button></Link> 
-
-=======
-=======
->>>>>>> Aman
-                clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
-                buttonText="Inicia sesión con Google"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={'single_host_origin'}
+            clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
+            buttonText="Inicia sesión con Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
             />
-<<<<<<< HEAD
-           
->>>>>>> Jordi
-  <div className="errores">
-=======
 
             <div className="errores">
->>>>>>> Aman
                 {errores.map(error => <h1>{error}</h1>)}
             </div>
 
