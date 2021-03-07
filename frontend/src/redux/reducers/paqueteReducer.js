@@ -13,8 +13,6 @@ const actualizar=(todosLosPaquetes,nuevoPaquete)=>{
       console.log(paquete)
       console.log(nuevoPaquete)
       console.log("_______________")
-
-
     }
       return paquete
   }
