@@ -25,6 +25,7 @@ const paqueteController ={
         .catch(error=>{return res.json({success:false, response: "Error al eliminar el paquete"})})
     },
     editarPaquete: async(req,res)=>{
+        console.log("FRAn")
         const {idUsuario,valor}=req.body
         const paqueteActualizado= await Paquete.findOneAndUpdate(req.params,{$push:{"valoracion":{idUsuario, valor}}},{new:true})
         if(paqueteActualizado){
