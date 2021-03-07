@@ -9,10 +9,10 @@ const actualizar=(todosLosPaquetes,nuevoPaquete)=>{
   return (todosLosPaquetes.map(paquete=>{
     if(paquete._id===nuevoPaquete._id){
       paquete=nuevoPaquete;
-      console.log("_______________")
+      /* console.log("_______________")
       console.log(paquete)
       console.log(nuevoPaquete)
-      console.log("_______________")
+      console.log("_______________") */
     }
       return paquete
   }
@@ -33,14 +33,13 @@ const paqueteReducer = (state = initialState, action) => {
       }
     case 'PAQUETE_ID':
       var aux1=actualizar(state.todosLosPaquetes,action.payload)
-      console.log(aux1)
       var paqueteAux= aux1.find(paquete => paquete._id === action.payload)
       var suma=0;
       (paqueteAux.valoracion).map(valoracion=>(suma+=valoracion.valor))
       var promedio= suma/(paqueteAux.valoracion).length;
-      console.log("-----------------------------------------------------------------")
+      /* console.log("-----------------------------------------------------------------")
       console.log("suma: "+suma +"/" +(paqueteAux.valoracion).length )
-      console.log("promedio " + promedio)
+      console.log("promedio " + promedio) */
       return {
         ...state,
         todosLosPaquetes:aux1,
