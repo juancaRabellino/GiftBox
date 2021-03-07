@@ -18,6 +18,7 @@ import carritoActions from './redux/actions/carritoActions';
 import userActions from './redux/actions/userActions';
 
 function App({loggedUser,carritoDelLS,logFromLS}) {
+  console.log(loggedUser)
   const [renderAgain,setRenderAgain] = useState(false)
   if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
   if(localStorage.getItem("carrito")){

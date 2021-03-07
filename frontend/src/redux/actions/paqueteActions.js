@@ -59,13 +59,12 @@ const paqueteActions = {
     return async (dispatch,getState)=>{
       const response= await axios.put(`http://localhost:4000/api/paquetes/${_id}`,usuarioYvaloracion)
       if(response.data.response){
-        {  console.log("VALORACION NUEVA QUE MANDO AL BACK")
-          console.log(response.data.response.valoracion)
+         console.log("VALORACION NUEVA QUE MANDO AL BACK")
+          console.log(response.data.response)
           dispatch({type:"ENVIAR_VALORACION",payload:response.data.response})}
         }
     }
-  }
-  }
+}
   
     
 

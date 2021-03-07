@@ -13,8 +13,9 @@ const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,enviarVal
     const [valor,setValor]=useState(0)
     // const [ultimoValor,setUltimoValor]=useState(0);
     useEffect(async() => {
+        console.log(valor)
         if(valor!==0){
-            await enviarValoracion(match.params._id,{idUsuario:loggedUser.id, valor})
+            await enviarValoracion(match.params._id,{idUsuario:loggedUser.id,valor})
             obtenerPaquetePorId(match.params._id)
         }
     }, [valor])
@@ -111,7 +112,7 @@ const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,enviarVal
                     <div className="valoracionContainer">    
                         <div className="valoracion">
                             <span>{(paquetePorId.promedio).toFixed(2)}</span>
-                            <ReactStars count={5} value={5} onChange={setValor} 
+                            <ReactStars count={5} onChange={setValor} 
                             size={50} activeColor="#ffd700" isHalf={true}/>
                         </div>
                         <img src="https://fotos.subefotos.com/af333790da6d3696dec1241bd0c55308o.png" alt="estrellas" />
