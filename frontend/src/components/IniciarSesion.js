@@ -57,7 +57,8 @@ const IniciarSesion = (props) => {
                 password: response.profileObj.googleId,
             })
             if (respuesta && !respuesta.success) {
-                setErrores([respuesta.mensaje])
+                console.log(respuesta)
+                setErrores([respuesta.errors])
             } else {
                 Swal.fire({
                     icon: 'success',
@@ -66,7 +67,6 @@ const IniciarSesion = (props) => {
                     timer: 1500
                   })
             }
-
         }
       }
       
