@@ -293,14 +293,8 @@ body{
     color: black;
     margin-left: 2vh;
 }
-.accionesUser{
-}
-.usuarioMenu{
-}
-/* .nombreYfotoHeader{
-    display: flex;
-    align-items: center;
-} */
+
+
 .userNameeImg{
     display: flex;
     flex-direction: column;
@@ -308,7 +302,6 @@ body{
 .logOutyEdit{
     display:block;
     float: left;
-    /* display: none; */
 } 
 .linksUsuario{
     display: flex;
@@ -909,12 +902,6 @@ border-radius: 30px;
     width: 40%;
     border: solid green;
 }
-
-
-
-
-
-
 
 
 
