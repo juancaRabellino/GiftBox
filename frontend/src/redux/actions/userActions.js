@@ -64,22 +64,7 @@ const userActions={
         }
     },
 
-    nuevaPassword: (cuenta, password) => {
-        return async(dispatch) => {
-            try{
-                const response = await axios.put('http://localhost:4000/api/user/cambiar-password', {cuenta, password})
-                dispatch({type: 'CAMBIAR_PASSWORD'})
-            }catch(error){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Ups!',
-                    text: "Algo salio mal, intenta nuevamente!",
-                    showConfirmButton: false,
-                    timer: 4000
-                    })
-            }
-        }
-    },
+
     
     logOut:()=>{
         return (dispatch, getState)=>{

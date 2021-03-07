@@ -63,6 +63,9 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       <Route exact path="/paquete/:_id" component={Paquete}/>  
       <Route exact path="/usuario" component={PaginaUsuario}/>   
       <Route exact path="/editUsuario" component={EditUsuario}/> 
+      <Route exact path="/recuperar-password" component={EnviarEmail}/> 
+     
+
       
       <Redirect to="/"/> 
        
@@ -77,25 +80,9 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       <BrowserRouter>
         <Header/>
           <Switch>
-<<<<<<< HEAD
-            <Route exact path='/' component={Home}/>
-            <Route path="/paquetes/" component={Paquetes}/>
-            <Route path="/carrito/" component={Carrito}/>
-            <Route path="/carritoPaquetes/" component={CarritoPaquetes}/>
-            <Route exact path="/paquete/:_id" component={Paquete}/>
-            <Route path='/enviar-email' component={EnviarEmail}/>
-            <Route path='/recuperar-password' component={RecuperarPassword}/>
-            {/* <Route path='/usuario' component={PaginaUsuario}/> */}
-            {loggedUser && <Route path='/usuario' component={EditUsuario}/>}
-            {!loggedUser && <Route path="/registros" component={Registros} />}
-            {!loggedUser && <Route path="/iniciarsesion" component={IniciarSesion} /> }
-           
-            <Redirect to="/" />
-=======
           <Route exact path="/editUsuario" component={EditUsuario}/> 
             {routes}
             
->>>>>>> 5899af7a0245423cc7830fe9742d5a0f1b14c55a
           </Switch>
         <WhatsApp/>
         <Footer/>
