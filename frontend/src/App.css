@@ -275,7 +275,7 @@
     padding: 1vh 1vw;
     margin: 0 1vw;
     background-color: var(--azul-claro);
-    color: white;
+    color:black !important;
     border-radius: 5px;
 }
 .userName{

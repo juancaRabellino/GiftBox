@@ -25,7 +25,10 @@ const paqueteController ={
         .catch(error=>{return res.json({success:false, response: "Error al eliminar el paquete"})})
     },
     editarPaquete: (req,res)=>{
-        Paquete.findOneAndUpdate(req.params,req.body,{new:true})
+        console.log(req.params)
+        console.log(req.body)
+        const {idUsuario,valor}=req.body
+        Paquete.findOneAndUpdate(req.params,{$push:{"valoracion":{idUsuario, valor}}})
         .then(paqueteActualizado=>res.json({success:true, response: paqueteActualizado}))
         .catch(error=>res.json({success:false,response:"Error al editar el paquete"}))
     }

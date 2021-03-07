@@ -49,13 +49,21 @@ const paqueteActions = {
     }
   },
   obtenerValoracion:(paquete) =>{
-    console.log("EN ACTION PAQUETE")
      return(dispatch,getState)=> {
          dispatch({type:'PROMEDIO', payload:paquete })
         } 
-     }
-  
+  },
+  enviarValoracion: (_id,usuarioYvaloracion)=>{
+    return(dispatch,getState)=>{
+      axios.put(`http://localhost:4000/api/paquetes/${_id}`,usuarioYvaloracion)
+      .then(response=>
+        {console.log(response.data.response)
+          dispatch({type:"ENVIAR_VALORACION",payload:response})})
+      .catch(error=>console.log(error))
+    }
+  }
+  }
   
     
-}
+
 export default paqueteActions;
