@@ -15,11 +15,11 @@ const Home = ({paquetesMasRegalados, filtrarPaquetesMasReg}) => {
         <>  
             <video src={video} autoPlay loop muted></video>
             
-            <div style={{width:'100%',height:'100vh',display:'flex',alignItems:'center'}}>
-                <div style={{paddingLeft:'10vh'}}>
-                    <h1 style={{color:'white',fontSize:'60px',fontWeight:'bold'}}>Regalá experiencias.</h1>
-                    <p style={{color:'white',fontSize:'20px'}}>Sorprendé con momentos para vivir dentro y fuera de casa.</p>
-                    <div style={{display:'flex', width:'35vw',justifyContent:'space-between',marginTop:'10vh'}}>
+            <div className="homeVideo" style={{width:'100%',height:'100vh',display:'flex',alignItems:'center'}}>
+                <div className="tituloHomeVideoPadre" style={{paddingLeft:'10vh'}}>
+                    <h1 className="tituloHomeVideo" style={{color:'white',fontSize:'60px',fontWeight:'bold'}}>Regalá experiencias.</h1>
+                    <p  className="textoHomeVideo" style={{color:'white',fontSize:'20px'}}>Sorprendé con momentos para vivir dentro y fuera de casa.</p>
+                    <div className="botonesVideoHome"style={{display:'flex', width:'35vw',justifyContent:'space-between',marginTop:'10vh'}}>
                         <p className='botonVideo'>Regala una GiftBox</p>
                         <p className='botonVideo'>Abri tu regalo</p>
                     </div>

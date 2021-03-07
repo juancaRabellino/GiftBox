@@ -12,18 +12,18 @@ const Carrousel = ({ todasLasCategorias }) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1
   };
   return (
-    <div className='containerImg' style={{ width: '90vw', minHeight: '80vh', margin: 'auto' }}>
+    <div className='containerImg' style={{ width: '90%', minHeight: '80vh', margin: 'auto' }}>
       <Slider {...settings}>
         {todasLasCategorias.map(function (categoria, i) {
           return (
             <Link to={{pathname:'/paquetes', categoria:categoria.nombre}} key={`linkCat${categoria._id}`}>
               <div className='imgCarrusel' style={{ width: '35vw' }} key={`img${i}`}>
-                <div style={{ backgroundImage: `url('${categoria.imagen}')`, height: '75vh', backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', alignItems: 'flex-end' }}>
-                  <h3>{categoria.nombre}</h3>
+                <div className='imgCarruselHijo' style={{ backgroundImage: `url('${categoria.imagen}')`, height: '75vh', backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', alignItems: 'flex-end' }}>
+                  <h3 className="nombreCategoria">{categoria.nombre}</h3>
                 </div>
               </div>
             </Link>
@@ -45,3 +45,4 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Carrousel)
+

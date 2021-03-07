@@ -22,12 +22,17 @@ const Header = ({ carrito, loggedUser, logOut }) => {
         <>
             <div id="headerContainer">
                 <Link to='/'><div style={{ backgroundImage: `url("../assets/giftLogoF-01.png")` }} className='logoContainer'></div></Link>
+                <div className="paquetesHeader">
+                        <PaquetesHeader />
+                    </div>
                 <div className="headerUser centerVerticalColumn">
+
                     <div className="abrirRegalo centerCenterRow">
                         <p>Abrir mi Regalo</p>
                         {!loggedUser &&
                             <Link to="/registro" className="registroHeader">Registrarse</Link>
                         }
+                        
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         {loggedUser ?
