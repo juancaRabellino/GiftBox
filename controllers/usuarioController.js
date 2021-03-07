@@ -74,7 +74,7 @@ const usuarioController = {
                         else{
                             
                         }})
-                    nuevoUsuario.imagen = imgName;
+                        nuevoUsuario.imagen = imgName;
             }
             else{
                 
@@ -104,10 +104,9 @@ const usuarioController = {
         })
     },
 
-    logFromLS: (req, res) => {  
+    logFromLS: (req, res) => {
         res.json({success: true,
           response: {
-            id:req.user._id,
             token: req.body.token,
             nombre: req.user.nombre,
             imagen: req.user.imagen,
