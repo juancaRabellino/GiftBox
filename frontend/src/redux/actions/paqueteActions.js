@@ -54,7 +54,7 @@ const paqueteActions = {
      return(dispatch,getState)=> {
          dispatch({type:'PROMEDIO', payload:paquete })
         } 
-     },
+  },
   enviarValoracion: (_id,usuarioYvaloracion)=>{
     return async (dispatch,getState)=>{
       const response= await axios.put(`http://localhost:4000/api/paquetes/${_id}`,usuarioYvaloracion)
