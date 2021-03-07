@@ -63,17 +63,16 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     const id = match.params._id
     useEffect(() => {
         var paquete = obtenerPaquetePorId(match.params._id)
-        if (paquetePorId) {
+        if (paquete) {
             var aux = { valor: 0 }
-            aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
-            if (aux.valor !== null && aux !== undefined) {
+            aux = paquete.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
+            if (aux !== null && aux !== undefined) {
                 setUltimoValor(aux)
             }
 
         } 
     }, [id])
-
-    console.log(ultimoValor)
+    if(!paquetePorId){return <h1>loading...</h1> }
     return (
         <>
             {paquetePorId &&

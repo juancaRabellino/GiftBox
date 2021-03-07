@@ -828,6 +828,7 @@ border-radius: 30px;
 /* CARRITO */
 .carrito{
     width: 100%;
+    background-color: #fff;
 }
 .carritoHead{
     height: 20vh;
@@ -844,7 +845,6 @@ border-radius: 30px;
     display: flex;
 }
 .carritoPaquetes{
-    border: solid red;
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -853,30 +853,35 @@ border-radius: 30px;
 }
 .carritoPaquete{
     width: 80%;
-    border: solid blue;
     height: 25vh;
-    margin: 1vh 0;
+    margin-bottom: 4vh;
 }
 .carritoPaqueteNombre{
     display: flex;
-    height: 20%;
+    border-top-left-radius:5px;
+    border-top-right-radius: 5px;
+    height: 30%;
     justify-content: space-between;
     padding: 1vh 1vw;
     background-size: cover;
+    align-items: center;
+    font-size: 1.4rem;
+    color: #fff;
 }
 .carritoPaqueteContenido{   
     display: flex;
+    background-color:  #ff66341c;
     height: 80%;
+    box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
+    -webkit-box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
 }
 #carritoImagen, #carritoCantidad{
     width: 25%;
-    border: solid black;
-    padding: 0.5vh 0.5vw;
+    padding: 1vh 1vw;
 }
 #carritoDescripcion{
-    padding: 0.5vh 0.5vw;
+    padding:2vh 0.5vw;
     width: 50%;
-    border: solid black;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -890,7 +895,6 @@ border-radius: 30px;
 #carritoCantidad1{
     height: 30%;
     width: 100%;
-    border: solid red;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -901,11 +905,18 @@ border-radius: 30px;
 }
 .buttonCarrito{
     transition: background-color .3s;
+    border: 0;
+    border-radius: 3px;
     width: 2vw;
     height: 3.5vh;
+    color: #fff;
     display: flex;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
+    background-color: #ff6c5f;
+}
+.buttonCarrito:hover{
     background-color: #f88a80;
 }
 .carritoImagen{
@@ -916,5 +927,31 @@ border-radius: 30px;
 
 .carritoResumen{
     width: 40%;
-    border: solid green;
+    height: 50vh;
+    padding: 0vh 5vw;
+    background-color: #ff66341c;
 }
+#resumenTitulo{
+    border-bottom:2px solid #f0cdcdb0;
+    height: 8vh;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+}
+#resumenPaquetes{
+    height: 6vh;
+    border-bottom: 2px solid #f0cdcdb0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#resumenTotal{
+    display: flex;
+    border-bottom: 2px solid #f0cdcdb0;
+    height: 6vh;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    color: #2e93e5;
+}
+
