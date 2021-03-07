@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 import { BsArrowLeft, BsFillPeopleFill, BsBuilding, BsGiftFill, BsIntersect, BsEnvelopeFill } from "react-icons/bs";
 import ReactStars from "react-rating-stars-component";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 
 
@@ -18,6 +19,48 @@ const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,enviarVal
         }
     }, [valor])
 
+    const productos = [
+        [{
+            titulo: 'Spa El Roble, Villa Crespo',
+            descripcion: 'Especialmente diseñado para el bienestar físico, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una experiencia única.',
+            imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
+            lugar: 'Malabia 429'
+        }],
+        [
+            {
+                titulo: 'Spa El Roble, Villa Crespo',
+                descripcion: 'Especialmente diseñado para el bienestar físicgadf, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una experiencia única.',
+                imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
+                lugar: 'Malabia 4291'
+            }
+        ],
+        [
+            {
+                titulo: 'Spa El Roble, Villa Crespo',
+                descripcion: 'Especialmente diseñado para el bienestar físico, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una experiencia únicaaaaaaaaaaaaaaaaaaaaaaaaaa.',
+                imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
+                lugar: 'Malabia 4293'
+            }
+        ],
+        [
+            {
+                titulo: 'Spa El Roble, Villa Crespo',
+                descripcion: 'Especialmente diseñado para el bienestar físidfgafdgdfco, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una experiencia única.',
+                imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
+                lugar: 'Malabia 4295'
+            }
+        ],
+        [
+            {
+                titulo: 'Spa El Roble, Villa Crespo',
+                descripcion: 'Especialmente diseñado para el bienestar físico, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una expehdfghdfgagadfgadfgdfgriencia única.',
+                imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
+                lugar: 'Malabia 429'
+            }
+        ]
+    ]
+
+    const id = match.params._id
     useEffect(() => {
         var paquete=obtenerPaquetePorId(match.params._id)
         if(paquete){console.log(paquete)}
@@ -35,7 +78,7 @@ const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,enviarVal
         <>
             {paquetePorId &&
                 <>
-                    <div className="paqueteBanner"><Link to="/" style={{ display: 'flex', alignItems: 'center' }}><BsArrowLeft className="paqueteIcono" />Regresar a la página principal</Link></div>
+                    <div className="paqueteBanner"><Link to="/" style={{ display: 'flex', alignItems: 'center' }}><BsArrowLeft className="paqueteIcono" /><span>Regresar a la página principal</span></Link></div>
                     <div className="paqueteContainer">
                         <h2 className="tituloPaquete">{paquetePorId.nombre}</h2>
                         <p className="descripcionPaquete">{paquetePorId.descripcion}</p>
@@ -76,8 +119,27 @@ const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,enviarVal
                     <div className="productosContainer">
                         <div className="encabezado">
                             <h3>Dentro del paquete: </h3>
-                            <p>Tu agasajado va a poder disfrutar de estos "cantidad de productos" productos</p>
+                            <p>Tu agasajado va a poder disfrutar de estos <span>{productos.length}</span> productos</p>
                         </div>
+                        <div className="productos">{
+                            productos.map( producto => {
+                                return (
+                                    <>
+                                        <div className="cardProducto">
+                                            <img src={producto[0].imagen} alt="" style={{width: '100%'}}/>
+                                            <div className="infoProducto">
+                                                <div className="tituloProducto">
+                                                    <h4>{producto[0].titulo}</h4>
+                                                    <BsFillPeopleFill className="iconCard"/>
+                                                </div>
+                                                <h5>{producto[0].descripcion.slice(0, 180)+'...'}</h5>
+                                                <p className="lugarProducto"><FaMapMarkerAlt className="iconCard"/> {producto[0].lugar}</p>
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            })
+                        }</div>
                     </div>
                 </>
             }
