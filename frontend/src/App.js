@@ -17,11 +17,57 @@ import { connect } from 'react-redux';
 import carritoActions from './redux/actions/carritoActions';
 import userActions from './redux/actions/userActions';
 
-function App({loggedUser,logFromLS,carritoDelLS}) {
-  if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
+function App({loggedUser,carritoDelLS,logFromLS}) {
+  console.log(loggedUser)
+  const [renderAgain,setRenderAgain] = useState(false)
   if(localStorage.getItem("carrito")){
     carritoDelLS(JSON.parse(localStorage.getItem("carrito")),JSON.parse(localStorage.getItem("total")))
-    console.log(JSON.parse(localStorage.getItem("total")))
+  }
+  var routes=null
+  // if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
+  if(!loggedUser && localStorage.getItem("token")){
+
+    logFromLS(localStorage.getItem('token'))
+    .then(backToHome => 
+      {
+        if(backToHome==='/'){
+        setRenderAgain(!renderAgain)}
+        
+    })
+    .catch(error => setRenderAgain(!renderAgain))
+  }
+
+  if(!loggedUser){
+    routes=
+  <>
+    <Route exact path="/" component={Home}/>
+    <Route exact path="/paquetes/" component={Paquetes}/>
+    <Route exact path="/carrito/" component={Carrito}/>
+    <Route exact path="/carritoPaquetes/" component={CarritoPaquetes}/>
+    <Route exact path="/paquete/:_id" component={Paquete}/>
+    <Route exact path="/registro" component={Registros} />
+    <Route exact path="/iniciarsesion" component={IniciarSesion} />
+    <Redirect to="/"/>
+
+  </>
+   }
+  if(loggedUser){
+    routes=
+    <>
+      <Route exact path="/" component={Home}/>
+      <Route exact path="/paquetes/" component={Paquetes}/>
+      <Route exact path="/carrito/" component={Carrito}/>
+      <Route exact path="/carritoPaquetes/" component={CarritoPaquetes}/>
+      <Route exact path="/paquete/:_id" component={Paquete}/>  
+      <Route exact path="/usuario" component={PaginaUsuario}/>   
+      <Route exact path="/editUsuario" component={EditUsuario}/> 
+      
+      <Redirect to="/"/> 
+       
+     
+
+    </>
+ 
   }
   return (
     <div className="App">
@@ -29,16 +75,9 @@ function App({loggedUser,logFromLS,carritoDelLS}) {
       <BrowserRouter>
         <Header/>
           <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route path="/paquetes/" component={Paquetes}/>
-            <Route path="/carrito/" component={Carrito}/>
-            <Route path="/carritoPaquetes/" component={CarritoPaquetes}/>
-            <Route exact path="/paquete/:_id" component={Paquete}/>
-            {/* <Route path='/usuario' component={PaginaUsuario}/> */}
-            {loggedUser && <Route path='/usuario' component={EditUsuario}/>}
-            {!loggedUser && <Route path="/registros" component={Registros} />}
-            {!loggedUser && <Route path="/iniciarsesion" component={IniciarSesion} /> }
-            <Redirect to="/" />
+          <Route exact path="/editUsuario" component={EditUsuario}/> 
+            {routes}
+            
           </Switch>
         <WhatsApp/>
         <Footer/>

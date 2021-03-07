@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
 import userActions from "../redux/actions/userActions"
 
 
-const Header = ({carrito, loggedUser}) => {
+const Header = ({carrito, loggedUser, logOut}) => {
     const [isOpen, setOpen] = useState(false)
 
     return (
@@ -25,24 +25,26 @@ const Header = ({carrito, loggedUser}) => {
                         <div className="centerCenterRow searchButton"><BiSearch /></div>                        
                     </div>
                     <div className="paquetesHeader">                    
-                        {/* <Link to={'/paquetes'}><button>PAQUETES</button></Link> */}
                         <PaquetesHeader />
                     </div>                 
                 </div>
                 <div className="headerUser centerVerticalColumn">
                     <div className="abrirRegalo centerCenterRow">
                         <p>Abrir mi Regalo</p>
+                        <Link to="/registro">Registrarse</Link>
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         {loggedUser ?
                         <>
                         <Link to="/usuario">
                             <div  className="centerCenterRow userName">
-                                <h1>{loggedUser.nombre}</h1>
+                            <Link to="/" onClick={logOut} className="logOut">LogOut</Link>
                                 {loggedUser.googleUser==="true" 
-                                ? <div className="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}></div>
-                                : <div className="userImg" style={{backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}></div>
+                                ? <div id="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}></div>
+                                : <div id="userImg" style={{backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}></div>
                                 }
+                                <p>{loggedUser.nombre}</p>   
+                                <Link to="/editUsuario" className="logOut">EditarUss</Link>                             
                             </div>  
                         </Link>
                         </> 
@@ -81,7 +83,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    cerrarSesion: userActions.cerrarSesion
+    logOut: userActions.logOut
   }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
