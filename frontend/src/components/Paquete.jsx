@@ -9,13 +9,12 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 
 
 
-const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,enviarValoracion }) => {
-    const [valor,setValor]=useState(0)
-    // const [ultimoValor,setUltimoValor]=useState(0);
-    useEffect(async() => {
-        console.log(valor)
-        if(valor!==0){
-            await enviarValoracion(match.params._id,{idUsuario:loggedUser.id,valor})
+const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion }) => {
+    const [valor, setValor] = useState(0)
+    const [ultimoValor, setUltimoValor] = useState({ valor: 0 });
+    useEffect(async () => {
+        if (valor !== 0) {
+            await enviarValoracion(match.params._id, { idUsuario: loggedUser.id, valor })
             obtenerPaquetePorId(match.params._id)
         }
     }, [valor])
@@ -63,18 +62,18 @@ const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,enviarVal
 
     const id = match.params._id
     useEffect(() => {
-        var paquete=obtenerPaquetePorId(match.params._id)
-        if(paquete){console.log(paquete)}
-        // if(paquetePorId){
-        //     var aux={valor:0}
-        //     aux=paquetePorId.valoracion.find(valoracionUsuario=>valoracionUsuario.idUsuario===loggedUser.id)
-        //     if(aux.valor!==null && aux!==undefined){
-        //         setUltimoValor(aux.valor)
-        //         console.log(ultimoValor)
-        //     }
+        var paquete = obtenerPaquetePorId(match.params._id)
+        if (paquetePorId) {
+            var aux = { valor: 0 }
+            aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
+            if (aux.valor !== null && aux !== undefined) {
+                setUltimoValor(aux)
+            }
 
-        // }
-    }, [match.params._id])
+        } 
+    }, [id])
+
+    console.log(ultimoValor)
     return (
         <>
             {paquetePorId &&
@@ -109,12 +108,14 @@ const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,enviarVal
                             </div>
                         </div>
                     </div>
-                    <div className="valoracionContainer">    
+                    <div className="valoracionContainer">
                         <div className="valoracion">
                             <span>{(paquetePorId.promedio).toFixed(2)}</span>
-                            <ReactStars count={5} onChange={setValor} 
-                            size={50} activeColor="#ffd700" isHalf={true}/>
+                            <ReactStars count={5} value={ultimoValor.valor} onChange={setValor}
+                                size={50} activeColor="#ffd700" isHalf={true} />
+
                         </div>
+                        <p className="verComentarios">Ver comentarios del paquete</p>
                         <img src="https://fotos.subefotos.com/af333790da6d3696dec1241bd0c55308o.png" alt="estrellas" />
                     </div>
                     <div className="productosContainer">
@@ -123,18 +124,18 @@ const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,enviarVal
                             <p>Tu agasajado va a poder disfrutar de estos <span>{productos.length}</span> productos</p>
                         </div>
                         <div className="productos">{
-                            productos.map( producto => {
+                            productos.map(producto => {
                                 return (
                                     <>
                                         <div className="cardProducto">
-                                            <img src={producto[0].imagen} alt="" style={{width: '100%'}}/>
+                                            <img src={producto[0].imagen} alt="" style={{ width: '100%' }} />
                                             <div className="infoProducto">
                                                 <div className="tituloProducto">
                                                     <h4>{producto[0].titulo}</h4>
-                                                    <BsFillPeopleFill className="iconCard"/>
+                                                    <BsFillPeopleFill className="iconCard" />
                                                 </div>
-                                                <h5>{producto[0].descripcion.slice(0, 180)+'...'}</h5>
-                                                <p className="lugarProducto"><FaMapMarkerAlt className="iconCard"/> {producto[0].lugar}</p>
+                                                <h5>{producto[0].descripcion.slice(0, 180) + '...'}</h5>
+                                                <p className="lugarProducto"><FaMapMarkerAlt className="iconCard" /> {producto[0].lugar}</p>
                                             </div>
                                         </div>
                                     </>
