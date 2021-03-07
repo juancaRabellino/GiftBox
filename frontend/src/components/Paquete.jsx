@@ -8,26 +8,29 @@ import ReactStars from "react-rating-stars-component";
 
 
 
-const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,obtenerValoracion,enviarValoracion }) => {
-    const [paquete, setPaquete] = useState([])
-    const [usuarioYvalidacion,setUsuarioYvalidacion]=useState({idUsuario:null,valor:null})
-    const ratingChanged = (newRating) => {
-        setUsuarioYvalidacion({idUsuario:loggedUser.id,valor: newRating})
-        if(usuarioYvalidacion.idUsuario && usuarioYvalidacion.valor){
-            enviarValoracion(id,usuarioYvalidacion)
-            obtenerPaquetePorId(id)
-        
+const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,enviarValoracion }) => {
+    const [valor,setValor]=useState(0)
+    // const [ultimoValor,setUltimoValor]=useState(0);
+    useEffect(async() => {
+        if(valor!==0){
+            await enviarValoracion(match.params._id,{idUsuario:loggedUser.id, valor})
+            obtenerPaquetePorId(match.params._id)
         }
-    };
-    const id = match.params._id
-    useEffect(() => {
-        obtenerPaquetePorId(id)
-        obtenerValoracion(paquete)
-        paquetePorId && setPaquete(paquetePorId)
-    }, [id,usuarioYvalidacion])
-    console.log(paquete)
+    }, [valor])
 
- 
+    useEffect(() => {
+        var paquete=obtenerPaquetePorId(match.params._id)
+        if(paquete){console.log(paquete)}
+        // if(paquetePorId){
+        //     var aux={valor:0}
+        //     aux=paquetePorId.valoracion.find(valoracionUsuario=>valoracionUsuario.idUsuario===loggedUser.id)
+        //     if(aux.valor!==null && aux!==undefined){
+        //         setUltimoValor(aux.valor)
+        //         console.log(ultimoValor)
+        //     }
+
+        // }
+    }, [match.params._id])
     return (
         <>
             {paquetePorId &&
@@ -65,7 +68,7 @@ const Paquete = ({loggedUser, match, paquetePorId, obtenerPaquetePorId,obtenerVa
                     <div className="valoracionContainer">    
                         <div className="valoracion">
                             <span>{(paquetePorId.promedio).toFixed(2)}</span>
-                            <ReactStars count={5} value={paquetePorId.prom} onChange={ratingChanged} 
+                            <ReactStars count={5} value={5} onChange={setValor} 
                             size={50} activeColor="#ffd700" isHalf={true}/>
                         </div>
                         <img src="https://fotos.subefotos.com/af333790da6d3696dec1241bd0c55308o.png" alt="estrellas" />

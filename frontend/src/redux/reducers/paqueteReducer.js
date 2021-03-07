@@ -5,10 +5,17 @@ const initialState = {
   paquetesFiltrados: [],
   paquetesMasRegalados: []
 }
-const actualizarPaquete=(paquetesViejo,paqueteNuevo)=>{
-  return (
-    paquetesViejo.map(paquete=>{
-      if(paquete._id===paqueteNuevo._id){paquete.valoracion=paqueteNuevo.valoracion;}
+const actualizar=(todosLosPaquetes,nuevoPaquete)=>{
+  return (todosLosPaquetes.map(paquete=>{
+    if(paquete._id===nuevoPaquete._id){
+      paquete=nuevoPaquete;
+      console.log("_______________")
+      console.log(paquete)
+      console.log(nuevoPaquete)
+      console.log("_______________")
+
+
+    }
       return paquete
   }
   ))
@@ -27,14 +34,18 @@ const paqueteReducer = (state = initialState, action) => {
         paquetesPorCategoria: state.todosLosPaquetes.filter(paquete => paquete.categoria === action.payload)
       }
     case 'PAQUETE_ID':
-      var paqueteAux= state.todosLosPaquetes.find(paquete => paquete._id === action.payload)
+      var aux1=actualizar(state.todosLosPaquetes,action.payload)
+      console.log(aux1)
+      var paqueteAux= aux1.find(paquete => paquete._id === action.payload)
       var suma=0;
       (paqueteAux.valoracion).map(valoracion=>(suma+=valoracion.valor))
       var promedio= suma/(paqueteAux.valoracion).length;
-      // console.log("suma: "+suma +"/" +(paqueteAux.valoracion).length )
-      // console.log("promedio " + promedio)
+      console.log("-----------------------------------------------------------------")
+      console.log("suma: "+suma +"/" +(paqueteAux.valoracion).length )
+      console.log("promedio " + promedio)
       return {
         ...state,
+        todosLosPaquetes:aux1,
         paquetePorId: {...paqueteAux,promedio}
       }
     case 'FILTRO':
@@ -48,9 +59,10 @@ const paqueteReducer = (state = initialState, action) => {
         paquetesMasRegalados: action.payload
       }
     case 'ENVIAR_VALORACION':
+      const aux=actualizar(state.todosLosPaquetes,action.payload)
       return{
         ...state,
-        paquetePorId:{...state.paquetePorId,valoracion:action.payload.valoracion}
+        todosLosPaquetes: aux
       }
     default:
       return state;
