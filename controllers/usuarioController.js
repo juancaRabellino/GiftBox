@@ -82,15 +82,6 @@ const usuarioController = {
         const imagenName= imgFile.name.split(".").slice(0,-1)
         console.log(imagenName)
         var imgName = `${imagenName[0]}.${imgTipo}`
-        // var imgPath= `${__dirname}/../frontend/public/usuarioImg/${id}.${imgTipo}`
-
-        // await imgFile.mv(imgPath,error=>{
-        //     if(error){
-        //         errors.push(error)}
-        //         else{
-                    
-        //         }})
-        // nuevoUsuario.imagen = imgName;
 
         const usuarioExistente = await Usuario.findOneAndUpdate({_id:id},
             {'$set':{imagen:imgName}},
@@ -163,7 +154,6 @@ const usuarioController = {
     },
 
     logFromLS: (req, res) => {
-        console.log(req.user)
         res.json({success: true,
           response: {
             token: req.body.token,
