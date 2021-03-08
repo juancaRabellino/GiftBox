@@ -3,19 +3,11 @@ import Swal from'sweetalert2';
 
 
 const userActions={
-<<<<<<< HEAD
-    crearCuenta: (nuevoUsuario) => {
-        console.log(nuevoUsuario)        
-        return async (dispatch, getState) => {
-            const respuesta = await axios.post('http://localhost:4000/api/usuarios/register',nuevoUsuario,{
-                headers: {"Content-Type": "multipart/form-data"}
-=======
     crearCuenta: (formNuevoUsuario) => {
         return async (dispatch,getstate) => {
             try{
               const data = await axios.post("http://localhost:4000/api/usuarios",formNuevoUsuario,{
                 headers: {"Content-Type": "multipart: form-data"}
->>>>>>> aa03af0b298197af436b1ad8a5c2f73d21714aa7
               }); 
               console.log(data.data.success)
               if (data.data.success){
@@ -38,8 +30,6 @@ const userActions={
             dispatch({type: 'CERRAR_SESION'})
         }
     },
-<<<<<<< HEAD
-=======
     logFromLS: (token) => {
         return async (dispatch, getState) => {
             try {
@@ -87,7 +77,6 @@ const userActions={
         }
       },
 
->>>>>>> aa03af0b298197af436b1ad8a5c2f73d21714aa7
     iniciarSesion: (usuario) => {
         console.log(usuario)
         return async (dispatch, getState) => {
