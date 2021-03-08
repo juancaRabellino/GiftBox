@@ -12,7 +12,7 @@ import Swal from 'sweetalert2'
 
 const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion,agregarComentario }) => {
     const [valor, setValor] = useState(0)
-    // const [ultimoValor,setUltimoValor]=useState(0);
+    const [ultimoValor,setUltimoValor]=useState(0);
     const [visible, setVisible] = useState(false)
     const [comentario, setComentario] = useState({})
 

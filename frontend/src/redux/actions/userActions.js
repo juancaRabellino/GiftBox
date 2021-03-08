@@ -1,4 +1,6 @@
 import axios from "axios"
+import Swal from'sweetalert2';
+
 
 const userActions={
     crearCuenta: (formNuevoUsuario) => {
@@ -43,6 +45,26 @@ const userActions={
             }
         }
     },
+ 
+    resetearPassword: (cuenta)=> {
+        return async (dispatch) => {
+            try{
+                const response = await axios.post('http://localhost:4000/api/user/resetear-password', {cuenta})
+                console.log(response)
+                dispatch({type: 'RESETEAR_PASSWORD'})
+            }catch(error){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ups!',
+                    text: "Algo salio mal, intenta nuevamente!",
+                    showConfirmButton: false,
+                    timer: 4000
+                    })
+            }
+        }
+    },
+
+
     
     logOut:()=>{
         return (dispatch, getState)=>{
@@ -77,6 +99,18 @@ const userActions={
         }
         }
     },
+
+    cambiarPassword : (editUsuario) => {
+        console.log(editUsuario)
+        return async (dispatch, getState)=> {
+            const respuesta = await axios.put("http://localhost:4000/api//cambiar-password", editUsuario)
+            console.log(respuesta)
+            if(!respuesta.data.success){
+            console.log('me fui')
+            return respuesta.data 
+        }
+        }
+    },
     editarUsuarioImg : (formNuevaImg, id) => {
         console.log('llegue a Imagen')
 
@@ -89,5 +123,7 @@ const userActions={
         }
         }
     }
+
+
 }
 export default userActions;
