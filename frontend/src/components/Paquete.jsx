@@ -170,6 +170,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
                                     <button onClick={enviarComentario}>ENVIA</button>
                                 </div>
                                 {paquetePorId.opiniones.map(comentario => {
+                                    console.log(comentario)
                                     return (
                                         <>
                                             <div className="comentarioContainer">
