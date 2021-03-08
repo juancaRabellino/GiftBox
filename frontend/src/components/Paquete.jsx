@@ -6,14 +6,19 @@ import { Link } from "react-router-dom"
 import { BsArrowLeft, BsFillPeopleFill, BsBuilding, BsGiftFill, BsIntersect, BsEnvelopeFill } from "react-icons/bs";
 import ReactStars from "react-rating-stars-component";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import Swal from 'sweetalert2'
 
 
 
-const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion }) => {
-    const [ultimoValor, setUltimoValor] = useState(0);
+const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion,agregarComentario }) => {
     const [valor, setValor] = useState(0)
+    // const [ultimoValor,setUltimoValor]=useState(0);
+    const [visible, setVisible] = useState(false)
+    const [comentario, setComentario] = useState({})
+
     useEffect(async () => {
-        if (valor !== 0) {
+        console.log(valor)
+        if (valor !== 0 && loggedUser) {
             await enviarValoracion(match.params._id, { idUsuario: loggedUser.id, valor })
             obtenerPaquetePorId(match.params._id)
             
@@ -21,46 +26,84 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     }, [valor])
 
     const productos = [
-        [{
+        {
             titulo: 'Spa El Roble, Villa Crespo',
             descripcion: 'Especialmente diseñado para el bienestar físico, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una experiencia única.',
             imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
             lugar: 'Malabia 429'
-        }],
-        [
-            {
-                titulo: 'Spa El Roble, Villa Crespo',
-                descripcion: 'Especialmente diseñado para el bienestar físicgadf, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una experiencia única.',
-                imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
-                lugar: 'Malabia 4291'
-            }
-        ],
-        [
-            {
-                titulo: 'Spa El Roble, Villa Crespo',
-                descripcion: 'Especialmente diseñado para el bienestar físico, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una experiencia únicaaaaaaaaaaaaaaaaaaaaaaaaaa.',
-                imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
-                lugar: 'Malabia 4293'
-            }
-        ],
-        [
-            {
-                titulo: 'Spa El Roble, Villa Crespo',
-                descripcion: 'Especialmente diseñado para el bienestar físidfgafdgdfco, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una experiencia única.',
-                imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
-                lugar: 'Malabia 4295'
-            }
-        ],
-        [
-            {
-                titulo: 'Spa El Roble, Villa Crespo',
-                descripcion: 'Especialmente diseñado para el bienestar físico, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una expehdfghdfgagadfgadfgdfgriencia única.',
-                imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
-                lugar: 'Malabia 429'
-            }
-        ]
-    ]
+        },
 
+        {
+            titulo: 'Spa El Roble, Villa Crespo',
+            descripcion: 'Especialmente diseñado para el bienestar físicgadf, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una experiencia única.',
+            imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
+            lugar: 'Malabia 4291'
+        }
+        ,
+
+        {
+            titulo: 'Spa El Roble, Villa Crespo',
+            descripcion: 'Especialmente diseñado para el bienestar físico, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una experiencia únicaaaaaaaaaaaaaaaaaaaaaaaaaa.',
+            imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
+            lugar: 'Malabia 4293'
+        }
+        ,
+
+        {
+            titulo: 'Spa El Roble, Villa Crespo',
+            descripcion: 'Especialmente diseñado para el bienestar físidfgafdgdfco, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una experiencia única.',
+            imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
+            lugar: 'Malabia 4295'
+        }
+        ,
+
+        {
+            titulo: 'Spa El Roble, Villa Crespo',
+            descripcion: 'Especialmente diseñado para el bienestar físico, mental y espiritual. Un espacio creado para lograr calidez y armonía y quienes lo visiten puedan obtener una expehdfghdfgagadfgadfgdfgriencia única.',
+            imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
+            lugar: 'Malabia 429'
+        }
+
+    ]
+    const leerInput = (e) => {
+        const nombre = e.target.name
+        const nuevoComentario = e.target.value
+        setComentario({
+            ...comentario,
+            paqueteId: paquetePorId._id,
+            token: loggedUser.token,
+            [nombre]: nuevoComentario
+        })
+    }
+    
+    const enviarComentario = (e) => {
+        if (!loggedUser) {
+            Swal.fire({
+                title: "Oops!",
+                text: "Tenés que estar logueado para opinar sobre el paquete!",
+                icon: "warning",
+                confirmButtonColor: "#c1866a",
+                confirmButtonText: "Logueame!",
+                background: "#4b98b7",
+                iconColor: "white",
+                backdrop: "rgba(80, 80, 80, 0.3)",
+            })
+        } else if (!comentario.opinion) {
+            Swal.fire({
+                title: "Oops!",
+                text: "Comment must not be empty!",
+                icon: "warning",
+                background: "#4b98b7",
+                iconColor: "white",
+                backdrop: "rgba(80, 80, 80, 0.3)",
+            })
+        } else {
+            setComentario({})
+            e.preventDefault()
+            agregarComentario(comentario)
+        }
+
+    }
     const id = match.params._id
     useEffect(() => {
         var paquete = obtenerPaquetePorId(match.params._id)
@@ -112,13 +155,41 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
                     <div className="valoracionContainer">
                         <div className="valoracion">
                             <span>{(paquetePorId.promedio).toFixed(2)}</span>
-                            
-                            <ReactStars count={5} value={ultimoValor} onChange={setValor} size={50} activeColor="#ffd700" isHalf={true} />
-                            
+                            <ReactStars count={5} onChange={setValor}
+                                size={50} activeColor="#ffd700" isHalf={true} />
+
                         </div>
-                        <p className="verComentarios">Ver comentarios del paquete</p>
+                        <p className="verComentarios" onClick={() => setVisible(!visible)}>Ver comentarios del paquete</p>
                         <img src="https://fotos.subefotos.com/af333790da6d3696dec1241bd0c55308o.png" alt="estrellas" />
                     </div>
+                    {visible &&
+                        <>
+                            <div className="cajaDeComentarios">
+                                <h2 className="tituloComentarios">Opiniones:</h2>
+                                <div style={{ display: 'flex' }}>
+                                    <input type="text" autoComplete="off" name="opinion" placeholder="Ingresá tu comentario..." onChange={leerInput} disabled={!loggedUser ? true : false} />
+                                    <button onClick={enviarComentario}>ENVIA</button>
+                                </div>
+                                {paquetePorId.opiniones.map(comentario => {
+                                    console.log(comentario)
+                                    return (
+                                        <>
+                                            <div className="comentarioContainer">
+                                                <div className="infoUsuario">
+                                                    <div className="imagenDeUsuario" style={{
+                                                        backgroundImage: `url(${comentario.imagenUsuario})`
+                                                    }}></div>
+                                                    <div className="nombreDeUsuario">{comentario.nombreUsuario}</div>
+                                                </div>
+                                                <div className="comentario">"{comentario.comentarioUsuario}"</div>
+                                            </div>
+                                            <div className="linea"></div>
+                                        </>
+                                    )
+                                })}
+                                <p className="verComentarios" onClick={() => setVisible(!visible)} style={{ margin: '2vh', alignSelf: 'flex-end' }}>Cerrar Comentarios </p>
+                            </div>
+                        </>}
                     <div className="productosContainer">
                         <div className="encabezado">
                             <h3>Dentro del paquete: </h3>
@@ -129,14 +200,14 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
                                 return (
                                     <>
                                         <div className="cardProducto">
-                                            <img src={producto[0].imagen} alt="" style={{ width: '100%' }} />
+                                            <img src={producto.imagen} alt="" style={{ width: '100%' }} />
                                             <div className="infoProducto">
                                                 <div className="tituloProducto">
-                                                    <h4>{producto[0].titulo}</h4>
+                                                    <h4>{producto.titulo}</h4>
                                                     <BsFillPeopleFill className="iconCard" />
                                                 </div>
-                                                <h5>{producto[0].descripcion.slice(0, 180) + '...'}</h5>
-                                                <p className="lugarProducto"><FaMapMarkerAlt className="iconCard" /> {producto[0].lugar}</p>
+                                                <h5>{producto.descripcion.slice(0, 180) + '...'}</h5>
+                                                <p className="lugarProducto"><FaMapMarkerAlt className="iconCard" /> {producto.lugar}</p>
                                             </div>
                                         </div>
                                     </>
@@ -163,7 +234,8 @@ const mapDispatchToProps = {
     obtenerTodosLosPaquetes: paqueteActions.obtenerTodosLosPaquetes,
     obtenerPaquetePorId: paqueteActions.obtenerPaquetePorId,
     obtenerValoracion: paqueteActions.obtenerValoracion,
-    enviarValoracion: paqueteActions.enviarValoracion
+    enviarValoracion: paqueteActions.enviarValoracion,
+    agregarComentario: paqueteActions.agregarComentario
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paquete)

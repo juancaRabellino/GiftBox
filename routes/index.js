@@ -32,6 +32,15 @@ router.route("/paquetes/:_id")
   .delete(paquetesController.eliminarPaquete)
   .put(paquetesController.editarPaquete)
 
+// COMENTARIOS DE PAQUETES
+router.route('/paquete/comentario')
+  .post(passport.authenticate('jwt', { session: false }), paquetesController.editarComentario)
+  .put(paquetesController.editarComentario)
+  
+router.route('/paquete/commentario/:paqueteId/:comentarioId')
+  .delete(paquetesController.eliminarComentario)
+
+
 // CONTROLADOR DE USUARIO
 router.route('/usuarios/:_id')
   .delete(usuarioController.eliminarUsuario)
