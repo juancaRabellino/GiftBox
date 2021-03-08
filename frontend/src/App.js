@@ -75,7 +75,7 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
   return (
     <div className="App">
       
-      <BrowserRouter>
+      <BrowserRouter >
         <Header/>
           
             {routes}
