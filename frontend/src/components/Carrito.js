@@ -3,6 +3,7 @@ import { BsDash, BsFillPeopleFill, BsPlus, BsTrash} from "react-icons/bs";
 import { BiArrowBack } from "react-icons/bi";
 import { connect } from "react-redux";
 import carritoActions from "../redux/actions/carritoActions";
+import {Link} from "react-router-dom"
 
 const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
     if(!carrito){return <h1>loading..</h1> }
@@ -10,9 +11,15 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
         <>
         <div className="carrito">
             <div className="carritoHead"  style={{ backgroundImage: `url("../assets/carritoImagen.png")` }} >
-                <BiArrowBack style={{fontSize: "3rem", color:"#464646"}}/><h3 style={{fontSize:"2.2rem", color:"#464646",paddingLeft:"2vw"}}>Tu carrito</h3>
+                <Link to="/">
+                    <BiArrowBack style={{fontSize: "3rem", color:"#464646"}}/>
+                </Link>
+                <h3 style={{fontSize:"2.2rem", color:"#464646",paddingLeft:"1.5vw"}}>Tu carrito</h3>
+                
             </div>
             <div className="carritoSection">
+            {carrito.length!==0
+            ?
                 <div className="carritoPaquetes">
                     {carrito && carrito.map(paquete=>
                         <div className="carritoPaquete">
@@ -48,6 +55,12 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
                         </div>
                     )}
                 </div>
+            :
+            <div className="carritoPaquetes" style={{paddingTop:"10vh",fontSize:"1.4rem"}}>
+                <h2>Tu carrito está vacío</h2>
+                <h5>¿No sabés qué comprar? ¡Miles de paquetes te esperan!</h5>
+            </div>
+            }
                 <div className="carritoResumen">
                     <div>
                         <div id="resumenTitulo">
@@ -64,6 +77,10 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
                         <div id="resumenTotal" >
                             <p>Total</p>  
                             <p>$ {total}</p>
+                        </div>
+                        <div id="resumenContinuarYseguir">
+                            <Link id="carritoContinuar">Continuar</Link>
+                            <Link id="carritoSeguirComprando">Seguir Comprando</Link>
                         </div>
                     </div>
                 </div>

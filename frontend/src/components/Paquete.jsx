@@ -10,12 +10,13 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 
 
 const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion }) => {
+    const [ultimoValor, setUltimoValor] = useState(null);
     const [valor, setValor] = useState(0)
-    const [ultimoValor, setUltimoValor] = useState({ valor: 0 });
     useEffect(async () => {
         if (valor !== 0) {
             await enviarValoracion(match.params._id, { idUsuario: loggedUser.id, valor })
             obtenerPaquetePorId(match.params._id)
+            
         }
     }, [valor])
 
@@ -63,16 +64,18 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     const id = match.params._id
     useEffect(() => {
         var paquete = obtenerPaquetePorId(match.params._id)
-        if (paquete) {
-            var aux = { valor: 0 }
-            aux = paquete.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
-            if (aux !== null && aux !== undefined) {
-                setUltimoValor(aux)
-            }
-
+        setUltimoValor(0)
+        if (paquete && loggedUser) {
+            paquete.valoracion.map(valoracionUsuario => 
+                {if(valoracionUsuario.idUsuario===loggedUser.id){
+                    setUltimoValor(valoracionUsuario.valor)
+                    console.log(ultimoValor)
+                }})
         } 
     }, [id])
+    console.log(paquetePorId)
     if(!paquetePorId){return <h1>loading...</h1> }
+    if(!ultimoValor){return <h1>loading...</h1> }
     return (
         <>
             {paquetePorId &&
@@ -110,9 +113,9 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
                     <div className="valoracionContainer">
                         <div className="valoracion">
                             <span>{(paquetePorId.promedio).toFixed(2)}</span>
-                            <ReactStars count={5} value={ultimoValor.valor} onChange={setValor}
-                                size={50} activeColor="#ffd700" isHalf={true} />
-
+                            
+                            <ReactStars count={5} value={ultimoValor} onChange={setValor} size={50} activeColor="#ffd700" isHalf={true} />
+                            
                         </div>
                         <p className="verComentarios">Ver comentarios del paquete</p>
                         <img src="https://fotos.subefotos.com/af333790da6d3696dec1241bd0c55308o.png" alt="estrellas" />

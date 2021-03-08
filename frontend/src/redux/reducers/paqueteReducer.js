@@ -9,10 +9,6 @@ const actualizar=(todosLosPaquetes,nuevoPaquete)=>{
   return (todosLosPaquetes.map(paquete=>{
     if(paquete._id===nuevoPaquete._id){
       paquete=nuevoPaquete;
-      /* console.log("_______________")
-      console.log(paquete)
-      console.log(nuevoPaquete)
-      console.log("_______________") */
     }
       return paquete
   }

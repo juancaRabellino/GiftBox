@@ -904,6 +904,7 @@ border-radius: 30px;
     margin: 0;
 }
 .buttonCarrito{
+    outline: none;
     transition: background-color .3s;
     border: 0;
     border-radius: 3px;
@@ -927,7 +928,7 @@ border-radius: 30px;
 
 .carritoResumen{
     width: 40%;
-    height: 50vh;
+    height: 55vh;
     padding: 0vh 5vw;
     background-color: #ff66341c;
 }
@@ -954,4 +955,32 @@ border-radius: 30px;
     font-size: 1.6rem;
     color: #2e93e5;
 }
-
+#resumenContinuarYseguir{
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    padding: 2vh 3vw;
+    justify-content: space-between;
+}
+#carritoContinuar{
+    height: 7vh;
+    background-color: #ff6c5f;
+    color: #fff;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#carritoContinuar:hover{
+    background-color: #ff6c5fde;
+}
+#carritoSeguirComprando{
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff6c5f;
+}
+#carritoSeguirComprando:hover{
+    color:#ff6c5fbb ;
+}
