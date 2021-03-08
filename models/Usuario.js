@@ -5,8 +5,8 @@ const usuarioSchema= new mongoose.Schema({
     apellido: String,
     cuenta:String ,
     password: String,
-    imagen: String,
-    googleUser: Boolean,    
+    imagen: {type:String , default:"no-usuario.png"},
+    googleUser: String,    
     rol: {type: String , default: "registrado"},
     paquetesFaveados:[{type: mongoose.Schema.ObjectId , ref: "paquete",default: []}],
     paquetesComprados:[{

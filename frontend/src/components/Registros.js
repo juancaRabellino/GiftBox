@@ -12,7 +12,8 @@ const Registro = (props) => {
         apellido: '',
         cuenta: '',
         password: '',
-        imagen: ''
+        imagen: '',
+        googleUser: false,
     })
     const [errores, setErrores] = useState([])
 
@@ -20,7 +21,7 @@ const Registro = (props) => {
     const leerInput = e =>{
         var valor = e.target.value
         const campo = e.target.name
-        if(campo==="imagenDeUsuario"){
+        if(campo === "imagen"){
             valor=e.target.files[0];
         }
         setNuevoUsuario({
@@ -33,16 +34,15 @@ const Registro = (props) => {
         setErrores([])
         e.preventDefault()
 
-        const {nombre,apellido,cuenta,password,imagen}= nuevoUsuario
-
-        const formNuevoUsuario= new FormData();
-
+        const {nombre,apellido,cuenta,password,imagen} = nuevoUsuario
+        var formNuevoUsuario = new FormData();
         formNuevoUsuario.append("nombre",nombre)
         formNuevoUsuario.append("apellido",apellido)
         formNuevoUsuario.append("cuenta",cuenta)
         formNuevoUsuario.append("password",password)
         formNuevoUsuario.append("imgFile",imagen)
-
+        formNuevoUsuario.append("googleUser",false)
+        
         if (nombre === '' || apellido === '' || cuenta === '' ||
         password === '' || imagen === '') {
             Swal.fire({
@@ -54,89 +54,99 @@ const Registro = (props) => {
             return false
         }
         setErrores([])
-        const respuesta = await props.crearCuenta(nuevoUsuario)
-
-        console.log(respuesta)
-
-        if (respuesta && !respuesta.success) {
-            setErrores(respuesta.errores)
-        } else {
-            Swal.fire({
-                icon: 'success',
-                title: 'You have registered your user',
-                showConfirmButton: false,
-                timer: 1500
-              })
-        }
-    }
-
-    const responseGoogle = async (response) => {
-        console.log(response)
-        if (response.error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: '¡Something has happened!',
-              })
-        } 
-        else {
-            const respuesta = await props.crearCuenta({
-                
-                nombre: response.profileObj.givenName,
-                apellido: response.profileObj.familyName,
-                cuenta: response.profileObj.email,
-                password: response.profileObj.googleId,
-                imagen: response.profileObj.imageUrl,
-                
-            })
-            // DATOS A GOOGLE?
-            if (respuesta && !respuesta.success) {
-                setErrores(respuesta.errores)
+        props.crearCuenta(formNuevoUsuario)
+        .then(respuesta=>{
+            if (respuesta && respuesta.success===false) {
+                setErrores(respuesta.errors)
             } else {
                 Swal.fire({
                     icon: 'success',
                     title: 'You have registered your user',
                     showConfirmButton: false,
                     timer: 1500
-                    })
+                  }).then(() =>{
+                      props.history.push('/')
+                  })
+            }  
+        })
+    }
+
+        //GOOGLE REGISTRO
+    const responseGoogle = async (googleResponse) => {
+        if (googleResponse.error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '¡Sucedió algo inesperado!',
+              })
+        } 
+        else {                
+            var formNuevoUsuario = new FormData();
+            formNuevoUsuario.append("nombre",googleResponse.profileObj.givenName)
+            formNuevoUsuario.append("apellido",googleResponse.profileObj.familyName)
+            formNuevoUsuario.append("cuenta",googleResponse.profileObj.email)
+            formNuevoUsuario.append("password",googleResponse.profileObj.googleId)
+            formNuevoUsuario.append("imgFile",googleResponse.profileObj.imageUrl)
+            formNuevoUsuario.append("googleUser",true)
+
+            const respuesta= await props.crearCuenta(formNuevoUsuario)
+            if (respuesta && respuesta.success===false) {
+                setErrores(respuesta.errores)
+            } else 
+            {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'You have registered your user',
+                    showConfirmButton: false,
+                    timer: 1500
+                  }).then(() =>{
+                      props.history.push('/')
+                  })
+                    // .then(function (result) {
+                    //     if (result.value) {
+                    //         window.location.href='/'
+                    //     }})
                 }
             }
     }
    
     return (
 
-        
-        <div className="container-form">
-            <div className="form">
-            <h1>Create new account</h1>
-            <input type="text" name="nombre" placeholder="Nombre"
-            onChange={leerInput} />
-            <input type="text" name="apellido" placeholder="Apellido"
-            onChange={leerInput} />
-            <input type="text" name="cuenta" placeholder="Nombre de cuenta" 
-            onChange={leerInput} />
-            <input type="password" name="password" placeholder="password"
-            onChange={leerInput} />
-             <label htmlFor="uploadButton" className="inputFile">
-                        <p>Agrega tu imagen</p>
-                        <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
-                    </label>
-         
-                   <div className="botones">
-            <button className="buttonRegister" onClick={validarUsuario}>Crear Cuenta</button>
+        <div className="boxUserRegistro centerCenterRow">
 
-{/* CLIENTE DE GOOGLE */}
-            <GoogleLogin className= "google"
-                clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
-                buttonText="Create Account"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={'single_host_origin'}
-            />
+            <div className="container-form modificarEmailUsuario ">
+                <div className="formRegistro centerCenterColumn">
+                <h1>Crea una nueva cuenta</h1>
+                <input type="text" name="nombre" placeholder="Nombre"
+                onChange={leerInput} />
+                <input type="text" name="apellido" placeholder="Apellido"
+                onChange={leerInput} />
+                <input type="text" name="cuenta" placeholder="Nombre de cuenta" 
+                onChange={leerInput} />
+                <input type="text" name="password" placeholder="password"
+                onChange={leerInput} />
+                
+                <label htmlFor="uploadButton" className="inputFile">
+                            <h1>Agrega tu imagen</h1>
+                            <input id="uploadButton" className="imgFile" type="file"  name="imagen" onChange={leerInput}/>
+                </label>
+            
+                <div className="botones">
+                <button className="buttonRegister" onClick={validarUsuario}>Crear Cuenta</button>
+                </div>
+
+    {/* CLIENTE DE GOOGLE */}
+                <GoogleLogin className= "google"
+                    clientId="1017297947872-a4k36afp8ren4g12ov8c4old1udn3v4b.apps.googleusercontent.com"
+                    buttonText="Create tu cuenta con Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
             </div>
         </div>
 
-            
+ 
 
             {/* <div className="errores">
                 {errores && errores.map((error,index) => <h2 key={index}>{error}</h2>)}
@@ -146,11 +156,14 @@ const Registro = (props) => {
 }
 const mapStateToProps = state => {
     return {
-        loggedUser: state.user.loggedUser
+        loggedUser: state.userReducer.loggedUser
     }
 }
 const mapDispatchToProps = {
-    crearCuenta: userActions.crearCuenta
+    crearCuenta: userActions.crearCuenta,
+    crearCuentaGoogle: userActions.crearCuentaGoogle,
+    logOut: userActions.logOut
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registro) 
