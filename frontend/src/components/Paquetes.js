@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import paqueteActions from '../redux/actions/paqueteActions'
 // import Loader from './Loader'
 import TarjetaPaquete from './TarjetaPaquete'
+import { BiSearch } from 'react-icons/bi'
 
 const Paquetes = ({ paquetesFiltrados, filtrarPaquetes, location, todosLosPaquetes }) => {
   const [valor, setValor] = useState(false)
@@ -29,11 +30,14 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes, location, todosLosPaquet
 
   return (
     <main className='packagesMain'>
-      <input type='text' onChange={buscando}></input>
+      <div className="filterInput">
+        <input type="text" placeholder="Busca tu paquete" onChange={buscando}/>
+        <div className="centerCenterRow searchButton"><BiSearch /></div>
+      </div>
       <h3>{(location.categoria && !valor) && location.categoria}</h3>
       <div className='packagesContainer'>
         {paquetes && paquetes.map(paquete => {
-          return <TarjetaPaquete paquete={paquete} key={`paquete${paquete._id}`}/>
+          return <TarjetaPaquete paquete={paquete} key={`paquete${paquete._id}`} />
         })}
       </div>
     </main>

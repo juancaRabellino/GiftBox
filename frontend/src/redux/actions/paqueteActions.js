@@ -67,52 +67,56 @@ const paqueteActions = {
     }
   },
   agregarComentario: nuevoComentario => {
-    const {comentario, token, paqueteId} = nuevoComentario      
-    return async(dispatch, getState) => {
-      try{
-        const response = await axios.post(`http://localhost:4000/api/paquete/comentario`, {comentario, paqueteId}, 
-        {
-            headers:{
-                Authorization: `Bearer ${token}`
+    const { comentarioUsuario, token, paqueteId } = nuevoComentario
+    console.log(nuevoComentario)
+
+    return async (dispatch, getState) => {
+      try {
+        const response = await axios.post(`http://localhost:4000/api/paquete/comentario`, { comentarioUsuario, paqueteId },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
             }
-        })
-        dispatch({type: 'ENVIAR_COMENTARIO', payload: response.data.response})
-      }catch(error){
+          })
+        dispatch({ type: 'ENVIAR_COMENTARIO', payload: response.data.response })
+      } catch (error) {
         Swal.fire('ENTRE EN EL ERROR DE AGREGAR COMENTARIO')
       }
-      
+
     }
-},
-eliminarComentario: comentarioAEliminar => {
-    const { paqueteId, token, comentarioId } = comentarioAEliminar
+  },
+  eliminarComentario: comentarioAEliminar => {
+    console.log(comentarioAEliminar)
+
+    const { comentarioId, paqueteId, token } = comentarioAEliminar
     return async (dispatch, getState) => {
-      try{
+      try {
         const response = await axios.delete(`http://localhost:4000/api/paquete/comentario/${paqueteId}/${comentarioId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      dispatch({ type: 'ELIMINAR_COMENTARIO', payload: response.data.response })
-      }catch(error){
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        dispatch({ type: 'ELIMINAR_COMENTARIO', payload: response.data.response })
+      } catch (error) {
         Swal.fire('ENTRE EN EL ERROR DE ELIMINAR COMENTARIO')
       }
-      
+
     }
   },
   editarComentario: comentarioAEditar => {
-    const {comentarioId, paqueteId, comentarioEditado, token } = comentarioAEditar
+    const { comentarioId, paqueteId, comentarioEditado, token } = comentarioAEditar
     return async (dispatch, getState) => {
-      try{
+      try {
         const response = await axios.put(`http://localhost:4000/api/paquete/comentario`, { comentarioId, paqueteId, comentarioEditado },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })     
-      dispatch({ type: 'EDITAR_COMENTARIO', payload: response.data.response })
-      }catch(error){
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+        dispatch({ type: 'EDITAR_COMENTARIO', payload: response.data.response })
+      } catch (error) {
         Swal.fire('ENTRE EN EL ERROR DE EDITAR COMENTARIO')
       }
     }

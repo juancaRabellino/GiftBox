@@ -10,7 +10,7 @@ const actualizar=(todosLosPaquetes,nuevoPaquete)=>{
     if(paquete._id===nuevoPaquete._id){
       paquete=nuevoPaquete;
     }
-      return paquete
+    return paquete
   }
   ))
 }
@@ -28,18 +28,18 @@ const paqueteReducer = (state = initialState, action) => {
         paquetesPorCategoria: state.todosLosPaquetes.filter(paquete => paquete.categoria === action.payload)
       }
     case 'PAQUETE_ID':
-      var aux1=actualizar(state.todosLosPaquetes,action.payload)
-      var paqueteAux= aux1.find(paquete => paquete._id === action.payload)
-      var suma=0;
-      (paqueteAux.valoracion).map(valoracion=>(suma+=valoracion.valor))
-      var promedio= suma/(paqueteAux.valoracion).length;
+      var aux1 = actualizar(state.todosLosPaquetes, action.payload)
+      var paqueteAux = aux1.find(paquete => paquete._id === action.payload)
+      var suma = 0;
+      (paqueteAux.valoracion).map(valoracion => (suma += valoracion.valor))
+      var promedio = suma / (paqueteAux.valoracion).length;
       /* console.log("-----------------------------------------------------------------")
       console.log("suma: "+suma +"/" +(paqueteAux.valoracion).length )
       console.log("promedio " + promedio) */
       return {
         ...state,
-        todosLosPaquetes:aux1,
-        paquetePorId: {...paqueteAux,promedio}
+        todosLosPaquetes: aux1,
+        paquetePorId: { ...paqueteAux, promedio }
       }
     case 'FILTRO':
       return {
@@ -52,26 +52,29 @@ const paqueteReducer = (state = initialState, action) => {
         paquetesMasRegalados: action.payload
       }
     case 'ENVIAR_VALORACION':
-      const aux=actualizar(state.todosLosPaquetes,action.payload)
-      return{
+      const aux = actualizar(state.todosLosPaquetes, action.payload)
+      return {
         ...state,
         todosLosPaquetes: aux
       }
     case 'ENVIAR_COMENTARIO':
-        return {
-            ...state, 
-            paquete: state.todosLosPaquetes.map(paquete => paquete._id === action.payload._id ? action.payload : paquete)
-        }
+      console.log("LLEGUE AL REDUCER")
+      console.log(action.payload)
+      console.log(state)
+      return {
+        ...state,
+        paquete: state.todosLosPaquetes.map(paquete => paquete._id === action.payload._id ? action.payload : paquete)
+      }
     case 'ELIMINAR_COMENTARIO':
-        return {
-            ...state,
-            paquete: state.todosLosPaquetes.map(paquete => paquete._id === action.payload._id ? action.payload : paquete)
-        }
+      return {
+        ...state,
+        paquete: state.todosLosPaquetes.map(paquete => paquete._id === action.payload._id ? action.payload : paquete)
+      }
     case 'EDITAR_COMENTARIO':
-        return {
-            ...state,
-            paquete: state.todosLosPaquetes.map(paquete => paquete._id === action.payload._id ? action.payload : paquete)
-        }
+      return {
+        ...state,
+        paquete: state.todosLosPaquetes.map(paquete => paquete._id === action.payload._id ? action.payload : paquete)
+      }
     default:
       return state;
   }
