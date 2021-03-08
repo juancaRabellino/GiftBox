@@ -34,10 +34,10 @@ router.route("/paquetes/:_id")
 
 // COMENTARIOS DE PAQUETES
 router.route('/paquete/comentario')
-  .post(passport.authenticate('jwt', { session: false }), paquetesController.editarComentario)
+  .post(passport.authenticate('jwt', { session: false }), paquetesController.agregarComentario)
   .put(paquetesController.editarComentario)
   
-router.route('/paquete/commentario/:paqueteId/:comentarioId')
+router.route('/paquete/comentario/:paqueteId/:comentarioId')
   .delete(paquetesController.eliminarComentario)
 
 
