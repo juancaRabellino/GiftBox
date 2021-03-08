@@ -27,7 +27,14 @@ const EnviarEmail = ( props ) => {
 
         const respuesta = await props.resetearPassword(cuenta)
         if(respuesta && !respuesta.success){
-            setErrores(respuesta.errors)
+            setErrores(respuesta.error)
+            Swal.fire({
+                icon: 'success',
+                title: '¡Error!',
+                text: "Tu direccion de correo no es valida!",
+                showConfirmButton: false,
+                timer: 4000
+                })
         }else{
             Swal.fire({
                 icon: 'success',

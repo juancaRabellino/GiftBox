@@ -20,7 +20,7 @@ function RecuperarPassword(props) {
 
 
     const cambiarPassword = () =>{
-        console.log(editarUsuario)
+    
         props.cambiarPassword(editarUsuario)
     }
 

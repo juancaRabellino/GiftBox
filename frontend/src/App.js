@@ -47,7 +47,7 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
     <Route exact path="/carrito/" component={Carrito}/>
     <Route exact path="/carritoPaquetes/" component={CarritoPaquetes}/>
     <Route exact path="/paquete/:_id" component={Paquete}/>
-    <Route exact path="/registro" component={Registros} />
+   
     <Route exact path="/iniciarsesion" component={IniciarSesion} />
    
 
@@ -86,6 +86,7 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
           <Route exact path="/editUsuario" component={EditUsuario}/> 
           <Route exact path="/cambiar-password" component={RecuperarPassword}/> 
           <Route exact path="/recuperar-password" component={EnviarEmail}/> 
+          <Route exact path="/registro" component={Registros} />
 
             {routes}
             
