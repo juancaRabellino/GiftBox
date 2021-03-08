@@ -51,6 +51,8 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
     <Route exact path="/paquete/:_id" component={Paquete}/>
     <Route exact path="/registro" component={Registros} />
     <Route exact path="/iniciarsesion" component={IniciarSesion} />
+    <Route exact path="/cambiar-password" component={RecuperarPassword}/> 
+    <Route exact path="/recuperar-password" component={EnviarEmail}/> 
     <Redirect to="/"/>
   </Switch>
   </>
@@ -80,8 +82,6 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       
       <BrowserRouter >
         <Header/>
-          <Route exact path="/cambiar-password" component={RecuperarPassword}/> 
-          <Route exact path="/recuperar-password" component={EnviarEmail}/> 
 
           {routes}
             
