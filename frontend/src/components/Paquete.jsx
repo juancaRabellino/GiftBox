@@ -10,7 +10,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 
 
 const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion }) => {
-    const [ultimoValor, setUltimoValor] = useState(null);
+    const [ultimoValor, setUltimoValor] = useState(0);
     const [valor, setValor] = useState(0)
     useEffect(async () => {
         if (valor !== 0) {
@@ -75,7 +75,6 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     }, [id])
     console.log(paquetePorId)
     if(!paquetePorId){return <h1>loading...</h1> }
-    if(!ultimoValor){return <h1>loading...</h1> }
     return (
         <>
             {paquetePorId &&
