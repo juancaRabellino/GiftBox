@@ -18,6 +18,9 @@ import RecuperarPassword from './components/RecuperarPassword'
 import { connect } from 'react-redux';
 import carritoActions from './redux/actions/carritoActions';
 import userActions from './redux/actions/userActions';
+import Envio from './components/Envio';
+import EnvioMensaje from './components/EnvioMensaje';
+import Pago from './components/Pago';
 
 function App({loggedUser,carritoDelLS,logFromLS}) {
   console.log(loggedUser)
@@ -57,9 +60,9 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
   </Switch>
   </>
    }
-  if(loggedUser){
-    routes=
-    <>
+   if(loggedUser){
+     routes=
+     <>
     <Switch>
       <Route exact path="/" component={Home}/>
       <Route exact path="/paquetes/" component={Paquetes}/>
@@ -68,6 +71,11 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       <Route exact path="/paquete/:_id" component={Paquete}/>  
       <Route exact path="/usuario" component={PaginaUsuario}/>   
       <Route exact path="/editUsuario" component={EditUsuario}/> 
+      <Route exact path="/envio" component={Envio}/>
+      <Route exact path="/envioMensaje" component={EnvioMensaje}/>
+      
+      <Route exact path="/pago" component={Pago}/>
+      
       <Redirect to="/"/> 
     </Switch>
       
