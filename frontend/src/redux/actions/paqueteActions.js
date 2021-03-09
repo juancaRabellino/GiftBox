@@ -23,6 +23,7 @@ const paqueteActions = {
     }
   },
   obtenerPaquetePorId: (_id) => {
+    
     return (dispatch, getState) => {
       try {
         dispatch({ type: 'PAQUETE_ID', payload: _id })
@@ -68,7 +69,6 @@ const paqueteActions = {
   },
   agregarComentario: nuevoComentario => {
     const { comentarioUsuario, token, paqueteId } = nuevoComentario
-    console.log(nuevoComentario)
 
     return async (dispatch, getState) => {
       try {
