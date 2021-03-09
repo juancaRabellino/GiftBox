@@ -14,7 +14,7 @@ const Regalo=({loggedUser})=>{
                 
             </div>
             <div >
-                
+            
             </div>
         </div>
             
