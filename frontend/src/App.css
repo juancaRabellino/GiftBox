@@ -132,7 +132,7 @@ body{
 }
 
 .headerUserBottom {
-    width: 80%;
+    width: 60%;
     justify-content: space-around;
     margin-top: 2vh;
 }
@@ -275,12 +275,11 @@ body{
     transform: scale(1.05);
     box-shadow: 0px 0px 10px rgb(63, 63, 63);
 }
-.logOut{
+.logOut {
     padding: 1vh 1vw;
     margin: 0 1vw;
     background-color: var(--azul-claro);
-    color:black !important;
-    border-radius: 5px;
+    color: rgb(63, 63, 63) !important;
 }
 .userName{
     display: flex;
@@ -309,7 +308,10 @@ body{
     position: absolute;
     width: 30vh;
     margin-top: 2vh;
+    background-color: white;
+    align-items: center;
 }
+
 .flexRowUsuarios{
     display: flex;
     height:100%;
@@ -320,19 +322,26 @@ body{
     display: flex;
     align-items: center;
 }
+.losMasRegalados{
+    margin: 0vh 3vw 3vw 3vw;
+    color: rgb(63, 63, 63);
+}
+
 
 /* ------ PAQUETES HEADER -------- */
 
 .paquetesHeader {
-    position: absolute;
-    top: -1.5vh;
-    right: 7vw ;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     width: 20vw;
+    margin: 0 auto;
 }
 
 .paquetesHeader h1 {
     font-size: 1.25rem;
     width: 20vw;
+    margin: 0 auto;
 }
 
 /*SIGNIN SIGNUP*/
@@ -705,6 +714,7 @@ video {
 .headerTituloPaquetes{
   font-weight: 500;
   color: rgb(63, 63, 63);
+  margin: 0 auto;
 }
 .linksPaquetes{
   color: black;
@@ -727,6 +737,11 @@ video {
   text-align: start;
   transition: 0.2s ease;
   font-size: 1rem;
+  width: 100%;
+  
+}
+.paquetesPadres a{
+    color: rgb(63, 63, 63);
 }
 .paquetesPadres:hover{
   border-left: 4px solid var(--color-primario);
@@ -1072,6 +1087,17 @@ border-radius: 30px;
     .userName{
         display: none;
     }
+    .linksUsuarioResponsive{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        width: 30vh;
+        margin-top: 2vh;
+    }
+    .linksUsuarioResponsive  a{
+        margin: 1vh 3vw;
+        border-bottom: 1px solid rgb(161, 161, 161);
+    }
 
     /* ------- FOOTER ------- */
     .footerArriba{
@@ -1137,14 +1163,14 @@ border-radius: 30px;
         margin-top: 2vh;
     }
     /* ----- CAROUSEL ----- */
-    .imgCarrusel{
+    .imgCarrusel2{
         width: 100% !important;
         height: 50% !important;
     }
     .imgCarruselHijo{
         height: 50vh !important;
         width: 100% !important;
-        padding: 0 2vw;
+        
     }
     .nombreCategoria{
         font-size: 16px !important;
@@ -1152,11 +1178,38 @@ border-radius: 30px;
         justify-content: center !important;
     }
     .containerImg{
-        height: 10% !important;
+        display: none;
+        
+    }
+    .containerImg2{
+        margin: 5vh auto !important;
+        width: 85% !important;
+        height: 50vh;
+    }
+    .loMasRegaladoImagenResponsive{
+        background-position: center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        height: 20vh !important;
+    }
+    .precioDetalle p{
+        margin: 1vh 2vw !important;
+    }
+    .precio {
+        font-size: 1.75rem !important;
     }
 }
 @media (min-width:901px){
     .headerResponsive{
       display:none  
+    }
+    .containerImg2{
+        display: none;
+    }
+    .containerImg{
+        margin: 0 auto;
+    }
+    .itemsHeaderResponsive{
+        display: none;
     }
 }
