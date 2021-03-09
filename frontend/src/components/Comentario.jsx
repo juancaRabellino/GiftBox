@@ -29,13 +29,14 @@ const Comentario = ({ paqueteId, comentario, loggedUser, eliminarComentario, edi
   }
   const actualizarComentario = async (e) => {
     e.preventDefault()
-    if (reComentar.ediartComentario === undefined) {
-      setVisible(!visible)
-      return false
-    }
+    // if (reComentar.editarComentario === undefined) {
+    //   setVisible(!visible)
+    //   return false
+    // }
     await editarComentario(reComentar)
-    setVisible(!visible)
+    setVisible(visible)
   }
+  console.log(comentario)
 
   return (
     <>

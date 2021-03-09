@@ -5,10 +5,10 @@ const initialState = {
   paquetesFiltrados: [],
   paquetesMasRegalados: []
 }
-const actualizar=(todosLosPaquetes,nuevoPaquete)=>{
-  return (todosLosPaquetes.map(paquete=>{
-    if(paquete._id===nuevoPaquete._id){
-      paquete=nuevoPaquete;
+const actualizar = (todosLosPaquetes, nuevoPaquete) => {
+  return (todosLosPaquetes.map(paquete => {
+    if (paquete._id === nuevoPaquete._id) {
+      paquete = nuevoPaquete;
     }
     return paquete
   }
@@ -58,9 +58,7 @@ const paqueteReducer = (state = initialState, action) => {
         todosLosPaquetes: aux
       }
     case 'ENVIAR_COMENTARIO':
-      console.log("LLEGUE AL REDUCER")
       console.log(action.payload)
-      console.log(state)
       return {
         ...state,
         paquete: state.todosLosPaquetes.map(paquete => paquete._id === action.payload._id ? action.payload : paquete)

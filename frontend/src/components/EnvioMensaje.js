@@ -1,31 +1,41 @@
 
-import { BsDash, BsFillPeopleFill, BsPlus, BsTrash} from "react-icons/bs";
+import { BsCheck, BsDash, BsFillPeopleFill} from "react-icons/bs";
 import { BiArrowBack } from "react-icons/bi";
 import { connect } from "react-redux";
-import carritoActions from "../redux/actions/carritoActions";
 import {Link} from "react-router-dom"
+import ProgressBar from "@ramonak/react-progress-bar";
+import { useState } from "react";
 
-const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
+const Envio=({carrito,total})=>{
+
     if(!carrito){return <h1>loading..</h1> }
     return(
         <>
         <div className="carrito">
             <div className="carritoHead"  style={{ backgroundImage: `url("../assets/carritoImagen.png")` }} >
-                <Link to="/">
+                <Link to="/envio">
                     <BiArrowBack style={{fontSize: "3rem", color:"#464646"}}/>
                 </Link>
-                <h3 style={{fontSize:"2.2rem", color:"#464646",paddingLeft:"1.5vw"}}>Tu carrito</h3>
+                <div id="progresoCompra">
+                    <ProgressBar completed={40} labelAlignment="outside" bgcolor="#2e93e5"/>
+                    <div style={{display:"flex",justifyContent:"space-between",paddingTop:"1vh",paddingRight:"2vw"}}>
+                        <div style={{display:"flex",justifyContent:"space-between"}}><p>Envio </p><BsCheck size="1.3rem" color="green"/></div>
+                        <p>Mensaje</p>
+                        <p>Pago</p>
+                        <p>Resumen</p>
+                    </div>
+                </div>
                 
             </div>
             <div className="carritoSection">
             {carrito.length!==0
-            ?
+            &&
                 <div className="carritoPaquetes">
                     {carrito && carrito.map(paquete=>
                         <div className="carritoPaquete">
                             <div className="carritoPaqueteNombre" style={{ backgroundImage: `url("../assets/bannerCarrito.jpg")` }} >
                                 {paquete.nombre}
-                                <BsTrash onClick={()=>eliminarDelCarrito(paquete)} style={{cursor:"pointer"}}/>
+                               
                             </div>
                             <div className="carritoPaqueteContenido">
                                 <div id="carritoImagen">
@@ -41,25 +51,26 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
                                     </div>
                                 </div>
                                 <div id="carritoCantidad">
-                                    <div id="carritoCantidad1" >
-                                        {paquete.cantidad===1 
-                                        ? <button style={{cursor:"not-allowed",backgroundColor:"rgb(169 161 161 / 58%)"}} className="buttonCarrito"><BsDash/></button>
-                                        : <button value={-1} onClick={(e)=>actualizarCarrito(paquete,e.target.value)} className="buttonCarrito"><BsDash/></button>}
-                                        <div ><h5 >x{paquete.cantidad}</h5></div>
-                                        {paquete.stock===0
-                                        ?<button style={{cursor:"not-allowed",backgroundColor:"#eaeaea"}}  className="buttonCarrito"><BsPlus/></button>
-                                        :<button value={1} onClick={(e)=>actualizarCarrito(paquete,e.target.value)} className="buttonCarrito"><BsPlus/></button>}
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
                     )}
+                <div className="inputMensajes">
+                    <h3>¡Dejale tu mensaje! (opcional)</h3>
+                    <input type="text" placeholder="De" /> 
+                    <input type="text" placeholder="Para"/> 
+                    <textarea type="textarea" placeholder="Mensaje"/>                
                 </div>
-            :
-            <div className="carritoPaquetes" style={{paddingTop:"10vh",fontSize:"1.4rem"}}>
-                <h2>Tu carrito está vacío</h2>
-                <h5>¿No sabés qué comprar? ¡Miles de paquetes te esperan!</h5>
+                
+                <div  style={{width:"100%", paddingTop:"2vh"}}>
+                    <Link to="/pago" id="carritoContinuar" style={{margin:"0"}}>
+                         Continuar al pago
+                    </Link>
+                </div>
+
             </div>
+            
             }
                 <div className="carritoResumen">
                     <div>
@@ -79,14 +90,12 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
                             <p>$ {total}</p>
                         </div>
                         <div id="resumenContinuarYseguir">
-                            <Link to="/envio" id="carritoContinuar">Continuar</Link>
                             <Link id="carritoSeguirComprando">Seguir Comprando</Link>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            
         </>
     )
 }
@@ -96,10 +105,6 @@ const mapStateToProps = state => {
         total:state.carritoReducer.total
     }
 }
-const mapDispatchToProps = {
-    agregarAlCarrito: carritoActions.agregarAlCarrito,
-    eliminarDelCarrito: carritoActions.eliminarDelCarrito,
-    actualizarCarrito: carritoActions.actualizarCarrito
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Carrito)
+
+export default connect(mapStateToProps, null)(Envio)

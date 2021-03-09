@@ -28,11 +28,10 @@ const Header = ({ carrito, loggedUser, logOut }) => {
                 <div className="headerUser centerVerticalColumn">
 
                     <div className="abrirRegalo centerCenterRow">
-                        <p>Abrir mi Regalo</p>
+                        <p><Link to="/regalo">Abrir mi Regalo</Link></p>
                         {!loggedUser &&
                             <Link to="/registro" className="registroHeader">Registrarse</Link>
                         }
-                        
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         {loggedUser ?
@@ -96,7 +95,7 @@ const Header = ({ carrito, loggedUser, logOut }) => {
             {isOpen && 
                         <div className="itemsHeaderResponsive" style={{width:document.documentElement.scrollWidth, height:document.documentElement.scrollHeight}}>
                     {loggedUser 
-                    ? <div className="linksUsuario">
+                    ? <div className="linksUsuarioResponsive">
                         <div className="userHeaderResponsive">
                         {loggedUser.googleUser === "true"
                             ? <div id="userImg" style={{ backgroundImage: `url(${loggedUser.imagen})` }} />

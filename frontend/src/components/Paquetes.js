@@ -8,6 +8,8 @@ import { BiSearch } from 'react-icons/bi'
 const Paquetes = ({ paquetesFiltrados, filtrarPaquetes, location, todosLosPaquetes }) => {
   const [valor, setValor] = useState(false)
   const [categoria, setCategoria] = useState(true)
+  // const [paquetes, setPaquetes] = useState([])
+
 
   var paquetes = []
   window.scrollTo(0, 0);

@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import Carrousel from '../components/Carrousel'
+import Carrousel2 from '../components/Carrousel2'
 import video from '../assets/videoHome.mp4'
 import paqueteActions from '../redux/actions/paqueteActions'
 import { connect } from 'react-redux'
 import LosMasRegalados from '../components/LosMasRegalados'
+import LosMasRegalados2 from '../components/LosMasRegalados2'
 
 const Home = ({paquetesMasRegalados, filtrarPaquetesMasReg}) => {
     useEffect(() => {
@@ -21,16 +23,18 @@ const Home = ({paquetesMasRegalados, filtrarPaquetesMasReg}) => {
                     <p  className="textoHomeVideo" style={{color:'white',fontSize:'20px'}}>Sorprendé con momentos para vivir dentro y fuera de casa.</p>
                     <div className="botonesVideoHome"style={{display:'flex', width:'35vw',justifyContent:'space-between',marginTop:'10vh'}}>
                         <p className='botonVideo'>Regala una GiftBox</p>
-                        <p className='botonVideo'>Abri tu regalo</p>
+                        <p className='botonVideo'><Link to="/regalo" style={{color:"white"}}>Abri tu regalo</Link></p>
                     </div>
                 </div>
             </div>
             <div style={{marginTop:'5vh'}}>
                 <Carrousel />
+                <Carrousel2 />
             </div>
             <div>
-                <h2>Lo mas regalados</h2>
+                <h2 className="losMasRegalados">Lo mas regalados</h2>
                 <LosMasRegalados />
+                <LosMasRegalados2 />
             </div>
         </>
     )
