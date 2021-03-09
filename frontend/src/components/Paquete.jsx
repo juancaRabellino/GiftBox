@@ -9,7 +9,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import Comentario from './Comentario'
 
-const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario }) => {
+const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes }) => {
   const [valor, setValor] = useState(0)
   // const [ultimoValor,setUltimoValor]=useState(0);
   const [visible, setVisible] = useState(false)
@@ -104,7 +104,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     }
 
   }
-  
+
   const id = match.params._id
   useEffect(() => {
     var paquete = obtenerPaquetePorId(match.params._id)
@@ -118,7 +118,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     //     }
 
     // }
-  }, [match.params._id])
+  }, [id])
   return (
     <>
       {paquetePorId &&
