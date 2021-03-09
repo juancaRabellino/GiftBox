@@ -112,7 +112,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
                         <div className="valoracion">
                             <span>{(paquetePorId.promedio).toFixed(2)}</span>
                             <ReactStars count={5} value={ultimoValor.valor} onChange={setValor}
-                                size={50} activeColor="#ffd700" isHalf={true} />
+                                size={44} activeColor="#ffd700" isHalf={true} />
 
                         </div>
                         <p className="verComentarios">Ver comentarios del paquete</p>
