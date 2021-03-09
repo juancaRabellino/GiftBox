@@ -6,6 +6,10 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+body{
+    height: 100%;
+    width: 100%;
+}
 
 :root {
     --color-primario: #FF2A2A;
@@ -289,14 +293,8 @@
     color: black;
     margin-left: 2vh;
 }
-.accionesUser{
-}
-.usuarioMenu{
-}
-/* .nombreYfotoHeader{
-    display: flex;
-    align-items: center;
-} */
+
+
 .userNameeImg{
     display: flex;
     flex-direction: column;
@@ -304,7 +302,6 @@
 .logOutyEdit{
     display:block;
     float: left;
-    /* display: none; */
 } 
 .linksUsuario{
     display: flex;
@@ -703,7 +700,7 @@ video {
   display:flex;
   flex-direction: column;
   margin-top: 8vh;
-  width: 80vw;
+  width: 100%;
 }
 .headerTituloPaquetes{
   font-weight: 500;
@@ -843,22 +840,23 @@ border-radius: 30px;
 /* CARRITO */
 .carrito{
     width: 100%;
-    border: solid black;
+    background-color: #fff;
 }
 .carritoHead{
-    height: 15vh;
+    height: 20vh;
     padding-left: 10vw;
     display: flex;
     align-items: center;
+    background-repeat: repeat-x;
+    box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
+    -webkit-box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
 }
 .carritoSection{
     height: auto;
-    border: solid blue;
     padding: 4vh 5vw;
     display: flex;
 }
 .carritoPaquetes{
-    border: solid red;
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -867,30 +865,35 @@ border-radius: 30px;
 }
 .carritoPaquete{
     width: 80%;
-    border: solid blue;
     height: 25vh;
-    margin: 1vh 0;
+    margin-bottom: 4vh;
 }
 .carritoPaqueteNombre{
     display: flex;
-    height: 20%;
+    border-top-left-radius:5px;
+    border-top-right-radius: 5px;
+    height: 30%;
     justify-content: space-between;
     padding: 1vh 1vw;
-    border: solid red;
+    background-size: cover;
+    align-items: center;
+    font-size: 1.4rem;
+    color: #fff;
 }
 .carritoPaqueteContenido{   
     display: flex;
+    background-color:  #ff66341c;
     height: 80%;
+    box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
+    -webkit-box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
 }
 #carritoImagen, #carritoCantidad{
     width: 25%;
-    border: solid black;
-    padding: 0.5vh 0.5vw;
+    padding: 1vh 1vw;
 }
 #carritoDescripcion{
-    padding: 0.5vh 0.5vw;
+    padding:2vh 0.5vw;
     width: 50%;
-    border: solid black;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -901,13 +904,32 @@ border-radius: 30px;
     align-items: flex-end;
     font-size: 2rem;
 }
+#carritoCantidad1{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+#carritoCantidad1 h5{
+    margin: 0;
+}
 .buttonCarrito{
+    outline: none;
     transition: background-color .3s;
+    border: 0;
+    border-radius: 3px;
     width: 2vw;
     height: 3.5vh;
+    color: #fff;
     display: flex;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
+    background-color: #ff6c5f;
+}
+.buttonCarrito:hover{
     background-color: #f88a80;
 }
 .carritoImagen{
@@ -918,5 +940,223 @@ border-radius: 30px;
 
 .carritoResumen{
     width: 40%;
-    border: solid green;
+    height: 55vh;
+    padding: 0vh 5vw;
+    background-color: #ff66341c;
+}
+#resumenTitulo{
+    border-bottom:2px solid #f0cdcdb0;
+    height: 8vh;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+}
+#resumenPaquetes{
+    height: 6vh;
+    border-bottom: 2px solid #f0cdcdb0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#resumenTotal{
+    display: flex;
+    border-bottom: 2px solid #f0cdcdb0;
+    height: 6vh;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    color: #2e93e5;
+}
+#resumenContinuarYseguir{
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    padding: 2vh 3vw;
+    justify-content: space-between;
+}
+#carritoContinuar{
+    height: 7vh;
+    background-color: #ff6c5f;
+    color: #fff;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#carritoContinuar:hover{
+    background-color: #ff6c5fde;
+}
+#carritoSeguirComprando{
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff6c5f;
+}
+#carritoSeguirComprando:hover{
+    color:#ff6c5fbb ;
+}
+
+
+
+/* ------- MEDIA QUERIES ------ */
+
+@media (max-width:900px){
+ 
+ 
+/* ----- HEADER RESPONSIVE ------ */ 
+ 
+ 
+    .headerContainer{
+        width: 200vw;
+    }
+
+    .headerResponsive{
+        height: 100%;
+        z-index: 100;
+        
+    }
+    .itemsHeaderResponsive{
+        transition: 0.2s ease;
+        background-color: white;
+        height: 100%;
+        width: 100vw;
+        position: absolute;
+        z-index: 100;
+        justify-content: space-around;
+
+    }
+    .userHeaderResponsive{
+        display: flex;
+        margin-left: 4vw;
+        align-items: center;
+    }
+    .userHeaderResponsive p{
+        margin-left: 5vw;
+    }
+    .datosUser{
+        display: none;
+    }
+    .heart{
+        display: none;
+    }
+    .abrirRegalo{
+        display: none;
+    }
+    .paquetesHeader{
+        display: none;
+    }
+    .hamburger-react{
+        margin-right: 5vw;
+    }
+    .headerContainer{
+        align-items: center;
+    }
+    .headerUserBottom {
+        margin: 0;
+    }
+    .headerInput{
+        width: 100%;
+    }
+    .userNameResponsive{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 5vw;
+        width: 100%;
+    }
+    .userNameResponsive p{
+        margin-left: 5vw;
+        
+    }
+    .userName{
+        display: none;
+    }
+
+    /* ------- FOOTER ------- */
+    .footerArriba{
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 5vw;
+    }
+    .footerArriba span{
+        display: none;
+    }
+    .footerArriba p{
+        margin: 1vh;
+    }
+    .footerMedio {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .seccionesMedioFooterPadre{
+        display: none;
+    }
+    .fraseFooter{
+        width: 100%;
+        padding-left: 2vw;
+    }
+    .footerAbajo{
+        flex-direction: column;
+    }
+    .footerAbajo span{
+        display: none;
+    }
+    .footerAbajo p , .devolverCompraButton, .redesFooter{
+        margin: 1vh;
+    }
+
+    /* ------- HOME ------- */
+    .homeVideo{
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    .botonesVideoHome {
+        align-items: center;
+        width: 90% !important;
+    }
+    .botonesVideoHome p {
+        width: 50%;
+        margin-right: 1vw;
+        padding:1vh 1vw;
+    }
+    .tituloHomeVideoPadre{
+        padding-left: 0 !important;
+        width: 90%;
+    }
+    .tituloHomeVideo {
+        width: 100% !important;
+        font-size: 40px !important;
+    }
+    .textoHomeVideo{
+        font-size: 22px !important;
+        margin-top: 2vh;
+    }
+    /* ----- CAROUSEL ----- */
+    .imgCarrusel{
+        width: 100% !important;
+        height: 50% !important;
+    }
+    .imgCarruselHijo{
+        height: 50vh !important;
+        width: 100% !important;
+        padding: 0 2vw;
+    }
+    .nombreCategoria{
+        font-size: 16px !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+    .containerImg{
+        height: 10% !important;
+    }
+}
+@media (min-width:901px){
+    .headerResponsive{
+      display:none  
+    }
 }

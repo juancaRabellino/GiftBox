@@ -13,6 +13,8 @@ import EditUsuario from './components/EditUsuario'
 import Carrito from './components/Carrito';
 import CarritoPaquetes from './components/CarritoPaquetes';
 import IniciarSesion from './components/IniciarSesion';
+import EnviarEmail from './components/EnviarEmail'
+import RecuperarPassword from './components/RecuperarPassword'
 import { connect } from 'react-redux';
 import carritoActions from './redux/actions/carritoActions';
 import userActions from './redux/actions/userActions';
@@ -49,7 +51,10 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
     <Route exact path="/paquete/:_id" component={Paquete}/>
     <Route exact path="/registro" component={Registros} />
     <Route exact path="/iniciarsesion" component={IniciarSesion} />
-    </Switch>
+    <Route exact path="/cambiar-password" component={RecuperarPassword}/> 
+    <Route exact path="/recuperar-password" component={EnviarEmail}/> 
+    <Redirect to="/"/>
+  </Switch>
   </>
    }
   if(loggedUser){
@@ -75,10 +80,10 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
   return (
     <div className="App">
       
-      <BrowserRouter>
+      <BrowserRouter >
         <Header/>
-          
-            {routes}
+
+          {routes}
             
         <WhatsApp/>
         <Footer/>

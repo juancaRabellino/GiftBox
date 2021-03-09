@@ -65,7 +65,7 @@ const Footer = () => {
                 <div className="devolverCompraButton">
                     <p>Devolver mi Compra</p>
                 </div>
-                <p>|</p>
+                <span>|</span>
                 <div className="partnersButton">
                     <p>Partners</p> 
                 </div>
