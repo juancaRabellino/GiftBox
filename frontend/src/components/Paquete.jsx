@@ -74,8 +74,11 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
       var aux = { valor: 0 }
       aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
       if (aux.valor !== null && aux !== undefined) {
+        
         setUltimoValor(aux.valor)
-        console.log(ultimoValor)
+        console.log("id de usuario logeado" + loggedUser.id)
+        console.log("------------------------------------------------")
+        console.log("ultimo valor del usuario logueado" + ultimoValor)
       }
     }
   }, [match.params._id])
@@ -160,7 +163,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
           <div className="valoracionContainer">
             <div className="valoracion">
               <span>{(paquetePorId.promedio).toFixed(2)}</span>
-              <ReactStars count={5} onChange={setValor}
+              <ReactStars value={ultimoValor} count={5} onChange={setValor}
                 size={50} activeColor="#ffd700" isHalf={true} />
 
             </div>
