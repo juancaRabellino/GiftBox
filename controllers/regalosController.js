@@ -1,44 +1,61 @@
 const nodemailer = require('nodemailer')
 const Paquete= require("../models/Paquete");
+const Regalo = require('../models/Regalo');
 const regalosController ={
     
 enviarRegalo: async (req, res) => {
 
-    const {emailDestinatario,paquetes}=req.body;
+        
+    const {emailDestinatario,paquetesId,carrito}=req.body;
     const {cuenta,nombre}=req.user;
     console.log(req.user)
     console.log(req.body)
+    
+    const nuevoRegalo=new Regalo({nombreEnviador:cuenta,cuentaDestinatario:emailDestinatario,paquetesId})
+    nuevoRegalo.save()
+    .then(nuevoRegalo => { return res.json({ success: true, response: nuevoRegalo }) })
+    .catch(error => { return res.json({ success: false, error: "Error al cargar el regalo" }) })
+    if(nuevoRegalo){
+        var transport = nodemailer.createTransport({
+            port: 465,
+            host: 'smtp.gmail.com',
+            auth: {
+                user: process.env.MAIL_USER,
+                pass: process.env.MAIL_PASS
+            },
+            tls: {
+                rejectUnauthorized: false
+            }
+        })  
+        var mailOptions = {
+            from: `Gift BOX ${cuenta}`,
+            to: emailDestinatario,
+            subject: emailDestinatario,
+            html:  
+            `<div style="text-align:center; padding:20px; min-heigth: 250px; background-color:#fff">
+            <h1 style="color:#FFB5FF">Recibiste un regalo de parte de ${nombre}</h1>
+            <h1 style="color:#FFB5FF">Anda a abrirlo ahora !</h1>
+            ${carrito.map(paquete=>`<h1>${paquete.nombre} x ${paquete.cantidad}</h1>`)}
+            ${carrito.map(paquete=>`<h1>CODIGOS: ${nuevoRegalo._id}</h1>`)}
+            <link href="https://app-pixels.herokuapp.com/"><button style="padding:20px; text-decoration:none" >https://app-pixels.herokuapp.com/enterNewPassword</button></link>
+            <h3 style="color:#FFB5FF">If the button does not work, copy and paste the following link in your browser https://app-pixels.herokuapp.com/enterNewPassword </h3>
+            <h5 style="color:#FFB5FF">ASDASD</h5>
+            </div>`}
+            transport.sendMail(mailOptions, (error, info) =>{
+            if(error){res.status(500).send(error.message)
+            }else {
+                console.log("Email enviado.")
+                res.status(200).json({respuesta:req.body})
+            }})   
+        }  
+    },
+    todosLosRegalos: (req,res)=>{
+        Regalo.find()
+        .then(data=>{return res.json({success:true, response:data})})
+        .catch(error=>{return res.json({success:false, response:"Error al obtener los regalos"})})
+    },
+    
 
-    var transport = nodemailer.createTransport({
-        port: 465,
-        host: 'smtp.gmail.com',
-        auth: {
-            user: process.env.MAIL_USER,
-            pass: process.env.MAIL_PASS
-        },
-        tls: {
-            rejectUnauthorized: false
-        }
-    })
-           
-    var mailOptions = {
-        from: `Gift BOX ${cuenta}`,
-        to: emailDestinatario,
-        subject: emailDestinatario,
-        html:  `<div style="text-align:center; padding:20px; min-heigth: 250px; background-color:white">
-        ${paquetes.map(paquete=>{
-            Paquete.findById(paquete.idPaquete)
-            .then(paqueteEncontrado=> ` <p> ${paqueteEncontrado.nombre} </p>`)})}
-        <h5 style="color:#FF2A2A">Si usted no solicitó un cambio de contraseña, por favor, ignore este correo electrónico :</h5>
-    </div>`
-}
 
-    transport.sendMail(mailOptions, (error, info) =>{
-        if(error){res.status(500).send(error.message)
-        }else {
-            console.log("Email enviado.")
-            res.status(200).json({respuesta:req.body})
-        }})   
-    }
 }
 module.exports= regalosController;

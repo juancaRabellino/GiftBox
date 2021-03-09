@@ -42,6 +42,8 @@ router.route('/paquete/comentario')
 router.route('/paquete/comentario/:paqueteId/:comentarioId')
   .delete(paquetesController.eliminarComentario)
 // CONTROLADOR REGALO
+router.route("/regalos")
+  .get(regalosController.todosLosRegalos)
 router.route("/regalo")
   .post(passport.authenticate('jwt', { session: false }),regalosController.enviarRegalo)
 // CONTROLADOR DE USUARIO
