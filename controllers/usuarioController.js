@@ -76,8 +76,11 @@ const usuarioController = {
     },
     agregarUsuario: async (req,res)=>{
         var errors=[];
-        console.log(req.files)
+
         console.log("PRINCIPIO")
+        console.log(req.body)
+        console.log(req.files)
+        
         const {cuenta,password,nombre,apellido,rol,googleUser,productosFaveados,productosComprados,googlePic}=req.body;
         const usuarioExiste = await Usuario.findOne({cuenta})
         if(usuarioExiste){errors.push("El usuario ya existe. Eliga otro por favor!")

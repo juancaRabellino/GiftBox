@@ -28,6 +28,9 @@ const Header = ({ carrito, loggedUser, logOut }) => {
                         {!loggedUser &&
                             <Link to="/registro" className="registroHeader">Registrarse</Link>
                         }
+                    <div className="paquetesHeader">
+                        <PaquetesHeader />
+                    </div>
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         {loggedUser ?
