@@ -122,7 +122,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     }
 
   }
-
+  if(paquetePorId===undefined){return <h1>loading..</h1> }
   return (
     <>
       {paquetePorId &&
