@@ -44,9 +44,11 @@ const carritoReducer=(state=initialState,action)=>{
             const carritoAux2=state.carrito.filter(paquete=>{
                 if(paquete._id===action.payload._id && action.payload.numero==="1"){
                     paquete.cantidad+=1
+                    paquete.stock-=1
                     nuevoTotal1+=paquete.precio
                 }else if(paquete._id===action.payload._id && action.payload.numero==="-1"){
                     paquete.cantidad-=1
+                    paquete.stock+=1
                     nuevoTotal1-=paquete.precio
                 }
                 if(paquete.cantidad!==0){return paquete;}

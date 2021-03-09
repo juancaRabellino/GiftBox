@@ -33,21 +33,21 @@ const PaquetesHeader = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLo
           {(visible && todasLasCategorias) && todasLasCategorias.map(categoria => {
             return (
               <button className="paquetesPadres" onMouseEnter={() => obtenerPaquetesPorCategoria(categoria.nombre)} key={`btnCat${categoria._id}`}>{categoria.nombre}</button>
-              
+
             )
           })}
         </div>
         <div className="linksPaquetesPadre" onMouseOver={() => setMostrarProductos(true)} onMouseOut={() => setMostrarProductos(false)}>
-              {visible && paquetesPorCategoria.map(paquete => 
-                <>
-                <Link to={`/paquete/${paquete._id}`} key={`Link${paquete._id}`}>
-                  <p className="linksPaquetes" onMouseOver={() => obtenerProductosPorPaquete(paquete._id)}>
+          {visible && paquetesPorCategoria.map(paquete =>
+            <>
+              <Link to={`/paquete/${paquete._id}`} key={`Link${paquete._id}`}>
+                <p className="linksPaquetes" onMouseOver={() => obtenerProductosPorPaquete(paquete._id)} onClick={() => setVisible(!visible)}>
                   {paquete.nombre}
                 </p>
-                </Link>
-                </>
-              )}
-          </div>
+              </Link>
+            </>
+          )}
+        </div>
       </div>
     </div>
   )
