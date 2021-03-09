@@ -96,7 +96,7 @@ const Header = ({ carrito, loggedUser, logOut }) => {
             {isOpen && 
                         <div className="itemsHeaderResponsive" style={{width:document.documentElement.scrollWidth, height:document.documentElement.scrollHeight}}>
                     {loggedUser 
-                    ? <div className="linksUsuario">
+                    ? <div className="linksUsuarioResponsive">
                         <div className="userHeaderResponsive">
                         {loggedUser.googleUser === "true"
                             ? <div id="userImg" style={{ backgroundImage: `url(${loggedUser.imagen})` }} />
