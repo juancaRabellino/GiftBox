@@ -13,7 +13,6 @@ import userActions from "../redux/actions/userActions"
 
 
 const Header = ({ carrito, loggedUser, logOut }) => {
-    console.log(window)
     const [mostrarProductos, setMostrarProductos] = useState(true)
     const [visible, setVisible] = useState(false)
     const [isOpen, setOpen] = useState(false)
