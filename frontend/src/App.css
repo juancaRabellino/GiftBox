@@ -1011,8 +1011,87 @@ border-radius: 30px;
 #carritoSeguirComprando:hover{
     color:#ff6c5fbb ;
 }
+#progresoCompra{
+    width: 80%;
+    padding-left: 3vw;
+}
+/* ENVIO */
 
+#metodoDeEnvio{
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.metodoDeEnvio1{
+    width: 50%;
+    height: 9vh;
+    padding: 1vh 1vw;
+    
+}
+
+.tipoEnvio{
+    border: solid 1px red!important;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+#inputsEnvio label{
+    display: flex;
+    font-size: 1.4rem;
+}
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: red;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}   
+.inputMensajes{
+    height: 40vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+}
+.inputMensajes input,.inputMensajes textarea{
+    width: 80%!important;
+    padding: 1vh 1vw;
+    
+}
+.inputMensajes input{
+    height: 10%;
+    font-size: 1rem;
+}
+.inputMensajes textarea{
+    height: 35%;
+    font-size: 1.3rem;
+}
 
 /* ------- MEDIA QUERIES ------ */
 

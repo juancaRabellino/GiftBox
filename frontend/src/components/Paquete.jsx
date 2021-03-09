@@ -11,19 +11,11 @@ import Comentario from './Comentario'
 
 const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes }) => {
   const [valor, setValor] = useState(0)
-  // const [ultimoValor,setUltimoValor]=useState(0);
+  const [ultimoValor, setUltimoValor] = useState(0);
   const [visible, setVisible] = useState(false)
   const [comentario, setComentario] = useState({})
-
-  // const opiniones = paquetePorId.opiniones
-  useEffect(async () => {
-    if (valor !== 0 && loggedUser) {
-      await enviarValoracion(match.params._id, { idUsuario: loggedUser.id, valor })
-      obtenerPaquetePorId(match.params._id)
-    }
-
-  }, [valor])
-
+  const [reload, setReload] = useState(false)
+  const [opiniones, setOpiniones] = useState([])
   const productos = [
     {
       titulo: 'Spa El Roble, Villa Crespo',
@@ -62,8 +54,32 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
       imagen: 'https://fotos.subefotos.com/846d622569fe9ff8dc1d5a95a9d05106o.png',
       lugar: 'Malabia 429'
     }
-
   ]
+  
+  useEffect(() => {
+    obtenerPaquetePorId(match.params._id)
+    // if (paquetePorId.opiniones) setOpiniones(paquetePorId.opiniones)
+  }, [reload])
+  useEffect(async () => {
+    if (valor !== 0 && loggedUser) {
+      await enviarValoracion(match.params._id, { idUsuario: loggedUser.id, valor })
+      obtenerPaquetePorId(match.params._id)
+    }
+  }, [valor])
+
+  const id = match.params._id
+  useEffect(() => {
+    var paquete = obtenerPaquetePorId(match.params._id)
+    if (paquetePorId) {
+      var aux = { valor: 0 }
+      aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
+      if (aux.valor !== null && aux !== undefined) {
+        setUltimoValor(aux.valor)
+        console.log(ultimoValor)
+      }
+    }
+  }, [match.params._id])
+
   const leerInput = (e) => {
     const nombre = e.target.name
     const nuevoComentario = e.target.value
@@ -71,12 +87,13 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
       ...comentario,
       paqueteId: paquetePorId._id,
       token: loggedUser.token,
+      imagenUsuario: loggedUser.imagen,
+      nombreUsuario: loggedUser.nombre,
       [nombre]: nuevoComentario
     })
   }
 
   const enviarComentario = (e) => {
-
     if (!loggedUser) {
       Swal.fire({
         title: "Oops!",
@@ -98,9 +115,10 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
         backdrop: "rgba(80, 80, 80, 0.3)",
       })
     } else {
-      setComentario({})
       e.preventDefault()
       agregarComentario(comentario)
+      setOpiniones(paquetePorId.opiniones.push(comentario))
+      setReload(!reload)
     }
 
   }
@@ -119,6 +137,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
 
     // }
   }, [id])
+  if(paquetePorId===undefined){return <h1>loading..</h1> }
   return (
     <>
       {paquetePorId &&
@@ -172,8 +191,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
                   <button onClick={enviarComentario}>ENVIA</button>
                 </div>
                 {paquetePorId.opiniones.map(comentario => {
-                  console.log(comentario)
-                  return <Comentario comentario={comentario} paqueteId={paquetePorId._id}/>
+                  return <Comentario comentario={comentario} paqueteId={paquetePorId._id} />
                 })}
                 <p className="verComentarios" onClick={() => setVisible(!visible)} style={{ margin: '2vh', alignSelf: 'flex-end' }}>Cerrar Comentarios </p>
               </div>

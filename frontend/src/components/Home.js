@@ -23,7 +23,7 @@ const Home = ({paquetesMasRegalados, filtrarPaquetesMasReg}) => {
                     <p  className="textoHomeVideo" style={{color:'white',fontSize:'20px'}}>Sorprendé con momentos para vivir dentro y fuera de casa.</p>
                     <div className="botonesVideoHome"style={{display:'flex', width:'35vw',justifyContent:'space-between',marginTop:'10vh'}}>
                         <p className='botonVideo'>Regala una GiftBox</p>
-                        <p className='botonVideo'>Abri tu regalo</p>
+                        <p className='botonVideo'><Link to="/regalo" style={{color:"white"}}>Abri tu regalo</Link></p>
                     </div>
                 </div>
             </div>
