@@ -20,6 +20,7 @@ const IniciarSesion = (props) => {
 
     const validarUsuario = async e => {
         e.preventDefault()
+        setErrores([])
         if (usuarioALoguear.cuenta === '' || usuarioALoguear.password === '') {
             Swal.fire({
                 icon: 'error',
@@ -28,7 +29,7 @@ const IniciarSesion = (props) => {
             })
             return false
         }
-        setErrores([])
+
         const respuesta = await props.iniciarSesion(usuarioALoguear)
         if (respuesta && !respuesta.success) {
             setErrores([respuesta.errors])
@@ -42,8 +43,6 @@ const IniciarSesion = (props) => {
             }).then(() => {
                 props.history.push('/')
             })
-
-
         }
     }
 

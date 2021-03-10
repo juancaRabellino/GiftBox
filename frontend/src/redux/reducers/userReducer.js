@@ -19,7 +19,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loggedUser:null
-            }             
+            } 
+        // case 'EDITAR_FOTO' :
+        //     return{
+
+        //     }          
         default:
         return state
     }

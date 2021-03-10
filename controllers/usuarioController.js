@@ -93,7 +93,7 @@ const usuarioController = {
         return res.json({
             success: errors.length===0? true:false,
             errors: errors,
-            response: errors.length===0 && {imagen:usuarioExistente.imgName}
+            response: errors.length===0 && {imagen:usuarioExistente.imagen}
         })
     },
     agregarUsuario: async (req,res)=>{

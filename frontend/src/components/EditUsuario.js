@@ -39,6 +39,7 @@ function EditUsuario(props) {
         var formNuevaImg = new FormData();
         formNuevaImg.append("imgFile",imagen)
         props.editarUsuarioImg(formNuevaImg, props.loggedUser.id)
+        props.history.push('/editUsuario')
     }
     
     return (
@@ -58,8 +59,6 @@ function EditUsuario(props) {
             </div>
             <div className="editUsuario">
                 <form className="modificarEmailUsuario">
-                    <p>Ingrese su Email</p>
-                    <input type="text" placeholder="Email" name="cuenta"/>                
                     <div className="cambiarPassword">
                     <p>Cambiar Contraseña</p>
                     <input type="password" placeholder="Nueva Contraseña" name="password" onChange={leerInputPass} />
