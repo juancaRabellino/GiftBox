@@ -60,6 +60,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     obtenerPaquetePorId(match.params._id)
     // if (paquetePorId.opiniones) setOpiniones(paquetePorId.opiniones)
   }, [reload])
+
   useEffect(async () => {
     if (valor !== 0 && loggedUser) {
       await enviarValoracion(match.params._id, { idUsuario: loggedUser.id, valor })
@@ -123,7 +124,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
 
   }
 
-  const id = match.params._id
+  
   useEffect(() => {
     var paquete = obtenerPaquetePorId(match.params._id)
     if (paquete) { console.log(paquete) }
@@ -136,7 +137,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     //     }
 
     // }
-  }, [id])
+  }, [match.params._id])
   if(paquetePorId===undefined){return <h1>loading..</h1> }
   return (
     <>
