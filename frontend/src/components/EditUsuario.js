@@ -17,8 +17,6 @@ function EditUsuario(props) {
     const [errores, setErrores] = useState([])
     const [visible, setVisible] = useState(false)
 
-
-
     const leerInputPass = e => {
         
         const valor = e.target.value
