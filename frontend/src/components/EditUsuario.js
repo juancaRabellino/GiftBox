@@ -21,7 +21,6 @@ function EditUsuario(props) {
         
         const valor = e.target.value
         const campo = e.target.name
-         console.log(campo,valor)
          var verificado = false
         if(campo === 'password'){
 
@@ -31,11 +30,12 @@ function EditUsuario(props) {
 
             }
             else{
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Lo siento!',
-                    text: '¡Las contraseñas no coinciden!',
-                })
+                setErrores(["¡Las contraseñas no coinciden!"])
+                // Swal.fire({
+                //     icon: 'error',
+                //     title: '¡Lo siento!',
+                //     text: '¡Las contraseñas no coinciden!',
+                // })
                 return false
             }
         }
@@ -62,24 +62,26 @@ function EditUsuario(props) {
 
         if (editarUsuario.passwordAnterior === '' || editarUsuario.repetirPassword === '' ||
         editarUsuario.password === '') {
-            Swal.fire({
-                icon: 'error',
-                title: '¡Lo siento!',
-                text: '¡Todos los campos son requeridos!',
-              })
+           setErrores(["¡Todos los campos son requeridos!"])
+
+            // Swal.fire({
+            //     icon: 'error',
+            //     title: '¡Lo siento!',
+            //     text: '¡Todos los campos son requeridos!',
+            //   })
             return false
         }
-        console.log(editarUsuario)
 
         const respuesta = await props.editUsuarioPass(editarUsuario, props.loggedUser.id)
-        // console.log(respuesta)
+
         if (respuesta && !respuesta.success) {
             console.log(respuesta.errors)
-            Swal.fire({
-                icon: 'error',
-                title: '¡Lo siento!',
-                text: '¡Su contraseña anterior no coincide! !Intente nuevamente!',
-              })
+            setErrores(["¡Su contraseña anterior no coincide! !Intente nuevamente!"])
+            // Swal.fire({
+            //     icon: 'error',
+            //     title: '¡Lo siento!',
+            //     text: '¡Su contraseña anterior no coincide! !Intente nuevamente!',
+            //   })
             return false
         } else {
             Swal.fire({
@@ -101,7 +103,7 @@ function EditUsuario(props) {
         props.editarUsuarioImg(formNuevaImg, props.loggedUser.id)
         props.history.push('/editUsuario')
     }
-    console.log(editarUsuario)
+    console.log(errores)
     return (
 
         <div>
@@ -131,6 +133,11 @@ function EditUsuario(props) {
                     <p>GUARDAR</p>
                 </div>
             </div>
+
+            <div className="errores">
+                {errores && errores.map(error => <h2>{error}</h2>)}
+            </div>  
+
             <div className="editUsuario">
                 <div className="modificarEmailUsuario">
                     <label htmlFor="uploadButton" className="inputFile">
@@ -141,11 +148,7 @@ function EditUsuario(props) {
                 <div className="guardaCambioContraseña" onClick={cambiarImagen} >
                     <p>CAMBIAR IMG</p>
                 </div>
-            </div>   
-
-             <div className="errores">
-                {errores.map(error => <h2>{error}</h2>)}
-            </div>                        
+            </div>  
         </div>
     )
     
