@@ -1367,11 +1367,9 @@ input[type='radio']:checked:after {
         display: none;
     }
 }
-
-<<<<<<< HEAD
 .ojito {
     margin-top: 1.5vh;
-=======
+}
 @media (max-width: 600px){
     /* ------ USUARIO ------ */
 .boxChicaUsuario{
@@ -1389,5 +1387,4 @@ input[type='radio']:checked:after {
     border-bottom: 1px solid rgb(126, 126, 126);
     width: 100%;
 }
->>>>>>> Fran
 }

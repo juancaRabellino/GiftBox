@@ -6,7 +6,6 @@ import userActions from '../redux/actions/userActions'
 import Swal from 'sweetalert2'
 
 function EditUsuario(props) {
-<<<<<<< HEAD
     console.log(props.loggedUser)
     const[editarUsuario, setEditUsuario ] = useState({
         passwordAnterior:'',
@@ -14,10 +13,6 @@ function EditUsuario(props) {
         password:'',
         passwordVerificado:''
     })
-=======
-    
-    const[editarUsuario, setEditUsuario ] = useState({})
->>>>>>> Fran
     const [editImagen, setEditImagen] = useState({})
     const [errores, setErrores] = useState([])
     const [visible, setVisible] = useState(false)

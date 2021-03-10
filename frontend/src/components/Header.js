@@ -16,7 +16,7 @@ const Header = ({ carrito, loggedUser, logOut }) => {
     const [mostrarProductos, setMostrarProductos] = useState(true)
     const [visible, setVisible] = useState(false)
     const [isOpen, setOpen] = useState(false)
-
+    console.log(loggedUser)
     return (
         <>
             <div id="headerContainer">
