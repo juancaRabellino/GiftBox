@@ -8,15 +8,17 @@ import ReactStars from "react-rating-stars-component";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import Comentario from './Comentario'
+<<<<<<< HEAD
 import carritoActions from '../redux/actions/carritoActions'
+=======
+import Opiniones from './Opiniones'
+>>>>>>> Fran
 
 const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario ,agregarAlCarrito}) => {
   const [valor, setValor] = useState(0)
   const [ultimoValor, setUltimoValor] = useState(0);
   const [visible, setVisible] = useState(false)
   const [comentario, setComentario] = useState({})
-  const [reload, setReload] = useState(false)
-  const [opiniones, setOpiniones] = useState([])
   const productos = [
     {
       titulo: 'Spa El Roble, Villa Crespo',
@@ -57,10 +59,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     }
   ]
   
-  useEffect(() => {
-    obtenerPaquetePorId(match.params._id)
-    // if (paquetePorId.opiniones) setOpiniones(paquetePorId.opiniones)
-  }, [reload])
+  
   useEffect(async () => {
     if (valor !== 0 && loggedUser) {
       await enviarValoracion(match.params._id, { idUsuario: loggedUser.id, valor })
@@ -71,6 +70,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
   const id = match.params._id
   useEffect(() => {
     var paquete = obtenerPaquetePorId(match.params._id)
+<<<<<<< HEAD
     // if (paquetePorId) {
     //   var aux = { valor: 0 }
     //   aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
@@ -79,6 +79,16 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     //     console.log(ultimoValor)
     //   }
     // }
+=======
+    if (loggedUser && paquetePorId) {
+      var aux = { valor: 0 }
+      aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
+      if (aux.valor !== null && aux !== undefined) {
+        
+        setUltimoValor(aux.valor)
+      }
+    }
+>>>>>>> Fran
   }, [match.params._id])
 
   const leerInput = (e) => {
@@ -118,12 +128,10 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     } else {
       e.preventDefault()
       agregarComentario(comentario)
-      setOpiniones(paquetePorId.opiniones.push(comentario))
-      setReload(!reload)
     }
 
   }
-  if(paquetePorId===undefined){return <h1>loading..</h1> }
+  if(!paquetePorId){return <h1>loading..</h1> }
   return (
     <>
       {paquetePorId &&
@@ -163,13 +171,13 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
               <span>{(paquetePorId.promedio).toFixed(2)}</span>
               <ReactStars count={5} onChange={setValor}
                 size={50} activeColor="#ffd700" isHalf={true} />
-
             </div>
             <p className="verComentarios" onClick={() => setVisible(!visible)}>Ver comentarios del paquete</p>
             <img src="https://fotos.subefotos.com/af333790da6d3696dec1241bd0c55308o.png" alt="estrellas" />
           </div>
           {visible &&
             <>
+              {/* <Opiniones opinionesPaquete={paquetePorId.opiniones} /> */}
               <div className="cajaDeComentarios">
                 <h2 className="tituloComentarios">Opiniones:</h2>
                 <div style={{ display: 'flex' }}>
@@ -191,7 +199,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
               productos.map(producto => {
                 return (
                   <>
-                    <div className="cardProducto">
+                    <div className="cardProducto" key={`cardProd${producto._id}`}>
                       <img src={producto.imagen} alt="" style={{ width: '100%' }} />
                       <div className="infoProducto">
                         <div className="tituloProducto">
