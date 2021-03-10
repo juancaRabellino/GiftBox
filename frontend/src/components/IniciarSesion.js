@@ -4,6 +4,7 @@ import userActions from '../redux/actions/userActions'
 import GoogleLogin from 'react-google-login';
 import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom'
+// import { Alert } from 'rsuite'
 
 const IniciarSesion = (props) => {
     const [usuarioALoguear, setUsuarioALoguear] = useState({})
@@ -84,7 +85,7 @@ const IniciarSesion = (props) => {
                 <h1 className="logeo">Login</h1>
                 <input type="text" name="cuenta" placeholder="Nombre de usuario"
                     onChange={leerInput} />
-                <input type="password" name="password" placeholder="Password"
+                <input type="texto" name="password" placeholder="Password"
                     onChange={leerInput} />
             </div>
 

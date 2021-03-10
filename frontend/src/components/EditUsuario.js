@@ -1,25 +1,51 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { IoCamera } from 'react-icons/io5'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import userActions from '../redux/actions/userActions'
 import Swal from 'sweetalert2'
 
 function EditUsuario(props) {
-    console.log(props)
-    const[editarUsuario, setEditUsuario ] = useState({})
+
+    const[editarUsuario, setEditUsuario ] = useState({
+        passwordAnterior:'',
+        repetirPassword:'',
+        password:'',
+        passwordVerificado:''
+    })
     const [editImagen, setEditImagen] = useState({})
-    const [passwordAnterior, setPasswordAnterior] = useState("")
     const [errores, setErrores] = useState([])
     const [visible, setVisible] = useState(false)
 
+
+
     const leerInputPass = e => {
+        
         const valor = e.target.value
         const campo = e.target.name
+         console.log(campo,valor)
+         var verificado = false
+        if(campo === 'password'){
+
+
+            if (editarUsuario.passwordAnterior === editarUsuario.repetirPassword){
+                verificado = true
+
+            }
+            else{
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Lo siento!',
+                    text: '¡Las contraseñas no coinciden!',
+                })
+                return false
+            }
+        }
         setEditUsuario({
             ...editarUsuario,    
-            [campo]:valor
-        })
+            [campo]:valor,
+            passwordVerificado: verificado ? editarUsuario.passwordAnterior : ''
+        }) 
     }    
 
     const leerImPass = e => {
@@ -31,10 +57,11 @@ function EditUsuario(props) {
         })        
     }
 
-
+    
     const cambiarPassword = async e =>{
-        e.preventDefault()
         setErrores([])
+        e.preventDefault()
+
         if (editarUsuario.passwordAnterior === '' || editarUsuario.repetirPassword === '' ||
         editarUsuario.password === '') {
             Swal.fire({
@@ -42,27 +69,20 @@ function EditUsuario(props) {
                 title: '¡Lo siento!',
                 text: '¡Todos los campos son requeridos!',
               })
-
             return false
         }
-
-        if (editarUsuario.passwordAnterior === editarUsuario.repetirPassword) {
-            var passwordVerificado = editarUsuario.passwordAnterior
-            setEditUsuario({
-                ...editarUsuario,    
-                passwordVerificado: passwordVerificado
-            })
-           
-        } else{
-            setErrores("Sus contraseñas no coinciden")
-            return false
-        }
-
         console.log(editarUsuario)
 
         const respuesta = await props.editUsuarioPass(editarUsuario, props.loggedUser.id)
+        // console.log(respuesta)
         if (respuesta && !respuesta.success) {
-            setErrores(respuesta.errors)
+            console.log(respuesta.errors)
+            Swal.fire({
+                icon: 'error',
+                title: '¡Lo siento!',
+                text: '¡Su contraseña anterior no coincide! !Intente nuevamente!',
+              })
+            return false
         } else {
             Swal.fire({
                 icon: 'success',
@@ -72,8 +92,7 @@ function EditUsuario(props) {
               })
         }
     }
-
-    
+  
 
     const cambiarImagen = () =>{
         
@@ -83,8 +102,9 @@ function EditUsuario(props) {
         props.editarUsuarioImg(formNuevaImg, props.loggedUser.id)
         props.history.push('/editUsuario')
     }
-    
+    console.log(editarUsuario)
     return (
+
         <div>
             <div className='imgTopUsuario'>
                 <div className='boxUser'>
@@ -101,20 +121,11 @@ function EditUsuario(props) {
             </div>
             <div className="editUsuario">
                 <form className="modificarEmailUsuario">
-<<<<<<< HEAD
-=======
-                   
-                 
-                    <input type="password" placeholder="Contraseña anterior" name="passwordAnterior" onChange={leerInputPass} />
-               
-               
-                    <input type="password" placeholder="Repetir contraseña anterior" name="repetirPassword" onChange={leerInputPass} />
-            
-                                 
->>>>>>> 98c8f1bd38180aab6d099d72c966a3722befcabe
-                    <div className="cambiarPassword">
+                    <input type="texto" placeholder="Contraseña anterior" name="passwordAnterior" onChange={leerInputPass} />
+                    <input type="texto" placeholder="Repetir contraseña anterior" name="repetirPassword" onChange={leerInputPass} />    
+                <div className="cambiarPassword">
                     <p>Cambiar Contraseña</p>
-                    <input type="password" placeholder="Nueva Contraseña" name="password" onChange={leerInputPass} />
+                    <input type="texto" placeholder="Nueva Contraseña" name="password" onChange={leerInputPass} />
                 </div>
                 </form>
                 <div className="guardaCambioContraseña" onClick={cambiarPassword} >
