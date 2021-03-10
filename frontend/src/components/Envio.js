@@ -48,7 +48,7 @@ const Envio=({carrito,total})=>{
             &&
                 <div className="carritoPaquetes">
                     {carrito && carrito.map(paquete=>
-                        <div className="carritoPaquete">
+                        <div className="carritoPaquete" key={`carPac${paquete._id}`}>
                             <div className="carritoPaqueteNombre" style={{ backgroundImage: `url("../assets/bannerCarrito.jpg")` }} >
                                 {paquete.nombre}
                                
@@ -117,7 +117,7 @@ const Envio=({carrito,total})=>{
                         style={{height:"8vh",marginTop:"2vh",cursor:"text"}} onChange={(e)=>setMailDestinatario(e.target.value)}/>
                         <input type="text" className="tipoEnvio" placeholder=" Asunto del E-mail (opcional)" 
                         style={{height:"8vh",marginTop:"2vh",cursor:"text"}}/>
-                        {errores.length>0 && errores.map(error=><p style={{paddingTop:"1vh"}}>-{error}</p> )}
+                        {errores.length>0 && errores.map((error, i)=><p style={{paddingTop:"1vh"}} key={`error${i}`}>-{error}</p> )}
                     </div>  
                 }              
                 </>
@@ -137,7 +137,7 @@ const Envio=({carrito,total})=>{
                             <h4>Resumen de compra</h4>
                         </div>
                         {carrito.map(paquete=>
-                            <div id="resumenPaquetes">
+                            <div id="resumenPaquetes" key={`resPac${paquete._id}`}>
                                 <div>
                                     <p>{paquete.nombre} x{paquete.cantidad}</p>
                                 </div>

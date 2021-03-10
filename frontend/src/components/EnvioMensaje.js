@@ -32,7 +32,7 @@ const Envio=({carrito,total})=>{
             &&
                 <div className="carritoPaquetes">
                     {carrito && carrito.map(paquete=>
-                        <div className="carritoPaquete">
+                        <div className="carritoPaquete" key={`carritoP${paquete._id}`}>
                             <div className="carritoPaqueteNombre" style={{ backgroundImage: `url("../assets/bannerCarrito.jpg")` }} >
                                 {paquete.nombre}
                                
@@ -78,7 +78,7 @@ const Envio=({carrito,total})=>{
                             <h4>Resumen de compra</h4>
                         </div>
                         {carrito.map(paquete=>
-                            <div id="resumenPaquetes">
+                            <div id="resumenPaquetes" key={`resumenPaq${paquete._id}`}>
                                 <div>
                                     <p>{paquete.nombre} x{paquete.cantidad}</p>
                                 </div>

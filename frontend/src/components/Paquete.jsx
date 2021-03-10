@@ -184,7 +184,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
               productos.map(producto => {
                 return (
                   <>
-                    <div className="cardProducto">
+                    <div className="cardProducto" key={`cardProd${producto._id}`}>
                       <img src={producto.imagen} alt="" style={{ width: '100%' }} />
                       <div className="infoProducto">
                         <div className="tituloProducto">
