@@ -36,7 +36,6 @@ const Header = ({ carrito, loggedUser, logOut }) => {
                         {loggedUser ?
                             <>
                                 <Link to="/usuario">
-
                                     <div className="centerCenterRow userName">
                                         <div className="headerTituloPaquetes" onClick={() => setVisible(!visible)}>
                                             <div className="flexRowUsuarios">

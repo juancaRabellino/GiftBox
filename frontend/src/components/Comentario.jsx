@@ -42,7 +42,8 @@ const Comentario = ({ paqueteId, comentario, loggedUser, eliminarComentario, edi
     await editarComentario(reComentar)
     setVisible(!visible)
   }
-
+  console.log(comentario)
+  console.log(loggedUser)
   return (
     <>
       <div className="comentarioContainer">
@@ -53,13 +54,17 @@ const Comentario = ({ paqueteId, comentario, loggedUser, eliminarComentario, edi
           <div className="nombreDeUsuario">{comentario.nombreUsuario}</div>
         </div>
         {!visible
-          ? <div>
-              <div className="comentario">"{comentario.comentarioUsuario}"</div>
-              <button onClick={modificarComentario}>EDITAR</button>
-              <button onClick={enviarComentarioAEliminar}>BORRAR</button>
-            </div>
+          ?
+          <div>
+            <div className="comentario">"{comentario.comentarioUsuario}"</div>
+              {loggedUser.id === comentario.idUsuario &&
+                <div className="borrarYmodificar">
+                  <button onClick={modificarComentario}>EDITAR</button>
+                  <button onClick={enviarComentarioAEliminar}>BORRAR</button>
+                </div>}
+          </div>
           : <div>
-            <input onChange={modificarComentario} defaultValue={comentario.comentarioEditado} name="comentarioEditado"></input>
+            <input onChange={modificarComentario} defaultValue={comentario.comentarioUsuario} name="comentarioEditado"></input>
             <button onClick={actualizarComentario}>ENVIAR MODIFICADO</button>
           </div>
         }

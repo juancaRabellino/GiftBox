@@ -3,14 +3,15 @@ import { connect } from 'react-redux'
 import paqueteActions from '../redux/actions/paqueteActions'
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
-import { BsArrowLeft, BsFillPeopleFill, BsBuilding, BsGiftFill, BsIntersect, BsEnvelopeFill } from "react-icons/bs";
+import { BsArrowLeft, BsFillPeopleFill, BsBuilding, BsGiftFill, BsIntersect } from "react-icons/bs";
+import { FaRegFrownOpen } from "react-icons/fa";
 import ReactStars from "react-rating-stars-component";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import Comentario from './Comentario'
 import Opiniones from './Opiniones'
 
-const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes }) => {
+const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes, history }) => {
   const [valor, setValor] = useState(0)
   const [ultimoValor, setUltimoValor] = useState(0);
   const [visible, setVisible] = useState(false)
@@ -54,6 +55,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
       lugar: 'Malabia 429'
     }
   ]
+  document.getElementById("inputComentario")
 
 
   useEffect(async () => {
@@ -66,13 +68,16 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
   const id = match.params._id
   useEffect(() => {
     var paquete = obtenerPaquetePorId(match.params._id)
-    /* if (paquetePorId) {
-      var aux = { valor: 0 }
-      aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
-      if (aux.valor !== null && aux !== undefined) {
-        setUltimoValor(aux.valor)
+    if (paquetePorId) {
+      if (loggedUser && paquetePorId) {
+        var aux = { valor: 0 }
+        aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
+        if (aux.valor !== null && aux !== undefined) {
+
+          setUltimoValor(aux.valor)
+        }
       }
-    }  */
+    }
   }, [match.params._id])
 
   const leerInput = (e) => {
@@ -94,29 +99,37 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
         title: "Oops!",
         text: "Tenés que estar logueado para opinar sobre el paquete!",
         icon: "warning",
-        confirmButtonColor: "#c1866a",
+        showCloseButton: true,
+        confirmButtonColor: "#ff0000",
         confirmButtonText: "Logueame!",
-        background: "#4b98b7",
-        iconColor: "white",
+        cancelButtonText: "X",
+        background: "#fafafa",
+        iconColor: "tomato",
         backdrop: "rgba(80, 80, 80, 0.3)",
       })
+      .then((result) => {
+        if (result.value) {
+          history.push("/iniciarsesion") 
+        }
+        return false;
+      })  
     } else if (!comentario.comentarioUsuario) {
       Swal.fire({
         title: "Oops!",
-        text: "Comment must not be empty!",
+        text: "No puedes enviar un comentario vacío!",
         icon: "warning",
-        background: "#4b98b7",
-        iconColor: "white",
+        background: "#fafafa",
+        iconColor: "tomato",
         backdrop: "rgba(80, 80, 80, 0.3)",
       })
     } else {
       e.preventDefault()
       agregarComentario(comentario)
+      document.getElementById("inputComentario").value = ""
     }
 
   }
-  console.log(paquetePorId)
-  if (paquetePorId === undefined) { return <h1>loading..</h1> }
+  if (!paquetePorId) { return <h1>loading..</h1> }
   return (
     <>
       {paquetePorId &&
@@ -153,7 +166,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
           </div>
           <div className="valoracionContainer">
             <div className="valoracion">
-              {/* <span>{(paquetePorId.promedio).toFixed(2)}</span> */}
+              <span>{(paquetePorId.promedio).toFixed(2)}</span>
               <ReactStars count={5} onChange={setValor}
                 size={50} activeColor="#ffd700" isHalf={true} />
             </div>
@@ -162,13 +175,17 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
           </div>
           {visible &&
             <>
-              {/* <Opiniones opinionesPaquete={paquetePorId.opiniones} /> */}
               <div className="cajaDeComentarios">
                 <h2 className="tituloComentarios">Opiniones:</h2>
                 <div style={{ display: 'flex' }}>
-                  <input type="text" autoComplete="off" name="comentarioUsuario" placeholder="Ingresá tu comentario..." onChange={leerInput} disabled={!loggedUser ? true : false} />
+                  <input id="inputComentario" type="text" autoComplete="off" name="comentarioUsuario" placeholder="Ingresá tu comentario..." onChange={leerInput} disabled={!loggedUser ? true : false} />
                   <button onClick={enviarComentario}>ENVIA</button>
                 </div>
+                {paquetePorId.opiniones.length === 0 && 
+                  <div className="sinComentarios">
+                    <h5>Este paquete no tiene comentarios aún! </h5>
+                    <span><FaRegFrownOpen/></span>
+                  </div>}
                 {paquetePorId.opiniones.map(comentario => {
                   return <Comentario comentario={comentario} paqueteId={paquetePorId._id} />
                 })}
@@ -184,7 +201,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
               productos.map(producto => {
                 return (
                   <>
-                    <div className="cardProducto">
+                    <div className="cardProducto" key={`cardProd${producto._id}`}>
                       <img src={producto.imagen} alt="" style={{ width: '100%' }} />
                       <div className="infoProducto">
                         <div className="tituloProducto">
