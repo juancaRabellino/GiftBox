@@ -450,6 +450,21 @@ video {
     padding: 5vh 0;
 }
 
+.filterInput {
+  margin: 2vh 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filterInput input {
+  border-radius: 10px 0 0 10px;
+  width: 20vw;
+  height: 5vh;
+  text-align: center;
+  outline: none;
+}
+
 .packagesContainer {
     display: flex;
     flex-wrap: wrap;
@@ -868,22 +883,23 @@ border-radius: 30px;
 /* CARRITO */
 .carrito{
     width: 100%;
-    border: solid black;
+    background-color: #fff;
 }
 .carritoHead{
-    height: 15vh;
+    height: 20vh;
     padding-left: 10vw;
     display: flex;
     align-items: center;
+    background-repeat: repeat-x;
+    box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
+    -webkit-box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
 }
 .carritoSection{
     height: auto;
-    border: solid blue;
     padding: 4vh 5vw;
     display: flex;
 }
 .carritoPaquetes{
-    border: solid red;
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -892,30 +908,35 @@ border-radius: 30px;
 }
 .carritoPaquete{
     width: 80%;
-    border: solid blue;
     height: 25vh;
-    margin: 1vh 0;
+    margin-bottom: 4vh;
 }
 .carritoPaqueteNombre{
     display: flex;
-    height: 20%;
+    border-top-left-radius:5px;
+    border-top-right-radius: 5px;
+    height: 30%;
     justify-content: space-between;
     padding: 1vh 1vw;
-    border: solid red;
+    background-size: cover;
+    align-items: center;
+    font-size: 1.4rem;
+    color: #fff;
 }
 .carritoPaqueteContenido{   
     display: flex;
+    background-color:  #ff66341c;
     height: 80%;
+    box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
+    -webkit-box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
 }
 #carritoImagen, #carritoCantidad{
     width: 25%;
-    border: solid black;
-    padding: 0.5vh 0.5vw;
+    padding: 1vh 1vw;
 }
 #carritoDescripcion{
-    padding: 0.5vh 0.5vw;
+    padding:2vh 0.5vw;
     width: 50%;
-    border: solid black;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -926,13 +947,32 @@ border-radius: 30px;
     align-items: flex-end;
     font-size: 2rem;
 }
+#carritoCantidad1{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+#carritoCantidad1 h5{
+    margin: 0;
+}
 .buttonCarrito{
+    outline: none;
     transition: background-color .3s;
+    border: 0;
+    border-radius: 3px;
     width: 2vw;
     height: 3.5vh;
+    color: #fff;
     display: flex;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
+    background-color: #ff6c5f;
+}
+.buttonCarrito:hover{
     background-color: #f88a80;
 }
 .carritoImagen{
@@ -943,10 +983,143 @@ border-radius: 30px;
 
 .carritoResumen{
     width: 40%;
-    border: solid green;
+    height: 55vh;
+    padding: 0vh 5vw;
+    background-color: #ff66341c;
+}
+#resumenTitulo{
+    border-bottom:2px solid #f0cdcdb0;
+    height: 8vh;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+}
+#resumenPaquetes{
+    height: 6vh;
+    border-bottom: 2px solid #f0cdcdb0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#resumenTotal{
+    display: flex;
+    border-bottom: 2px solid #f0cdcdb0;
+    height: 6vh;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    color: #2e93e5;
+}
+#resumenContinuarYseguir{
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    padding: 2vh 3vw;
+    justify-content: space-between;
+}
+#carritoContinuar{
+    height: 7vh;
+    background-color: #ff6c5f;
+    color: #fff;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#carritoContinuar:hover{
+    background-color: #ff6c5fde;
+}
+#carritoSeguirComprando{
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff6c5f;
+}
+#carritoSeguirComprando:hover{
+    color:#ff6c5fbb ;
+}
+#progresoCompra{
+    width: 80%;
+    padding-left: 3vw;
+}
+/* ENVIO */
+
+#metodoDeEnvio{
+    display: flex;
+    flex-wrap: wrap;
 }
 
+.metodoDeEnvio1{
+    width: 50%;
+    height: 9vh;
+    padding: 1vh 1vw;
+    
+}
 
+.tipoEnvio{
+    border: solid 1px red!important;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+#inputsEnvio label{
+    display: flex;
+    font-size: 1.4rem;
+}
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: red;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}   
+.inputMensajes{
+    height: 40vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+}
+.inputMensajes input,.inputMensajes textarea{
+    width: 80%!important;
+    padding: 1vh 1vw;
+    
+}
+.inputMensajes input{
+    height: 10%;
+    font-size: 1rem;
+}
+.inputMensajes textarea{
+    height: 35%;
+    font-size: 1.3rem;
+}
 
 /* ------- MEDIA QUERIES ------ */
 

@@ -105,7 +105,12 @@ const IniciarSesion = (props) => {
 
             <Link to='/registro' className="pLinksEntreCuentas"><p>No tienes cuenta? Haz click aquí</p></Link>
 
+            <Link to="/recuperar-password"><h5>Olvidaste tu contraseña?</h5></Link>
+            
         </div>
+      
+
+
     )
 }
 

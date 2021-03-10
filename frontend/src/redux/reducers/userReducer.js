@@ -5,8 +5,6 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'INICIAR_SESION':
-            console.log("INICIAR SESION REDUCER  ------------------------------- ")
-            console.log(action.payload)
             localStorage.setItem('nombre', action.payload.response.nombre)
             localStorage.setItem('token', action.payload.response.token)
             localStorage.setItem('imagen', action.payload.response.imagen)
