@@ -62,8 +62,8 @@ body {
 /* ------ HEADER ------- */
 
 #headerContainer {
-    min-height: 18vh;
-    width: 100vw;
+    height: 18vh;
+    width: 100%;
     border-bottom: 3px solid var(--color-primario);
     display: flex;
     align-items: center;
@@ -120,6 +120,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 200px;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.459);
 }
 
 .heart {
@@ -344,9 +345,6 @@ body {
 /* ------ PAQUETES HEADER -------- */
 
 .paquetesHeader {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
     text-align: center !important;
     width: 20vw;
     margin: 0 auto;
@@ -685,6 +683,7 @@ video {
 .seccionesMedioFooter {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .seccionesMedioFooter p {
@@ -755,7 +754,7 @@ video {
 .contenedorPaquetes {
     display: flex;
     flex-direction: column;
-    margin-top: 8vh;
+    margin-top: 48vh;
     width: 100%;
 }
 
@@ -822,7 +821,6 @@ video {
 
 .flexRowPaquetes {
     display: flex;
-    height: 100%;
     width: 60vw;
 }
 
@@ -1441,4 +1439,67 @@ input[type='radio']:checked:after {
     border-bottom: 1px solid rgb(126, 126, 126);
     width: 100%;
 }
+}
+
+/* Paquetes Header Nuevo */
+
+.paquetesContainer {
+    display: flex;
+    margin-top: 2vh;
+    position: absolute;
+    flex-direction: column;
+}
+
+.paquetesTituloH {
+    font-weight: 500;
+    color: rgb(63, 63, 63);
+    cursor: pointer;
+}
+
+
+.categoriasContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4vh;
+    margin-left: 8vw;  
+}
+.botonCategoria,.categoriaPaquete  {
+    cursor: pointer;
+    min-width: 12vw;
+    border: none;
+    border-bottom: 1px solid rgb(161, 161, 161);
+    padding: 2vh 1vw;
+    background-color: rgb(255, 255, 255);
+    text-align: start;
+    transition: 0.2s ease;
+    font-size: 1rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.botonCategoria span {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    font-size: 1.2rem;
+}
+.botonCategoria:hover {
+    border-left: 4px solid var(--color-primario);
+}
+.categoriaPaquete:hover {
+    border-left: 4px solid var(--color-primario);
+    color: tomato;
+}
+
+
+.row {
+    display: flex;
+    position: absolute;
+    margin-top: 2vh;
+}
+
+.paquetexCategoria {
+    margin-top: 4vh;
+    min-width: 10vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
 }

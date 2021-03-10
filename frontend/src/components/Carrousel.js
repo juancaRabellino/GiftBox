@@ -29,7 +29,8 @@ const Carrousel = ({ todasLasCategorias }) => {
                                                             width: "100%",
                                                             height: "8vh",
                                                             paddingTop: "1.2vh",
-                                                            paddingLeft: "1vw"}}>{categoria.nombre}</h3>
+                                                            paddingLeft: "1vw",
+                                                            borderTop: "2px solid tomato"}}>{categoria.nombre}</h3>
                 </div>
               </div>
             </Link>
