@@ -70,6 +70,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
       var aux = { valor: 0 }
       aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
       if (aux.valor !== null && aux !== undefined) {
+        
         setUltimoValor(aux.valor)
       }
     }
