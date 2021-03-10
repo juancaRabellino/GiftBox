@@ -6,7 +6,7 @@ import userActions from '../redux/actions/userActions'
 import Swal from 'sweetalert2'
 
 function EditUsuario(props) {
-
+    console.log(props.loggedUser)
     const[editarUsuario, setEditUsuario ] = useState({
         passwordAnterior:'',
         repetirPassword:'',
@@ -90,6 +90,7 @@ function EditUsuario(props) {
                 showConfirmButton: false,
                 timer: 1500
               })
+            props.history.push('/')
         }
     }
   

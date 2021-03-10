@@ -34,8 +34,10 @@ const usuarioController = {
     editarUsuarioPass: async(req,res) =>{
         var errors=[]
         console.log(req.body)
+
         const {password, passwordVerificado}=req.body
         const id= req.params._id
+
         console.log(req.params)
         var passwordHasheado = bcryptjs.hashSync(password, 10)
 
