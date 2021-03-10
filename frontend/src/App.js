@@ -24,7 +24,6 @@ import Pago from './components/Pago';
 import Regalo from './components/Regalo';
 
 function App({loggedUser,carritoDelLS,logFromLS}) {
-  console.log(loggedUser)
   const [renderAgain,setRenderAgain] = useState(false)
   if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
   if(localStorage.getItem("carrito")){
