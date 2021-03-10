@@ -66,7 +66,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
   const id = match.params._id
   useEffect(() => {
     var paquete = obtenerPaquetePorId(match.params._id)
-    if (paquetePorId) {
+    if (loggedUser && paquetePorId) {
       var aux = { valor: 0 }
       aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
       if (aux.valor !== null && aux !== undefined) {
@@ -116,8 +116,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     }
 
   }
-  console.log(paquetePorId)
-  if(paquetePorId===undefined){return <h1>loading..</h1> }
+  if(!paquetePorId){return <h1>loading..</h1> }
   return (
     <>
       {paquetePorId &&
@@ -154,7 +153,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
           </div>
           <div className="valoracionContainer">
             <div className="valoracion">
-              {/* <span>{(paquetePorId.promedio).toFixed(2)}</span> */}
+              <span>{(paquetePorId.promedio).toFixed(2)}</span>
               <ReactStars count={5} onChange={setValor}
                 size={50} activeColor="#ffd700" isHalf={true} />
             </div>
