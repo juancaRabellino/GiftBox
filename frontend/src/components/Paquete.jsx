@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import { BsArrowLeft, BsFillPeopleFill, BsBuilding, BsGiftFill, BsIntersect } from "react-icons/bs";
 import { FaRegFrownOpen } from "react-icons/fa";
 import ReactStars from "react-rating-stars-component";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt,FaRegPaperPlane } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import Comentario from './Comentario'
 import Opiniones from './Opiniones'
@@ -177,9 +177,9 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
             <>
               <div className="cajaDeComentarios">
                 <h2 className="tituloComentarios">Opiniones:</h2>
-                <div style={{ display: 'flex' }}>
+                <div className="filterInput" style={{ display: 'flex' }}>
                   <input id="inputComentario" type="text" autoComplete="off" name="comentarioUsuario" placeholder="Ingresá tu comentario..." onChange={leerInput} disabled={!loggedUser ? true : false} />
-                  <button onClick={enviarComentario}>ENVIA</button>
+                  <div id="enviar"className="centerCenterRow searchButton"onClick={enviarComentario}><span><FaRegPaperPlane/></span></div>
                 </div>
                 {paquetePorId.opiniones.length === 0 && 
                   <div className="sinComentarios">

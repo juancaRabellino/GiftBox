@@ -293,6 +293,13 @@
     font-size: 20px;
 }
 
+#enviar span{
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    padding-right: 0.2vw;
+}
 /* Caja de comentarios */
 .sinComentarios {
     margin-top: 5vh;
