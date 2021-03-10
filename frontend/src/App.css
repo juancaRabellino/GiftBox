@@ -632,7 +632,9 @@ video {
 }
 
 /* ------ FOOTER ------- */
-
+.footer p:hover {
+    color:red;
+}
 .footer {
     border-top: 2px solid #ccc;
     display: flex;

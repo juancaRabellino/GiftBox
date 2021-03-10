@@ -36,13 +36,27 @@ const Footer = () => {
                     <div className="seccionesMedioFooterPadre">
                         <div className="seccionesMedioFooter">
                             <h3 className="regalosFooter">Regalos</h3>
-                            <p>Toc-Toc! En Casa</p>
-                            <p>Ñam! Gastronomía</p>
-                            <p>Omm! Estar Bien</p>
-                            <p>Ahh! Aventura</p>
-                            <p>Wow! Estadías</p>
-                            <p>Jaja! Entretenimiento</p>
-                            <p>Mix! Blends</p>
+                            <Link to="/paquetes">
+                                <p>Toc-Toc! En Casa</p>
+                            </Link>
+                            <Link to="/paquetes">
+                                <p>Ñam! Gastronomía</p>
+                            </Link>
+                            <Link to="/paquetes">
+                                <p>Omm! Estar Bien</p>
+                            </Link>
+                            <Link to="/paquetes">
+                                <p>Ahh! Aventura</p>
+                            </Link>
+                            <Link to="/paquetes">
+                                <p>Wow! Estadías</p>
+                            </Link>
+                            <Link to="/paquetes">
+                                <p>Jaja! Entretenimiento</p>
+                            </Link>
+                            <Link to="/paquetes">
+                                <p>Mix! Blends</p>
+                            </Link> 
                         </div>
                         <div className="seccionesMedioFooter">
                             <h3 className="regalosFooter">Ayuda</h3>
