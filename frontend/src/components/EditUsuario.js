@@ -3,12 +3,15 @@ import {connect} from 'react-redux'
 import { IoCamera } from 'react-icons/io5'
 import {useState} from 'react'
 import userActions from '../redux/actions/userActions'
+import Swal from 'sweetalert2'
 
 function EditUsuario(props) {
     console.log(props)
     const[editarUsuario, setEditUsuario ] = useState({})
     const [editImagen, setEditImagen] = useState({})
+    const [passwordAnterior, setPasswordAnterior] = useState("")
     const [errores, setErrores] = useState([])
+    const [visible, setVisible] = useState(false)
 
     const leerInputPass = e => {
         const valor = e.target.value
@@ -28,10 +31,49 @@ function EditUsuario(props) {
         })        
     }
 
-    console.log(editarUsuario)
-    const cambiarPassword = () =>{
-        props.editUsuarioPass(editarUsuario, props.loggedUser.id)
+
+    const cambiarPassword = async e =>{
+        e.preventDefault()
+        setErrores([])
+        if (editarUsuario.passwordAnterior === '' || editarUsuario.repetirPassword === '' ||
+        editarUsuario.password === '') {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Lo siento!',
+                text: '¡Todos los campos son requeridos!',
+              })
+
+            return false
+        }
+
+        if (editarUsuario.passwordAnterior === editarUsuario.repetirPassword) {
+            var passwordVerificado = editarUsuario.passwordAnterior
+            setEditUsuario({
+                ...editarUsuario,    
+                passwordVerificado: passwordVerificado
+            })
+           
+        } else{
+            setErrores("Sus contraseñas no coinciden")
+            return false
+        }
+
+        console.log(editarUsuario)
+
+        const respuesta = await props.editUsuarioPass(editarUsuario, props.loggedUser.id)
+        if (respuesta && !respuesta.success) {
+            setErrores(respuesta.errors)
+        } else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Se han guardado los cambios de manera exitosa',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        }
     }
+
+    
 
     const cambiarImagen = () =>{
         
@@ -59,6 +101,17 @@ function EditUsuario(props) {
             </div>
             <div className="editUsuario">
                 <form className="modificarEmailUsuario">
+<<<<<<< HEAD
+=======
+                   
+                 
+                    <input type="password" placeholder="Contraseña anterior" name="passwordAnterior" onChange={leerInputPass} />
+               
+               
+                    <input type="password" placeholder="Repetir contraseña anterior" name="repetirPassword" onChange={leerInputPass} />
+            
+                                 
+>>>>>>> 98c8f1bd38180aab6d099d72c966a3722befcabe
                     <div className="cambiarPassword">
                     <p>Cambiar Contraseña</p>
                     <input type="password" placeholder="Nueva Contraseña" name="password" onChange={leerInputPass} />
@@ -78,7 +131,11 @@ function EditUsuario(props) {
                 <div className="guardaCambioContraseña" onClick={cambiarImagen} >
                     <p>CAMBIAR IMG</p>
                 </div>
-            </div>                           
+            </div>   
+
+             <div className="errores">
+                {errores.map(error => <h2>{error}</h2>)}
+            </div>                        
         </div>
     )
     

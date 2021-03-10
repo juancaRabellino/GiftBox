@@ -1292,3 +1292,7 @@ input[type='radio']:checked:after {
         display: none;
     }
 }
+
+.ojito {
+    margin-top: 1.5vh;
+}

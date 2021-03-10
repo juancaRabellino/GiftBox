@@ -33,29 +33,41 @@ const usuarioController = {
     },
     editarUsuarioPass: async(req,res) =>{
         var errors=[]
-        const {password}=req.body
+        console.log(req.body)
+        const {password, passwordVerificado}=req.body
         const id= req.params._id
-        const passwordHasheado = bcryptjs.hashSync(password, 10)
-        const usuarioExistente = await Usuario.findOneAndUpdate({_id:id},
-            {'$set':{password:passwordHasheado}},
-            {new:true})
+        var passwordHasheado = bcryptjs.hashSync(password, 10)
 
-        if(!usuarioExistente){errors.push("Cuenta o contraseña incorrecta")}
-        else if (usuarioExistente){
-            const passwordMatches= bcryptjs.compareSync(password,usuarioExistente.password);
-        if(!passwordMatches){errors.push("Cuenta o contraseña incorrecta")}
+        var usuarioExistente = await Usuario.findOne({_id:id});
+            if (usuarioExistente){
+            var passwordMatches= bcryptjs.compareSync(passwordVerificado,usuarioExistente.password);
+            if(!passwordMatches){errors.push("Contraseña incorrecta la one");}
+            else{
+                usuarioExistente = await Usuario.findOneAndUpdate({_id:id},
+                    {'$set':{password:passwordHasheado}},
+                    {new:true})
+            }
+            //var token=jsonWebToken.sign({...usuarioExistente},process.env.JWT_SECRET_KEY,{});
+        }else{
+            errors.push("Contraseña incorrecta la thwo")
+        }
+
+
+      
         return res.json({
             success: errors.length===0? true:false,
             errors: errors,
             response: errors.length===0 && {password:usuarioExistente.password}
-        })
-    }},
+        }) 
+    },
 
 
     cambiarPassword: async(req,res) =>{
         var errors=[]
+
+
         const {password, cuenta}=req.body
-        console.log(req.body)
+
         const passwordHasheado = bcryptjs.hashSync(password, 10)
         const usuarioExistente = await Usuario.findOneAndUpdate({cuenta:cuenta},
             {'$set':{password:passwordHasheado}},
