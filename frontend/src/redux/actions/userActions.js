@@ -87,10 +87,11 @@ const userActions={
             dispatch({type:'INICIAR_SESION', payload: respuesta.data})
         }
     },
-    editUsuarioPass : (editUsuario, id) => {
+    editUsuarioPass : (editarUsuario, id) => {
         console.log('llegue')
+        console.log(editarUsuario)
         return async (dispatch, getState)=> {
-            const respuesta = await axios.put(`http://localhost:4000/api/usuarios/${id}`, editUsuario)
+            const respuesta = await axios.put(`http://localhost:4000/api/usuarios/${id}`, editarUsuario )
             console.log(respuesta)
             if(!respuesta.data.success){
             console.log('me fui')

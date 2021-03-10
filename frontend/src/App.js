@@ -22,6 +22,7 @@ import Envio from './components/Envio';
 import EnvioMensaje from './components/EnvioMensaje';
 import Pago from './components/Pago';
 import Regalo from './components/Regalo';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App({loggedUser,carritoDelLS,logFromLS}) {
   console.log(loggedUser)
@@ -53,7 +54,7 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
     <Route exact path="/carrito/" component={Carrito}/>
     <Route exact path="/carritoPaquetes/" component={CarritoPaquetes}/>
     <Route exact path="/paquete/:_id" component={Paquete}/>
-   
+    <Route exact path="/registro" component={Registros}/>
     <Route exact path="/iniciarsesion" component={IniciarSesion} />
     <Route exact path="/cambiar-password" component={RecuperarPassword}/> 
     <Route exact path="/recuperar-password" component={EnviarEmail}/> 
