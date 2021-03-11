@@ -22,8 +22,10 @@ import Envio from './components/Envio';
 import EnvioMensaje from './components/EnvioMensaje';
 import Pago from './components/Pago';
 import Regalo from './components/Regalo';
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import ScrollToTop from './components/ScrollTop'
 import QueEsGiftBox from './components/QueEsGiftBox'
+import Admin from './components/Admin'
 
 
 function App({ loggedUser, carritoDelLS, logFromLS }) {
@@ -42,7 +44,6 @@ function App({ loggedUser, carritoDelLS, logFromLS }) {
         if (backToHome === '/') {
           setRenderAgain(!renderAgain)
         }
-
       })
       .catch(error => setRenderAgain(!renderAgain))
   }
@@ -81,13 +82,9 @@ function App({ loggedUser, carritoDelLS, logFromLS }) {
           <Route exact path="/queEsGiftBox" component={QueEsGiftBox}/>
           <Route exact path="/regalo" component={Regalo} />
           <Route exact path="/pago" component={Pago} />
-
+          <Route exact path='/admin' component={Admin}/>
           <Redirect to="/" />
         </Switch>
-
-
-
-
       </>
 
   }
@@ -96,7 +93,7 @@ function App({ loggedUser, carritoDelLS, logFromLS }) {
       <BrowserRouter >
         <ScrollToTop>
           <Header />
-
+          
           {routes}
 
           <WhatsApp />

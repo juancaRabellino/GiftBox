@@ -10,9 +10,10 @@ const initialState = {
           todosLosProductos: action.payload
         }
       case 'PRODUCTOS_DEL_PAQUETE':
-        return {
+        console.log("222222222222222222222222222222222222222")
+      return {
           ...state,
-          productosDelpaquete: state.todosLosProductos.filter(producto => producto.paqueteId/* ._id */ === action.payload)
+          productosDelpaquete: action.payload
         }
       default:
         return state;

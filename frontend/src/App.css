@@ -219,7 +219,7 @@ body {
     margin-right: 3vw;
 }
 
-.userImg {
+.userImagen {
     /* background-image: url("./assets/no-usuario.png"); */
     width: 12vh;
     height: 12vh;
@@ -490,12 +490,18 @@ video {
     justify-content: center;
 }
 
-.filterInput input {
-    border-radius: 10px 0 0 10px;
-    width: 20vw;
+.filterInput input, .filterInput select {
+    width: 15vw;
     height: 5vh;
     text-align: center;
     outline: none;
+    appearance: none;
+    display: flex;
+    justify-content: center;
+    text-align-last:center
+}
+.filterInput select:first-child {
+  border-radius: 10px 0 0 10px;
 }
 
 .packagesContainer {
@@ -576,11 +582,21 @@ video {
 }
 
 .giftBoxImage {
-    width: 50px;
-    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 40px;
+    height: 40px;
     margin: 0 20px 25px 0;
-    background-color: blue;
+    border: 1px solid rgba(255, 255, 255, .5);
+    border-radius: 10px;
 }
+.giftBoxImage p {
+  color:rgba(255, 255, 255, .5);
+  font-size: 12px;
+}
+
 
 .packageDataContainer {
     position: absolute;
@@ -1208,6 +1224,97 @@ input[type='radio']:checked:after {
     font-size: 1.3rem;
 }
 
+
+
+/* --------- ADMIN --------- */
+.adminContainer{
+    margin: 3vh 0;
+    margin-top: 0;
+}
+.adminContainer h1{
+    color: white;
+}
+.menuDeCarga{
+    width: 100%;
+    
+}
+.cargaContent{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    margin: 0 auto;
+}
+.adminCargaFormContainer{
+    width: 40%;
+    
+}
+.adminCargaForm{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    margin: 0vh 0;
+    width: 100%;
+}
+.adminCargaForm input{
+    margin: 2vh 0;
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    border: none;
+}
+.adminCargaForm select{
+    margin: 2vh 0;
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    border: none;
+}
+.adminCargaForm textarea{
+    margin: 2vh 0;
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    resize: vertical;
+    border:none;
+}
+.adminCargaForm button{
+    padding: 1vh 2vw;
+    color: white;
+    background-color: var(--azul-claro);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    transition: 0.2s ease;
+    border: none;
+}
+.adminCargaForm button:hover{
+    transform: scale(1.05);
+    background-color: var(--azul-oscuro);
+}
+.cargaContentButton{
+    cursor: pointer;
+    background-color: var(--color-primario);
+    padding: 1vh 2vw;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgb(126, 126, 126);
+    margin: 5vh 0;
+    width: fit-content;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+}   
+.cargaContentButton h3{
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+    margin-right: 1vw;
+}
+
+
 /* ------- MEDIA QUERIES ------ */
 
 @media (max-width:900px) {
@@ -1429,6 +1536,16 @@ input[type='radio']:checked:after {
     height: 50vh;
 }
 
+/* ------- ADMIN --------- */
+.adminCargaFormContainer{
+    width: 100%;
+}
+.cargaContent, .menuDeCarga {
+    width: 90%;
+}
+.cargaContentButton, .cargaContent input .cargaContent textarea{
+    width: 100%;
+}
 
 
 }
@@ -1447,7 +1564,9 @@ input[type='radio']:checked:after {
         display: none;
     }
 }
-
+.ojito {
+    margin-top: 1.5vh;
+}
 @media (max-width: 600px){
     /* ------ USUARIO ------ */
 .boxChicaUsuario{

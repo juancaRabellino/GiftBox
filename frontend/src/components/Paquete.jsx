@@ -9,13 +9,20 @@ import ReactStars from "react-rating-stars-component";
 import { FaMapMarkerAlt,FaRegPaperPlane } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import Comentario from './Comentario'
+import carritoActions from '../redux/actions/carritoActions'
 import Opiniones from './Opiniones'
+import withReactContent from 'sweetalert2-react-content'
+import productoActions from '../redux/actions/productoActions'
 
-const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes, history }) => {
+const Paquete = ({productosDelpaquete,obtenerProductosPorPaquete ,loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes, history,  agregarAlCarrito}) => {
   const [valor, setValor] = useState(0)
   const [ultimoValor, setUltimoValor] = useState(0);
   const [visible, setVisible] = useState(false)
   const [comentario, setComentario] = useState({})
+  useEffect(() => { 
+    if(paquetePorId){obtenerProductosPorPaquete(paquetePorId._id)}
+  }, [])
+  console.log(productosDelpaquete)
   const productos = [
     {
       titulo: 'Spa El Roble, Villa Crespo',
@@ -68,16 +75,16 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
   const id = match.params._id
   useEffect(() => {
     var paquete = obtenerPaquetePorId(match.params._id)
-    if (paquetePorId) {
-      if (loggedUser && paquetePorId) {
-        var aux = { valor: 0 }
-        aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
-        if (aux.valor !== null && aux !== undefined) {
+    // if (paquetePorId) {
+    //   if (loggedUser && paquetePorId) {
+    //     var aux = { valor: 0 }
+    //     aux = paquetePorId.valoracion.find(valoracionUsuario => valoracionUsuario.idUsuario === loggedUser.id)
+    //     if (aux.valor !== null && aux !== undefined) {
 
-          setUltimoValor(aux.valor)
-        }
-      }
-    }
+    //       setUltimoValor(aux.valor)
+    //     }
+    //   }
+    // }
   }, [match.params._id])
 
   const leerInput = (e) => {
@@ -130,6 +137,25 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
 
   }
   if (!paquetePorId) { return <h1>loading..</h1> }
+  function agregarCarrito() {
+    agregarAlCarrito(paquetePorId)
+
+    const MySwal = withReactContent(Swal)
+    MySwal.fire({
+      title: <p className="popup" style={{ color: "black" }}>Agregado a tu carrito!</p>,
+      icon: 'success',
+      toast: true,
+      timer: 1300,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      width: 200,
+      background: '#d8f6d3',
+      iconColor: '#2fbc13'
+
+    })
+    if (!paquetePorId) { return <h1>loading..</h1> }
+  }
+  paquetePorId && console.log(paquetePorId)
   return (
     <>
       {paquetePorId &&
@@ -159,7 +185,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
                 <div className="precio">$ {paquetePorId.precio}
                   <a href="https://www.mercadopago.com.ar/ayuda/medios-de-pago-cuotas-promociones_264" target="blank">ver cuotas</a>
                 </div>
-                <button className="comprarPaquete">Comprar esta GiftBox</button>
+                <button className="comprarPaquete"  onClick={agregarCarrito}>Comprar esta GiftBox</button>
                 <div className="mediosdepago"></div>
               </div>
             </div>
@@ -198,7 +224,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
               <p>Tu agasajado va a poder disfrutar de estos <span>{productos.length}</span> productos</p>
             </div>
             <div className="productos">{
-              productos.map(producto => {
+              productosDelpaquete.map(producto => {
                 return (
                   <>
                     <div className="cardProducto" key={`cardProd${producto._id}`}>
@@ -228,7 +254,8 @@ const mapStateToProps = state => {
   return {
     todosLosPaquetes: state.paqueteReducer.todosLosPaquetes,
     paquetePorId: state.paqueteReducer.paquetePorId,
-    loggedUser: state.userReducer.loggedUser
+    loggedUser: state.userReducer.loggedUser,
+    productosDelpaquete: state.productoReducer.productosDelpaquete
   }
 }
 
@@ -238,7 +265,9 @@ const mapDispatchToProps = {
   obtenerValoracion: paqueteActions.obtenerValoracion,
   enviarValoracion: paqueteActions.enviarValoracion,
   agregarComentario: paqueteActions.agregarComentario,
-  eliminarComentario: paqueteActions.eliminarComentario
+  eliminarComentario: paqueteActions.eliminarComentario,
+  agregarAlCarrito: carritoActions.agregarAlCarrito,
+  obtenerProductosPorPaquete: productoActions.obtenerProductosPorPaquete
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paquete)

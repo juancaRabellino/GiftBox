@@ -38,7 +38,11 @@ const PaginaUsuario = (props) => {
             <div className='imgTopUsuario'  style={{backgroundImage: `url("https://static.bigbox.com.ar/webSsr/build/trama_usuario.782a82e25f2ec37b2be87b3374f4eb4a.png"`}}>
                 <div className='boxUser'>
                     <div className="userIconos">
-                        <div className="userImg" style={{backgroundImage: `url("${props.loggedUser.imagen}")`}}/>
+                        {props.loggedUser.googleUser === 'false' ?
+                        <div className="userImagen" style={{backgroundImage: `url("../usuarioImg/${props.loggedUser.imagen}")`}}/>
+                        :
+                        <div className="userImagen" style={{backgroundImage: `url(${props.loggedUser.imagen})`}}/>
+                        }
                         <div >
                             <Link to='/editUsuario'className="iconoCambiarImg"><p ><IoCamera /></p></Link> 
                         </div>

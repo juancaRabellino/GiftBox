@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const productoActions = {
   obtenerTodoslosProductos: () => {
@@ -12,10 +13,34 @@ const productoActions = {
     }
   },
   obtenerProductosPorPaquete: (_id)=>{
+    console.log("1111111111111111111111111111111111111111111111111111")
     return async (dispatch, getState) => {
-      dispatch({type:"PRODUCTOS_DEL_PAQUETE", payload: _id})
+      const response= await axios.get(`http://localhost:4000/api/productos/paquete/${_id}`)
+      console.log(response.data)
+      if (response.data.success===true){
+        dispatch({type:"PRODUCTOS_DEL_PAQUETE", payload: response.data.response})
+      }
     }
-  }
+  },
+  cargarProducto: (nuevoProducto) => {  
+    console.log(nuevoProducto)  
+    return async (dispatch, getState) => {      
+      try{
+        const response = await axios.post('http://localhost:4000/api/productos',nuevoProducto, {
+          headers: {"Content-Type": "multipart: form-data"}
+        })
+        dispatch({type:"CARGAR_PRODUCTO", payload: response.data.response})
+      }
+      catch(error){
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Problema con la carga de Paquete!',
+        })
+      }
+      
+    }
+  } 
     
 }
 export default productoActions;

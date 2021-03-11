@@ -8,6 +8,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { useState } from "react";
 import { SiWhatsapp } from "react-icons/si";
 import regaloActions from "../redux/actions/regaloActions";
+import { useEffect } from "react";
 
 const Envio=({carrito,total,modificarRegalo})=>{
     const [tipoEnvio,setTipoEnvio]=useState("")
@@ -16,6 +17,15 @@ const Envio=({carrito,total,modificarRegalo})=>{
     const [errores,setErrores]=useState([]);
     const [asunto,setAsunto]=useState("")
     
+    useEffect(() => {
+        var paquetesId=[]
+            carrito.map(paquete=>paquetesId.push({paqueteId:paquete._id,cantidad:paquete.cantidad}))
+            modificarRegalo({email:{
+                emailDestinatario:mailDestinatario,
+                asunto,
+            },carrito,
+            paquetesId})
+    }, [])
     const continuar=()=>{
         let lastAtPos = mailDestinatario.lastIndexOf('@');
         let lastDotPos = mailDestinatario.lastIndexOf('.');
@@ -23,10 +33,13 @@ const Envio=({carrito,total,modificarRegalo})=>{
             setErrores(["Email no valido"])
         }
         else{ 
+            var paquetesId=[]
+            carrito.map(paquete=>paquetesId.push({paqueteId:paquete._id,cantidad:paquete.cantidad}))
             modificarRegalo({email:{
                 emailDestinatario:mailDestinatario,
                 asunto,
-            },carrito})
+            },carrito,
+            paquetesId})
             setErrores([])
         }
     }
@@ -130,7 +143,7 @@ const Envio=({carrito,total,modificarRegalo})=>{
                 }  
                 <div  style={{width:"100%", paddingTop:"2vh"}}>
                     <Link id="carritoContinuar" style={{margin:"0"}} onClick={continuar}>
-                        {paraQuien==="paraMi" ?<Link to="/envioMensaje"> Continuar al pago</Link> : <Link to="/envioMensaje" > Continuar al mensaje</Link>}
+                        {paraQuien==="paraMi" ?<Link to="/pago"> Continuar al pago</Link> : <Link to="/envioMensaje" > Continuar al mensaje</Link>}
                     </Link>
                 </div>
 

@@ -13,6 +13,7 @@ const Envio=({carrito,total,regalo,modificarRegalo})=>{
     const [paraQuien,setParaQuien]=useState("")
     const [mensaje,setMensaje]=useState("")
     if(!carrito){return <h1>loading..</h1> }
+
     return(
         <>
         <div className="carrito">
@@ -29,7 +30,6 @@ const Envio=({carrito,total,regalo,modificarRegalo})=>{
                         <p>Resumen</p>
                     </div>
                 </div>
-                
             </div>
             <div className="carritoSection">
             {carrito.length!==0
@@ -39,7 +39,6 @@ const Envio=({carrito,total,regalo,modificarRegalo})=>{
                         <div className="carritoPaquete" key={`carritoP${paquete._id}`}>
                             <div className="carritoPaqueteNombre" style={{ backgroundImage: `url("../assets/bannerCarrito.jpg")` }} >
                                 {paquete.nombre}
-                               
                             </div>
                             <div className="carritoPaqueteContenido">
                                 <div id="carritoImagen">
@@ -66,16 +65,13 @@ const Envio=({carrito,total,regalo,modificarRegalo})=>{
                     <input type="text" placeholder="Para" onChange={(e)=>setParaQuien(e.target.value)}/> 
                     <textarea type="textarea" placeholder="Mensaje" onChange={(e)=>setMensaje(e.target.value)}/>                
                 </div>
-                
                 <div  style={{width:"100%", paddingTop:"2vh"}}>
                     <Link to="/pago" id="carritoContinuar" style={{margin:"0"}} 
                     onClick={()=>modificarRegalo({...regalo,email:{...regalo.email,deMensaje:deQuien,paraMensaje:paraQuien,mensaje}})}>
                          Continuar al pago
                     </Link>
                 </div>
-
             </div>
-            
             }
                 <div className="carritoResumen">
                     <div>
@@ -114,6 +110,4 @@ const mapStateToProps = state => {
 const mapDispatchToProps ={
     modificarRegalo: regaloActions.modificarRegalo
 }
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(Envio)
