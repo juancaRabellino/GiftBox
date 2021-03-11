@@ -128,7 +128,19 @@ body {
 }
 
 .cart {
-    font-size: 1.65rem;
+    color: white;
+    background-color: var(--color-primario);
+    padding: 0.5vh;
+    border-radius: 1vh;
+    font-size: 2.65rem;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.459);
+    transition: .9s;
+}
+
+.cart:hover {
+    background-color: rgba(0, 0, 0, 0.794);
+    color:  var(--color-primario);
+    transition: .9s;
 }
 
 .headerUserBottom {
@@ -303,8 +315,12 @@ body {
     text-decoration: none;
     color: black;
     margin-left: 2vh;
+    transition: .5s;
 }
-
+.userName p:hover, a:hover{
+    color: var(--color-primario);
+    transition: .5s;
+}
 .userNameeImg {
     display: flex;
     flex-direction: column;
@@ -1464,6 +1480,11 @@ input[type='radio']:checked:after {
     font-weight: 500;
     color: rgb(63, 63, 63);
     cursor: pointer;
+    transition: .5s;
+}
+.paquetesTituloH:hover {
+    color: var(--color-primario);
+    transition: .5s;
 }
 
 

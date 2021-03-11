@@ -78,8 +78,8 @@ const Header = ({ carrito, loggedUser, logOut }) => {
                             <div className="heart centerCenterRow "><BsHeart /></div>
                             <Link to="/carrito">
                                 <div className="cart centerCenterRow ">
-                                    <IoCartOutline />
-                                    <p>{carrito.length}</p>
+                                    <IoCartOutline style={{marginRight: '1vw'}}/>
+                                    <p style={{color: 'white', paddingRight: '0.3vw'}}>{carrito.length}</p>
                                 </div>
                             </Link>
                         </div>
