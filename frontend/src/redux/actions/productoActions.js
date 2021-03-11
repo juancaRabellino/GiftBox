@@ -13,8 +13,13 @@ const productoActions = {
     }
   },
   obtenerProductosPorPaquete: (_id)=>{
+    console.log("1111111111111111111111111111111111111111111111111111")
     return async (dispatch, getState) => {
-      dispatch({type:"PRODUCTOS_DEL_PAQUETE", payload: _id})
+      const response= await axios.get(`http://localhost:4000/api/productos/paquete/${_id}`)
+      console.log(response.data)
+      if (response.data.success===true){
+        dispatch({type:"PRODUCTOS_DEL_PAQUETE", payload: response.data.response})
+      }
     }
   },
   cargarProducto: (nuevoProducto) => {  

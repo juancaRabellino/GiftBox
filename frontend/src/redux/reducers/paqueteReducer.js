@@ -3,7 +3,7 @@ const initialState = {
   paquetesPorCategoria: [],
   paquetePorId: null,
   paquetesFiltrados: [],
-  paquetesMasRegalados: []
+  paquetesMasRegalados: [],
 }
 const actualizar = (todosLosPaquetes, nuevoPaquete) => {
   return (todosLosPaquetes.map(paquete => {
@@ -20,7 +20,8 @@ const paqueteReducer = (state = initialState, action) => {
     case 'TODOS_PAQUETES':
       return {
         ...state,
-        todosLosPaquetes: action.payload
+        todosLosPaquetes: action.payload,
+        auxFran:action.payload
       }
     case 'PAQUETES_CATEGORIA':
       return {

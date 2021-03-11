@@ -12,12 +12,17 @@ import Comentario from './Comentario'
 import carritoActions from '../redux/actions/carritoActions'
 import Opiniones from './Opiniones'
 import withReactContent from 'sweetalert2-react-content'
+import productoActions from '../redux/actions/productoActions'
 
-const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes, history,  agregarAlCarrito}) => {
+const Paquete = ({productosDelpaquete,obtenerProductosPorPaquete ,loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes, history,  agregarAlCarrito}) => {
   const [valor, setValor] = useState(0)
   const [ultimoValor, setUltimoValor] = useState(0);
   const [visible, setVisible] = useState(false)
   const [comentario, setComentario] = useState({})
+  useEffect(() => { 
+    if(paquetePorId){obtenerProductosPorPaquete(paquetePorId._id)}
+  }, [])
+  console.log(productosDelpaquete)
   const productos = [
     {
       titulo: 'Spa El Roble, Villa Crespo',
@@ -219,7 +224,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
               <p>Tu agasajado va a poder disfrutar de estos <span>{productos.length}</span> productos</p>
             </div>
             <div className="productos">{
-              productos.map(producto => {
+              productosDelpaquete.map(producto => {
                 return (
                   <>
                     <div className="cardProducto" key={`cardProd${producto._id}`}>
@@ -249,7 +254,8 @@ const mapStateToProps = state => {
   return {
     todosLosPaquetes: state.paqueteReducer.todosLosPaquetes,
     paquetePorId: state.paqueteReducer.paquetePorId,
-    loggedUser: state.userReducer.loggedUser
+    loggedUser: state.userReducer.loggedUser,
+    productosDelpaquete: state.productoReducer.productosDelpaquete
   }
 }
 
@@ -260,7 +266,8 @@ const mapDispatchToProps = {
   enviarValoracion: paqueteActions.enviarValoracion,
   agregarComentario: paqueteActions.agregarComentario,
   eliminarComentario: paqueteActions.eliminarComentario,
-  agregarAlCarrito: carritoActions.agregarAlCarrito
+  agregarAlCarrito: carritoActions.agregarAlCarrito,
+  obtenerProductosPorPaquete: productoActions.obtenerProductosPorPaquete
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paquete)

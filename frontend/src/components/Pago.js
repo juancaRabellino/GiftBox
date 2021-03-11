@@ -7,12 +7,24 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { AiOutlineCreditCard } from "react-icons/ai";
 import { FaMoneyBillAlt, FaPaypal } from "react-icons/fa";
 import regaloActions from "../redux/actions/regaloActions";
+import { useEffect } from "react";
 import TarjetaDeCredito from "../components/TarjetaDeCredito"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import carritoActions from "../redux/actions/carritoActions"
 
 const Envio=({carrito,total,enviarRegalo})=>{
+
+const Envio=({carrito,total,enviarRegalo,regalo,modificarRegalo})=>{
+    useEffect(() => {
+        var paquetesId=[]
+    carrito.map(paquete=>paquetesId.push({paqueteId:paquete._id,cantidad:paquete.cantidad}))
+    modificarRegalo({email:{
+        emailDestinatario:"",
+        asunto:"",
+    },carrito,
+    paquetesId})
+    }, [])
 
     if(!carrito){return <h1>loading..</h1>}
 
@@ -128,12 +140,17 @@ const Envio=({carrito,total,enviarRegalo})=>{
 const mapStateToProps = state => {
     return {
         carrito: state.carritoReducer.carrito,
-        total:state.carritoReducer.total
+        total:state.carritoReducer.total,
+        regalo:state.regaloReducer.regalo
     }
 }
 const mapDispatchToProps={
     enviarRegalo:regaloActions.enviarRegalo,
+<<<<<<< HEAD
     eliminarDelCarrito: carritoActions.eliminarDelCarrito
+=======
+    modificarRegalo:regaloActions.modificarRegalo
+>>>>>>> Fran
 }
 
 
