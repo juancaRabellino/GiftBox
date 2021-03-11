@@ -44,7 +44,6 @@ function App({ loggedUser, carritoDelLS, logFromLS }) {
         if (backToHome === '/') {
           setRenderAgain(!renderAgain)
         }
-
       })
       .catch(error => setRenderAgain(!renderAgain))
   }
@@ -86,10 +85,6 @@ function App({ loggedUser, carritoDelLS, logFromLS }) {
           <Route exact path='/admin' component={Admin}/>
           <Redirect to="/" />
         </Switch>
-
-
-
-
       </>
 
   }

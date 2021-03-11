@@ -8,13 +8,14 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 
+
 const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
     if(!carrito){return <h1>loading..</h1> }
 
 
     function eliminarPaquete(paquete) {
-        eliminarDelCarrito(paquete)
 
+        eliminarDelCarrito(paquete)
         const MySwal = withReactContent(Swal)
                 MySwal.fire({
                 title: <p className="popup" style={{color:"black",paddingTop: 15}}>Paquete eliminado!</p>,
@@ -29,6 +30,7 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
                 })
         if(!carrito){return <h1>loading..</h1> }
     }
+
     function carritoVacio() {
 
         const MySwal = withReactContent(Swal)
