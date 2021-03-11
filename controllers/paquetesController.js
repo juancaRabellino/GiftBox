@@ -16,7 +16,7 @@ const paquetesController = {
       .catch(error => { return res.json({ success: false, response: "Error al obtener los paquetes" }) })
   },
   unPaquete: (req, res) => {
-    Paquete.findOne(req.params)
+    Paquete.findOne(req.params).populate("productos.productoId")
       .then(data => { return res.json({ success: true, response: data }) })
       .catch(error => { return res.json({ success: false, response: "Error al obtener el paquete" }) })
   },
