@@ -320,9 +320,10 @@ body {
     flex-direction: column;
     position: absolute;
     width: 30vh;
-    margin-top: 2vh;
+    margin-top: 1.4vh;
     background-color: white;
     align-items: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
 .flexRowUsuarios {
