@@ -10,11 +10,8 @@ import { FaMapMarkerAlt,FaRegPaperPlane } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import Comentario from './Comentario'
 import carritoActions from '../redux/actions/carritoActions'
-<<<<<<< HEAD
 import Opiniones from './Opiniones'
-=======
 import withReactContent from 'sweetalert2-react-content'
->>>>>>> fb203205dd8c6b0a94ebeebe05733cc22cd269cc
 
 const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes, history,  agregarAlCarrito}) => {
   const [valor, setValor] = useState(0)
