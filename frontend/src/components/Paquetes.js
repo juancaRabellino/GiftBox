@@ -5,11 +5,13 @@ import paqueteActions from '../redux/actions/paqueteActions'
 import TarjetaPaquete from './TarjetaPaquete'
 import { BiSearch } from 'react-icons/bi'
 import { useEffect } from 'react'
+import productoActions from '../redux/actions/productoActions'
 
-const Paquetes = ({ todosLosPaquetes, todasLasCategorias }) => {
+const Paquetes = ({todosLosPaquetes, todasLasCategorias }) => {
   const ciudades = ["Buenos Aires", "Santa Fe", "Córdoba"]
   const [paquetesFiltrados,setPaquetesFiltrados]=useState(todosLosPaquetes)
   const [filtroActivado,setFiltroActivado]=useState(false)
+  
   const leerInputs=(e)=>{
     console.log("Filtro por "+e.target.name+": "+e.target.value)
     let aux=[]
@@ -70,15 +72,12 @@ const Paquetes = ({ todosLosPaquetes, todasLasCategorias }) => {
 const mapStateToProps = state => {
   return {
     todosLosPaquetes:state.paqueteReducer.todosLosPaquetes,
-    auxFran: state.paqueteReducer.todosLosPaquetes,
-    paquetesFiltrados: state.paqueteReducer.paquetesFiltrados,
     todasLasCategorias: state.categoriaReducer.todasLasCategorias
   }
 }
 
 const mapDispatchToProps = {
-  filtrarPaquetes: paqueteActions.filtrarPaquetes,
-  filtros: paqueteActions.filtros
+  filtrarPaquetes: paqueteActions.filtrarPaquetes
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paquetes)
