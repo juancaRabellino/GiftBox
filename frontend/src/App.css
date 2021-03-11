@@ -475,12 +475,18 @@ video {
     justify-content: center;
 }
 
-.filterInput input {
-    border-radius: 10px 0 0 10px;
-    width: 20vw;
+.filterInput input, .filterInput select {
+    width: 15vw;
     height: 5vh;
     text-align: center;
     outline: none;
+    appearance: none;
+    display: flex;
+    justify-content: center;
+    text-align-last:center
+}
+.filterInput select:first-child {
+  border-radius: 10px 0 0 10px;
 }
 
 .packagesContainer {

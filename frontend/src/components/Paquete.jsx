@@ -130,6 +130,8 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
 
   }
   if (!paquetePorId) { return <h1>loading..</h1> }
+
+  paquetePorId && console.log(paquetePorId)
   return (
     <>
       {paquetePorId &&

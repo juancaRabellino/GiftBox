@@ -44,7 +44,7 @@ const paqueteReducer = (state = initialState, action) => {
     case 'FILTRO':
       return {
         ...state,
-        paquetesFiltrados: state.todosLosPaquetes.filter(paquete => paquete.nombre.toLowerCase().includes(action.payload.toLowerCase().trim()) || paquete.cantidadPersonas === action.payload.trim() || paquete.ubicacion.toLowerCase().includes(action.payload.toLowerCase().trim()) || paquete.categoria.toLowerCase().includes(action.payload.toLowerCase().trim()))
+        paquetesFiltrados: state.todosLosPaquetes.filter(paquete => paquete.nombre.toLowerCase().includes(action.payload.toLowerCase().trim()) || String(paquete.cantidadPersonas) === String(action.payload) || paquete.ubicacion.toLowerCase().includes(action.payload.toLowerCase().trim()) || paquete.categoria.toLowerCase().includes(action.payload.toLowerCase().trim()) || Number(paquete.precio) < Number(action.payload))
       }
     case 'PAQUETES_MAS_REF':
       return {
