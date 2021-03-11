@@ -12,6 +12,8 @@ const TarjetaPaquete = ({ paquete }) => {
               <p>{paquete.categoria}</p>
             </div>
             <div className='giftBoxImage'>
+              <p>GIFT</p>
+              <p>BOX</p>
             </div>
           </div>
         </div>

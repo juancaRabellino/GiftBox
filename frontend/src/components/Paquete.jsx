@@ -127,6 +127,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     }
 
   }
+<<<<<<< HEAD
   function agregarCarrito() {
     agregarAlCarrito(paquetePorId)
 
@@ -145,6 +146,11 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
     })
     if (!paquetePorId) { return <h1>loading..</h1> }
   }
+=======
+  if (!paquetePorId) { return <h1>loading..</h1> }
+
+  paquetePorId && console.log(paquetePorId)
+>>>>>>> a33011a128e9a0b5798911a32b1e92e5813f2317
   return (
     <>
       {paquetePorId &&
