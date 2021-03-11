@@ -14,7 +14,7 @@ import withReactContent from 'sweetalert2-react-content'
 import productoActions from '../redux/actions/productoActions'
 
 const Paquete = ({productosDelpaquete,obtenerProductosPorPaquete ,loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes, history,  agregarAlCarrito}) => {
-  const [valor, setValor] = useState(0)
+  const [valor, setValor] = useState(0);
   const [ultimoValor, setUltimoValor] = useState(0);
   const [visible, setVisible] = useState(false)
   const [comentario, setComentario] = useState({})
