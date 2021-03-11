@@ -44,7 +44,7 @@ const paqueteReducer = (state = initialState, action) => {
     case 'FILTRO':
       return {
         ...state,
-        paquetesFiltrados: state.todosLosPaquetes.filter(paquete => paquete.nombre.toLowerCase().includes(action.payload.toLowerCase().trim()) || paquete.cantidadPersonas === action.payload.trim() || paquete.ubicacion.toLowerCase().includes(action.payload.toLowerCase().trim()) || paquete.categoria.toLowerCase().includes(action.payload.toLowerCase().trim()))
+        paquetesFiltrados: state.todosLosPaquetes.filter(paquete => paquete.nombre.toLowerCase().includes(action.payload.toLowerCase().trim()) || String(paquete.cantidadPersonas) === String(action.payload) || paquete.ubicacion.toLowerCase().includes(action.payload.toLowerCase().trim()) || paquete.categoria.toLowerCase().includes(action.payload.toLowerCase().trim()) || Number(paquete.precio) < Number(action.payload))
       }
     case 'PAQUETES_MAS_REF':
       return {
@@ -58,21 +58,32 @@ const paqueteReducer = (state = initialState, action) => {
         todosLosPaquetes: aux
       }
     case 'ENVIAR_COMENTARIO':
+      
       return {
         ...state,
-        paquetePorId: action.payload
+        paquetePorId: {...action.payload,promedio:state.paquetePorId.promedio},
+        todosLosPaquetes: state.todosLosPaquetes.map(paquete=>paquete._id===action.payload._id ? action.payload : paquete)
       }
     case 'ELIMINAR_COMENTARIO':
+      console.log("promedio del paquete antes de eliminar"+state.paquetePorId.promedio)
+      console.log("promedio del paquete despues de eliminar"+action.payload.promedio)
       return {
         ...state,
-        paquetePorId: action.payload
+        paquetePorId: {...action.payload,promedio:state.paquetePorId.promedio},
+        todosLosPaquetes: state.todosLosPaquetes.map(paquete=>paquete._id===action.payload._id ? action.payload : paquete)
       }
     case 'EDITAR_COMENTARIO':
       console.log(action.payload)
       return {
         ...state,
-        paquetePorId: action.payload
-        // paquete: state.todosLosPaquetes.map(paquete => paquete._id === action.payload._id ? action.payload : paquete)
+        paquetePorId: {...action.payload,promedio:state.paquetePorId.promedio},
+        todosLosPaquetes: state.todosLosPaquetes.map(paquete=>paquete._id===action.payload._id ? action.payload : paquete)
+      }
+    case 'NUEVO_PAQUETE':
+      console.log(action.payload)
+      return{
+        ...state,
+        todosLosPaquetes: action.payload
       }
     default:
       return state;

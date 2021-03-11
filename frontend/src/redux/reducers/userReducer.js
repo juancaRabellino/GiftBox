@@ -20,10 +20,12 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 loggedUser:null
             } 
-        // case 'EDITAR_FOTO' :
-        //     return{
-
-        //     }          
+         case 'EDITAR_PASS' :
+             console.log(action.payload)
+            return{
+                ...state,
+                loggedUser: action.payload
+            }          
         default:
         return state
     }

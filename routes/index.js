@@ -44,8 +44,8 @@ router.route('/paquete/comentario/:paqueteId/:comentarioId')
 // CONTROLADOR REGALO
 router.route("/regalos")
   .get(regalosController.todosLosRegalos)
-router.route("/regalos/:_id")
-  .get(regalosController.todosLosRegalos)
+router.route("/regalo/:_id")
+  .get(regalosController.unRegalo)
 router.route("/regalo")
   .post(passport.authenticate('jwt', { session: false }),regalosController.enviarRegalo)
 // CONTROLADOR DE USUARIO
@@ -53,21 +53,26 @@ router.route('/usuarios/:_id')
   .delete(usuarioController.eliminarUsuario)
   .put(usuarioController.editarUsuarioPass)
   .get(usuarioController.unUsuario)
+
+
 router.route("/usuarios")
-  // .post(validador.validarNuevaCuenta, usuarioController.agregarUsuario)
+
+// .post(validador.validarNuevaCuenta, usuarioController.agregarUsuario)
   .post(usuarioController.agregarUsuario)
   .get(usuarioController.todosLosUsuarios)
+
+  
 router.route("/login")
   .post(usuarioController.login)
 router.route('/imagen/:_id')
   .put(usuarioController.editarUsuarioImg)
-  
 
-  router.route('/usuarios/ls')
+router.route('/usuarios/ls')
 .post(passport.authenticate('jwt', {session: false}), usuarioController.logFromLS)
 
 router.route("/user/resetear-password")
 .post(passwordController.resetearPassword)
+.get(passwordController.resetearPassword)
 
 router.route("/cambiar-password")
 .put(usuarioController.cambiarPassword)

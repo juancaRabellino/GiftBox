@@ -22,8 +22,7 @@ const userActions={
                 const data =[{errors:'Paso algo...'}]
                 return data.data
               }
-          }
-       
+          }       
     },
     cerrarSesion: () => {
         return (dispatch, getState) => {
@@ -44,8 +43,7 @@ const userActions={
             }
         }
     },
- 
-    resetearPassword: (cuenta)=> {
+     resetearPassword: (cuenta)=> {
         return async (dispatch) => {
             try{
                 const response = await axios.post('http://localhost:4000/api/user/resetear-password', {cuenta})
@@ -61,10 +59,7 @@ const userActions={
                     })
             }
         }
-    },
-
-
-    
+    },   
     logOut:()=>{
         return (dispatch, getState)=>{
             try{
@@ -75,7 +70,6 @@ const userActions={
             }
         }
       },
-
     iniciarSesion: (usuario) => {
         console.log(usuario)
         return async (dispatch, getState) => {
@@ -87,18 +81,20 @@ const userActions={
             dispatch({type:'INICIAR_SESION', payload: respuesta.data})
         }
     },
-    editUsuarioPass : (editUsuario, id) => {
-        console.log('llegue')
+    editUsuarioPass : (editarUsuario, id) => {
         return async (dispatch, getState)=> {
-            const respuesta = await axios.put(`http://localhost:4000/api/usuarios/${id}`, editUsuario)
-            console.log(respuesta)
+            const respuesta = await axios.put(`http://localhost:4000/api/usuarios/${id}`, editarUsuario )
+            console.log(respuesta.data)
             if(!respuesta.data.success){
-            console.log('me fui')
-            return respuesta.data 
-        }
+                return respuesta.data 
+            }
+            else{
+                dispatch({type:'EDITAR_PASS', payload:respuesta.data})
+
+                return respuesta.data
+            }
         }
     },
-
     cambiarPassword : (editUsuario) => {
         console.log(editUsuario)
         return async (dispatch, getState)=> {
@@ -123,7 +119,5 @@ const userActions={
         }
         }
     }
-
-
 }
 export default userActions;
