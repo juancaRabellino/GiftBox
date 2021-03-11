@@ -1121,6 +1121,89 @@ input[type='radio']:checked:after {
     font-size: 1.3rem;
 }
 
+
+
+/* --------- ADMIN --------- */
+.adminContainer{
+    margin: 3vh 0;
+    margin-top: 0;
+}
+.adminContainer h1{
+    color: white;
+}
+.menuDeCarga{
+    width: 100%;
+    
+}
+.cargaContent{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    margin: 0 auto;
+}
+.adminCargaFormContainer{
+    width: 40%;
+    
+}
+.adminCargaForm{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    margin: 0vh 0;
+    width: 100%;
+}
+.adminCargaForm input{
+    margin: 2vh 0;
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    border: none;
+}
+.adminCargaForm textarea{
+    margin: 2vh 0;
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    resize: vertical;
+    border:none;
+}
+.adminCargaForm button{
+    padding: 1vh 2vw;
+    color: white;
+    background-color: var(--azul-claro);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    transition: 0.2s ease;
+    border: none;
+}
+.adminCargaForm button:hover{
+    transform: scale(1.05);
+    background-color: var(--azul-oscuro);
+}
+.cargaContentButton{
+    cursor: pointer;
+    background-color: var(--color-primario);
+    padding: 1vh 2vw;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgb(126, 126, 126);
+    margin: 5vh 0;
+    width: fit-content;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+}   
+.cargaContentButton h3{
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+    margin-right: 1vw;
+}
+
+
 /* ------- MEDIA QUERIES ------ */
 
 @media (max-width:900px){
@@ -1350,6 +1433,16 @@ input[type='radio']:checked:after {
     height: 50vh;
 }
 
+/* ------- ADMIN --------- */
+.adminCargaFormContainer{
+    width: 100%;
+}
+.cargaContent, .menuDeCarga {
+    width: 90%;
+}
+.cargaContentButton, .cargaContent input .cargaContent textarea{
+    width: 100%;
+}
 
 
 }

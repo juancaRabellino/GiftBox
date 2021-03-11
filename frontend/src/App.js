@@ -22,6 +22,7 @@ import Envio from './components/Envio';
 import EnvioMensaje from './components/EnvioMensaje';
 import Pago from './components/Pago';
 import Regalo from './components/Regalo';
+import Admin from './components/Admin'
 
 function App({loggedUser,carritoDelLS,logFromLS}) {
   const [renderAgain,setRenderAgain] = useState(false)
@@ -76,7 +77,7 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       
       <Route exact path="/regalo" component={Regalo}/>
       <Route exact path="/pago" component={Pago}/>
-      
+      <Route exact path='/admin' component={Admin}/>
       <Redirect to="/"/> 
     </Switch>
       
