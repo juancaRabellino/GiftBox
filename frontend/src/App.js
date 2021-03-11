@@ -98,7 +98,7 @@ function App({ loggedUser, carritoDelLS, logFromLS }) {
       <BrowserRouter >
         <ScrollToTop>
           <Header />
-
+          
           {routes}
 
           <WhatsApp />
