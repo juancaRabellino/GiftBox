@@ -6,8 +6,10 @@ require("../config/passport");
 
 const productosController = require("../controllers/productosController");
 const usuarioController = require("../controllers/usuarioController");
+const passwordController = require('../controllers/passwordController')
 const paquetesController = require("../controllers/paquetesController");
 const categoriasController = require("../controllers/categoriasController");
+const regalosController = require("../controllers/regalosController");
 
 
 // CONTROLADORES DE PRODUCTO 
@@ -32,10 +34,24 @@ router.route("/paquetes/:_id")
   .delete(paquetesController.eliminarPaquete)
   .put(paquetesController.editarPaquete)
 
+// COMENTARIOS DE PAQUETES
+router.route('/paquete/comentario')
+  .post(passport.authenticate('jwt', { session: false }), paquetesController.agregarComentario)
+  .put(paquetesController.editarComentario)
+  
+router.route('/paquete/comentario/:paqueteId/:comentarioId')
+  .delete(paquetesController.eliminarComentario)
+// CONTROLADOR REGALO
+router.route("/regalos")
+  .get(regalosController.todosLosRegalos)
+router.route("/regalos/:_id")
+  .get(regalosController.todosLosRegalos)
+router.route("/regalo")
+  .post(passport.authenticate('jwt', { session: false }),regalosController.enviarRegalo)
 // CONTROLADOR DE USUARIO
 router.route('/usuarios/:_id')
   .delete(usuarioController.eliminarUsuario)
-  .put(usuarioController.editarUsuario)
+  .put(usuarioController.editarUsuarioPass)
   .get(usuarioController.unUsuario)
 router.route("/usuarios")
   // .post(validador.validarNuevaCuenta, usuarioController.agregarUsuario)
@@ -43,9 +59,23 @@ router.route("/usuarios")
   .get(usuarioController.todosLosUsuarios)
 router.route("/login")
   .post(usuarioController.login)
+router.route('/imagen/:_id')
+  .put(usuarioController.editarUsuarioImg)
+  
 
   router.route('/usuarios/ls')
 .post(passport.authenticate('jwt', {session: false}), usuarioController.logFromLS)
+
+router.route("/user/resetear-password")
+.post(passwordController.resetearPassword)
+
+router.route("/cambiar-password")
+.put(usuarioController.cambiarPassword)
+
+
+
+
+
 
 // CONTROLADOR DE CATEGORIAS
 router.route('/categoria')

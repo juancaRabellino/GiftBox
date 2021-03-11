@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 import userActions from '../redux/actions/userActions'
 
 const PaginaUsuario = (props) => {
-    
+    console.log(props.loggedUser)
     const[editUsuario, setEdittUsuario] = useState(false)
     const[opcionDiv, setOpciondiv] = useState(null)
 
@@ -35,17 +35,16 @@ const PaginaUsuario = (props) => {
     return (
         <>
         <div>
-            <div className='imgTopUsuario'>
+            <div className='imgTopUsuario'  style={{backgroundImage: `url("https://static.bigbox.com.ar/webSsr/build/trama_usuario.782a82e25f2ec37b2be87b3374f4eb4a.png"`}}>
                 <div className='boxUser'>
                     <div className="userIconos">
-                        <div className="userImg" /*style={{backgroundImage: `url("/userImages/${loggedUser.imagen}")`}}*//>
-                        <div className="iconoCambiarImg">
-                            <p ><IoCamera /></p> 
+                        <div className="userImg" style={{backgroundImage: `url("${props.loggedUser.imagen}")`}}/>
+                        <div >
+                            <Link to='/editUsuario'className="iconoCambiarImg"><p ><IoCamera /></p></Link> 
                         </div>
                     </div>
                     <div className="datosUsuaros">
-                        <h2>Nombre del Usuario</h2>
-                        <h2>Mail del usuario</h2>
+                        <h2>{props.loggedUser && props.loggedUser.nombre}</h2>
                     </div>
                 </div>
             </div>
@@ -65,7 +64,7 @@ const PaginaUsuario = (props) => {
                     <div onClick={compGrupales}><h3>Compras grupales</h3></div>
                     <div onClick={credito}><h3>Crédito</h3></div>
                 </div>
-                <div>
+                <div className="menuOpcionesUsuarioSecciones">
                     {editUsuario ? <EditUsuario/>
                     :<>
                         {opcionDiv === "regalos" ? <RegalosRecibidos/>
@@ -83,7 +82,7 @@ const PaginaUsuario = (props) => {
                 </div>
             </div>
         </div>
-        <Link to="/" onClick={props.logOut}><button>LogOut</button></Link>  
+        <Link to="/" className="logOutButton" onClick={props.logOut}><button>LogOut</button></Link>  
         </>
 
     )

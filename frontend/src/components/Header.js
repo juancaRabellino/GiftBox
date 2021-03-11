@@ -12,78 +12,123 @@ import { connect } from 'react-redux'
 import userActions from "../redux/actions/userActions"
 
 
-const Header = ({carrito, loggedUser, logOut}) => {
+const Header = ({ carrito, loggedUser, logOut }) => {
+    const [mostrarProductos, setMostrarProductos] = useState(true)
+    const [visible, setVisible] = useState(false)
     const [isOpen, setOpen] = useState(false)
 
     return (
         <>
             <div id="headerContainer">
-            <Link to='/'><div style={{ backgroundImage: `url("../assets/giftLogoF-01.png")` }} className='logoContainer'></div></Link>
-                <div className="headerInput">
-                    <div className="centerCenterRow">
-                        <input type="text" placeholder="Busca tu paquete"/>
-                        <div className="centerCenterRow searchButton"><BiSearch /></div>                        
-                    </div>
-                    <div className="paquetesHeader">                    
-                        {/* <Link to={'/paquetes'}><button>PAQUETES</button></Link> */}
-                        <PaquetesHeader />
-                    </div>                 
+                <Link to='/'><div style={{ backgroundImage: `url("../assets/giftLogoF-01.png")` }} className='logoContainer'></div></Link>
+                <div className="paquetesHeader">
+                    <PaquetesHeader />
                 </div>
                 <div className="headerUser centerVerticalColumn">
+
                     <div className="abrirRegalo centerCenterRow">
-                        <p>Abrir mi Regalo</p>
+                        <p><Link to="/regalo">Abrir mi Regalo</Link></p>
+                        {!loggedUser &&
+                            <Link to="/registro" className="registroHeader">Registrarse</Link>
+                        }
                     </div>
                     <div className="headerUserBottom spaceBetween">
                         {loggedUser ?
-                        <>
-                        <Link to="/usuario">
-                            <div  className="centerCenterRow userName">
-                            <Link to="/" onClick={logOut}>LogOut</Link>
-                                <h1>{loggedUser.nombre}</h1>
-                                {loggedUser.googleUser==="true" 
-                                ? <div className="userImg" style={{backgroundImage: `url(${loggedUser.imagen})`}}></div>
-                                : <div className="userImg" style={{backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")`}}></div>
-                                }
-                            </div>  
-                        </Link>
-                        </> 
-                        :
-                        <>
-                        <div className="headerUserImg" style={{ backgroundImage: `url("../assets/58670.jpg")` }}/>
-                        <Link to="/iniciarsesion">
-                            <div className="centerCenterRow userName">
-                                <p>Iniciar Sesion</p>
-                                <Link className="registrarseHeader" to="/registro">Registrarse</Link>
-                            <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
-                            </div>
-                        </Link> 
-                        </>
-                        }                             
+                            <>
+                                <Link to="/usuario">
+                                    <div className="centerCenterRow userName">
+                                        <div className="headerTituloPaquetes" onClick={() => setVisible(!visible)}>
+                                            <div className="flexRowUsuarios">
+                                                <div className="userNav">
+                                                    <div className="datosUser" >
+                                                        {loggedUser.googleUser === "true"
+                                                            ? <div id="userImg" style={{ backgroundImage: `url(${loggedUser.imagen})` }} />
+                                                            : <div id="userImg" style={{ backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")` }} />
+                                                        }
+                                                        <p>{loggedUser.nombre}</p>
+                                                        <MdKeyboardArrowDown />
+                                                    </div>
+
+                                                    {visible &&
+                                                        <div className="linksUsuario">
+                                                            <Link to="/" onClick={logOut} className="logOut paquetesPadres">LogOut</Link>
+                                                            <Link to="/editUsuario" className="logOut paquetesPadres">Editar Usuario</Link>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </>
+                            :
+                            <>
+                                <div className="headerUserImg" style={{ backgroundImage: `url("../assets/58670.jpg")` }} />
+                                <Link to="/iniciarsesion">
+                                    <div className="centerCenterRow userName">
+                                        <div id="userImg" style={{ backgroundImage: `url("../assets/images.png")` }} />
+                                        <p>Mi perfil</p>
+                                        <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
+                                    </div>
+                                </Link>
+                            </>
+                        }
                         <div className="cartAndHeart">
                             <div className="heart centerCenterRow "><BsHeart /></div>
                             <Link to="/carrito">
                                 <div className="cart centerCenterRow ">
                                     <IoCartOutline />
-                                <p>{carrito.length}</p>
+                                    <p>{carrito.length}</p>
                                 </div>
                             </Link>
                         </div>
                     </div>
                 </div>
+                <div className="headerResponsive">
+                    <Hamburger toggled={isOpen} toggle={setOpen} />
+                </div>
+
+
             </div>
+            {isOpen &&
+                <div className="itemsHeaderResponsive" style={{ width: document.documentElement.scrollWidth, height: document.documentElement.scrollHeight }}>
+                    {loggedUser
+                        ? <div className="linksUsuarioResponsive">
+                            <div className="userHeaderResponsive">
+                                {loggedUser.googleUser === "true"
+                                    ? <div id="userImg" style={{ backgroundImage: `url(${loggedUser.imagen})` }} />
+                                    : <div id="userImg" style={{ backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")` }} />}
+                                <p>{loggedUser.nombre}</p>
+                            </div>
+                            <Link to="/" onClick={logOut}>LogOut</Link>
+                            <Link to="/editUsuario">Editar Usuario</Link>
+                        </div>
+                        : <div>
+                            <Link to="/iniciarsesion"  >
+                                <div onClick={() => setOpen(false)} className="userNameResponsive">
+                                    <div id="userImg" style={{ backgroundImage: `url("../assets/images.png")` }} />
+                                    <p onClick={() => setOpen(false)}>Mi perfil</p>
+                                    <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
+                                </div>
+                            </Link>
+                        </div>}
+
+                </div>}
+
+
         </>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        carrito:state.carritoReducer.carrito,
+        carrito: state.carritoReducer.carrito,
         loggedUser: state.userReducer.loggedUser
     }
 }
 
 const mapDispatchToProps = {
     logOut: userActions.logOut
-  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
