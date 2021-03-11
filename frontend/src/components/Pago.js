@@ -1,4 +1,5 @@
 
+import React, { useState } from 'react';
 import { BsCheck} from "react-icons/bs";
 import { BiArrowBack, BiCreditCard } from "react-icons/bi";
 import { connect } from "react-redux";
@@ -8,9 +9,13 @@ import { AiOutlineCreditCard } from "react-icons/ai";
 import { FaMoneyBillAlt, FaPaypal } from "react-icons/fa";
 import regaloActions from "../redux/actions/regaloActions";
 import TarjetaDeCredito from "../components/TarjetaDeCredito"
+
 const Envio=({carrito,total,enviarRegalo})=>{
 
+    // const[medioDePago,setMedioDePago]= useState('')
+
     if(!carrito){return <h1>loading..</h1> }
+    // console.log(medioDePago)
     return(
         <>
         <div className="carrito">
@@ -38,25 +43,25 @@ const Envio=({carrito,total,enviarRegalo})=>{
                         <div className="metodoDeEnvio1">
                             <div className="tipoEnvio" >
                                 <BiCreditCard/>
-                                <p style={{paddingLeft:"1vw"}}>Tarjeta de crédito</p>
+                                <p style={{paddingLeft:"1vw"}} >Tarjeta de crédito</p>
                             </div> 
                         </div>
                         <div className="metodoDeEnvio1">
                             <div className="tipoEnvio" >
                                 <AiOutlineCreditCard/>
-                                <p style={{paddingLeft:"1vw"}}>Tarjeta de débito</p>
+                                <p style={{paddingLeft:"1vw"}} >Tarjeta de débito</p>
                             </div>
                         </div>
                         <div className="metodoDeEnvio1">
                             <div className="tipoEnvio" >
                                 <FaMoneyBillAlt/>
-                                <p style={{paddingLeft:"1vw"}}>Efectivo o depósito</p>
+                                <p style={{paddingLeft:"1vw"}} >Transferencia o depósito</p>
                             </div>
                         </div>
                         <div className="metodoDeEnvio1">
                         <div className="tipoEnvio" >
                                 <FaPaypal/>
-                                <p style={{paddingLeft:"1vw"}}>PayPal</p>
+                                <p style={{paddingLeft:"1vw"}} >PayPal</p>
                             </div>
                         </div>
                     </div>
