@@ -5,25 +5,21 @@ const regalosController ={
     
 enviarRegalo: async (req, res) => {
 
-        
+    console.log(req.body)
     const {email,carrito,paquetesId}=req.body;
     const {cuenta,nombre,apellido}=req.user;
-    console.log(req.user)
-    console.log(req.body)
+
     
-    const nuevoRegalo=new Regalo({nombreEnviador:cuenta,cuentaDestinatario:email.emailDestinatario,paquetesId})
-    if(nuevoRegalo.cuentaDestinatario === ''){
-        nuevoRegalo.cuentaDestinatario = cuenta
-        console.log(nuevoRegalo) 
-    }
-    console.log(nuevoRegalo)
+    const nuevoRegalo=new Regalo({
+        nombreEnviador:cuenta,
+        cuentaDestinatario:(email.emailDestinatario==="") ? cuenta : email.emailDestinatario ,
+        paquetesId
+    })
+
     nuevoRegalo.save()
-    .then(nuevoRegalo => { return res.json({ success: true, response: nuevoRegalo }) })
-    .catch(error => { return res.json({ success: false, error: "Error al cargar el regalo" }) })
-
-    
-
-    if(nuevoRegalo){
+    .then(nuevoRegalo => {
+        console.log("todo bien")
+        console.log(nuevoRegalo)
         var transport = nodemailer.createTransport({
             port: 465,
             host: 'smtp.gmail.com',
@@ -37,7 +33,7 @@ enviarRegalo: async (req, res) => {
         })  
         var mailOptions = {
             from: `GIFTBOX de ${cuenta}`,
-            to: email.emailDestinatario,
+            to: nuevoRegalo.cuentaDestinatario,
             subject: (email.asunto==="")?"GIFTBOX": email.asunto,
             html:  
             `<div style="text-align:center; padding:20px; min-heigth: 250px; background-color:#fff">
@@ -52,12 +48,21 @@ enviarRegalo: async (req, res) => {
             <h5 style="color:#FFB5FF">GIFTBOX</h5>
             </div>`}
             transport.sendMail(mailOptions, (error, info) =>{
-            if(error){res.status(500).send(error.message)
+            if(error){
+                console.log(error)
+                res.status(500).send(error.message)
             }else {
                 console.log("Email enviado.")
                 res.status(200).json({respuesta:req.body})
             }})   
-        }  
+
+    })
+        
+    .catch(error => { return res.json({ success: false, error: "Error al cargar el regalo" }) })
+
+    
+
+
     },
     todosLosRegalos: (req,res)=>{
         Regalo.find()

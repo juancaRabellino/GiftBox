@@ -10,6 +10,7 @@ const regaloActions={
         console.log("entro e enviar regalo")
         return async(dispatch,getState)=>{
             try {
+                console.log(getState().regaloReducer.regalo)
                 const response= await axios.post(`http://localhost:4000/api/regalo`, getState().regaloReducer.regalo,
                   {
                     headers: {
