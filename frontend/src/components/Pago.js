@@ -8,6 +8,7 @@ import { AiOutlineCreditCard } from "react-icons/ai";
 import { FaMoneyBillAlt, FaPaypal } from "react-icons/fa";
 import regaloActions from "../redux/actions/regaloActions";
 import { useEffect } from "react";
+import TarjetaDeCredito from "../components/TarjetaDeCredito"
 
 const Envio=({carrito,total,enviarRegalo,regalo,modificarRegalo})=>{
     useEffect(() => {
@@ -19,6 +20,7 @@ const Envio=({carrito,total,enviarRegalo,regalo,modificarRegalo})=>{
     },carrito,
     paquetesId})
     }, [])
+
     if(!carrito){return <h1>loading..</h1> }
     return(
         <>
@@ -69,6 +71,8 @@ const Envio=({carrito,total,enviarRegalo,regalo,modificarRegalo})=>{
                             </div>
                         </div>
                     </div>
+                    <TarjetaDeCredito/>
+                
                 
                 <div  style={{width:"100%", paddingTop:"2vh"}}>
                     <Link id="carritoContinuar" style={{margin:"0"}} onClick={()=>enviarRegalo()}>

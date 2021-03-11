@@ -25,7 +25,6 @@ const Regalo=({loggedUser,obtenerRegalo})=>{
         const respuesta= await obtenerRegalo(codigo.current.value)
         if(respuesta){
             setRegalo(respuesta)
-        
         }
     }
     console.log(regalo)
@@ -44,18 +43,7 @@ const Regalo=({loggedUser,obtenerRegalo})=>{
             <div style={{display:"flex",justifyContent:"center",flexDirection:"column",padding:"10vh 20vw"}}>
                 <input type="text" className="tipoEnvio" placeholder=" ingresa tu codigo" ref={codigo}
                     style={{height:"8vh",marginTop:"2vh",cursor:"text"}}/>
-                <button onClick={()=>Swal.fire({
-  title: 'Custom width, padding, background.',
-  width: 600,
-  padding: '3em',
-  background: '#fff url(/images/trees.png)',
-  backdrop: `
-    rgba(0,0,123,0.4)
-    url("/regalo.gif")
-    left top
-    no-repeat
-  `
-}),()=>enviarCodigo()} >Enviar</button>
+                <button onClick={()=>enviarCodigo()} >Enviar</button>
             </div>
             :
             <div style={{display:"flex",justifyContent:"center",flexDirection:"column",padding:"10vh 20vw"}}>
