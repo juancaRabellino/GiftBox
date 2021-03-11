@@ -1,6 +1,7 @@
 const Paquete = require("../models/Paquete");
 const paquetesController = {
   agregarPaquete: (req, res) => {
+    console.log(req.files)
     const { nombre, precio, fecha, categoria, descripcion, cantidadPersonas, ubicacion, stock, cantidadVendidos, valoracion, opiniones, productos, imagen } = req.body;
     const paqueteAagregar = new Paquete({
       nombre, precio, fecha, categoria, descripcion, cantidadPersonas, ubicacion, stock, cantidadVendidos, valoracion, opiniones, productos, imagen

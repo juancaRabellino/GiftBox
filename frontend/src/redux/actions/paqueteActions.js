@@ -122,10 +122,12 @@ const paqueteActions = {
     }
   },
   nuevoPaquete: nuevoPaquete =>{
-    const {nombre, precio, fecha, categoria, descripcion, cantidadPersonas, ubicacion, stock, imagen} = nuevoPaquete
+    console.log(nuevoPaquete)
     return async (dispatch, getState) => {
       try {
-        const response = await axios.post('http://localhost:4000/api/paquetes', {nuevoPaquete},
+        const response = await axios.post('http://localhost:4000/api/paquetes', nuevoPaquete,{
+          headers: {"Content-Type": "multipart: form-data"}
+        }
       )
       dispatch({type: 'NUEVO_PAQUETE', payload: response.data.response})
     } catch(error){
