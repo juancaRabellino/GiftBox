@@ -13,7 +13,6 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import carritoActions from "../redux/actions/carritoActions"
 
-const Envio=({carrito,total,enviarRegalo})=>{
 
 const Envio=({carrito,total,enviarRegalo,regalo,modificarRegalo})=>{
     useEffect(() => {
@@ -146,11 +145,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps={
     enviarRegalo:regaloActions.enviarRegalo,
-<<<<<<< HEAD
-    eliminarDelCarrito: carritoActions.eliminarDelCarrito
-=======
+    eliminarDelCarrito: carritoActions.eliminarDelCarrito,
     modificarRegalo:regaloActions.modificarRegalo
->>>>>>> Fran
 }
 
 
