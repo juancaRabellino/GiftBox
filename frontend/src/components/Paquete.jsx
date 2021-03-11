@@ -9,7 +9,6 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import Comentario from './Comentario'
 import carritoActions from '../redux/actions/carritoActions'
-import Opiniones from './Opiniones'
 import withReactContent from 'sweetalert2-react-content'
 
 

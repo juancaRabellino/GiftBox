@@ -63,7 +63,6 @@ function EditUsuario(props) {
         if (editarUsuario.passwordAnterior === '' || editarUsuario.repetirPassword === '' ||
         editarUsuario.password === '') {
            setErrores(["¡Todos los campos son requeridos!"])
-
             // Swal.fire({
             //     icon: 'error',
             //     title: '¡Lo siento!',
@@ -84,6 +83,27 @@ function EditUsuario(props) {
             //   })
             return false
         } else {
+            props.history.push('/')
+            Swal.fire({
+                icon: 'success',
+                title: 'Se han guardado los cambios de manera exitosa',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        }
+    }
+  
+
+    const cambiarImagen = () =>{        
+        const {imagen} = editImagen
+        var formNuevaImg = new FormData();
+        formNuevaImg.append("imgFile",imagen)
+        const respuesta = props.editarUsuarioImg(formNuevaImg, props.loggedUser.id)
+        if(respuesta && !respuesta.succes){
+            console.log(respuesta.errors)
+            return false
+        }
+        else {
             Swal.fire({
                 icon: 'success',
                 title: 'Se han guardado los cambios de manera exitosa',
@@ -93,16 +113,7 @@ function EditUsuario(props) {
             props.history.push('/')
         }
     }
-  
 
-    const cambiarImagen = () =>{
-        
-        const {imagen} = editImagen
-        var formNuevaImg = new FormData();
-        formNuevaImg.append("imgFile",imagen)
-        props.editarUsuarioImg(formNuevaImg, props.loggedUser.id)
-        props.history.push('/editUsuario')
-    }
     console.log(errores)
     return (
 
@@ -110,7 +121,11 @@ function EditUsuario(props) {
             <div className='imgTopUsuario' style={{backgroundImage: `url("https://static.bigbox.com.ar/webSsr/build/trama_usuario.782a82e25f2ec37b2be87b3374f4eb4a.png"`}}>
                 <div className='boxUser'>
                     <div className="userIconos">
-                        <div className="userImg" style={{backgroundImage: `url("${props.loggedUser.imagen}")`}}></div>
+                    {props.loggedUser.googleUser === 'false' ?
+                        <div className="userImagen" style={{backgroundImage: `url("../usuarioImg/${props.loggedUser.imagen}")`}}/>
+                        :
+                        <div className="userImagen" style={{backgroundImage: `url(${props.loggedUser.imagen})`}}/>
+                        }
                         <div className="iconoCambiarImg">
                             <p><IoCamera /></p> 
                         </div>
@@ -137,7 +152,7 @@ function EditUsuario(props) {
             <div className="errores">
                 {errores && errores.map(error => <h2>{error}</h2>)}
             </div>  
-
+        {props.loggedUser.googleUser === "false" &&
             <div className="editUsuario">
                 <div className="modificarEmailUsuario">
                     <label htmlFor="uploadButton" className="inputFile">
@@ -148,7 +163,8 @@ function EditUsuario(props) {
                 <div className="guardaCambioContraseña" onClick={cambiarImagen} >
                     <p>CAMBIAR IMG</p>
                 </div>
-            </div>  
+            </div> 
+        } 
         </div>
     )
     
