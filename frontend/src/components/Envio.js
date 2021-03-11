@@ -8,6 +8,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { useState } from "react";
 import { SiWhatsapp } from "react-icons/si";
 import regaloActions from "../redux/actions/regaloActions";
+import { useEffect } from "react";
 
 const Envio=({carrito,total,modificarRegalo})=>{
     const [tipoEnvio,setTipoEnvio]=useState("")
@@ -16,6 +17,15 @@ const Envio=({carrito,total,modificarRegalo})=>{
     const [errores,setErrores]=useState([]);
     const [asunto,setAsunto]=useState("")
     
+    useEffect(() => {
+        var paquetesId=[]
+            carrito.map(paquete=>paquetesId.push({paqueteId:paquete._id,cantidad:paquete.cantidad}))
+            modificarRegalo({email:{
+                emailDestinatario:mailDestinatario,
+                asunto,
+            },carrito,
+            paquetesId})
+    }, [])
     const continuar=()=>{
         let lastAtPos = mailDestinatario.lastIndexOf('@');
         let lastDotPos = mailDestinatario.lastIndexOf('.');

@@ -34,7 +34,7 @@ const bcryptjs = require('bcryptjs')
         var mailOptions = {
             from: 'Gift BOX <grupoamindhub@gmail.com>',
             to: email,
-            subject: 'Recupero de Contraseña',
+            subject: 'Sistema de recuperar contraseña',
             html:  `<div style="text-align:center; padding:20px; min-heigth: 250px; background-color:white">
             <h1 style="color:#FF2A2A"> ¡Que despistado/a sos!!</h1>
             <h1 style="color:#FF2A2A">¡No importa! ¡Nosotros te ayudaremos! ¡A continuación haga clic debajo para cambiar su contraseña! </h1>
@@ -50,6 +50,7 @@ const bcryptjs = require('bcryptjs')
         transport.sendMail(mailOptions, (error, info) =>{
             if(error){
                 res.status(500).send(error.message)
+               
             }else {
                 console.log("Email enviado.")
                 res.status(200).json({respuesta:req.body})
