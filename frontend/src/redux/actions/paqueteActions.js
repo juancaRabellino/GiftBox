@@ -122,14 +122,6 @@ const paqueteActions = {
       }
     }
   },
-
-  filtros:(filtro,valor)=>{
-    console.log("action filtros")
-    return async(dispatch,getState)=>{
-      dispatch({type:"FILTRO2",payload:{filtro,valor}})
-    }
-  },
-
   nuevoPaquete: nuevoPaquete =>{
     const {nombre, precio, fecha, categoria, descripcion, cantidadPersonas, ubicacion, stock, imagen} = nuevoPaquete
     return async (dispatch, getState) => {

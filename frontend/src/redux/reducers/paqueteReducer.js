@@ -4,7 +4,6 @@ const initialState = {
   paquetePorId: null,
   paquetesFiltrados: [],
   paquetesMasRegalados: [],
-  auxFran:[]
 }
 const actualizar = (todosLosPaquetes, nuevoPaquete) => {
   return (todosLosPaquetes.map(paquete => {
@@ -18,15 +17,6 @@ const actualizar = (todosLosPaquetes, nuevoPaquete) => {
 const paqueteReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case "FILTRO2":
-      console.log("FILTRO 2")
-      console.log(action.payload)
-      var aux4=(state.auxFran.map(paquete=>paquete[action.payload.filtro]<action.payload.valor ? paquete : null))
-      console.log(aux4)
-      return{
-        ...state,
-        auxFran:aux4
-      }
     case 'TODOS_PAQUETES':
       return {
         ...state,
