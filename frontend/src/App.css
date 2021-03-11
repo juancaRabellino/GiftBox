@@ -376,7 +376,7 @@ body {
     width: 100vw;
     min-height: 70vh;
     display: flex;
-    background-position: center;
+    background-position: right;
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url("./assets/fondoLog.jpg");
