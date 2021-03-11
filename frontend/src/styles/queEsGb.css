@@ -1,7 +1,4 @@
-.modal {
-    width: 100vw;
-    height: 30vh;
-}
+
 
 .queEsGbContainer{
     width: 100%;
@@ -25,7 +22,7 @@
     margin-right: 2vw;
     margin-top: 5vh;
     max-height: 100%;
-    overflow: hidden;
+    overflow:scroll 
 }
 
 .titulo {

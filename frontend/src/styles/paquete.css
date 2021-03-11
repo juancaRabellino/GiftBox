@@ -324,9 +324,8 @@
 
 
 .cajaDeComentarios {
-    border: 2px solid red;
-    margin: 0 auto;
-    width: 80%;
+    margin: 5vh auto;
+    width: 82%;
     border-radius: 1vh;
     box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.404);
     display: flex;
@@ -337,10 +336,11 @@
 .comentarioContainer {
     margin: 2vh;
     display: flex;
-    border: 2px solid green;
     align-items: center;
     width: 80%;
     padding: 2vw;
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.226);
+    border-radius: 1vh;
 }
 
 .tituloComentarios {
@@ -373,7 +373,66 @@
 }
 
 .comentario {
-    margin-left: 5vw;
+    margin-left: 2vw;
+    display: flex;
+    flex-wrap: wrap;
+    width: 48.2vw;
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.507);
+}
+.filterInput input {
+    border-radius: 10px 0 0 10px;
+    width: 50vw;
+    height: 5vh;
+    text-align: center;
+    outline: none;
+}
+.cajaEditarComentario {
+    display: flex;
+    width: 87.7%;
+    margin-left: 1vw;
+    justify-content: space-between;
+    align-items: center;
+}
+.cajaEditarComentario input {
+    border-radius: 10px;
+    width: 45.2vw;
+    height: 5vh;
+    text-align: center;
+    outline: none;
+    padding: 1vw;
+}
+.borrarYmodificar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 15vh;
+    margin-left: 2vw;
+}
+.cajaDeComentario {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+
+.borrarComentario, .editarComentario {
+    font-size: 25px;
+    background-color: tomato;
+    display: flex;
+    padding: 0.5vw;
+    border-radius: 1vh;
+    color: rgb(226, 226, 226);
+    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.404);
+    transition: .5s;
+}
+
+.borrarComentario:hover, .editarComentario:hover {
+    background-color: rgb(158, 61, 44);
+    color: rgb(195, 195, 195);
+    transition: .5s;
 }
 
 /* ----- RESPONSIVE ------- */

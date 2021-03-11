@@ -897,7 +897,12 @@ video {
     font-size: 1.75rem;
     margin-bottom: 1.5rem;
 }
-
+.lineaHamburguesa {
+    width: 50vw;
+    height: 1vh;
+    border-bottom: 1px solid rgba(87, 87, 87, 0.26);
+    margin-left: 2vw;
+}
 .guardaCambioContraseña {
     background-color: var(--azul-claro);
     color: white;
@@ -1211,6 +1216,7 @@ input[type='radio']:checked:after {
         display: flex;
         margin-left: 4vw;
         align-items: center;
+        width: 100vw;
     }
     .userHeaderResponsive p {
         margin-left: 5vw;
@@ -1229,6 +1235,7 @@ input[type='radio']:checked:after {
     }
     .hamburger-react {
         margin-right: 5vw;
+        margin-top: 6vh;
     }
     .headerContainer {
         align-items: center;
@@ -1260,8 +1267,8 @@ input[type='radio']:checked:after {
         margin-top: 2vh;
     }
     .linksUsuarioResponsive a {
-        margin: 1vh 3vw;
-        border-bottom: 1px solid rgb(161, 161, 161);
+        margin-top: 2vh;
+        margin-left: 5vw;
     }
     .paquetesHeader{
         display: none !important;
