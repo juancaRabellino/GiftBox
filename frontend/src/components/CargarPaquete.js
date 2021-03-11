@@ -22,7 +22,7 @@ const CargarPaquete = (props) => {
             [property]:value
         })
     }
-
+    console.log(paquete)
     const sendData = async (e) =>{
         setErrors([])
         e.preventDefault()
@@ -43,7 +43,7 @@ const CargarPaquete = (props) => {
             setErrors([{mensaje: "Todos los campos deben ser completados"}])
             return false
         } 
-        const data = await props.enviarNuevoPaquete(nuevoPaquete)
+        await props.enviarNuevoPaquete(nuevoPaquete)
         Swal.fire({
             icon: 'success',
             title: 'Excelente!',
