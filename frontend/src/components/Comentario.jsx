@@ -1,6 +1,8 @@
 import { connect } from 'react-redux'
 import React, { useEffect, useState } from 'react'
 import paqueteActions from '../redux/actions/paqueteActions'
+import { AiOutlineSend, AiOutlineEdit,  } from "react-icons/ai";
+import { BsTrash,BsBackspaceReverse } from "react-icons/bs";
 
 const Comentario = ({ paqueteId, comentario, loggedUser, eliminarComentario, editarComentario }) => {
 
@@ -55,17 +57,20 @@ const Comentario = ({ paqueteId, comentario, loggedUser, eliminarComentario, edi
         </div>
         {!visible
           ?
-          <div>
+          <div className="cajaDeComentario">
             <div className="comentario">"{comentario.comentarioUsuario}"</div>
               {loggedUser.id === comentario.idUsuario &&
                 <div className="borrarYmodificar">
-                  <button onClick={modificarComentario}>EDITAR</button>
-                  <button onClick={enviarComentarioAEliminar}>BORRAR</button>
+                  <div onClick={modificarComentario} className="editarComentario"><AiOutlineEdit/></div>
+                  <div onClick={enviarComentarioAEliminar} className="borrarComentario"><BsTrash/></div>
                 </div>}
           </div>
-          : <div>
+          : <div  className="cajaEditarComentario">
             <input onChange={modificarComentario} defaultValue={comentario.comentarioUsuario} name="comentarioEditado"></input>
-            <button onClick={actualizarComentario}>ENVIAR MODIFICADO</button>
+            <div className="borrarYmodificar">
+              <div onClick={actualizarComentario} className="editarComentario"><AiOutlineSend/></div>
+              <div className="borrarComentario" onClick={() => setVisible(!visible)}><BsBackspaceReverse/></div>
+            </div>
           </div>
         }
         <div>
