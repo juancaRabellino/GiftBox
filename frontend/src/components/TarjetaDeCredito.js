@@ -49,7 +49,7 @@ export default class PaymentForm extends React.Component {
           <input
             type="tel"
             value="YYYY-MM"
-            name="name"
+            expiry="number"
             placeholder="Fecha de exp."
             onChange={this.handleInputChange}
             onFocus={this.handleInputFocus}

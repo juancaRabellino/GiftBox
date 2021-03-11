@@ -10,7 +10,12 @@ enviarRegalo: async (req, res) => {
     const {cuenta,nombre,apellido}=req.user;
     console.log(req.user)
     console.log(req.body)
+    
     const nuevoRegalo=new Regalo({nombreEnviador:cuenta,cuentaDestinatario:email.emailDestinatario,paquetesId})
+    if(nuevoRegalo.cuentaDestinatario === ''){
+        nuevoRegalo.cuentaDestinatario = cuenta
+        console.log(nuevoRegalo) 
+    }
     console.log(nuevoRegalo)
     nuevoRegalo.save()
     .then(nuevoRegalo => { return res.json({ success: true, response: nuevoRegalo }) })

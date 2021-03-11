@@ -23,7 +23,7 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
                 timer:1300,
                 timerProgressBar:true,
                 showConfirmButton:false,
-                width:'20vw', 
+                width:200, 
                 background:'#f6d3d3',
                 iconColor:'#f00606'                                        
                 })
@@ -39,7 +39,7 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
                 timer:1500,
                 timerProgressBar:true,
                 showConfirmButton:false,
-                width:'20vw', 
+                width:200, 
                 background:'#f6d3d3',
                 iconColor:'#f00606'                                        
                 })

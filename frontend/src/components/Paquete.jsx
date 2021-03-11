@@ -142,7 +142,7 @@ const Paquete = ({ loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarV
       timer: 1300,
       timerProgressBar: true,
       showConfirmButton: false,
-      width: '15vw',
+      width: 200,
       background: '#d8f6d3',
       iconColor: '#2fbc13'
 
