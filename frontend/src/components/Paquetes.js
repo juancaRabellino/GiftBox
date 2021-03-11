@@ -4,39 +4,26 @@ import paqueteActions from '../redux/actions/paqueteActions'
 // import Loader from './Loader'
 import TarjetaPaquete from './TarjetaPaquete'
 import { BiSearch } from 'react-icons/bi'
+import { useEffect } from 'react'
 
-const Paquetes = ({ paquetesFiltrados, filtrarPaquetes, location, todosLosPaquetes, todasLasCategorias }) => {
+const Paquetes = ({ todosLosPaquetes,filtrarPaquetes,filtros, location,auxFran, todasLasCategorias }) => {
   const [valor, setValor] = useState(false)
   const [categoria, setCategoria] = useState(true)
   const selects = [document.getElementById('select1'), document.getElementById('select2'), document.getElementById('select3'), document.getElementById('select4')]
-  console.log(selects)
-  // const [paquetes, setPaquetes] = useState([])
+
   const ciudades = ["Buenos Aires", "Santa Fe", "Córdoba"]
-
-  var paquetes = []
-  window.scrollTo(0, 0);
-
-  const buscando = e => {
-    console.log(e.target.value)
-    filtrarPaquetes(e.target.value)
-    setValor(true)
+  useEffect(() => {
+    console.log(auxFran)
+  }, ["",auxFran])
+  
+  const buscando = (e) => {
+    filtros(e.target.name,e.target.value)
+    console.log("asd")
+    console.log(auxFran)
   }
-
-  if (!location.categoria && !valor) {
-    paquetes = todosLosPaquetes
-  } else if (!categoria || valor) {
-    paquetes = paquetesFiltrados
-  }
-
-  if (categoria && location.categoria) {
-    filtrarPaquetes(location.categoria)
-    setCategoria(false)
-  }
-  todasLasCategorias && console.log(todasLasCategorias)
-  paquetesFiltrados && console.log(paquetesFiltrados)
   return (
     <main className='packagesMain'>
-      <input type="text" placeholder="Buscar por nombre" onChange={buscando} />
+      <input type="text" placeholder="Buscar por nombre" onChange={(e)=>buscando(e)} />
       <div className="filterInput">
 
         <select id='select1' name="categoria" disabled={true} onChange={buscando}>
@@ -63,9 +50,8 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes, location, todosLosPaquet
 
         <div className="centerCenterRow searchButton"><BiSearch /></div>
       </div>
-
       <div className='packagesContainer'>
-        {paquetes && paquetes.map(paquete => {
+        {auxFran && auxFran.map(paquete => {
           return <TarjetaPaquete paquete={paquete} key={`paquete${paquete._id}`} />
         })}
       </div>
@@ -75,14 +61,16 @@ const Paquetes = ({ paquetesFiltrados, filtrarPaquetes, location, todosLosPaquet
 
 const mapStateToProps = state => {
   return {
-    todosLosPaquetes: state.paqueteReducer.todosLosPaquetes,
+    todosLosPaquetes:state.paqueteReducer.todosLosPaquetes,
+    auxFran: state.paqueteReducer.todosLosPaquetes,
     paquetesFiltrados: state.paqueteReducer.paquetesFiltrados,
     todasLasCategorias: state.categoriaReducer.todasLasCategorias
   }
 }
 
 const mapDispatchToProps = {
-  filtrarPaquetes: paqueteActions.filtrarPaquetes
+  filtrarPaquetes: paqueteActions.filtrarPaquetes,
+  filtros: paqueteActions.filtros
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paquetes)
