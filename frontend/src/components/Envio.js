@@ -133,7 +133,7 @@ const Envio=({carrito,total,modificarRegalo})=>{
                 }  
                 <div  style={{width:"100%", paddingTop:"2vh"}}>
                     <Link id="carritoContinuar" style={{margin:"0"}} onClick={continuar}>
-                        {paraQuien==="paraMi" ?<Link to="/envioMensaje"> Continuar al pago</Link> : <Link to="/envioMensaje" > Continuar al mensaje</Link>}
+                        {paraQuien==="paraMi" ?<Link to="/pago"> Continuar al pago</Link> : <Link to="/envioMensaje" > Continuar al mensaje</Link>}
                     </Link>
                 </div>
 
