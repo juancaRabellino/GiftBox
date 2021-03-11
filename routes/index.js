@@ -6,6 +6,7 @@ require("../config/passport");
 
 const productosController = require("../controllers/productosController");
 const usuarioController = require("../controllers/usuarioController");
+const passwordController = require('../controllers/passwordController')
 const paquetesController = require("../controllers/paquetesController");
 const categoriasController = require("../controllers/categoriasController");
 
@@ -32,6 +33,15 @@ router.route("/paquetes/:_id")
   .delete(paquetesController.eliminarPaquete)
   .put(paquetesController.editarPaquete)
 
+// COMENTARIOS DE PAQUETES
+router.route('/paquete/comentario')
+  .post(passport.authenticate('jwt', { session: false }), paquetesController.agregarComentario)
+  .put(paquetesController.editarComentario)
+  
+router.route('/paquete/comentario/:paqueteId/:comentarioId')
+  .delete(paquetesController.eliminarComentario)
+
+
 // CONTROLADOR DE USUARIO
 router.route('/usuarios/:_id')
   .delete(usuarioController.eliminarUsuario)
@@ -49,6 +59,17 @@ router.route('/imagen/:_id')
 
 router.route('/usuarios/ls')
 .post(passport.authenticate('jwt', {session: false}), usuarioController.logFromLS)
+
+router.route("/user/resetear-password")
+.post(passwordController.resetearPassword)
+
+router.route("/cambiar-password")
+.put(usuarioController.cambiarPassword)
+
+
+
+
+
 
 // CONTROLADOR DE CATEGORIAS
 router.route('/categoria')

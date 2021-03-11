@@ -23,7 +23,7 @@ const PaquetesHeader = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLo
 
 
   // COMO USAR CARGANDO PARA MOSTRAR PRELOADER
-  if (!todosLosPaquetes || !todosLosProductos) { return <Loader /> }
+  /* if (!todosLosPaquetes || !todosLosProductos) { return <Loader /> } */
 
   return (
     <div className='contenedorPaquetes'>

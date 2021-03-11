@@ -13,12 +13,18 @@ import EditUsuario from './components/EditUsuario'
 import Carrito from './components/Carrito';
 import CarritoPaquetes from './components/CarritoPaquetes';
 import IniciarSesion from './components/IniciarSesion';
+import EnviarEmail from './components/EnviarEmail'
+import RecuperarPassword from './components/RecuperarPassword'
 import { connect } from 'react-redux';
 import carritoActions from './redux/actions/carritoActions';
 import userActions from './redux/actions/userActions';
+import Envio from './components/Envio';
+import EnvioMensaje from './components/EnvioMensaje';
+import Pago from './components/Pago';
+import Regalo from './components/Regalo';
+import Admin from './components/Admin'
 
 function App({loggedUser,carritoDelLS,logFromLS}) {
-  console.log(loggedUser)
   const [renderAgain,setRenderAgain] = useState(false)
   if(localStorage.getItem("token") && !loggedUser){logFromLS(localStorage.getItem("token"))}
   if(localStorage.getItem("carrito")){
@@ -49,12 +55,15 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
     <Route exact path="/paquete/:_id" component={Paquete}/>
     <Route exact path="/registro" component={Registros} />
     <Route exact path="/iniciarsesion" component={IniciarSesion} />
-    </Switch>
+    <Route exact path="/cambiar-password" component={RecuperarPassword}/> 
+    <Route exact path="/recuperar-password" component={EnviarEmail}/> 
+    <Redirect to="/"/>
+  </Switch>
   </>
    }
-  if(loggedUser){
-    routes=
-    <>
+   if(loggedUser){
+     routes=
+     <>
     <Switch>
       <Route exact path="/" component={Home}/>
       <Route exact path="/paquetes/" component={Paquetes}/>
@@ -63,6 +72,12 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
       <Route exact path="/paquete/:_id" component={Paquete}/>  
       <Route exact path="/usuario" component={PaginaUsuario}/>   
       <Route exact path="/editUsuario" component={EditUsuario}/> 
+      <Route exact path="/envio" component={Envio}/>
+      <Route exact path="/envioMensaje" component={EnvioMensaje}/>
+      
+      <Route exact path="/regalo" component={Regalo}/>
+      <Route exact path="/pago" component={Pago}/>
+      <Route exact path='/admin' component={Admin}/>
       <Redirect to="/"/> 
     </Switch>
       
@@ -75,10 +90,10 @@ function App({loggedUser,carritoDelLS,logFromLS}) {
   return (
     <div className="App">
       
-      <BrowserRouter>
+      <BrowserRouter >
         <Header/>
-          
-            {routes}
+
+          {routes}
             
         <WhatsApp/>
         <Footer/>

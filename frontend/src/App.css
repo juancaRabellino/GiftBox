@@ -132,7 +132,7 @@ body{
 }
 
 .headerUserBottom {
-    width: 80%;
+    width: 60%;
     justify-content: space-around;
     margin-top: 2vh;
 }
@@ -160,7 +160,9 @@ body{
 }
 
 .imgTopUsuario {
-    background-image: url("./assets/celeste.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     width: 100vw;
     height: 25vh;
     display: flex;
@@ -200,17 +202,17 @@ body{
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    margin-right: 60px;
+    margin-right: 3vw;
 }
 
 .userImg {
-    background-image: url("./assets/no-usuario.png");
+    /* background-image: url("./assets/no-usuario.png"); */
     width: 12vh;
     height: 12vh;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    border-radius: 500px;
+    border-radius: 1000px;
     border: 3px solid var(--secondary-color);
     box-shadow: 0px 0px 10px var(--primary-color);
     transition: 0.3s ease;
@@ -275,12 +277,11 @@ body{
     transform: scale(1.05);
     box-shadow: 0px 0px 10px rgb(63, 63, 63);
 }
-.logOut{
+.logOut {
     padding: 1vh 1vw;
     margin: 0 1vw;
     background-color: var(--azul-claro);
-    color:black !important;
-    border-radius: 5px;
+    color: rgb(63, 63, 63) !important;
 }
 .userName{
     display: flex;
@@ -293,14 +294,8 @@ body{
     color: black;
     margin-left: 2vh;
 }
-.accionesUser{
-}
-.usuarioMenu{
-}
-/* .nombreYfotoHeader{
-    display: flex;
-    align-items: center;
-} */
+
+
 .userNameeImg{
     display: flex;
     flex-direction: column;
@@ -308,7 +303,6 @@ body{
 .logOutyEdit{
     display:block;
     float: left;
-    /* display: none; */
 } 
 .linksUsuario{
     display: flex;
@@ -316,7 +310,10 @@ body{
     position: absolute;
     width: 30vh;
     margin-top: 2vh;
+    background-color: white;
+    align-items: center;
 }
+
 .flexRowUsuarios{
     display: flex;
     height:100%;
@@ -327,19 +324,26 @@ body{
     display: flex;
     align-items: center;
 }
+.losMasRegalados{
+    margin: 0vh 3vw 3vw 3vw;
+    color: rgb(63, 63, 63);
+}
+
 
 /* ------ PAQUETES HEADER -------- */
 
 .paquetesHeader {
-    position: absolute;
-    top: -1.5vh;
-    right: 7vw ;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     width: 20vw;
+    margin: 0 auto;
 }
 
 .paquetesHeader h1 {
     font-size: 1.25rem;
     width: 20vw;
+    margin: 0 auto;
 }
 
 /*SIGNIN SIGNUP*/
@@ -352,6 +356,9 @@ body{
     align-items: center;
     margin: 0 auto;
     justify-content: space-around;
+}
+.boxUser{
+    height: 15vh;
 }
 
 .boxUserRegistro {
@@ -385,6 +392,9 @@ body{
     display: block;
     margin-top: 2rem;
     font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin-left: 0;
+    color: var(--color-primario);
 }
 /* CARRUSEL */
 
@@ -437,6 +447,22 @@ video {
     justify-content: center;
     align-items: center;
     background-color: #ececec;
+    padding: 5vh 0;
+}
+
+.filterInput {
+  margin: 2vh 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filterInput input {
+  border-radius: 10px 0 0 10px;
+  width: 20vw;
+  height: 5vh;
+  text-align: center;
+  outline: none;
 }
 
 .packagesContainer {
@@ -444,6 +470,25 @@ video {
     flex-wrap: wrap;
     justify-content: center;
     width: 90%;
+}
+
+.packagesInput{
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    background-color: white;
+    margin: 2vh 0;
+    padding: 1vh 2vw;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    width: 40%;   
+}
+.packagesInput input{
+    width: 100%;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .package {
@@ -697,6 +742,7 @@ video {
 .headerTituloPaquetes{
   font-weight: 500;
   color: rgb(63, 63, 63);
+  margin: 0 auto;
 }
 .linksPaquetes{
   color: black;
@@ -719,6 +765,11 @@ video {
   text-align: start;
   transition: 0.2s ease;
   font-size: 1rem;
+  width: 100%;
+  
+}
+.paquetesPadres a{
+    color: rgb(63, 63, 63);
 }
 .paquetesPadres:hover{
   border-left: 4px solid var(--color-primario);
@@ -755,8 +806,8 @@ border-radius: 30px;
 /* ------ EDITAR USUARIO ------ */
 
 .userImg{
-    width: 10vw;
-    height: 10vh;
+    width: 14vh !important;
+    height: 14vh !important;
     background-size: cover;
     background-position: center;
 }
@@ -832,22 +883,23 @@ border-radius: 30px;
 /* CARRITO */
 .carrito{
     width: 100%;
-    border: solid black;
+    background-color: #fff;
 }
 .carritoHead{
-    height: 15vh;
+    height: 20vh;
     padding-left: 10vw;
     display: flex;
     align-items: center;
+    background-repeat: repeat-x;
+    box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
+    -webkit-box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
 }
 .carritoSection{
     height: auto;
-    border: solid blue;
     padding: 4vh 5vw;
     display: flex;
 }
 .carritoPaquetes{
-    border: solid red;
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -856,30 +908,35 @@ border-radius: 30px;
 }
 .carritoPaquete{
     width: 80%;
-    border: solid blue;
     height: 25vh;
-    margin: 1vh 0;
+    margin-bottom: 4vh;
 }
 .carritoPaqueteNombre{
     display: flex;
-    height: 20%;
+    border-top-left-radius:5px;
+    border-top-right-radius: 5px;
+    height: 30%;
     justify-content: space-between;
     padding: 1vh 1vw;
-    border: solid red;
+    background-size: cover;
+    align-items: center;
+    font-size: 1.4rem;
+    color: #fff;
 }
 .carritoPaqueteContenido{   
     display: flex;
+    background-color:  #ff66341c;
     height: 80%;
+    box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
+    -webkit-box-shadow: 1px 2px 7px 2px rgb(0 0 0 / 8%);
 }
 #carritoImagen, #carritoCantidad{
     width: 25%;
-    border: solid black;
-    padding: 0.5vh 0.5vw;
+    padding: 1vh 1vw;
 }
 #carritoDescripcion{
-    padding: 0.5vh 0.5vw;
+    padding:2vh 0.5vw;
     width: 50%;
-    border: solid black;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -890,13 +947,32 @@ border-radius: 30px;
     align-items: flex-end;
     font-size: 2rem;
 }
+#carritoCantidad1{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+#carritoCantidad1 h5{
+    margin: 0;
+}
 .buttonCarrito{
+    outline: none;
     transition: background-color .3s;
+    border: 0;
+    border-radius: 3px;
     width: 2vw;
     height: 3.5vh;
+    color: #fff;
     display: flex;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
+    background-color: #ff6c5f;
+}
+.buttonCarrito:hover{
     background-color: #f88a80;
 }
 .carritoImagen{
@@ -907,15 +983,233 @@ border-radius: 30px;
 
 .carritoResumen{
     width: 40%;
-    border: solid green;
+    height: 55vh;
+    padding: 0vh 5vw;
+    background-color: #ff66341c;
+}
+#resumenTitulo{
+    border-bottom:2px solid #f0cdcdb0;
+    height: 8vh;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+}
+#resumenPaquetes{
+    height: 6vh;
+    border-bottom: 2px solid #f0cdcdb0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#resumenTotal{
+    display: flex;
+    border-bottom: 2px solid #f0cdcdb0;
+    height: 6vh;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    color: #2e93e5;
+}
+#resumenContinuarYseguir{
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    padding: 2vh 3vw;
+    justify-content: space-between;
+}
+#carritoContinuar{
+    height: 7vh;
+    background-color: #ff6c5f;
+    color: #fff;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#carritoContinuar:hover{
+    background-color: #ff6c5fde;
+}
+#carritoSeguirComprando{
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff6c5f;
+}
+#carritoSeguirComprando:hover{
+    color:#ff6c5fbb ;
+}
+#progresoCompra{
+    width: 80%;
+    padding-left: 3vw;
+}
+/* ENVIO */
+
+#metodoDeEnvio{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.metodoDeEnvio1{
+    width: 50%;
+    height: 9vh;
+    padding: 1vh 1vw;
+    
+}
+
+.tipoEnvio{
+    border: solid 1px red!important;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+#inputsEnvio label{
+    display: flex;
+    font-size: 1.4rem;
+}
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: red;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}   
+.inputMensajes{
+    height: 40vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+}
+.inputMensajes input,.inputMensajes textarea{
+    width: 80%!important;
+    padding: 1vh 1vw;
+    
+}
+.inputMensajes input{
+    height: 10%;
+    font-size: 1rem;
+}
+.inputMensajes textarea{
+    height: 35%;
+    font-size: 1.3rem;
 }
 
 
 
-
-
-
-
+/* --------- ADMIN --------- */
+.adminContainer{
+    margin: 3vh 0;
+    margin-top: 0;
+}
+.adminContainer h1{
+    color: white;
+}
+.menuDeCarga{
+    width: 100%;
+    
+}
+.cargaContent{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    margin: 0 auto;
+}
+.adminCargaFormContainer{
+    width: 40%;
+    
+}
+.adminCargaForm{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    margin: 0vh 0;
+    width: 100%;
+}
+.adminCargaForm input{
+    margin: 2vh 0;
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    border: none;
+}
+.adminCargaForm select{
+    margin: 2vh 0;
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    border: none;
+}
+.adminCargaForm textarea{
+    margin: 2vh 0;
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    resize: vertical;
+    border:none;
+}
+.adminCargaForm button{
+    padding: 1vh 2vw;
+    color: white;
+    background-color: var(--azul-claro);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    transition: 0.2s ease;
+    border: none;
+}
+.adminCargaForm button:hover{
+    transform: scale(1.05);
+    background-color: var(--azul-oscuro);
+}
+.cargaContentButton{
+    cursor: pointer;
+    background-color: var(--color-primario);
+    padding: 1vh 2vw;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgb(126, 126, 126);
+    margin: 5vh 0;
+    width: fit-content;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+}   
+.cargaContentButton h3{
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+    margin-right: 1vw;
+}
 
 
 /* ------- MEDIA QUERIES ------ */
@@ -991,7 +1285,20 @@ border-radius: 30px;
     .userName{
         display: none;
     }
-
+    .linksUsuarioResponsive{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        width: 30vh;
+        margin-top: 2vh;
+    }
+    .linksUsuarioResponsive  a{
+        margin: 1vh 3vw;
+        border-bottom: 1px solid rgb(161, 161, 161);
+    }
+    .paquetesHeader{
+        display: none !important;
+    }
     /* ------- FOOTER ------- */
     .footerArriba{
         width: 100%;
@@ -1026,9 +1333,157 @@ border-radius: 30px;
     .footerAbajo p , .devolverCompraButton, .redesFooter{
         margin: 1vh;
     }
+
+    /* ------- HOME ------- */
+    .homeVideo{
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    .botonesVideoHome {
+        align-items: center;
+        width: 90% !important;
+    }
+    .botonesVideoHome p {
+        width: 50%;
+        margin-right: 1vw;
+        padding:1vh 1vw;
+    }
+    .tituloHomeVideoPadre{
+        padding-left: 0 !important;
+        width: 90%;
+    }
+    .tituloHomeVideo {
+        width: 100% !important;
+        font-size: 40px !important;
+    }
+    .textoHomeVideo{
+        font-size: 22px !important;
+        margin-top: 2vh;
+    }
+    /* ----- CAROUSEL ----- */
+    .imgCarrusel2{
+        width: 100% !important;
+        height: 50% !important;
+    }
+    .imgCarruselHijo{
+        height: 50vh !important;
+        width: 100% !important;
+        
+    }
+    .nombreCategoria{
+        font-size: 16px !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+    .containerImg{
+        display: none;
+        
+    }
+    .containerImg2{
+        margin: 5vh auto !important;
+        width: 85% !important;
+        height: 50vh;
+    }
+    .loMasRegaladoImagenResponsive{
+        background-position: center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        height: 20vh !important;
+    }
+    .precioDetalle p{
+        margin: 1vh 2vw !important;
+    }
+    .precio {
+        font-size: 1.75rem !important;
+    }
+    /* ------  LOGIN ----- */
+    .modificarEmailUsuario{
+        width: 60%;
+    }
+
+    /* ------ REGISTRO ------- */
+    .formRegistro input{
+        width: 100%;
+    }
+    .inputFile{
+        width: 100%;
+    }
+    .uploadButton {
+        width: 100%;
+    }
+    .buttonRegister{
+        margin-top: 3vh;
+    }
+/* ------ PAQUETES FILTRO ----- */
+.packagesInput{
+    width: 80%;
+}
+
+/* ---- USUARIO ------ */
+
+.cambiarPassword input{
+    width: 100%;
+}
+.cambiarPassword {
+    width: 100%;
+}
+.modificarEmailUsuario{
+    width: 90%;
+}
+.guardaCambioContraseña{
+    margin: 0 0 !important;
+}
+.editUsuario{
+    margin: 0 0;
+    padding: 0 0;
+    height: 50vh;
+}
+
+/* ------- ADMIN --------- */
+.adminCargaFormContainer{
+    width: 100%;
+}
+.cargaContent, .menuDeCarga {
+    width: 90%;
+}
+.cargaContentButton, .cargaContent input .cargaContent textarea{
+    width: 100%;
+}
+
+
 }
 @media (min-width:901px){
     .headerResponsive{
       display:none  
     }
+    .containerImg2{
+        display: none;
+    }
+    .containerImg{
+        margin: 0 auto;
+    }
+    .itemsHeaderResponsive{
+        display: none;
+    }
+}
+
+@media (max-width: 600px){
+    /* ------ USUARIO ------ */
+.boxChicaUsuario{
+    display: flex !important;
+    flex-direction: column !important;
+    height: fit-content;
+}
+.menuOpcionesUsuario{
+    display: flex !important;
+    flex-direction: column !important;
+    height: fit-content;
+    border-bottom: none;
+}
+.menuOpcionesUsuario div {
+    border-bottom: 1px solid rgb(126, 126, 126);
+    width: 100%;
+}
 }
