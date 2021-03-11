@@ -28,6 +28,7 @@ const Header = ({ carrito, loggedUser, logOut }) => {
 
                     <div className="abrirRegalo centerCenterRow">
                         <p><Link to="/regalo">Abrir mi Regalo</Link></p>
+                        <p><Link to="/admin">Admin</Link></p>
                         {!loggedUser &&
                             <Link to="/registro" className="registroHeader">Registrarse</Link>
                         }
