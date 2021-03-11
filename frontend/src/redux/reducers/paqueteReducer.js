@@ -74,6 +74,12 @@ const paqueteReducer = (state = initialState, action) => {
         paquetePorId: action.payload
         // paquete: state.todosLosPaquetes.map(paquete => paquete._id === action.payload._id ? action.payload : paquete)
       }
+    case 'NUEVO_PAQUETE':
+      console.log(action.payload)
+      return{
+        ...state,
+        todosLosPaquetes: action.payload
+      }
     default:
       return state;
   }

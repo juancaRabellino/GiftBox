@@ -121,7 +121,21 @@ const paqueteActions = {
       }
     }
   },
-}
+  nuevoPaquete: nuevoPaquete =>{
+    const {nombre, precio, fecha, categoria, descripcion, cantidadPersonas, ubicacion, stock, imagen} = nuevoPaquete
+    return async (dispatch, getState) => {
+      try {
+        const response = await axios.post('http://localhost:4000/api/paquetes', {nuevoPaquete},
+      )
+      dispatch({type: 'NUEVO_PAQUETE', payload: response.data.response})
+    } catch(error){
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Problema con la carga de Paquete!',
+      })
+    }
+}}}
 
 
 

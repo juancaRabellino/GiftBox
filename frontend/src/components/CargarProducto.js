@@ -1,3 +1,9 @@
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import paqueteActions from '../redux/actions/paqueteActions'
+import productoActions from '../redux/actions/paqueteActions'
+import userReducer from '../redux/reducers/userReducer'
+
 const CargarProducto = () => {
     return(
     <form className="adminCargaForm">
@@ -19,4 +25,13 @@ const CargarProducto = () => {
    </form>
     )
 }
-export default CargarProducto
+
+const mapStateToProps = state =>{
+    return{
+        loggedUser : state.userReducer.loggedUser
+    }
+}
+const mapDispatchToProps = {
+}
+    
+export default connect(mapStateToProps, mapDispatchToProps)(CargarProducto)
