@@ -38,7 +38,8 @@ const LosMasRegalados = ({ todosLosPaquetes }) => {
       precio: paquete.precio,
       imagen: paquete.imagen,
       descripcion: paquete.descripcion,
-      cantidadUnidades
+      cantidadUnidades,
+      id: paquete._id
     })
   })
 
@@ -51,7 +52,7 @@ const LosMasRegalados = ({ todosLosPaquetes }) => {
         {todosLosPaquetes && paquetesMasVendidos.map(function (paquete, i) {
           return (
             <div className='loMasRegalado' key={`img${i}`}>
-              <Link to="/">
+              <Link to={`/paquete/${paquete.id}`}> 
                 <div style={{ backgroundImage: `url('${paquete.imagen}')`, height: '35vh', backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', alignItems: 'flex-end', borderRadius: '1vh' }}>
                 </div>
                 

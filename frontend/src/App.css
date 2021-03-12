@@ -1569,7 +1569,7 @@ input[type='radio']:checked:after {
     box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.3);
     width: 90% !important;
     outline: none;
-    height: 50vh !important;
+    height: 52vh !important;
     padding: 1vh;
     border-radius: 1vh;
 }
