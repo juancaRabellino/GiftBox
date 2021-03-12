@@ -46,7 +46,7 @@ const CargarProducto = (props) => {
         Swal.fire({
             icon: 'success',
             title: 'Excelente!',
-            text: 'Nuevo Paquete añadido!',
+            text: 'Nuevo Producto añadido!',
           })
     }
     var categorias=["Aventura", "Blends", "En Casa","Entretenimiento", "Estadías", "Gastronomía", "Estar bien"]

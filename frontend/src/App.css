@@ -1426,7 +1426,7 @@ input[type='radio']:checked:after {
     margin-left: 2vw;
 }
 .regaloItemPadre p{
-    margin-left: 2vw;
+    margin: 0 2vw;
 }
 .regaloItemPadre button{
     text-align: center;
@@ -1455,9 +1455,15 @@ input[type='radio']:checked:after {
     transform: scale(1.05);
     background-color: var(--azul-oscuro);
 }
+.regaloItemPadre a{
+    margin: 0 !important;
+}
+.regaloItem a{
+    margin: 0 !important
+}
 .regaloBoton a{
     color: white;
-    margin: 0;
+    margin: 0 !important;
 }
 .regaloItemPadre a{
     margin: 0 !important;
@@ -1465,8 +1471,12 @@ input[type='radio']:checked:after {
     width: 40% !important;
 }
 .regaloBoton{
-    margin: 0 auto !important;
-    margin-left: 2vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.regaloLink{
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -1765,7 +1775,7 @@ input[type='radio']:checked:after {
 .regaloBoton{
     width: 60%;
     padding: 2vh !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
 }
 .regaloBoton:active{
     background-color: var(--azul-oscuro);
@@ -1773,11 +1783,16 @@ input[type='radio']:checked:after {
 .regaloPadre{
     width: 100% !important;
 }
+.regaloItemPadre a{
+    margin: 0 !important;
+}
 
 .regalo input, .regalo button {
     width: 90% !important;
 }
-
+.regaloLink{
+    margin: 0 !important;
+}
 /* ------ RESET PASSWORD ------ */
 .containerRegister button, .containerRegister input{
     width: 90%;

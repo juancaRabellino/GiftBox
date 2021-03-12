@@ -67,7 +67,7 @@ const CargarPaquete = (props) => {
             })}
         </select>
         <label>Descripción del paquete</label>
-        <textarea name="descripcion"></textarea>
+        <textarea type="text" name="descripcion" onChange={readInput}></textarea>
         <label>Cantidad de personas</label>
         <input type="number" name="cantidadPersonas" onChange={readInput}></input>
         <label>Ubicación</label>
