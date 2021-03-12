@@ -134,7 +134,7 @@ const Registro = (props) => {
                     </div>
 
                     <GoogleLogin className="google"
-                        clientId="1017297947872-a4k36afp8ren4g12ov8c4old1udn3v4b.apps.googleusercontent.com"
+                        clientId="1017297947872-u8vq3idnsomfq2n0v298n81g8khtaqm2.apps.googleusercontent.com"
                         buttonText="Create tu cuenta con Google"
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}

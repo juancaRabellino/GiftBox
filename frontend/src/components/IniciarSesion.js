@@ -93,7 +93,7 @@ const IniciarSesion = (props) => {
                 <p onClick={validarUsuario}>Login</p>
             </div>
             <GoogleLogin className="googlecito"
-            clientId="958442334135-59seulshhm4396e4ls8f3uugeggsenag.apps.googleusercontent.com"
+            clientId="1017297947872-u8vq3idnsomfq2n0v298n81g8khtaqm2.apps.googleusercontent.com"
             buttonText="Inicia sesión con Google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
