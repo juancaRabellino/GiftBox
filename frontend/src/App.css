@@ -111,7 +111,7 @@ body {
     height: 12vh;
     width: 100%;
     margin-right: 2vw;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: flex-end;
 }
 
@@ -146,7 +146,7 @@ body {
 }
 
 .headerUserBottom {
-    width: 60%;
+    width: 70%;
     justify-content: space-around;
     margin-top: 2vh;
 }
@@ -363,7 +363,7 @@ body {
 
 .datosUser {
     margin-left: 5vw;
-    width: 25vw;
+    width: 80%;
     display: flex;
     align-items: center;
 }
@@ -1560,6 +1560,18 @@ input[type='radio']:checked:after {
 
 @media (max-width:900px) {
     /* ----- HEADER RESPONSIVE ------ */
+    .headerUser{
+        display: flex !;
+        justify-content: flex-end !important;
+        align-items: flex-end;
+        margin: 2vh 0;
+    }
+    .datosUser{
+        width: 100%;
+    }
+    .cart{
+        margin-left: 2vw !important;
+    }
     .headerContainer {
         width: 100vw;
     }
@@ -1839,6 +1851,12 @@ input[type='radio']:checked:after {
 .containerRegister button, .containerRegister input{
     width: 90%;
 }
+.datosUser{
+    margin:0 !important;
+}
+.userNav{
+    margin: 0 !important;
+}
 
 }
 
@@ -1879,6 +1897,45 @@ input[type='radio']:checked:after {
     border-bottom: 1px solid rgb(126, 126, 126);
     width: 100%;
 }
+.carritoSection{
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 1vw;
+}
+.carritoPaquetes{
+    width: 100% !important;
+}
+.carritoPaquete{
+    width: 100%;
+}
+.buttonCarrito{
+    width: 5vw;
+}
+.carritoResumen{
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 4vh;
+}
+.carritoImagen{
+    width: 100%;
+    background-position: center;
+}
+.carritoCantidad h5{
+    font-size: 1rem !important;
+}
+.tipoEnvio{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+.tipoEnvio p{
+    margin-bottom: 0 !important;
+}
+.carritoHead{
+    justify-content: flex-start;
+    padding:0;}
 }
 
 /* Paquetes Header Nuevo */
@@ -1950,3 +2007,19 @@ input[type='radio']:checked:after {
     flex-direction: column;
     justify-content: flex-start;
 }
+
+
+/* -------- HEADER CARRITO -------- */
+
+.cart{
+    align-items: center;
+    justify-content: center;
+}
+.headerResponsive{
+    width: 100%;
+}
+.headerUser{
+    justify-content: center;
+    align-items: center;
+}
+

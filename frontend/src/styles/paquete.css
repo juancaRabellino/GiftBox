@@ -497,4 +497,22 @@
     .cardProducto {
         width: 300px;
     }
+    @media(max-width:900px){
+        .imagenDeUsuario{
+            width: 80px;
+            height: 80px;
+        }
+        .cajaDeComentarios{
+            width: 100%;
+        }
+        .cajaDeComentario{
+            width: 100%;
+        }
+        .comentarioContainer{
+            width: 95%;
+        }
+        .comentario{
+            width: 90%;
+        }
+    }
 }
