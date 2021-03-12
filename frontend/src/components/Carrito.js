@@ -9,7 +9,7 @@ import withReactContent from 'sweetalert2-react-content'
 
 
 
-const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
+const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total,loggedUser})=>{
     if(!carrito){return <h1>loading..</h1> }
 
 
@@ -30,7 +30,20 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
                 })
         if(!carrito){return <h1>loading..</h1> }
     }
-
+    const usuarioNologueado=()=>{
+        const MySwal = withReactContent(Swal)
+                MySwal.fire({
+                title: <p className="popup" style={{color:"black", fontSize:15,paddingTop: 15}}>Tenes que iniciar sesion para continuar con la compra!</p>,
+                icon:'error',
+                toast: true,
+                timer:2500,
+                timerProgressBar:true,
+                showConfirmButton:false,
+                width:200, 
+                background:'#f6d3d3',
+                iconColor:'#f00606'                                        
+                })  
+    }
     function carritoVacio() {
 
         const MySwal = withReactContent(Swal)
@@ -120,11 +133,10 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
                             <p>$ {total}</p>
                         </div>
                         <div id="resumenContinuarYseguir">
-                            {(carrito && carrito.length === 0) ?
-                            <div to="/envio" id="carritoContinuar" onClick={carritoVacio}>Continuar</div>
-                            :
-                            <Link to="/envio" id="carritoContinuar">Continuar</Link>
-                            }
+                            {(carrito && carrito.length === 0)
+                            ?<div  id="carritoContinuar" style={{cursor:"pointer"}}onClick={carritoVacio}>Continuar</div>
+                            : (!loggedUser) ?<div  id="carritoContinuar" style={{cursor:"pointer"}}onClick={usuarioNologueado}>Continuar</div>
+                            :<Link to="/envio" id="carritoContinuar">Continuar</Link>}
                             <Link id="carritoSeguirComprando">Seguir Comprando</Link>
                         </div>
                     </div>
@@ -137,6 +149,7 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total})=>{
 }
 const mapStateToProps = state => {
     return {
+        loggedUser:state.userReducer.loggedUser,
         carrito: state.carritoReducer.carrito,
         total:state.carritoReducer.total
     }

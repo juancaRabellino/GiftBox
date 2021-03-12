@@ -18,7 +18,8 @@ const Envio=({carrito,total,modificarRegalo})=>{
     const [mailDestinatario, setMailDestinatario]= useState("");
     const [errores,setErrores]=useState([]);
     const [asunto,setAsunto]=useState("")
-
+    const [mailValido,setMailValido]=useState(false)
+    console.log(mailDestinatario)
     
     useEffect(() => {
         var paquetesId=[]
@@ -29,13 +30,13 @@ const Envio=({carrito,total,modificarRegalo})=>{
             },carrito,
             paquetesId})
     }, [])
-
-
+    
     const continuar=()=>{
         let lastAtPos = mailDestinatario.lastIndexOf('@');
         let lastDotPos = mailDestinatario.lastIndexOf('.');
-        if (!(lastAtPos < lastDotPos && lastAtPos > 0 && mailDestinatario.indexOf('@@') == -1 && lastDotPos > 2 && (mailDestinatario.length - lastDotPos) > 2)) {
+        if (paraQuien!=="paraMi" && (mailDestinatario==="" || !(lastAtPos < lastDotPos && lastAtPos > 0 && mailDestinatario.indexOf('@@') == -1 && lastDotPos > 2 && (mailDestinatario.length - lastDotPos) > 2))) {
             emailErroneo()
+            return false;
         }
         else{ 
             var paquetesId=[]
@@ -46,37 +47,40 @@ const Envio=({carrito,total,modificarRegalo})=>{
             },carrito,
             paquetesId})
             setErrores([])
+            setMailValido(true)
+            return true;
         }
     }
     function emailErroneo() {
         const MySwal = withReactContent(Swal)
         MySwal.fire({
-        title: <p className="popup" style={{color:"black", fontSize:15}}>E-mail no válido! Intente nuevamente</p>,
-        icon:'error',
-        toast: true,
-        timer:1500,
-        timerProgressBar:true,
-        showConfirmButton:false,
-        width:500, 
-        background:'#f6d3d3',
-        iconColor:'#f00606'                                        
+            title: <p className="popup" style={{color:"black", fontSize:15}}>E-mail no válido! Intente nuevamente</p>,
+            icon:'error',
+            toast: true,
+            timer:1500,
+            timerProgressBar:true,
+            showConfirmButton:false,
+            width:500, 
+            background:'#f6d3d3',
+            iconColor:'#f00606'                                        
         })
     }
     function formaDeEnvio() {
         const MySwal = withReactContent(Swal)
         MySwal.fire({
-        title: <p className="popup" style={{color:"black", fontSize:15}}>Seleccione una forma de envío!</p>,
-        icon:'error',
-        toast: true,
-        timer:1500,
-        timerProgressBar:true,
-        showConfirmButton:false,
-        width:500, 
-        background:'#f6d3d3',
-        iconColor:'#f00606'                                        
+            title: <p className="popup" style={{color:"black", fontSize:15}}>Seleccione una forma de envío!</p>,
+            icon:'error',
+            toast: true,
+            timer:1500,
+            timerProgressBar:true,
+            showConfirmButton:false,
+            width:500, 
+            background:'#f6d3d3',
+            iconColor:'#f00606'                                        
         })
     }
-
+    
+    console.log(mailValido)
     if(!carrito){return <h1>loading..</h1> }
     return(
         <>
@@ -176,15 +180,25 @@ const Envio=({carrito,total,modificarRegalo})=>{
                 </>
                 }  
                 <div  style={{width:"100%", paddingTop:"2vh"}}>
-                    {paraQuien !== '' ?
+                    {paraQuien==="paraMi"
+                    ? <Link id="carritoContinuar" style={{margin:"0"}} to="/pago"> Continuar al pago</Link> 
+                    : (paraQuien==="regalo" && mailDestinatario==="") 
+                    ? <Link id="carritoContinuar"style={{margin:"0"}}  onClick={emailErroneo} > Continuar al mensaje</Link>
+                    : (paraQuien==="regalo" &&mailValido===false)
+                    ?  <Link id="carritoContinuar"style={{margin:"0"}} to="/envioMensaje" onClick={continuar} >Continuar al mensaje</Link> 
+                    : <Link id="carritoContinuar" style={{margin:"0"}} onClick={formaDeEnvio}>Continuar al pago</Link> }
+
+
+
+                    {/* {paraQuien !== '' ?
                     <Link id="carritoContinuar" style={{margin:"0"}} onClick={continuar}>
                         {paraQuien==="paraMi" ?<Link to="/pago"> Continuar al pago</Link> : <Link to="/envioMensaje" > Continuar al mensaje</Link>}
                     </Link>
                     :
                     <Link id="carritoContinuar" style={{margin:"0"}} onClick={formaDeEnvio}>
-                        <Link> Continuar al pago</Link>
+                        Continuar al pago
                     </Link> 
-                    }
+                    } */}
                 </div>
 
             </div>
