@@ -13,6 +13,30 @@ const PaymentForm = () => {
   const [focus, setFocus] = useState('')
 
 
+ 
+  function largoNumero(e) {
+    if (e.target.value.length > 16) 
+    {e.target.value = e.target.value.slice(0,16)}
+    setNumber(e.target.value)
+  }
+  function largoExpiry(e) {
+    if (e.target.value.length > 4) 
+    {e.target.value = e.target.value.slice(0,4)}
+    setExpiry(e.target.value)
+  }
+  function largoCvc(e) {
+    if (e.target.value.length > 3) 
+    {e.target.value = e.target.value.slice(0,3)}
+    setCvc(e.target.value)
+  }
+  function largoNombre(e) {
+    if (e.target.value.length > 21) 
+    {e.target.value = e.target.value.slice(0,21)}
+    setName(e.target.value)
+  }
+
+
+
   return (
     <div className='PaymentForm'>
       <Cards
@@ -28,7 +52,7 @@ const PaymentForm = () => {
           name='number'
           placeholder='Numero de Tarjeta'
           value={number}
-          onChange={e => setNumber(e.target.value)}
+          onChange={e => largoNumero(e)}
           onFocus={e => setFocus(e.target.name)}
         />
         <input
@@ -36,15 +60,15 @@ const PaymentForm = () => {
           name='name'
           placeholder='Nombre'
           value={name}
-          onChange={e => setName(e.target.value)}
+          onChange={e => largoNombre(e)}
           onFocus={e => setFocus(e.target.name)}
         />
         <input
-          type='text'
+          type='tel'
           name='expiry'
           placeholder='MM/YY Expiracion'
           value={expiry}
-          onChange={e => setExpiry(e.target.value)}
+          onChange={e => largoExpiry(e)}
           onFocus={e => setFocus(e.target.name)}
         />
         <input
@@ -52,7 +76,7 @@ const PaymentForm = () => {
           name='cvc'
           placeholder='Código de seguridad'
           value={cvc}
-          onChange={e => setCvc(e.target.value)}
+          onChange={e => largoCvc(e)}
           onFocus={e => setFocus(e.target.name)}
         />
       </form>

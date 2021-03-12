@@ -1,9 +1,29 @@
 import React, {useEffect, useRef} from 'react'
+import Swal from 'sweetalert2'
+import { connect } from "react-redux"
+import withReactContent from 'sweetalert2-react-content'
+import carritoActions from "../redux/actions/carritoActions"
 
-export const PayPal = ({total}) => {
 
-    console.log("ACÁ ESTÁ EL TOTAL")
-    console.log(total)
+const PayPal = ({total,carrito, eliminarDelCarrito}) => {
+
+    function botonComprar() {
+        const MySwal = withReactContent(Swal)
+        MySwal.fire({
+        title: <p className="popup" style={{color:"black", fontSize:15}}>Su compra fue realizada con éxito! :D</p>,
+        icon:'success',
+        toast: true,
+        timer:4000,
+        timerProgressBar:true,
+        showConfirmButton:false,
+        width:500, 
+        background: '#d8f6d3',
+        iconColor: '#2fbc13'                                        
+        })
+        carrito.map(paquete => eliminarDelCarrito(paquete)) 
+        window.location.href='/'
+    }
+
     const paypal = useRef()
     useEffect(() => {
         window.paypal.Buttons ({
@@ -15,19 +35,21 @@ export const PayPal = ({total}) => {
             },
             onApprove: (data, actions) =>{
                 const order = actions.order.capture()
-                alert("Compra realizada")
-                console.log(order)
+                botonComprar()
             },
             onError: (err) => {
                 alert("ERROR")
-                console.log("Hubo un error en Paypal")
+                console.log(err)
             }
         }).render(paypal.current)
         
     })
     return(
-        <div ref={paypal}>
-            
-        </div>
+        <div ref={paypal}></div>
     )
 }
+
+const mapDispatchToProps={
+    eliminarDelCarrito: carritoActions.eliminarDelCarrito
+}
+export default connect(null, mapDispatchToProps)(PayPal)

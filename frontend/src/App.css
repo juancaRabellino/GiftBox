@@ -320,9 +320,10 @@ body {
     flex-direction: column;
     position: absolute;
     width: 30vh;
-    margin-top: 2vh;
+    margin-top: 1.4vh;
     background-color: white;
     align-items: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
 .flexRowUsuarios {
@@ -375,7 +376,7 @@ body {
     width: 100vw;
     min-height: 70vh;
     display: flex;
-    background-position: center;
+    background-position: right;
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url("./assets/fondoLog.jpg");
@@ -912,7 +913,12 @@ video {
     font-size: 1.75rem;
     margin-bottom: 1.5rem;
 }
-
+.lineaHamburguesa {
+    width: 50vw;
+    height: 1vh;
+    border-bottom: 1px solid rgba(87, 87, 87, 0.26);
+    margin-left: 2vw;
+}
 .guardaCambioContraseña {
     background-color: var(--azul-claro);
     color: white;
@@ -1317,6 +1323,7 @@ input[type='radio']:checked:after {
         display: flex;
         margin-left: 4vw;
         align-items: center;
+        width: 100vw;
     }
     .userHeaderResponsive p {
         margin-left: 5vw;
@@ -1335,6 +1342,7 @@ input[type='radio']:checked:after {
     }
     .hamburger-react {
         margin-right: 5vw;
+        margin-top: 6vh;
     }
     .headerContainer {
         align-items: center;
@@ -1366,8 +1374,8 @@ input[type='radio']:checked:after {
         margin-top: 2vh;
     }
     .linksUsuarioResponsive a {
-        margin: 1vh 3vw;
-        border-bottom: 1px solid rgb(161, 161, 161);
+        margin-top: 2vh;
+        margin-left: 5vw;
     }
     .paquetesHeader{
         display: none !important;
@@ -1608,19 +1616,15 @@ input[type='radio']:checked:after {
     border-left: 4px solid var(--color-primario);
     color: tomato;
 }
-
-
 .row {
     display: flex;
     position: absolute;
     margin-top: 2vh;
 }
-
 .paquetexCategoria {
     margin-top: 4vh;
     min-width: 10vw;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    
 }
