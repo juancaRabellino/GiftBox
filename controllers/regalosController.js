@@ -41,8 +41,8 @@ enviarRegalo: async (req, res) => {
             ${email.mensaje!==undefined ? `<h2> ${email.mensaje} </h2>`: ""}
             ${carrito.map(paquete=>`<h1>${paquete.nombre} x ${paquete.cantidad}</h1>`)}
             <h1>CODIGO: ${nuevoRegalo._id}</h1>
-            <link href="https://app-pixels.herokuapp.com/"><button style="padding:20px; text-decoration:none" >http://localhost:3000/regalo</button></link>
-            <h3 style="color:#FFB5FF">Si el link no te funciona, copia y pega este enlace en tu navegador http://localhost:3000/regalo </h3>
+            <link href="https://giftbox-app.herokuapp.com/"><button style="padding:20px; text-decoration:none" >https://giftbox-app.herokuapp.com/regalo</button></link>
+            <h3 style="color:#FFB5FF">Si el link no te funciona, copia y pega este enlace en tu navegador https://giftbox-app.herokuapp.com/regalo </h3>
             <h5 style="color:#FFB5FF">GIFTBOX</h5>
             </div>`}
             transport.sendMail(mailOptions, (error, info) =>{

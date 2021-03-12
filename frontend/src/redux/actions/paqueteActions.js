@@ -5,7 +5,7 @@ const paqueteActions = {
   obtenerTodosLosPaquetes: () => {
     return async (dispatch, getState) => {
       try {
-        const response = await axios.get('http://localhost:4000/api/paquetes')
+        const response = await axios.get('https://giftbox-app.herokuapp.com/api/paquetes')
         dispatch({ type: 'TODOS_PAQUETES', payload: response.data.response })
 
       } catch (error) {
@@ -59,7 +59,7 @@ const paqueteActions = {
   },
   enviarValoracion: (_id, usuarioYvaloracion) => {
     return async (dispatch, getState) => {
-      const response = await axios.put(`http://localhost:4000/api/paquetes/${_id}`, usuarioYvaloracion)
+      const response = await axios.put(`https://giftbox-app.herokuapp.com/api/paquetes/${_id}`, usuarioYvaloracion)
       if (response.data.response) {
         dispatch({ type: "ENVIAR_VALORACION", payload: response.data.response })
       }
@@ -69,7 +69,7 @@ const paqueteActions = {
     const { comentarioUsuario, token, paqueteId } = nuevoComentario
     return async (dispatch, getState) => {
       try {
-        const response = await axios.post(`http://localhost:4000/api/paquete/comentario`, { comentarioUsuario, paqueteId },
+        const response = await axios.post(`https://giftbox-app.herokuapp.com/api/paquete/comentario`, { comentarioUsuario, paqueteId },
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -87,7 +87,7 @@ const paqueteActions = {
     const { comentarioId, paqueteId, token } = comentarioAEliminar
     return async (dispatch, getState) => {
       try {
-        const response = await axios.delete(`http://localhost:4000/api/paquete/comentario/${paqueteId}/${comentarioId}`,
+        const response = await axios.delete(`https://giftbox-app.herokuapp.com/api/paquete/comentario/${paqueteId}/${comentarioId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -105,7 +105,7 @@ const paqueteActions = {
     const { comentarioId, paqueteId, comentarioEditado, token } = comentarioAEditar
     return async (dispatch, getState) => {
       try {
-        const response = await axios.put(`http://localhost:4000/api/paquete/comentario`, { comentarioId, paqueteId, comentarioEditado },
+        const response = await axios.put(`https://giftbox-app.herokuapp.com/api/paquete/comentario`, { comentarioId, paqueteId, comentarioEditado },
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -120,7 +120,7 @@ const paqueteActions = {
   nuevoPaquete: nuevoPaquete =>{
     return async (dispatch, getState) => {
       try {
-        const response = await axios.post('http://localhost:4000/api/paquetes', nuevoPaquete,{
+        const response = await axios.post('https://giftbox-app.herokuapp.com/api/paquetes', nuevoPaquete,{
           headers: {"Content-Type": "multipart: form-data"}
         }
       )

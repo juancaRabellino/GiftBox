@@ -5,7 +5,7 @@ const productoActions = {
   obtenerTodoslosProductos: () => {
     return async (dispatch, getState) => {
       try {
-        const response = await axios.get('http://localhost:4000/api/productos')
+        const response = await axios.get('https://giftbox-app.herokuapp.com/api/productos')
         dispatch({type: 'TODOS_PRODUCTOS', payload: response.data.response})
       } catch (error) {
         console.log(error)
@@ -15,7 +15,7 @@ const productoActions = {
   obtenerProductosPorPaquete: (_id)=>{
     console.log("1111111111111111111111111111111111111111111111111111")
     return async (dispatch, getState) => {
-      const response= await axios.get(`http://localhost:4000/api/productos/paquete/${_id}`)
+      const response= await axios.get(`https://giftbox-app.herokuapp.com/api/productos/paquete/${_id}`)
       console.log(response.data)
       if (response.data.success===true){
         dispatch({type:"PRODUCTOS_DEL_PAQUETE", payload: response.data.response})
@@ -26,7 +26,7 @@ const productoActions = {
     console.log(nuevoProducto)  
     return async (dispatch, getState) => {      
       try{
-        const response = await axios.post('http://localhost:4000/api/productos',nuevoProducto, {
+        const response = await axios.post('https://giftbox-app.herokuapp.com/api/productos',nuevoProducto, {
           headers: {"Content-Type": "multipart: form-data"}
         })
         dispatch({type:"CARGAR_PRODUCTO", payload: response.data.response})

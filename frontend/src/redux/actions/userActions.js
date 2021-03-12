@@ -6,7 +6,7 @@ const userActions={
     crearCuenta: (formNuevoUsuario) => {
         return async (dispatch,getstate) => {
             try{
-              const data = await axios.post("http://localhost:4000/api/usuarios",formNuevoUsuario,{
+              const data = await axios.post("https://giftbox-app.herokuapp.com/api/usuarios",formNuevoUsuario,{
                 headers: {"Content-Type": "multipart: form-data"}
               }); 
               if (data.data.success){             
@@ -29,7 +29,7 @@ const userActions={
     logFromLS: (token) => {
         return async (dispatch, getState) => {
             try {
-                const respuesta = await axios.post('http://localhost:4000/api/usuarios/ls', {token}, {
+                const respuesta = await axios.post('https://giftbox-app.herokuapp.com/usuarios/ls', {token}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -43,7 +43,7 @@ const userActions={
      resetearPassword: (cuenta)=> {
         return async (dispatch) => {
             try{
-                const response = await axios.post('http://localhost:4000/api/user/resetear-password', {cuenta})
+                const response = await axios.post('https://giftbox-app.herokuapp.com/api/user/resetear-password', {cuenta})
                 dispatch({type: 'RESETEAR_PASSWORD'})
             }catch(error){
                 Swal.fire({
@@ -68,7 +68,7 @@ const userActions={
       },
     iniciarSesion: (usuario) => {
         return async (dispatch, getState) => {
-            const respuesta = await axios.post('http://localhost:4000/api/login', usuario)
+            const respuesta = await axios.post('https://giftbox-app.herokuapp.com/api/login', usuario)
             if (!respuesta.data.success) {
                 return respuesta.data
             }
@@ -77,7 +77,7 @@ const userActions={
     },
     editUsuarioPass : (editarUsuario, id) => {
         return async (dispatch, getState)=> {
-            const respuesta = await axios.put(`http://localhost:4000/api/usuarios/${id}`, editarUsuario )
+            const respuesta = await axios.put(`https://giftbox-app.herokuapp.com/api/usuarios/${id}`, editarUsuario )
             if(!respuesta.data.success){
                 return respuesta.data 
             }
@@ -90,7 +90,7 @@ const userActions={
     },
     cambiarPassword : (editUsuario) => {
         return async (dispatch, getState)=> {
-            const respuesta = await axios.put("http://localhost:4000/api//cambiar-password", editUsuario)
+            const respuesta = await axios.put("https://giftbox-app.herokuapp.com/api/cambiar-password", editUsuario)
             if(!respuesta.data.success){
             return respuesta.data 
         }
@@ -99,7 +99,7 @@ const userActions={
     editarUsuarioImg : (formNuevaImg, id) => {
         
         return async (dispatch, getState)=> {
-            const respuesta = await axios.put(`http://localhost:4000/api/imagen/${id}`, formNuevaImg)
+            const respuesta = await axios.put(`https://giftbox-app.herokuapp.com/api/imagen/${id}`, formNuevaImg)
             
             if(respuesta.data.success){
                 dispatch({type:'EDITAR_FOTO', payload: respuesta.data})
