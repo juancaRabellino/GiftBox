@@ -14,4 +14,4 @@ const regaloReducer = (state = initialState, action) => {
     }
 }
 
-module.exports = regaloReducer
+export default regaloReducer
