@@ -15,6 +15,7 @@ import withReactContent from 'sweetalert2-react-content'
 import productoActions from '../redux/actions/productoActions'
 
 const Paquete = ({productosDelpaquete,obtenerProductosPorPaquete ,loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes, history,  agregarAlCarrito}) => {
+  console.log(productosDelpaquete)
   const [valor, setValor] = useState(0)
   const [ultimoValor, setUltimoValor] = useState(0);
   const [visible, setVisible] = useState(false)
@@ -213,7 +214,7 @@ const Paquete = ({productosDelpaquete,obtenerProductosPorPaquete ,loggedUser, ma
                     <span><FaRegFrownOpen/></span>
                   </div>}
                 {paquetePorId.opiniones.map(comentario => {
-                  return <Comentario comentario={comentario} paqueteId={paquetePorId._id} />
+                  return <Comentario comentario={comentario} key={paquetePorId._id} paqueteId={paquetePorId._id} />
                 })}
                 <p className="verComentarios" onClick={() => setVisible(!visible)} style={{ margin: '2vh', alignSelf: 'flex-end' }}>Cerrar Comentarios </p>
               </div>

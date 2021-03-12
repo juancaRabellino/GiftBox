@@ -14,9 +14,9 @@ const CargarPaquete = (props) => {
     const readInput = e=>{
         const property= e.target.name
         var value = e.target.value
-        if(property==="imagen"){
+/*         if(property==="imagen"){
             value=e.target.files[0];
-        }
+        } */
         setPaquete({
             ...paquete,
             [property]:value
@@ -74,8 +74,8 @@ const CargarPaquete = (props) => {
         <input type="text" name="ubicacion" onChange={readInput}></input>
         <label>Stock</label>
         <input type="number" name="stock" onChange={readInput}></input>
-        <label>Imagen del paquete</label>
-        <input type="file" name="imagen" onChange={readInput}></input>
+        <label>Imagen del paquete (url)*</label>
+        <input type="text" name="imagen" onChange={readInput}></input>
         <button onClick={sendData}>Enviar</button>
     </form>
     )
