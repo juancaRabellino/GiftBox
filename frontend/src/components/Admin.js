@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import paqueteActions from '../redux/actions/paqueteActions'
-import productoActions from '../redux/actions/paqueteActions'
-import userReducer from '../redux/reducers/userReducer'
 import CargarProducto from './CargarProducto'
 import CargarPaquete from './CargarPaquete'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 
-const Admin = (props) => {
+const Admin = () => {
 
     const [paqueteVisible, setPaqueteVisible] = useState(false)
     const [productoVisible, setProductoVisible] = useState(false)

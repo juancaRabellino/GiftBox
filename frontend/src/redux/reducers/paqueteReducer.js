@@ -34,9 +34,7 @@ const paqueteReducer = (state = initialState, action) => {
       var suma = 0;
       (paqueteAux.valoracion).map(valoracion => (suma += valoracion.valor))
       var promedio = suma / (paqueteAux.valoracion).length;
-      /* console.log("-----------------------------------------------------------------")
-      console.log("suma: "+suma +"/" +(paqueteAux.valoracion).length )
-      console.log("promedio " + promedio) */
+     
       return {
         ...state,
         todosLosPaquetes: aux1,
@@ -66,22 +64,18 @@ const paqueteReducer = (state = initialState, action) => {
         todosLosPaquetes: state.todosLosPaquetes.map(paquete=>paquete._id===action.payload._id ? action.payload : paquete)
       }
     case 'ELIMINAR_COMENTARIO':
-      console.log("promedio del paquete antes de eliminar"+state.paquetePorId.promedio)
-      console.log("promedio del paquete despues de eliminar"+action.payload.promedio)
       return {
         ...state,
         paquetePorId: {...action.payload,promedio:state.paquetePorId.promedio},
         todosLosPaquetes: state.todosLosPaquetes.map(paquete=>paquete._id===action.payload._id ? action.payload : paquete)
       }
     case 'EDITAR_COMENTARIO':
-      console.log(action.payload)
       return {
         ...state,
         paquetePorId: {...action.payload,promedio:state.paquetePorId.promedio},
         todosLosPaquetes: state.todosLosPaquetes.map(paquete=>paquete._id===action.payload._id ? action.payload : paquete)
       }
     case 'NUEVO_PAQUETE':
-      console.log(action.payload)
       return{
         ...state,
         todosLosPaquetes: action.payload

@@ -21,10 +21,6 @@ const Paquetes = ({todosLosPaquetes, todasLasCategorias,categoria,location,obten
   },[])
   useEffect(() => {
     if(!todosLosPaquetes){return false}
-    console.log("filtro de categoria en :" +paquetesCategorias)
-    console.log("filtro de precio en :" +paquetesPrecio)
-    console.log("filtro de cant personas en :" +paquetesPersonas)
-    console.log("filtro de ubicacion en :" +paquetesUbicacion)
     var aux=todosLosPaquetes
     {(paquetesPrecio!==null && paquetesPrecio!=="") ? aux=todosLosPaquetes.filter(paquete=>(paquete.precio<=paquetesPrecio))
     :(paquetesPersonas!==null && paquetesPersonas!=="") ? aux=todosLosPaquetes.filter(paquete=>(paquete.cantidadPersonas==paquetesPersonas))
@@ -53,7 +49,6 @@ const Paquetes = ({todosLosPaquetes, todasLasCategorias,categoria,location,obten
     if(paquetesNombre!==""){aux=aux.filter(paquete=> paquete.nombre.toUpperCase().indexOf(paquetesNombre.toUpperCase().trim())===0)}
     setPaquetesFiltrados(aux)
   }, [paquetesPrecio,paquetesPersonas,paquetesUbicacion,paquetesNombre,paquetesCategorias])
-  console.log(paquetesFiltrados)
   if(!todosLosPaquetes){return <Loader/> }
   
   return (

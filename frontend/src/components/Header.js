@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Hamburger from 'hamburger-react'
-import Swal from "sweetalert2"
 import "../App.css"
-import { BiSearch } from 'react-icons/bi'
-import { BsHeart } from 'react-icons/bs'
 import { IoCartOutline } from 'react-icons/io5'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import PaquetesHeader from './PaquetesHeader'

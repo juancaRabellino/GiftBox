@@ -1,7 +1,6 @@
 const Paquete = require("../models/Paquete");
 const paquetesController = {
   agregarPaquete: (req, res) => {
-    console.log(req.files)
     const { nombre, precio, fecha, categoria, descripcion, cantidadPersonas, ubicacion, stock, cantidadVendidos, valoracion, opiniones, productos, imagen } = req.body;
     const paqueteAagregar = new Paquete({
       nombre, precio, fecha, categoria, descripcion, cantidadPersonas, ubicacion, stock, cantidadVendidos, valoracion, opiniones, productos, imagen })
@@ -25,7 +24,6 @@ const paquetesController = {
       .catch(error => { return res.json({ success: false, response: "Error al eliminar el paquete" }) })
   },
   editarPaquete: async (req, res) => {
-    console.log("FRAn")
     const { idUsuario, valor } = req.body
     const paqueteActualizado = await Paquete.findOneAndUpdate(req.params, { $push: { "valoracion": { idUsuario, valor } } }, { new: true })
     if (paqueteActualizado) {
@@ -34,10 +32,7 @@ const paquetesController = {
     else { res.json({ success: false, response: "Error al editar el paquete" }) }
   },
   agregarComentario: async (req, res) => {
-    console.log('req.body')
-    console.log(req.body)
-    console.log('req.user')
-    console.log(req.user)
+  
     try {
       const { comentarioUsuario, paqueteId } = req.body
       const { imagen, nombre } = req.user
@@ -64,8 +59,7 @@ const paquetesController = {
     }
   },
   eliminarComentario: async (req, res) => {
-    console.log(req.params)
-    console.log(req.body)
+ 
 
     try {
       const { paqueteId, comentarioId } = req.params
@@ -91,7 +85,6 @@ const paquetesController = {
     }
   },
   editarComentario: async (req, res) => {
-    console.log(req.body)
     try {
       const { comentarioId, paqueteId, comentarioEditado } = req.body
       const response = await Paquete.findOneAndUpdate(
