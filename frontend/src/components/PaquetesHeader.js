@@ -54,10 +54,10 @@ const PaquetesHeader = ({ todosLosPaquetes, paquetesPorCategoria, obtenerTodosLo
       </div>
     </div> */}
       {/* ----------------------------------- */}
-      <div className="paquetesContainer">
-        <h1 className="paquetesTituloH" onClick={() => setVisible(!visible)}>Paquetes<span><MdKeyboardArrowDown /></span></h1>
-        <div className="row">
-          <div className="categoriasContainer">
+      <div className="paquetesContainer" >
+        <h1 className="paquetesTituloH" onClick={() => setVisible(!visible)} >Paquetes<span><MdKeyboardArrowDown /></span></h1>
+        <div className="row" >
+          <div className="categoriasContainer" >
             {(visible && todasLasCategorias) && todasLasCategorias.map(categoria => {
               return (
                 <button className="botonCategoria" onMouseEnter={() => obtenerPaquetesPorCategoria(categoria.nombre)} key={`btnCat${categoria._id}`}><span style={{color: `${categoria.color}`}}>{categoria.nombre}!</span></button>

@@ -5,55 +5,72 @@ import paqueteActions from '../redux/actions/paqueteActions'
 import TarjetaPaquete from './TarjetaPaquete'
 import { BiSearch } from 'react-icons/bi'
 import { useEffect } from 'react'
-import productoActions from '../redux/actions/productoActions'
 
-const Paquetes = ({todosLosPaquetes, todasLasCategorias }) => {
-  const ciudades = ["Buenos Aires", "Santa Fe", "Córdoba"]
+const Paquetes = ({todosLosPaquetes, todasLasCategorias,categoria }) => {
+  const ciudades = ["Buenos Aires", "Santa Fe", "Córdoba","Chaco","Corrientes","Rosario","Formosa","Bariloche","Entre Ríos","La Pampa","Mendoza","Dubai"]
   const [paquetesFiltrados,setPaquetesFiltrados]=useState(todosLosPaquetes)
-  const [filtroActivado,setFiltroActivado]=useState(false)
-  
-  const leerInputs=(e)=>{
-    console.log("Filtro por "+e.target.name+": "+e.target.value)
-    let aux=[]
-    if(!filtroActivado){
-      {(e.target.name==="precio" && e.target.value!=="") 
-      ? aux=todosLosPaquetes.filter(paquete=>paquete.precio<=e.target.value)
-      : (e.target.name==="cantidadPersonas" && e.target.value!=="") 
-      ? aux=todosLosPaquetes.filter(paquete=>paquete.cantidadPersonas==e.target.value) 
-      : (e.target.name==="ubicacion" && e.target.value!=="")
-      ? aux=todosLosPaquetes.filter(paquete=>paquete.ubicacion==e.target.value)
-      : aux=todosLosPaquetes}
-    }else {
-      aux=todosLosPaquetes
+  const [paquetesPrecio,setPaquetesPrecio]=useState(null)
+  const [paquetesPersonas,setPaquetesPersonas]=useState(null)
+  const [paquetesUbicacion,setPaquetesUbicacion]=useState(null)
+  const [paquetesCategorias,setPaquetesCategorias]=useState("Aventura")
+  const [paquetesNombre,setPaquetesNombre]=useState("")
+  console.log(categoria)
+  useEffect(() => {
+    console.log("filtro de categoria en :" +paquetesCategorias)
+    console.log("filtro de precio en :" +paquetesPrecio)
+    console.log("filtro de cant personas en :" +paquetesPersonas)
+    console.log("filtro de ubicacion en :" +paquetesUbicacion)
+    var aux=todosLosPaquetes
+    {(paquetesPrecio!==null && paquetesPrecio!=="") ? aux=todosLosPaquetes.filter(paquete=>(paquete.precio<=paquetesPrecio))
+    :(paquetesPersonas!==null && paquetesPersonas!=="") ? aux=todosLosPaquetes.filter(paquete=>(paquete.cantidadPersonas==paquetesPersonas))
+    :(paquetesUbicacion!==null && paquetesUbicacion!=="") ? (aux=todosLosPaquetes.filter(paquete=>(paquete.ubicacion===paquetesUbicacion)))
+    :(paquetesCategorias!==null && paquetesCategorias!=="") && (aux=todosLosPaquetes.filter(paquete=>(paquete.categoria===paquetesCategorias)))}
+
+    if(paquetesPrecio===null && paquetesPrecio!=="" && paquetesPersonas!==null  && paquetesPersonas!=="" && paquetesUbicacion!==null && paquetesUbicacion!==""){
+       var aux1=todosLosPaquetes.filter(paquete=>(paquete.cantidadPersonas==paquetesPersonas))
+       aux=aux1.filter(paquete=>paquete.ubicacion===paquetesUbicacion)
     }
-    
+    else if(paquetesPersonas===null && paquetesPersonas!=="" && paquetesPrecio!==null  && paquetesPrecio!=="" && paquetesUbicacion!==null && paquetesUbicacion!==""){
+      var aux1=todosLosPaquetes.filter(paquete=>(paquete.precio<=paquetesPrecio))
+      aux=aux1.filter(paquete=>paquete.ubicacion===paquetesUbicacion)
+    }else if(paquetesUbicacion===null && paquetesUbicacion!=="" && paquetesPrecio!==null  && paquetesPrecio!=="" && paquetesPersonas!==null && paquetesPersonas!==""){
+    var aux1=todosLosPaquetes.filter(paquete=>(paquete.precio<=paquetesPrecio))
+    aux=aux1.filter(paquete=>paquete.cantidadPersonas==paquetesPersonas)
+    }
+    else if(paquetesUbicacion!==null && paquetesUbicacion!=="" && paquetesPrecio!==null  && paquetesPrecio!=="" && paquetesPersonas!==null && paquetesPersonas!==""){
+      var aux1=todosLosPaquetes.filter(paquete=>(paquete.precio<=paquetesPrecio))
+      var aux2=aux1.filter(paquete=>paquete.cantidadPersonas==paquetesPersonas)
+      aux=aux2.filter(paquete=>paquete.ubicacion===paquetesUbicacion)
+    }
+    if(paquetesCategorias!==null && paquetesCategorias!==""){
+      aux=aux.filter(paquete=>paquete.categoria===paquetesCategorias)
+    }
+    if(paquetesNombre!==""){aux=aux.filter(paquete=> paquete.nombre.toUpperCase().indexOf(paquetesNombre.toUpperCase().trim())===0)}
     setPaquetesFiltrados(aux)
-  }
-  console.log(filtroActivado)
+  }, [paquetesPrecio,paquetesPersonas,paquetesUbicacion,paquetesNombre,paquetesCategorias])
   console.log(paquetesFiltrados)
   return (
     <main className='packagesMain'>
-      <input type="text" placeholder="Buscar por nombre" />
+      <input type="text" placeholder="Buscar por nombre" onChange={(e)=>setPaquetesNombre(e.target.value)}/>
       <div className="filterInput">
-
-        <select id='select1' name="categoria" disabled={true} >
+        <select id='select1' name="categoria" onChange={(e)=>setPaquetesCategorias(e.target.value)} >
           <option value="">Todos las categorías</option>
           {todasLasCategorias && todasLasCategorias.map(categoria => <option value={categoria.nombre}>{categoria.nombre}</option>)}
         </select>
 
-        <select id='select2' name="precio" onChange={leerInputs}>
-          <option className="option" value="">Precios</option>
+        <select id='select2' name="precio"  onChange={(e)=>setPaquetesPrecio(e.target.value)}>
+          <option className="option"  value="">Precios</option>
           <option  value="2000">Menos de $2000</option>
           <option  value="5000">Menos de $5000</option>
           <option  value="10000">Menos de $10000</option>
         </select>
 
-        <select id='select3' name="cantidadPersonas" onChange={leerInputs} >
+        <select id='select3' name="cantidadPersonas" onChange={(e)=>setPaquetesPersonas(e.target.value)} >
           <option value="">Cantidad de personas</option>
           {[...Array(4)].map((m, i) => <option value={i + 1}>{i + 1}</option>)}
         </select>
 
-        <select id='select4' name="ubicacion" onChange={leerInputs}>
+        <select id='select4' name="ubicacion" onChange={(e)=>setPaquetesUbicacion(e.target.value)}>
           <option value="">Ubicación</option>
           {ciudades.map(ciudad => <option value={ciudad}>{ciudad}</option>)}
         </select>
@@ -64,6 +81,7 @@ const Paquetes = ({todosLosPaquetes, todasLasCategorias }) => {
         {paquetesFiltrados && paquetesFiltrados.map(paquete => {
           return <TarjetaPaquete paquete={paquete} key={`paquete${paquete._id}`} />
         })}
+        {paquetesFiltrados.lenght===0&& <h1>nada</h1>}
       </div>
     </main>
   )
