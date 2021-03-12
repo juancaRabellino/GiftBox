@@ -1,4 +1,4 @@
-
+import React, { useState } from 'react';
 import { BsCheck} from "react-icons/bs";
 import { BiArrowBack, BiCreditCard } from "react-icons/bi";
 import { connect } from "react-redux";
@@ -7,8 +7,13 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { AiOutlineCreditCard } from "react-icons/ai";
 import { FaMoneyBillAlt, FaPaypal } from "react-icons/fa";
 import regaloActions from "../redux/actions/regaloActions";
-import TarjetaDeCredito from "../components/TarjetaDeCredito"
+import TarjetaDeCredito from "./TarjetaDeCredito"
+import { PayPal } from './PayPal';
+
+
 const Envio=({carrito,total,enviarRegalo})=>{
+
+    const [checkout, setCheckout] = useState(false)
 
     if(!carrito){return <h1>loading..</h1> }
     return(
@@ -50,13 +55,16 @@ const Envio=({carrito,total,enviarRegalo})=>{
                         <div className="metodoDeEnvio1">
                             <div className="tipoEnvio" >
                                 <FaMoneyBillAlt/>
-                                <p style={{paddingLeft:"1vw"}}>Efectivo o depósito</p>
+                                <p style={{paddingLeft:"1vw"}}>Transferencia o depósito</p>
                             </div>
                         </div>
                         <div className="metodoDeEnvio1">
                         <div className="tipoEnvio" >
                                 <FaPaypal/>
-                                <p style={{paddingLeft:"1vw"}}>PayPal</p>
+                                <button style={{paddingLeft:"1vw"}} onClick={() => setCheckout(true)}>PayPal</button>
+                                {checkout && (
+                                    <PayPal total={total} />
+                                )}
                             </div>
                         </div>
                     </div>
