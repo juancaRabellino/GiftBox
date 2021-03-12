@@ -8,11 +8,15 @@ import Swal from 'sweetalert2'
 
 const Regalo=({loggedUser,obtenerRegalo})=>{
 
-    console.log(obtenerRegalo)
     const codigo=useRef(null)
     const [regalo,setRegalo]=useState(null)
     const enviarCodigo=async ()=>{
-        Swal.fire({
+        const respuesta= await obtenerRegalo(codigo.current.value)
+        if(respuesta){
+            setRegalo(respuesta)
+        }
+        
+        if(respuesta.usado===false){Swal.fire({
             title: 'Disfruta de tu nuevo regalo!',
             width: 600,
             padding: '3em',
@@ -23,11 +27,14 @@ const Regalo=({loggedUser,obtenerRegalo})=>{
               right top
               no-repeat
             `
-          })
-        const respuesta= await obtenerRegalo(codigo.current.value)
-        if(respuesta){
-            setRegalo(respuesta)
-        }
+          })}
+          else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '¡Este codigo ya fue utilizado!',
+            })
+          }
     }
     console.log(regalo)
     return(
@@ -40,14 +47,14 @@ const Regalo=({loggedUser,obtenerRegalo})=>{
                 
             </div>
             <div className="regaloPadre">            
-            {!regalo?
+            {(!regalo || regalo.usado===true)?
             <div  className="regalo" style={{display:"flex",justifyContent:"center",flexDirection:"column"}}>
                 <h1>Canjea el código de tu regalo</h1>
                 <input type="text" className="tipoEnvio" placeholder="Ingresa el codigo de tu regalo" ref={codigo}
                     style={{cursor:"text"}}/>
                 <button onClick={()=>enviarCodigo()} >Enviar</button>
             </div>
-            :
+            :regalo.usado===false&&
             <div style={{display:"flex",justifyContent:"center",flexDirection:"column"}}>
                 {regalo.paquetesId.map(regalo=>
                 <div className="regaloItemPadre">
@@ -61,7 +68,6 @@ const Regalo=({loggedUser,obtenerRegalo})=>{
                     </Link>
                 </div> )}
             </div>
-
             }
             </div>
         </div>

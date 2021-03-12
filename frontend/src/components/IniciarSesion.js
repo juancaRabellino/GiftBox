@@ -64,7 +64,7 @@ const IniciarSesion = (props) => {
                 setErrores([respuesta.errors])
             } else {
                 Swal.fire({
-                    title: 'Welcome back!',
+                    title: `Bienvenido de vuelta !`,
                     icon: 'success',
                     confirmButtonColor: '#3085d6',
                 }).then((result) => {
@@ -85,7 +85,7 @@ const IniciarSesion = (props) => {
                 <h1 className="logeo">Login</h1>
                 <input type="text" name="cuenta" placeholder="Nombre de usuario"
                     onChange={leerInput} />
-                <input type="texto" name="password" placeholder="Password"
+                <input type="password" name="password" placeholder="Password"
                     onChange={leerInput} />
             </div>
 

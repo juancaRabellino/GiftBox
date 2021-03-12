@@ -21,7 +21,6 @@ const PayPal = ({total,carrito, eliminarDelCarrito}) => {
         iconColor: '#2fbc13'                                        
         })
         carrito.map(paquete => eliminarDelCarrito(paquete)) 
-        window.location.href='/'
     }
 
     const paypal = useRef()
