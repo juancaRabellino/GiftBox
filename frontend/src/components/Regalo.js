@@ -54,7 +54,7 @@ const Regalo=({loggedUser,obtenerRegalo})=>{
                     <div className="regaloItem" style={{backgroundImage:`url("${regalo.paqueteId.imagen}")`}}></div>
                     <h3>{regalo.paqueteId.nombre}</h3>
                     <p>{`Cantidad: ${regalo.cantidad}`}</p>
-                    <Link to={`/paquete/${regalo.paqueteId._id}`}>
+                    <Link className="regaloLink" to={`/paquete/${regalo.paqueteId._id}`}>
                         <div className="regaloBoton">
                             <span>Ver Paquete</span>
                         </div>
