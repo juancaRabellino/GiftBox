@@ -21,7 +21,7 @@ const Carrousel2 = ({ todasLasCategorias }) => {
       <Slider {...settings}>
         {todasLasCategorias.map(function (categoria, i) {
           return (
-            <Link to={{pathname:'/paquetes', categoria:categoria.nombre}} key={`linkCat${categoria._id}`}>
+            <Link to={{pathname:'/paquetes', params:categoria.nombre}}  key={`linkCat${categoria._id}`}>
               <div className='imgCarrusel2' style={{ width: '35vw' }} key={`img${i}`}>
                 <div className='imgCarruselHijo' style={{ backgroundImage: `url('${categoria.imagen}')`, height: '75vh', backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', alignItems: 'flex-end' }}>
                   <h3 className="nombreCategoria" style={{ color: `${categoria.color}` }}>{categoria.nombre}</h3>

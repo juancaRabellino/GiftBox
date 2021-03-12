@@ -13,6 +13,7 @@ import carritoActions from '../redux/actions/carritoActions'
 import Opiniones from './Opiniones'
 import withReactContent from 'sweetalert2-react-content'
 import productoActions from '../redux/actions/productoActions'
+import Loader from "../components/Loader";
 
 const Paquete = ({productosDelpaquete,obtenerProductosPorPaquete ,loggedUser, match, paquetePorId, obtenerPaquetePorId, enviarValoracion, agregarComentario, todosLosPaquetes, history,  agregarAlCarrito}) => {
   const [valor, setValor] = useState(0);
@@ -136,7 +137,7 @@ const Paquete = ({productosDelpaquete,obtenerProductosPorPaquete ,loggedUser, ma
     }
 
   }
-  if (!paquetePorId) { return <h1>loading..</h1> }
+  if (!paquetePorId) { return <Loader/> }
   function agregarCarrito() {
     agregarAlCarrito(paquetePorId)
 
@@ -153,7 +154,7 @@ const Paquete = ({productosDelpaquete,obtenerProductosPorPaquete ,loggedUser, ma
       iconColor: '#2fbc13'
 
     })
-    if (!paquetePorId) { return <h1>loading..</h1> }
+    if (!paquetePorId) { return <Loader/> }
   }
   paquetePorId && console.log(paquetePorId)
   return (

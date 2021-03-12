@@ -59,7 +59,7 @@ const Comentario = ({ paqueteId, comentario, loggedUser, eliminarComentario, edi
           ?
           <div className="cajaDeComentario">
             <div className="comentario">"{comentario.comentarioUsuario}"</div>
-              {loggedUser.id === comentario.idUsuario &&
+              {loggedUser && loggedUser.id === comentario.idUsuario &&
                 <div className="borrarYmodificar">
                   <div onClick={modificarComentario} className="editarComentario"><AiOutlineEdit/></div>
                   <div onClick={enviarComentarioAEliminar} className="borrarComentario"><BsTrash/></div>
