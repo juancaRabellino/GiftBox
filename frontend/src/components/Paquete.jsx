@@ -214,7 +214,7 @@ const Paquete = ({productosDelpaquete,obtenerProductosPorPaquete ,loggedUser, ma
                     <span><FaRegFrownOpen/></span>
                   </div>}
                 {paquetePorId.opiniones.map(comentario => {
-                  return <Comentario comentario={comentario} paqueteId={paquetePorId._id} />
+                  return <Comentario comentario={comentario} key={paquetePorId._id} paqueteId={paquetePorId._id} />
                 })}
                 <p className="verComentarios" onClick={() => setVisible(!visible)} style={{ margin: '2vh', alignSelf: 'flex-end' }}>Cerrar Comentarios </p>
               </div>
