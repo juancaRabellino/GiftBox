@@ -61,7 +61,7 @@ const Envio=({carrito,total,enviarRegalo})=>{
                         <div className="metodoDeEnvio1">
                         <div className="tipoEnvio" >
                                 <FaPaypal/>
-                                <button style={{paddingLeft:"1vw"}} onClick={() => setCheckout(true)}>PayPal</button>
+                                <p style={{paddingLeft:"1vw"}} onClick={() => setCheckout(!checkout)}>PayPal</p>
                                 {checkout && (
                                     <PayPal total={total} />
                                 )}
