@@ -17,6 +17,7 @@ const regaloActions={
                       Authorization: `Bearer ${getState().userReducer.loggedUser.token}`
                     }
                   })
+                return response.data
               } catch (error) {
                 console.log('ERROR AL ENVIAR REGALO')
               }

@@ -27,24 +27,24 @@ const Envio=({carrito,total,enviarRegalo,regalo,modificarRegalo})=>{
 
     if(!carrito){return <h1>loading..</h1>}
 
-    function botonComprar() {
-        enviarRegalo()
-
-        const MySwal = withReactContent(Swal)
-        MySwal.fire({
-        title: <p className="popup" style={{color:"black", fontSize:15}}>Su compra fue realizada con éxito! :D</p>,
-        icon:'success',
-        toast: true,
-        timer:4000,
-        timerProgressBar:true,
-        showConfirmButton:false,
-        width:500, 
-        background: '#d8f6d3',
-        iconColor: '#2fbc13'                                        
-        })
-        // eliminarDelCarrito(paquete)
-        window.location.href='/'
-
+    const botonComprar =async ()=> {
+        const response=await enviarRegalo()
+        if (response){
+            const MySwal = withReactContent(Swal)
+            MySwal.fire({
+            title: <p className="popup" style={{color:"black", fontSize:15}}>Su compra fue realizada con éxito! :D</p>,
+            icon:'success',
+            toast: true,
+            timer:4000,
+            timerProgressBar:true,
+            showConfirmButton:false,
+            width:500, 
+            background: '#d8f6d3',
+            iconColor: '#2fbc13'                                        
+            })
+            // eliminarDelCarrito(paquete)
+            window.location.href='/'
+        }
     }
 
 
