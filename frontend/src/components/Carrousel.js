@@ -22,7 +22,7 @@ const Carrousel = ({ todasLasCategorias }) => {
         {todasLasCategorias.map(function (categoria, i) {
           return (
             <Link to={{ pathname: '/paquetes', categoria: categoria.nombre }} key={`linkCat${categoria._id}`}>
-              <div className='imgCarrusel' style={{ width: '35vw' }} key={`img${i}`}>
+              <div className='imgCarrusel' style={{ width: '35vw'}} key={`img${i}`}>
                 <div className='imgCarruselHijo' style={{ backgroundImage: `url('${categoria.imagen}')`, height: '75vh', backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', alignItems: 'flex-end' }}>
                   <h3 className="nombreCategoria" style={{  color: `${categoria.color}`,
                                                             backgroundColor: "rgba(0, 0, 0, 0.6)",

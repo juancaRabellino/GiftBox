@@ -10,7 +10,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md'
 import PaquetesHeader from './PaquetesHeader'
 import { connect } from 'react-redux'
 import userActions from "../redux/actions/userActions"
-import { GoSignOut,GoSettings,GoHome,GoGift,GoQuestion } from "react-icons/go";
+import { GoSignOut,GoSettings,GoHome,GoGift,GoQuestion,GoOrganization } from "react-icons/go";
 
 
 const Header = ({ carrito, loggedUser, logOut }) => {
@@ -28,10 +28,9 @@ const Header = ({ carrito, loggedUser, logOut }) => {
                 <div className="headerUser centerVerticalColumn">
 
                     <div className="abrirRegalo centerCenterRow">
-                        <p><Link to="/regalo">Abrir mi Regalo</Link></p>
-                        <p><Link to="/admin">Admin</Link></p>
+                        <Link to="/regalo"><span><GoGift/></span>Abrir mi Regalo</Link>
                         {!loggedUser &&
-                            <Link to="/registro" className="registroHeader">Registrarse</Link>
+                            <Link to="/registro" className="registroHeader"><span><GoOrganization/></span>Registrarse</Link>
                         }
                     </div>
                     <div className="headerUserBottom spaceBetween">
@@ -56,6 +55,9 @@ const Header = ({ carrito, loggedUser, logOut }) => {
                                                             <Link to="/usuario" className="logOut paquetesPadres">Mi cuenta</Link>
                                                             <Link to="/editUsuario" className="logOut paquetesPadres">Editar Usuario</Link>
                                                             <Link to="/" onClick={logOut} className="logOut paquetesPadres">LogOut</Link>
+                                                            {loggedUser.rol === 'admin' &&
+                                                                <Link to="/admin" className="logOut paquetesPadres">Página de Administrador</Link> 
+                                                            }
                                                         </div>
                                                     }
                                                 </div>
@@ -76,15 +78,14 @@ const Header = ({ carrito, loggedUser, logOut }) => {
                                 </Link>
                             </>
                         }
-                        <div className="cartAndHeart">
-                            <div className="heart centerCenterRow "><BsHeart /></div>
+                        
                             <Link to="/carrito">
                                 <div className="cart centerCenterRow ">
                                     <IoCartOutline style={{marginRight: '1vw'}}/>
                                     <p style={{color: 'white', paddingRight: '0.3vw'}}>{carrito.length}</p>
                                 </div>
                             </Link>
-                        </div>
+                        
                     </div>
                 </div>
                 <div className="headerResponsive">
@@ -148,8 +149,6 @@ const Header = ({ carrito, loggedUser, logOut }) => {
                         </>
                         }
                 </div>}
-
-
         </>
     )
 }

@@ -50,12 +50,14 @@ const LosMasRegalados = ({ todosLosPaquetes }) => {
       <Slider {...settings}>
         {todosLosPaquetes && paquetesMasVendidos.map(function (paquete, i) {
           return (
-            <div className='loMasRegalado' style={{ width: '35vw' }} key={`img${i}`}>
+            <div className='loMasRegalado' key={`img${i}`}>
               <Link to="/">
-                <div style={{ backgroundImage: `url('${paquete.imagen}')`, height: '35vh', backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', alignItems: 'flex-end' }}>
+                <div style={{ backgroundImage: `url('${paquete.imagen}')`, height: '35vh', backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', alignItems: 'flex-end', borderRadius: '1vh' }}>
                 </div>
-                <p>{isNaN(paquete.promedioValoraciones) ? 0 : paquete.promedioValoraciones}</p>
-                <div style={{ margin: '15px 0 0 10px' }}>{[...Array(5)].map((m, i) => {
+                
+                <div style={{ margin: '15px 0 0 10px' }}>
+                <p style={{fontWeight: 'bold'}}>{isNaN(paquete.promedioValoraciones) ? 0 : paquete.promedioValoraciones.toFixed(2)}</p>
+                  {[...Array(5)].map((m, i) => {
                   const ratingValue = i + 1
                   return (
                     <label key={`label${i}`}>
@@ -64,8 +66,8 @@ const LosMasRegalados = ({ todosLosPaquetes }) => {
                   )
                 })}</div>
                 <div className='precioDetalle'>
-                  <p>{paquete.descripcion}</p>
-                  <p className='precio'>{paquete.precio}</p>
+                  <p style={{height: '2vh'}}>{paquete.descripcion}</p>
+                  <p className='precio'>${paquete.precio}</p>
                 </div>
               </Link>
             </div>
