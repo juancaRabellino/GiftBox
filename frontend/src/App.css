@@ -502,6 +502,7 @@ video {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .filterInput input, .filterInput select {
@@ -1936,7 +1937,12 @@ input[type='radio']:checked:after {
 }
 .carritoHead{
     justify-content: flex-start;
-    padding:0;}
+    padding:0;
+}
+.filterInput input, .filterInput select{
+        width: 100%;
+    }
+    
 }
 
 /* Paquetes Header Nuevo */
@@ -2023,4 +2029,3 @@ input[type='radio']:checked:after {
     justify-content: center;
     align-items: center;
 }
-
