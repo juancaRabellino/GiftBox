@@ -10,7 +10,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md'
 import PaquetesHeader from './PaquetesHeader'
 import { connect } from 'react-redux'
 import userActions from "../redux/actions/userActions"
-import { GoSignOut,GoSettings,GoHome,GoGift,GoQuestion,GoOrganization } from "react-icons/go";
+import { GoSignOut,GoSettings,GoHome,GoGift,GoQuestion,GoOrganization,GoTools } from "react-icons/go";
 
 
 const Header = ({ carrito, loggedUser, logOut }) => {
@@ -98,26 +98,32 @@ const Header = ({ carrito, loggedUser, logOut }) => {
                 <div className="itemsHeaderResponsive" style={{ width: document.documentElement.scrollWidth, height: document.documentElement.scrollHeight }}>
                     {loggedUser
                         ? <div className="linksUsuarioResponsive">
-                            <div className="userHeaderResponsive" style={{marginBottom: '5vh', marginTop: '2vh'}}>
+                            <div className="userHeaderResponsive" style={{marginBottom: '2vh', marginTop: '2vh'}}>
                                 {loggedUser.googleUser === "true"
                                     ? <div id="userImg" style={{ backgroundImage: `url(${loggedUser.imagen})` }} />
                                     : <div id="userImg" style={{ backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")` }} />}
                                 <p style={{fontSize: '20px' }}> Bienvenido! {loggedUser.nombre}</p>
                             </div>
                             <div className="lineaHamburguesa"></div>
-                            <Link to="/" onClick={logOut} style={{fontSize: '20px', marginBottom: '5vh'}}><GoSignOut style={{fontSize: '30px', marginRight: '2vw'}}/>LogOut</Link>
+                            {loggedUser.rol === 'admin' &&
+                            <> 
+                                <Link to="/admin" style={{fontSize: '20px', marginBottom: '3vh', marginTop: '3vh'}} onClick={() => setOpen(false)}><GoTools style={{fontSize: '30px', marginRight: '2vw'}}/>Admin</Link>
+                                <div className="lineaHamburguesa"></div>
+                            </>    
+                            }
+                            <Link to="/" onClick={logOut} style={{fontSize: '20px', marginBottom: '3vh', marginTop: '3vh'}}><GoSignOut style={{fontSize: '30px', marginRight: '2vw'}}/>LogOut</Link>
                             <div className="lineaHamburguesa"></div>
-                            <Link to="/editUsuario"  style={{fontSize: '20px', marginBottom: '5vh'}} onClick={() => setOpen(false)}><GoSettings style={{fontSize: '30px', marginRight: '2vw'}}/>Editar Usuario</Link>
+                            <Link to="/editUsuario"  style={{fontSize: '20px', marginBottom: '3vh', marginTop: '3vh'}} onClick={() => setOpen(false)}><GoSettings style={{fontSize: '30px', marginRight: '2vw'}}/>Editar Usuario</Link>
                             <div className="lineaHamburguesa"></div>
-                            <Link to="/" style={{fontSize: '20px', marginBottom: '5vh'}} onClick={() => setOpen(false)}>
+                            <Link to="/" style={{fontSize: '20px', marginBottom: '3vh', marginTop: '3vh'}} onClick={() => setOpen(false)}>
                                     <GoHome style={{fontSize: '30px', marginRight: '2vw'}}/>Home
                             </Link>
                             <div className="lineaHamburguesa"></div>
-                            <Link to="/paquetes" style={{fontSize: '20px', marginBottom: '5vh'}} onClick={() => setOpen(false)}>
+                            <Link to="/paquetes" style={{fontSize: '20px', marginBottom: '3vh', marginTop: '3vh'}} onClick={() => setOpen(false)}>
                                     <GoGift style={{fontSize: '30px', marginRight: '2vw'}}/>Paquetes
                             </Link>
                             <div className="lineaHamburguesa"></div>
-                            <Link to="/queEsGiftBox" style={{fontSize: '20px', marginBottom: '5vh'}} onClick={() => setOpen(false)} >
+                            <Link to="/queEsGiftBox" style={{fontSize: '20px', marginBottom: '3vh', marginTop: '3vh'}} onClick={() => setOpen(false)} >
                                     <GoQuestion style={{fontSize: '30px', marginRight: '2vw'}}/>Que es Gift Box?
                             </Link>
                         </div>

@@ -9,6 +9,8 @@ enviarRegalo: async (req, res) => {
     const {email,carrito,paquetesId}=req.body;
     const {cuenta,nombre,apellido}=req.user;
 
+    console.log("todo bien")
+    console.log(cuentaDestinatario)
     
     const nuevoRegalo=new Regalo({
         nombreEnviador:cuenta,
@@ -19,7 +21,7 @@ enviarRegalo: async (req, res) => {
     nuevoRegalo.save()
     .then(nuevoRegalo => {
         console.log("todo bien")
-        console.log(nuevoRegalo)
+        console.log(cuentaDestinatario)
         var transport = nodemailer.createTransport({
             port: 465,
             host: 'smtp.gmail.com',
@@ -58,7 +60,9 @@ enviarRegalo: async (req, res) => {
 
     })
         
-    .catch(error => { return res.json({ success: false, error: "Error al cargar el regalo" }) })
+    .catch(error => { 
+        console.log("TODO MAAAAAAAAAAAAAAAAAAAAAAL")
+        return res.json({ success: false, error: "Error al cargar el regalo" }) })
 
     
 
