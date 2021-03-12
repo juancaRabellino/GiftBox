@@ -122,7 +122,7 @@ const Registro = (props) => {
                         onChange={leerInput} />
                     <input type="text" name="cuenta" placeholder="Nombre de cuenta"
                         onChange={leerInput} />
-                    <input type="text" name="password" placeholder="password"
+                    <input type="password" name="password" placeholder="password"
                         onChange={leerInput} />
                     <label htmlFor="uploadButton" className="inputFile">
                         <h1>Agrega tu imagen</h1>
