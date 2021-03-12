@@ -33,12 +33,9 @@ const usuarioController = {
     },
     editarUsuarioPass: async(req,res) =>{
         var errors=[]
-        console.log(req.body)
 
         const {password, passwordVerificado}=req.body
         const id= req.params._id
-
-        console.log(req.params)
         var passwordHasheado = bcryptjs.hashSync(password, 10)
 
         var usuarioExistente = await Usuario.findOne({_id:id});
@@ -91,18 +88,15 @@ const usuarioController = {
 
         const {imgFile}= req.files
         const id= req.params._id
-        console.log(req.files)
         const imgTipo= imgFile.name.split(".").slice(-1).join(" ")
         const imagenName= imgFile.name.split(".").slice(0,-1)
-        console.log(imagenName)
+        
         var imgName = `${imagenName[0]}.${imgTipo}`
 
         const usuarioExistente = await Usuario.findOneAndUpdate({_id:id},
             {'$set':{imagen:imgName}},
             {new:true}
         )
-        console.log(imgName)
-        console.log(usuarioExistente)
 
         return res.json({
             success: errors.length===0? true:false,
@@ -113,9 +107,6 @@ const usuarioController = {
     agregarUsuario: async (req,res)=>{
         var errors=[];
 
-        console.log("PRINCIPIO")
-        console.log(req.body)
-        console.log(req.files)
         
         const {cuenta,password,nombre,apellido,rol,googleUser,productosFaveados,productosComprados,googlePic}=req.body;
         const usuarioExiste = await Usuario.findOne({cuenta})
@@ -124,9 +115,7 @@ const usuarioController = {
             const hashedPassword =  bcryptjs.hashSync(password, 10)
             var nuevoUsuario= new Usuario({cuenta,password:hashedPassword,nombre,apellido,rol,googleUser,productosFaveados,productosComprados})
 
-            console.log(nuevoUsuario)
             if(googleUser==="false"){
-                console.log("CUENTA NORMAL")
                 const {imgFile}= req.files;
                 
                 const imgTipo= imgFile.name.split(".").slice(-1).join(" ");
@@ -144,7 +133,6 @@ const usuarioController = {
             }
             else{
                 
-                console.log("CUENTA GOOGLE")
                 nuevoUsuario.imagen = req.body.imgFile
             }
             }
@@ -152,7 +140,6 @@ const usuarioController = {
                 const nuevoUsuarioGuardado = await nuevoUsuario.save()
                 var token= jsonWebToken.sign({...nuevoUsuarioGuardado},process.env.JWT_SECRET_KEY,{})
             }        
-            console.log(errors)
             return res.json({
                 success: errors.length===0 ? true : false,
                 errors: errors,

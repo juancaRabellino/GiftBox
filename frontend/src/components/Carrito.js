@@ -137,7 +137,7 @@ const Carrito=({carrito,eliminarDelCarrito,actualizarCarrito,total,loggedUser})=
                             ?<div  id="carritoContinuar" style={{cursor:"pointer"}}onClick={carritoVacio}>Continuar</div>
                             : (!loggedUser) ?<div  id="carritoContinuar" style={{cursor:"pointer"}}onClick={usuarioNologueado}>Continuar</div>
                             :<Link to="/envio" id="carritoContinuar">Continuar</Link>}
-                            <Link id="carritoSeguirComprando">Seguir Comprando</Link>
+                            <Link to="/paquetes" id="carritoSeguirComprando">Seguir Comprando</Link>
                         </div>
                     </div>
                 </div>

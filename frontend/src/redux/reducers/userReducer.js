@@ -22,7 +22,6 @@ const userReducer = (state = initialState, action) => {
                 loggedUser:null
             } 
          case 'EDITAR_PASS' :
-             console.log(action.payload)
             return{
                 ...state,
                 loggedUser: action.payload

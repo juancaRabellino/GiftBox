@@ -9,10 +9,7 @@ const userActions={
               const data = await axios.post("http://localhost:4000/api/usuarios",formNuevoUsuario,{
                 headers: {"Content-Type": "multipart: form-data"}
               }); 
-              console.log(data.data.success)
-              if (data.data.success){
-                console.log(data.data.response)
-                console.log("ACTIONS")                
+              if (data.data.success){             
                 dispatch({type:'INICIAR_SESION', payload:data.data})
                 return data.data.response
               } else{
@@ -47,7 +44,6 @@ const userActions={
         return async (dispatch) => {
             try{
                 const response = await axios.post('http://localhost:4000/api/user/resetear-password', {cuenta})
-                console.log(response)
                 dispatch({type: 'RESETEAR_PASSWORD'})
             }catch(error){
                 Swal.fire({
@@ -71,11 +67,9 @@ const userActions={
         }
       },
     iniciarSesion: (usuario) => {
-        console.log(usuario)
         return async (dispatch, getState) => {
             const respuesta = await axios.post('http://localhost:4000/api/login', usuario)
             if (!respuesta.data.success) {
-                console.log(respuesta)
                 return respuesta.data
             }
             dispatch({type:'INICIAR_SESION', payload: respuesta.data})
@@ -84,7 +78,6 @@ const userActions={
     editUsuarioPass : (editarUsuario, id) => {
         return async (dispatch, getState)=> {
             const respuesta = await axios.put(`http://localhost:4000/api/usuarios/${id}`, editarUsuario )
-            console.log(respuesta.data)
             if(!respuesta.data.success){
                 return respuesta.data 
             }
@@ -96,12 +89,9 @@ const userActions={
         }
     },
     cambiarPassword : (editUsuario) => {
-        console.log(editUsuario)
         return async (dispatch, getState)=> {
             const respuesta = await axios.put("http://localhost:4000/api//cambiar-password", editUsuario)
-            console.log(respuesta)
             if(!respuesta.data.success){
-            console.log('me fui')
             return respuesta.data 
         }
         }
@@ -113,8 +103,6 @@ const userActions={
             
             if(respuesta.data.success){
                 dispatch({type:'EDITAR_FOTO', payload: respuesta.data})
-                console.log('llegue a Imagen')
-                console.log(respuesta.data)
                 return respuesta.data             
         }
         }
