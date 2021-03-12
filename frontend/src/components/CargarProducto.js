@@ -13,9 +13,9 @@ const CargarProducto = (props) => {
         const property= e.target.name
         var value = e.target.value
         console.log(value)
-        if(property==="imagen"){
+/*         if(property==="imagen"){
             value=e.target.files[0];
-        }
+        } */
         setProducto({
             ...producto,
             [property]:value
@@ -80,8 +80,8 @@ const CargarProducto = (props) => {
         <input type="text" name="ubicacion" onChange={readInput}></input>
         <label>Stock</label>
         <input type="number" name="stock" onChange={readInput}></input>
-        <label>Imagen del producto</label>
-        <input type="file" name="imagen" onChange={readInput}></input>
+        <label>Imagen del producto (url)*</label>
+        <input type="text" name="imagen" onChange={readInput}></input>
         <button onClick={sendData}>Enviar</button>
    </form>
     )
