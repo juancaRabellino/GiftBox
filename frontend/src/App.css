@@ -1617,19 +1617,15 @@ input[type='radio']:checked:after {
     border-left: 4px solid var(--color-primario);
     color: tomato;
 }
-
-
 .row {
     display: flex;
     position: absolute;
     margin-top: 2vh;
 }
-
 .paquetexCategoria {
     margin-top: 4vh;
     min-width: 10vw;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    
 }
