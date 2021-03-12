@@ -16,8 +16,9 @@ import carritoActions from "../redux/actions/carritoActions"
 const Envio=({carrito,total,enviarRegalo, eliminarDelCarrito})=>{
 
     const [checkout, setCheckout] = useState(false)
-   
-   
+    const[tarjetaValida, setTarjetaValida]= useState(false)
+
+    console.log(tarjetaValida)
     if(!carrito){return <h1>loading..</h1>}
     
     function botonComprar() {
@@ -35,7 +36,6 @@ const Envio=({carrito,total,enviarRegalo, eliminarDelCarrito})=>{
         background: '#d8f6d3',
         iconColor: '#2fbc13'                                        
         })
-        // eliminarDelCarrito(paquete)
         carrito.map(paquete => eliminarDelCarrito(paquete)) 
         window.location.href='/'
     }
@@ -93,7 +93,7 @@ const Envio=({carrito,total,enviarRegalo, eliminarDelCarrito})=>{
                             </div>
                         </div>
                     </div>
-                    <TarjetaDeCredito/>
+                    <TarjetaDeCredito setTarjetaValida={setTarjetaValida}/>
                 
                 
                 <div  style={{width:"100%", paddingTop:"2vh"}}>

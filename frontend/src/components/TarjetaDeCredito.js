@@ -4,7 +4,7 @@ import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 
 
-const PaymentForm = () => {
+const PaymentForm = ({setTarjetaValida}) => {
 
   const [number, setNumber] = useState('')
   const [name, setName] = useState('')
@@ -17,7 +17,15 @@ const PaymentForm = () => {
   function largoNumero(e) {
     if (e.target.value.length > 16) 
     {e.target.value = e.target.value.slice(0,16)}
-    setNumber(e.target.value)
+    if(number[0] !== 4){
+      console.log("IFF")
+      setTarjetaValida(false)
+    }
+    else{
+      console.log("ELSE")
+      setTarjetaValida(true)}
+      setNumber(e.target.value)
+
   }
   function largoExpiry(e) {
     if (e.target.value.length > 4) 

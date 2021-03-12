@@ -9,6 +9,8 @@ import { useState } from "react";
 import { SiWhatsapp } from "react-icons/si";
 import regaloActions from "../redux/actions/regaloActions";
 import { useEffect } from "react";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const Envio=({carrito,total,modificarRegalo})=>{
     const [tipoEnvio,setTipoEnvio]=useState("")
@@ -16,6 +18,7 @@ const Envio=({carrito,total,modificarRegalo})=>{
     const [mailDestinatario, setMailDestinatario]= useState("");
     const [errores,setErrores]=useState([]);
     const [asunto,setAsunto]=useState("")
+
     
     useEffect(() => {
         var paquetesId=[]
@@ -26,11 +29,13 @@ const Envio=({carrito,total,modificarRegalo})=>{
             },carrito,
             paquetesId})
     }, [])
+
+
     const continuar=()=>{
         let lastAtPos = mailDestinatario.lastIndexOf('@');
         let lastDotPos = mailDestinatario.lastIndexOf('.');
         if (!(lastAtPos < lastDotPos && lastAtPos > 0 && mailDestinatario.indexOf('@@') == -1 && lastDotPos > 2 && (mailDestinatario.length - lastDotPos) > 2)) {
-            setErrores(["Email no valido"])
+            emailErroneo()
         }
         else{ 
             var paquetesId=[]
@@ -43,6 +48,35 @@ const Envio=({carrito,total,modificarRegalo})=>{
             setErrores([])
         }
     }
+    function emailErroneo() {
+        const MySwal = withReactContent(Swal)
+        MySwal.fire({
+        title: <p className="popup" style={{color:"black", fontSize:15}}>E-mail no válido! Intente nuevamente</p>,
+        icon:'error',
+        toast: true,
+        timer:1500,
+        timerProgressBar:true,
+        showConfirmButton:false,
+        width:500, 
+        background:'#f6d3d3',
+        iconColor:'#f00606'                                        
+        })
+    }
+    function formaDeEnvio() {
+        const MySwal = withReactContent(Swal)
+        MySwal.fire({
+        title: <p className="popup" style={{color:"black", fontSize:15}}>Seleccione una forma de envío!</p>,
+        icon:'error',
+        toast: true,
+        timer:1500,
+        timerProgressBar:true,
+        showConfirmButton:false,
+        width:500, 
+        background:'#f6d3d3',
+        iconColor:'#f00606'                                        
+        })
+    }
+
     if(!carrito){return <h1>loading..</h1> }
     return(
         <>
@@ -142,12 +176,18 @@ const Envio=({carrito,total,modificarRegalo})=>{
                 </>
                 }  
                 <div  style={{width:"100%", paddingTop:"2vh"}}>
+                    {paraQuien !== '' ?
                     <Link id="carritoContinuar" style={{margin:"0"}} onClick={continuar}>
                         {paraQuien==="paraMi" ?
                         <Link to="/pago"> Continuar al pago</Link> 
                         :
                         <Link to="/envioMensaje" > Continuar al mensaje</Link>}
                     </Link>
+                    :
+                    <Link id="carritoContinuar" style={{margin:"0"}} onClick={formaDeEnvio}>
+                        <Link> Continuar al pago</Link>
+                    </Link> 
+                    }
                 </div>
 
             </div>
