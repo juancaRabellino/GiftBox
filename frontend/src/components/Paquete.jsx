@@ -230,14 +230,14 @@ const Paquete = ({productosDelpaquete,obtenerProductosPorPaquete ,loggedUser, ma
                 return (
                   <>
                     <div className="cardProducto" key={`cardProd${producto._id}`}>
-                      <img src={producto.imagen} alt="" style={{ width: '100%' }} />
+                      <img src={producto.imagen} alt="" style={{ width: '100%', height: '25vh'}} />
                       <div className="infoProducto">
                         <div className="tituloProducto">
                           <h4>{producto.nombre}</h4>
                           <BsFillPeopleFill className="iconCard" />
                         </div>
-                        <h5>{producto.descripcion.slice(0, 180) + '...'}</h5>
-                        <p className="lugarProducto"><FaMapMarkerAlt className="iconCard" /> {producto.lugar}</p>
+                          <h5>{producto.descripcion}</h5>
+                        <p className="lugarProducto"><FaMapMarkerAlt className="iconCard" /> {producto.ubicacion}</p>
                       </div>
                     </div>
                   </>
