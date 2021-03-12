@@ -1,6 +1,7 @@
 const Paquete = require("../models/Paquete");
 const paquetesController = {
   agregarPaquete: (req, res) => {
+    console.log(req.files)
     const { nombre, precio, fecha, categoria, descripcion, cantidadPersonas, ubicacion, stock, cantidadVendidos, valoracion, opiniones, productos, imagen } = req.body;
     const paqueteAagregar = new Paquete({
       nombre, precio, fecha, categoria, descripcion, cantidadPersonas, ubicacion, stock, cantidadVendidos, valoracion, opiniones, productos, imagen
@@ -15,7 +16,7 @@ const paquetesController = {
       .catch(error => { return res.json({ success: false, response: "Error al obtener los paquetes" }) })
   },
   unPaquete: (req, res) => {
-    Paquete.findOne(req.params)
+    Paquete.findOne(req.params).populate("productos.productoId")
       .then(data => { return res.json({ success: true, response: data }) })
       .catch(error => { return res.json({ success: false, response: "Error al obtener el paquete" }) })
   },

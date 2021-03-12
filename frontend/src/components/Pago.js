@@ -1,4 +1,4 @@
-
+import React, { useState } from 'react';
 import { BsCheck} from "react-icons/bs";
 import { BiArrowBack, BiCreditCard } from "react-icons/bi";
 import { connect } from "react-redux";
@@ -9,6 +9,10 @@ import { FaMoneyBillAlt, FaPaypal } from "react-icons/fa";
 import regaloActions from "../redux/actions/regaloActions";
 import { useEffect } from "react";
 import TarjetaDeCredito from "../components/TarjetaDeCredito"
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import carritoActions from "../redux/actions/carritoActions"
+
 
 const Envio=({carrito,total,enviarRegalo,regalo,modificarRegalo})=>{
     useEffect(() => {
@@ -21,7 +25,29 @@ const Envio=({carrito,total,enviarRegalo,regalo,modificarRegalo})=>{
     paquetesId})
     }, [])
 
-    if(!carrito){return <h1>loading..</h1> }
+    if(!carrito){return <h1>loading..</h1>}
+
+    const botonComprar =async ()=> {
+        const response=await enviarRegalo()
+        if (response){
+            const MySwal = withReactContent(Swal)
+            MySwal.fire({
+            title: <p className="popup" style={{color:"black", fontSize:15}}>Su compra fue realizada con éxito! :D</p>,
+            icon:'success',
+            toast: true,
+            timer:4000,
+            timerProgressBar:true,
+            showConfirmButton:false,
+            width:500, 
+            background: '#d8f6d3',
+            iconColor: '#2fbc13'                                        
+            })
+            // eliminarDelCarrito(paquete)
+            window.location.href='/'
+        }
+    }
+
+
     return(
         <>
         <div className="carrito">
@@ -49,25 +75,25 @@ const Envio=({carrito,total,enviarRegalo,regalo,modificarRegalo})=>{
                         <div className="metodoDeEnvio1">
                             <div className="tipoEnvio" >
                                 <BiCreditCard/>
-                                <p style={{paddingLeft:"1vw"}}>Tarjeta de crédito</p>
+                                <p style={{paddingLeft:"1vw"}} >Tarjeta de crédito</p>
                             </div> 
                         </div>
                         <div className="metodoDeEnvio1">
                             <div className="tipoEnvio" >
                                 <AiOutlineCreditCard/>
-                                <p style={{paddingLeft:"1vw"}}>Tarjeta de débito</p>
+                                <p style={{paddingLeft:"1vw"}} >Tarjeta de débito</p>
                             </div>
                         </div>
                         <div className="metodoDeEnvio1">
                             <div className="tipoEnvio" >
                                 <FaMoneyBillAlt/>
-                                <p style={{paddingLeft:"1vw"}}>Efectivo o depósito</p>
+                                <p style={{paddingLeft:"1vw"}} >Transferencia o depósito</p>
                             </div>
                         </div>
                         <div className="metodoDeEnvio1">
                         <div className="tipoEnvio" >
                                 <FaPaypal/>
-                                <p style={{paddingLeft:"1vw"}}>PayPal</p>
+                                <p style={{paddingLeft:"1vw"}} >PayPal</p>
                             </div>
                         </div>
                     </div>
@@ -75,7 +101,7 @@ const Envio=({carrito,total,enviarRegalo,regalo,modificarRegalo})=>{
                 
                 
                 <div  style={{width:"100%", paddingTop:"2vh"}}>
-                    <Link id="carritoContinuar" style={{margin:"0"}} onClick={()=>enviarRegalo()}>
+                    <Link id="carritoContinuar" style={{margin:"0"}} onClick={botonComprar}>
                         Comprar
                     </Link>
                 </div>
@@ -119,6 +145,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps={
     enviarRegalo:regaloActions.enviarRegalo,
+    eliminarDelCarrito: carritoActions.eliminarDelCarrito,
     modificarRegalo:regaloActions.modificarRegalo
 }
 

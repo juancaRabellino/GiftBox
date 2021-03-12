@@ -10,6 +10,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md'
 import PaquetesHeader from './PaquetesHeader'
 import { connect } from 'react-redux'
 import userActions from "../redux/actions/userActions"
+import { GoSignOut,GoSettings,GoHome,GoGift,GoQuestion } from "react-icons/go";
 
 
 const Header = ({ carrito, loggedUser, logOut }) => {
@@ -87,7 +88,7 @@ const Header = ({ carrito, loggedUser, logOut }) => {
                     </div>
                 </div>
                 <div className="headerResponsive">
-                    <Hamburger toggled={isOpen} toggle={setOpen} />
+                    <Hamburger toggled={isOpen} toggle={setOpen} direction="right" easing="ease-in"/>
                 </div>
 
 
@@ -96,25 +97,56 @@ const Header = ({ carrito, loggedUser, logOut }) => {
                 <div className="itemsHeaderResponsive" style={{ width: document.documentElement.scrollWidth, height: document.documentElement.scrollHeight }}>
                     {loggedUser
                         ? <div className="linksUsuarioResponsive">
-                            <div className="userHeaderResponsive">
+                            <div className="userHeaderResponsive" style={{marginBottom: '5vh', marginTop: '2vh'}}>
                                 {loggedUser.googleUser === "true"
                                     ? <div id="userImg" style={{ backgroundImage: `url(${loggedUser.imagen})` }} />
                                     : <div id="userImg" style={{ backgroundImage: `url("../usuarioImg/${loggedUser.imagen}")` }} />}
-                                <p>{loggedUser.nombre}</p>
+                                <p style={{fontSize: '20px' }}> Bienvenido! {loggedUser.nombre}</p>
                             </div>
-                            <Link to="/" onClick={logOut}>LogOut</Link>
-                            <Link to="/editUsuario">Editar Usuario</Link>
+                            <div className="lineaHamburguesa"></div>
+                            <Link to="/" onClick={logOut} style={{fontSize: '20px', marginBottom: '5vh'}}><GoSignOut style={{fontSize: '30px', marginRight: '2vw'}}/>LogOut</Link>
+                            <div className="lineaHamburguesa"></div>
+                            <Link to="/editUsuario"  style={{fontSize: '20px', marginBottom: '5vh'}} onClick={() => setOpen(false)}><GoSettings style={{fontSize: '30px', marginRight: '2vw'}}/>Editar Usuario</Link>
+                            <div className="lineaHamburguesa"></div>
+                            <Link to="/" style={{fontSize: '20px', marginBottom: '5vh'}} onClick={() => setOpen(false)}>
+                                    <GoHome style={{fontSize: '30px', marginRight: '2vw'}}/>Home
+                            </Link>
+                            <div className="lineaHamburguesa"></div>
+                            <Link to="/paquetes" style={{fontSize: '20px', marginBottom: '5vh'}} onClick={() => setOpen(false)}>
+                                    <GoGift style={{fontSize: '30px', marginRight: '2vw'}}/>Paquetes
+                            </Link>
+                            <div className="lineaHamburguesa"></div>
+                            <Link to="/queEsGiftBox" style={{fontSize: '20px', marginBottom: '5vh'}} onClick={() => setOpen(false)} >
+                                    <GoQuestion style={{fontSize: '30px', marginRight: '2vw'}}/>Que es Gift Box?
+                            </Link>
                         </div>
-                        : <div>
+                        : 
+                        <>
+                        <div>
                             <Link to="/iniciarsesion"  >
                                 <div onClick={() => setOpen(false)} className="userNameResponsive">
                                     <div id="userImg" style={{ backgroundImage: `url("../assets/images.png")` }} />
-                                    <p onClick={() => setOpen(false)}>Mi perfil</p>
+                                    <p onClick={() => setOpen(false)} style={{fontSize: '20px'}}>Mi perfil</p>
                                     <div className="centerCenterRow"><MdKeyboardArrowDown /></div>
                                 </div>
                             </Link>
-                        </div>}
-
+                        </div>
+                        
+                        <div style={{display: 'flex', flexDirection: 'column', marginTop: '5vh', marginLeft: '4vw'}}>
+                            <Link to="/" style={{fontSize: '20px', marginBottom: '3vh', marginTop:'3vh'}} onClick={() => setOpen(false)}>
+                                    <GoHome style={{fontSize: '30px', marginRight: '2vw'}}/>Home
+                            </Link>
+                            <div className="lineaHamburguesa"></div>
+                            <Link to="/paquetes" style={{fontSize: '20px', marginBottom: '3vh', marginTop:'3vh'}} onClick={() => setOpen(false)}>
+                                    <GoGift style={{fontSize: '30px', marginRight: '2vw'}}/>Paquetes
+                            </Link>
+                            <div className="lineaHamburguesa"></div>
+                            <Link to="/queEsGiftBox" style={{fontSize: '20px', marginBottom: '3vh', marginTop:'3vh', width: '50vw'}} onClick={() => setOpen(false)}>
+                                    <GoQuestion style={{fontSize: '30px', marginRight: '2vw', }}/>Que es Gift Box?
+                            </Link>
+                        </div>
+                        </>
+                        }
                 </div>}
 
 

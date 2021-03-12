@@ -20,7 +20,9 @@ const paqueteSchema= new mongoose.Schema({
         imagenUsuario: {type:String, required: true},
         comentarioUsuario: {type:String}
     }],
-    productos:[{type: mongoose.Schema.ObjectId , ref: "producto"}],
+    productos:[{
+        productoId:{type: mongoose.Schema.ObjectId , ref: "producto"}
+    }],
     imagen: String
 })
 

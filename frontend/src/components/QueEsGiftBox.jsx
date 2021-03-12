@@ -26,6 +26,8 @@ const QueEsGiftBox = () => {
             </div>
             <div className="imagen"></div>
         </div>
+
+
     )
 }
 
