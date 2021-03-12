@@ -31,7 +31,7 @@ const TarjetaPaquete = ({ paquete }) => {
               })}
             </div>
             <div className='packageDescription'>
-              <p>{paquete.descripcion}</p>
+              <p>{paquete.descripcion.slice(0,60)+"..."}</p>
             </div>
             <p className='price'>${paquete.precio}</p>
           </div>
