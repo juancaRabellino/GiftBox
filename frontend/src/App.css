@@ -1942,7 +1942,6 @@ input[type='radio']:checked:after {
 .filterInput input, .filterInput select{
         width: 100%;
     }
-    
 }
 
 /* Paquetes Header Nuevo */
