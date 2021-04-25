@@ -2,7 +2,7 @@
 Aplicación web desarrollada con stack MERN. 
 # Trabajo realizado
 Una app desarrollada en un 10 días, realizando dailies diarias y meets durante todo el dia para poder resolver los diferentes inconvenientes, ya que fue un challenge para el bootcamp cursado en MindHub.
-<br/>Para poder ver el trabajo final realizado puedes ingresar a: https://entrelineas.herokuapp.com
+<br/>Para poder ver el trabajo final realizado puedes ingresar a: https://giftbox-app.herokuapp.com/
 # Construido con 🛠️
 - Node.js - Entorno de ejecución para JavaScript
 - Express - Libreria de Node utilizada en la construccion de la API
